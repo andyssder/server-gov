@@ -1,5 +1,7 @@
 package com.politics.chn.service;
 
+import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.model.dto.DistrictDTO;
 import com.politics.chn.model.po.DistrictPO;
 import com.politics.chn.repo.repository.DistrictRepository;
@@ -29,7 +31,9 @@ public class DistrictService {
     }
 
     public List<DistrictDTO> getCities(Integer parentId) {
-        Assert.notNull(parentId, "查询参数不能为空");
+        Assert.notNull(parentId, () -> {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+        });
         return convertPOList2DTOList(districtRepository.getChildrenById(parentId));
     }
 
