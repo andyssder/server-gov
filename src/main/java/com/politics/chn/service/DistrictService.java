@@ -22,7 +22,7 @@ public class DistrictService {
     private DistrictRepository districtRepository;
 
     @Autowired
-    public void setLocationMapper (DistrictRepository districtRepository) {
+    public void setDistrictRepository(DistrictRepository districtRepository) {
         this.districtRepository = districtRepository;
     }
 
@@ -39,9 +39,7 @@ public class DistrictService {
 
     private List<DistrictDTO> convertPOList2DTOList(List<DistrictPO> districtPOList) {
         List<DistrictDTO> result = new ArrayList<>();
-        districtPOList.forEach(locationPO -> {
-            result.add(new DistrictDTO(locationPO.getId(), locationPO.getName()));
-        });
+        districtPOList.forEach(districtPO -> result.add(new DistrictDTO(districtPO.getId(), districtPO.getName())));
         return result;
     }
 }

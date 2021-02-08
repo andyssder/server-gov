@@ -21,7 +21,7 @@ public class DistrictController {
     private DistrictService districtService;
 
     @Autowired
-    private void setLocationService(DistrictService districtService) {
+    private void setDistrictService(DistrictService districtService) {
         this.districtService = districtService;
     }
 

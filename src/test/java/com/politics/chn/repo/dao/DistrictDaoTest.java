@@ -1,13 +1,10 @@
 package com.politics.chn.repo.dao;
 
 import com.politics.chn.model.po.DistrictPO;
-import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
 
@@ -15,14 +12,13 @@ import java.util.List;
  * @author: andyssder
  * @create: 2021-02-06 16:46
  */
-@RunWith(SpringRunner.class)
 @SpringBootTest
-public class DistrictDaoTest {
+class DistrictDaoTest {
 
     private DistrictDao districtDao;
 
     @Autowired
-    public void setLocationDao (DistrictDao districtDao) {
+    public void setDistrictDao(DistrictDao districtDao) {
         this.districtDao = districtDao;
     }
 
@@ -55,6 +51,6 @@ public class DistrictDaoTest {
 
     @Test
     public void getAllTest() {
-        Assertions.assertEquals(0, districtDao.getAll().size(), "获取全部数据错误");
+        Assertions.assertEquals(3215, districtDao.getAll().size(), "获取全部数据错误");
     }
 }

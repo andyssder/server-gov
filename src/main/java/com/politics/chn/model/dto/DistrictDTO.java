@@ -37,7 +37,7 @@ public class DistrictDTO {
 
     @Override
     public String toString() {
-        return "LocationDTO{" +
+        return "DistrictDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

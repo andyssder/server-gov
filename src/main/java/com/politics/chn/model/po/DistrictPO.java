@@ -77,7 +77,7 @@ public class DistrictPO {
 
     @Override
     public String toString() {
-        return "LocationPO{" +
+        return "DistrictPO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code=" + code +
