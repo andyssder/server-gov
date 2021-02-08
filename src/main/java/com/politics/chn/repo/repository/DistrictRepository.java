@@ -31,12 +31,12 @@ public class DistrictRepository {
 
     public List<DistrictPO> getChildrenById(int id) {
         DistrictPO districtPO = getByID(id);
-        return districtDao.getChildren(districtPO.getLbb(), districtPO.getUbb(), districtPO.getLevel());
+        return districtDao.getChildren(districtPO.getLft(), districtPO.getRgt(), districtPO.getLevel());
     }
 
     public List<DistrictPO> getParentById(int id) {
         DistrictPO districtPO = getByID(id);
-        return districtDao.getParent(districtPO.getLbb(), districtPO.getUbb());
+        return districtDao.getParent(districtPO.getLft(), districtPO.getRgt());
     }
 
 }

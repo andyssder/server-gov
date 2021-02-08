@@ -11,20 +11,20 @@ public class DistrictPO {
     String name;
     int code;
     int level;
-    int lbb;
-    int ubb;
+    int lft;
+    int rgt;
 
     public DistrictPO() {
 
     }
 
-    public DistrictPO(int id, String name, int code, int level, int lbb, int ubb) {
+    public DistrictPO(int id, String name, int code, int level, int lft, int rgt) {
         this.id = id;
         this.name = name;
         this.code = code;
         this.level = level;
-        this.lbb = lbb;
-        this.ubb = ubb;
+        this.lft = lft;
+        this.rgt = rgt;
     }
 
     public int getId() {
@@ -59,20 +59,20 @@ public class DistrictPO {
         this.level = level;
     }
 
-    public int getLbb() {
-        return lbb;
+    public int getLft() {
+        return lft;
     }
 
-    public void setLbb(int lbb) {
-        this.lbb = lbb;
+    public void setLft(int lft) {
+        this.lft = lft;
     }
 
-    public int getUbb() {
-        return ubb;
+    public int getRgt() {
+        return rgt;
     }
 
-    public void setUbb(int ubb) {
-        this.ubb = ubb;
+    public void setRgt(int rgt) {
+        this.rgt = rgt;
     }
 
     @Override
@@ -82,8 +82,8 @@ public class DistrictPO {
                 ", name='" + name + '\'' +
                 ", code=" + code +
                 ", level=" + level +
-                ", lbb=" + lbb +
-                ", ubb=" + ubb +
+                ", lft=" + lft +
+                ", rgt=" + rgt +
                 '}';
     }
 
@@ -96,11 +96,11 @@ public class DistrictPO {
             return false;
         }
         DistrictPO that = (DistrictPO) o;
-        return id == that.id && code == that.code && level == that.level && lbb == that.lbb && ubb == that.ubb && name.equals(that.name);
+        return id == that.id && code == that.code && level == that.level && lft == that.lft && rgt == that.rgt && name.equals(that.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, code, level, lbb, ubb);
+        return Objects.hash(id, name, code, level, lft, rgt);
     }
 }

@@ -20,11 +20,11 @@ public interface DistrictMapper {
     @Select("SELECT * FROM district WHERE level = #{level}")
     List<DistrictPO> getByLevel(int level);
 
-    @Select("SELECT * FROM district WHERE lbb < #{lbb} AND ubb > #{ubb} ORDER BY lbb ASC")
-    List<DistrictPO> getUpper(int lbb, int ubb);
+    @Select("SELECT * FROM district WHERE lft < #{lft} AND rgt > #{rgt} ORDER BY lft ASC")
+    List<DistrictPO> getUpper(int lft, int rgt);
 
-    @Select("SELECT * FROM district WHERE lbb > #{lbb} AND ubb < #{ubb} AND level=#{level} + 1 ORDER BY lbb ASC")
-    List<DistrictPO> getLower(int lbb, int ubb, int level);
+    @Select("SELECT * FROM district WHERE lft > #{lft} AND rgt < #{rgt} AND level=#{level} + 1 ORDER BY lft ASC")
+    List<DistrictPO> getLower(int lft, int rgt, int level);
 
     @Select("SELECT * FROM district WHERE id = #{id}")
     DistrictPO getOneById(int id);

@@ -33,11 +33,11 @@ public class DistrictDao {
         return districtMapper.getByLevel(level);
     }
 
-    public List<DistrictPO> getChildren(int lbb, int ubb, int level) {
-        return districtMapper.getLower(lbb, ubb, level);
+    public List<DistrictPO> getChildren(int lft, int rgt, int level) {
+        return districtMapper.getLower(lft, rgt, level);
     }
 
-    public List<DistrictPO> getParent(int lbb, int ubb) {
-        return districtMapper.getUpper(lbb, ubb);
+    public List<DistrictPO> getParent(int lft, int rgt) {
+        return districtMapper.getUpper(lft, rgt);
     }
 }

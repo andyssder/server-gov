@@ -31,14 +31,14 @@ public class DistrictDaoTest {
         List<DistrictPO> provinces = districtDao.getByLevel(1);
         Assertions.assertEquals(provinces.size(), 34, "读取省份信息出错!");
         for (DistrictPO province : provinces) {
-            List<DistrictPO> cities = districtDao.getChildren(province.getLbb(), province.getUbb(), province.getLevel());
+            List<DistrictPO> cities = districtDao.getChildren(province.getLft(), province.getRgt(), province.getLevel());
             cities.forEach(city -> {
-                List<DistrictPO> parents = districtDao.getParent(city.getLbb(), city.getUbb());
+                List<DistrictPO> parents = districtDao.getParent(city.getLft(), city.getRgt());
                 Assertions.assertEquals(province, parents.get(1), "省市关系错误");
 
-                List<DistrictPO> children = districtDao.getChildren(city.getLbb(), city.getUbb(), city.getLevel());
+                List<DistrictPO> children = districtDao.getChildren(city.getLft(), city.getRgt(), city.getLevel());
                 children.forEach(child -> {
-                    List<DistrictPO> countiesParents = districtDao.getParent(child.getLbb(), child.getUbb());
+                    List<DistrictPO> countiesParents = districtDao.getParent(child.getLft(), child.getRgt());
                     Assertions.assertEquals(province, countiesParents.get(1), "省县关系错误");
                     Assertions.assertEquals(city, countiesParents.get(2), "市县关系错误");
                 });
