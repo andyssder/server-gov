@@ -17,7 +17,7 @@ public class DistrictRepository {
     private DistrictDao districtDao;
 
     @Autowired
-    public void setDistrictDao(DistrictDao districtDao) {
+    private void setDistrictDao(DistrictDao districtDao) {
         this.districtDao = districtDao;
     }
 

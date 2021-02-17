@@ -15,7 +15,7 @@ class DistrictRepositoryTest {
     private DistrictRepository districtRepository;
 
     @Autowired
-    public void setDistrictRepository(DistrictRepository districtRepository) {
+    private void setDistrictRepository(DistrictRepository districtRepository) {
         this.districtRepository = districtRepository;
     }
 

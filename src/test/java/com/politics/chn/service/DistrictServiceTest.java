@@ -16,7 +16,7 @@ class DistrictServiceTest {
     private DistrictService districtService;
 
     @Autowired
-    public void setDistrictService(DistrictService districtService) {
+    private void setDistrictService(DistrictService districtService) {
         this.districtService = districtService;
     }
 

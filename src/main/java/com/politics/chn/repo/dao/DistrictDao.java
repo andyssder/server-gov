@@ -17,7 +17,7 @@ public class DistrictDao {
     private DistrictMapper districtMapper;
 
     @Autowired
-    public void setDistrictMapper(DistrictMapper districtMapper) {
+    private void setDistrictMapper(DistrictMapper districtMapper) {
         this.districtMapper = districtMapper;
     }
 
