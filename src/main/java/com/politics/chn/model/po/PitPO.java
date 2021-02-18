@@ -7,28 +7,30 @@ import java.util.Objects;
  * @create: 2021-02-08 17:15
  */
 public class PitPO {
-    long id;
+    Long id;
+    Long pid;
     String name;
     String shortName;
-    int level;
-    int rank;
-    int districtLevel;
-    int lft;
-    int rgt;
-    boolean isDeleted;
+    Integer level;
+    Integer rank;
+    Integer districtLevel;
+    Integer lft;
+    Integer rgt;
+    Boolean isDeleted;
 
     public PitPO() {
     }
 
-    public PitPO(String name, int level, int rank, int districtLevel, int lft, int rgt) {
-        this(name, null, level, rank, districtLevel, lft, rgt, false);
+    public PitPO(Long pid, String name, int level, int rank, int districtLevel, int lft, int rgt) {
+        this(pid, name, null, level, rank, districtLevel, lft, rgt, false);
     }
 
-    public PitPO(String name, String shortName, int level, int rank, int districtLevel, int lft, int rgt) {
-        this(name, shortName, level, rank, districtLevel, lft, rgt, false);
+    public PitPO(Long pid, String name, String shortName, int level, int rank, int districtLevel, int lft, int rgt) {
+        this(pid, name, shortName, level, rank, districtLevel, lft, rgt, false);
     }
 
-    public PitPO(String name, String shortName, int level, int rank, int districtLevel, int lft, int rgt, boolean isDeleted) {
+    public PitPO(Long pid, String name, String shortName, int level, int rank, int districtLevel, int lft, int rgt, boolean isDeleted) {
+        this.pid = pid;
         this.name = name;
         this.shortName = shortName;
         this.level = level;
@@ -39,12 +41,20 @@ public class PitPO {
         this.isDeleted = isDeleted;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public Long getPid() {
+        return pid;
+    }
+
+    public void setPid(Long pid) {
+        this.pid = pid;
     }
 
     public String getName() {
@@ -63,43 +73,43 @@ public class PitPO {
         this.shortName = shortName;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
-    public int getRank() {
+    public Integer getRank() {
         return rank;
     }
 
-    public void setRank(int rank) {
+    public void setRank(Integer rank) {
         this.rank = rank;
     }
 
-    public int getDistrictLevel() {
+    public Integer getDistrictLevel() {
         return districtLevel;
     }
 
-    public void setDistrictLevel(int districtLevel) {
+    public void setDistrictLevel(Integer districtLevel) {
         this.districtLevel = districtLevel;
     }
 
-    public int getLft() {
+    public Integer getLft() {
         return lft;
     }
 
-    public void setLft(int lft) {
+    public void setLft(Integer lft) {
         this.lft = lft;
     }
 
-    public int getRgt() {
+    public Integer getRgt() {
         return rgt;
     }
 
-    public void setRgt(int rgt) {
+    public void setRgt(Integer rgt) {
         this.rgt = rgt;
     }
 
@@ -120,18 +130,19 @@ public class PitPO {
             return false;
         }
         PitPO pitPO = (PitPO) o;
-        return id == pitPO.id && level == pitPO.level && rank == pitPO.rank && districtLevel == pitPO.districtLevel && lft == pitPO.lft && rgt == pitPO.rgt && isDeleted == pitPO.isDeleted && Objects.equals(name, pitPO.name) && Objects.equals(shortName, pitPO.shortName);
+        return Objects.equals(id, pitPO.id) && Objects.equals(pid, pitPO.pid) && Objects.equals(name, pitPO.name) && Objects.equals(shortName, pitPO.shortName) && Objects.equals(level, pitPO.level) && Objects.equals(rank, pitPO.rank) && Objects.equals(districtLevel, pitPO.districtLevel) && Objects.equals(lft, pitPO.lft) && Objects.equals(rgt, pitPO.rgt) && Objects.equals(isDeleted, pitPO.isDeleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, shortName, level, rank, districtLevel, lft, rgt, isDeleted);
+        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, isDeleted);
     }
 
     @Override
     public String toString() {
         return "PitPO{" +
                 "id=" + id +
+                ", pid=" + pid +
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", level=" + level +

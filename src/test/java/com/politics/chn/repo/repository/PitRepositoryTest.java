@@ -39,9 +39,9 @@ class PitRepositoryTest {
 
     @Test
     void getChildren() {
-        PitPO pitPO1 = new PitPO("test-getChildren1", "",100, 1, 1, 10000000,10000003);
-        PitPO pitPO2 = new PitPO("test-getChildren2",101, 2, 2, 10000001,10000002);
+        PitPO pitPO1 = new PitPO(1L,"test-getChildren1", "",100, 1, 1, 10000000,10000003);
         pitRepository.insertOne(pitPO1);
+        PitPO pitPO2 = new PitPO(pitPO1.getId(),"test-getChildren2",101, 2, 2, 10000001,10000002);
         pitRepository.insertOne(pitPO2);
         Assertions.assertEquals(1, pitRepository.getChildren(pitPO1.getId()).size(),"查询子记录出错");
         pitDao.deleteOne(pitPO1.getId(), true);

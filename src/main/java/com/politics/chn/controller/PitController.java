@@ -1,5 +1,6 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.model.dto.PitDTO;
 import com.politics.chn.model.po.PitPO;
 import com.politics.chn.service.PitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,8 +41,8 @@ public class PitController {
     }
 
     @GetMapping(value = "/pits")
-    public List<PitPO> getPitList(@RequestParam(value = "id", required = false) Long id,
-                                  @RequestParam(value = "districtLevel", required = false) Integer districtLevel) {
+    public List<PitDTO> getPitList(@RequestParam(value = "id", required = false) Long id,
+                                   @RequestParam(value = "districtLevel", required = false) Integer districtLevel) {
         return pitService.getPitList(id, districtLevel);
     }
 

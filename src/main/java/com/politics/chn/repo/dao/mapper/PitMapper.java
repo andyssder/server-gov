@@ -15,7 +15,7 @@ public interface PitMapper {
     @Select("SELECT * FROM pit")
     List<PitPO> getAll();
 
-    @Select("SELECT * FROM pit WHERE is_deleted = false AND district_level = #{districtLevel} and ")
+    @Select("SELECT * FROM pit WHERE is_deleted = false AND district_level = #{districtLevel}")
     List<PitPO> getByDistrictLevel(int districtLevel);
 
     @Select("SELECT * FROM pit WHERE is_deleted = false AND lft > #{lft} AND rgt < #{rgt} AND level=#{level} + 1 ORDER BY lft ASC")
@@ -24,7 +24,7 @@ public interface PitMapper {
     @Select("SELECT * FROM pit WHERE id = #{id}")
     PitPO getOneById(long id);
 
-    @Insert("INSERT INTO pit(name, short_name, level, rank, district_level, lft, rgt) VALUES(#{name}, #{shortName}, #{level}, #{rank}, #{districtLevel}, #{lft}, #{rgt})")
+    @Insert("INSERT INTO pit(name, short_name, level, rank, district_level, lft, rgt, pid) VALUES(#{name}, #{shortName}, #{level}, #{rank}, #{districtLevel}, #{lft}, #{rgt}, #{pid})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PitPO pitPO);
 

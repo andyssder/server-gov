@@ -7,12 +7,12 @@ import java.util.Objects;
  * @create: 2021-02-06 16:43
  */
 public class DistrictPO {
-    int id;
+    Integer id;
     String name;
-    int code;
-    int level;
-    int lft;
-    int rgt;
+    Integer code;
+    Integer level;
+    Integer lft;
+    Integer rgt;
 
     public DistrictPO() {
 
@@ -27,11 +27,11 @@ public class DistrictPO {
         this.rgt = rgt;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -43,35 +43,35 @@ public class DistrictPO {
         this.name = name;
     }
 
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
 
-    public void setCode(int code) {
+    public void setCode(Integer code) {
         this.code = code;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
-    public int getLft() {
+    public Integer getLft() {
         return lft;
     }
 
-    public void setLft(int lft) {
+    public void setLft(Integer lft) {
         this.lft = lft;
     }
 
-    public int getRgt() {
+    public Integer getRgt() {
         return rgt;
     }
 
-    public void setRgt(int rgt) {
+    public void setRgt(Integer rgt) {
         this.rgt = rgt;
     }
 
@@ -96,7 +96,7 @@ public class DistrictPO {
             return false;
         }
         DistrictPO that = (DistrictPO) o;
-        return id == that.id && code == that.code && level == that.level && lft == that.lft && rgt == that.rgt && name.equals(that.name);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(code, that.code) && Objects.equals(level, that.level) && Objects.equals(lft, that.lft) && Objects.equals(rgt, that.rgt);
     }
 
     @Override
