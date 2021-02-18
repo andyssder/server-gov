@@ -21,7 +21,7 @@ public class DistrictRepository {
         this.districtDao = districtDao;
     }
 
-    public DistrictPO getByID(int id) {
+    public DistrictPO getById(int id) {
         return districtDao.getOneById(id);
     }
 
@@ -30,12 +30,12 @@ public class DistrictRepository {
     }
 
     public List<DistrictPO> getChildrenById(int id) {
-        DistrictPO districtPO = getByID(id);
+        DistrictPO districtPO = getById(id);
         return districtDao.getChildren(districtPO.getLft(), districtPO.getRgt(), districtPO.getLevel());
     }
 
     public List<DistrictPO> getParentById(int id) {
-        DistrictPO districtPO = getByID(id);
+        DistrictPO districtPO = getById(id);
         return districtDao.getParent(districtPO.getLft(), districtPO.getRgt());
     }
 

@@ -50,7 +50,7 @@ public class CarrotService {
     }
 
     public List<CarrotDTO> getCarrotList(Integer pitLevel) {
-        List<CarrotPO> tempResult = new ArrayList<>();
+        List<CarrotPO> tempResult;
         if (pitLevel != null) {
             tempResult = carrotRepository.getByPitLevel(pitLevel);
         } else {
@@ -61,9 +61,7 @@ public class CarrotService {
 
     private List<CarrotDTO> convertPOList2DTOList(List<CarrotPO> carrotPOList) {
         List<CarrotDTO> result = new ArrayList<>();
-        carrotPOList.forEach(carrotPO -> {
-            result.add(new CarrotDTO(carrotPO.getId(), carrotPO.getName(), carrotPO.getShortName()));
-        });
+        carrotPOList.forEach(carrotPO -> result.add(new CarrotDTO(carrotPO.getId(), carrotPO.getName(), carrotPO.getShortName())));
         return result;
     }
 }

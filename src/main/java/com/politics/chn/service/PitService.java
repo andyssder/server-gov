@@ -92,7 +92,7 @@ public class PitService {
         Assert.isTrue(!(id != null && districtLevel != null), () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
-        List<PitPO> tempResult = new ArrayList<>();
+        List<PitPO> tempResult;
         if (id != null) {
             tempResult = pitRepository.getChildren(id);
         } else if (districtLevel != null) {
@@ -105,9 +105,7 @@ public class PitService {
 
     private List<PitDTO> convertPOList2DTOList(List<PitPO> pitPOList) {
         List<PitDTO> result = new ArrayList<>();
-        pitPOList.forEach(pitPO -> {
-            result.add(new PitDTO(pitPO.getId(), pitPO.getPid(), pitPO.getName(), pitPO.getShortName(), pitPO.getRank(), pitPO.getDistrictLevel()));
-        });
+        pitPOList.forEach(pitPO -> result.add(new PitDTO(pitPO.getId(), pitPO.getPid(), pitPO.getName(), pitPO.getShortName(), pitPO.getRank(), pitPO.getDistrictLevel())));
         return result;
     }
 }

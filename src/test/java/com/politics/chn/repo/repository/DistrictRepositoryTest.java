@@ -21,7 +21,7 @@ class DistrictRepositoryTest {
 
     @Test
     void getByIDTest() {
-        Assertions.assertNotNull(districtRepository.getByID(1), "通过id查询错误");
+        Assertions.assertNotNull(districtRepository.getById(1), "通过id查询错误");
     }
 
     @Test

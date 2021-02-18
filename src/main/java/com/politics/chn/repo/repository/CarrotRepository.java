@@ -34,8 +34,8 @@ public class CarrotRepository {
         return carrotDao.getOneById(id);
     }
 
-    public Boolean insertOne(CarrotPO CarrotPO) {
-        return carrotDao.insertOne(CarrotPO);
+    public Boolean insertOne(CarrotPO carrotPO) {
+        return carrotDao.insertOne(carrotPO);
     }
 
     public Boolean updateOne(long id, Map<String, Object> updateParams) {

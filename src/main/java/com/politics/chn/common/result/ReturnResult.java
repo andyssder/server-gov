@@ -71,26 +71,26 @@ public class ReturnResult<T> {
     }
 
     public static ReturnResult<Void> success() {
-        return new ReturnResult<Void>(ResultStatusEnum.SUCCESS, null);
+        return new ReturnResult<>(ResultStatusEnum.SUCCESS, null);
     }
 
     public static <T> ReturnResult<T> success(T data) {
-        return new ReturnResult<T>(ResultStatusEnum.SUCCESS, data);
+        return new ReturnResult<>(ResultStatusEnum.SUCCESS, data);
     }
 
     public static <T> ReturnResult<T> success(ResultStatusEnum resultStatus, T data) {
         if (resultStatus == null) {
             return success(data);
         }
-        return new ReturnResult<T>(resultStatus, data);
+        return new ReturnResult<>(resultStatus, data);
     }
 
     public static <T> ReturnResult<T> failure() {
-        return new ReturnResult<T>(ResultStatusEnum.INTERNAL_SERVER_ERROR, null);
+        return new ReturnResult<>(ResultStatusEnum.INTERNAL_SERVER_ERROR, null);
     }
 
     public static <T> ReturnResult<T> failure(String code, String message) {
-        return new ReturnResult<T>(code, message);
+        return new ReturnResult<>(code, message);
     }
 
     public static <T> ReturnResult<T> failure(ResultStatusEnum resultStatus) {
@@ -99,8 +99,8 @@ public class ReturnResult<T> {
 
     public static <T> ReturnResult<T> failure(ResultStatusEnum resultStatus, T data) {
         if (resultStatus == null) {
-            return new ReturnResult<T>(ResultStatusEnum.INTERNAL_SERVER_ERROR, null);
+            return new ReturnResult<>(ResultStatusEnum.INTERNAL_SERVER_ERROR, null);
         }
-        return new ReturnResult<T>(resultStatus, data);
+        return new ReturnResult<>(resultStatus, data);
     }
 }
