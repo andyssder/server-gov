@@ -18,7 +18,7 @@ public class DistrictPO {
 
     }
 
-    public DistrictPO(int id, String name, int code, int level, int lft, int rgt) {
+    public DistrictPO(Integer id, String name, Integer code, Integer level, Integer lft, Integer rgt) {
         this.id = id;
         this.name = name;
         this.code = code;

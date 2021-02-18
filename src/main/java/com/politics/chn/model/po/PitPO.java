@@ -30,6 +30,11 @@ public class PitPO {
     }
 
     public PitPO(Long pid, String name, String shortName, int level, int rank, int districtLevel, int lft, int rgt, boolean isDeleted) {
+        this(null, pid, name, shortName, level, rank, districtLevel, lft, rgt, isDeleted);
+    }
+
+    public PitPO(Long id, Long pid, String name, String shortName, Integer level, Integer rank, Integer districtLevel, Integer lft, Integer rgt, Boolean isDeleted) {
+        this.id = id;
         this.pid = pid;
         this.name = name;
         this.shortName = shortName;

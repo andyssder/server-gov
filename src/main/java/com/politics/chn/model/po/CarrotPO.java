@@ -20,6 +20,11 @@ public class CarrotPO {
     }
 
     public CarrotPO(String name, String shortName, Integer pitLevel) {
+        this(null, name, shortName, pitLevel);
+    }
+
+    public CarrotPO(Long id, String name, String shortName, Integer pitLevel) {
+        this.id = id;
         this.name = name;
         this.shortName = shortName;
         this.pitLevel = pitLevel;
