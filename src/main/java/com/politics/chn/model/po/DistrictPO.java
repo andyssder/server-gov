@@ -14,19 +14,6 @@ public class DistrictPO {
     Integer lft;
     Integer rgt;
 
-    public DistrictPO() {
-
-    }
-
-    public DistrictPO(Integer id, String name, Integer code, Integer level, Integer lft, Integer rgt) {
-        this.id = id;
-        this.name = name;
-        this.code = code;
-        this.level = level;
-        this.lft = lft;
-        this.rgt = rgt;
-    }
-
     public Integer getId() {
         return id;
     }

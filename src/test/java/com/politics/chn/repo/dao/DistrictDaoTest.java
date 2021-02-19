@@ -1,6 +1,6 @@
 package com.politics.chn.repo.dao;
 
-import com.politics.chn.model.po.DistrictPO;
+import com.politics.chn.model.domain.value.DistrictDO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,17 +24,17 @@ class DistrictDaoTest {
 
     @Test
     public void mainTest() {
-        List<DistrictPO> provinces = districtDao.getByLevel(1);
+        List<DistrictDO> provinces = districtDao.getByLevel(1);
         Assertions.assertEquals(provinces.size(), 34, "读取省份信息出错!");
-        for (DistrictPO province : provinces) {
-            List<DistrictPO> cities = districtDao.getChildren(province.getLft(), province.getRgt(), province.getLevel());
+        for (DistrictDO province : provinces) {
+            List<DistrictDO> cities = districtDao.getChildren(province.getLft(), province.getRgt(), province.getLevel());
             cities.forEach(city -> {
-                List<DistrictPO> parents = districtDao.getParent(city.getLft(), city.getRgt());
+                List<DistrictDO> parents = districtDao.getParent(city.getLft(), city.getRgt());
                 Assertions.assertEquals(province, parents.get(1), "省市关系错误");
 
-                List<DistrictPO> children = districtDao.getChildren(city.getLft(), city.getRgt(), city.getLevel());
+                List<DistrictDO> children = districtDao.getChildren(city.getLft(), city.getRgt(), city.getLevel());
                 children.forEach(child -> {
-                    List<DistrictPO> countiesParents = districtDao.getParent(child.getLft(), child.getRgt());
+                    List<DistrictDO> countiesParents = districtDao.getParent(child.getLft(), child.getRgt());
                     Assertions.assertEquals(province, countiesParents.get(1), "省县关系错误");
                     Assertions.assertEquals(city, countiesParents.get(2), "市县关系错误");
                 });

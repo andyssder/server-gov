@@ -1,6 +1,6 @@
 package com.politics.chn.repo.dao;
 
-import com.politics.chn.model.po.CarrotPO;
+import com.politics.chn.model.domain.value.CarrotDO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,44 +29,59 @@ class CarrotDaoTest {
     }
     @Test
     void getByPitLevel() {
-        CarrotPO carrotPO1 = new CarrotPO("test-getByPitLevel1", "",10);
-        CarrotPO carrotPO2 = new CarrotPO("test-getByPitLevel2", "",11);
-        carrotDao.insertOne(carrotPO1);
-        carrotDao.insertOne(carrotPO2);
+        CarrotDO CarrotDO1 = new CarrotDO();
+        CarrotDO1.setName("test-getByPitLevel1");
+        CarrotDO1.setPitLevel(10);
+        CarrotDO CarrotDO2 = new CarrotDO();
+        CarrotDO1.setName("test-getByPitLevel2");
+        CarrotDO1.setPitLevel(11);
+        carrotDao.insertOne(CarrotDO1);
+        carrotDao.insertOne(CarrotDO2);
         Assertions.assertEquals(1, carrotDao.getByPitLevel(10).size(),"根据pit级别查询记录出错");
         Assertions.assertEquals(1, carrotDao.getByPitLevel(11).size(),"根据pit级别查询记录出错");
-        carrotDao.deleteOne(carrotPO1.getId());
-        carrotDao.deleteOne(carrotPO1.getId());
+        carrotDao.deleteOne(CarrotDO1.getId());
+        carrotDao.deleteOne(CarrotDO1.getId());
     }
 
     @Test
     void getOneById() {
-        CarrotPO carrotPO = new CarrotPO("test-getOneById", "",1);
-        carrotDao.insertOne(carrotPO);
-        Assertions.assertEquals(carrotPO, carrotDao.getOneById(carrotPO.getId()));
-        carrotDao.deleteOne(carrotPO.getId());
+        CarrotDO CarrotDO = new CarrotDO();
+        CarrotDO.setName("test-getOneById");
+        CarrotDO.setPitLevel(1);
+        carrotDao.insertOne(CarrotDO);
+        Assertions.assertEquals(CarrotDO, carrotDao.getOneById(CarrotDO.getId()));
+        carrotDao.deleteOne(CarrotDO.getId());
     }
 
     @Test
     void insertOne() {
-        CarrotPO carrotPO = new CarrotPO("test-insertOne", "",1);
-        Assertions.assertTrue(carrotDao.insertOne(carrotPO),"插入记录错误");
-        carrotDao.deleteOne(carrotPO.getId());
+        CarrotDO CarrotDO = new CarrotDO();
+        CarrotDO.setName("test-insertOne");
+        CarrotDO.setPitLevel(1);
+        Assertions.assertTrue(carrotDao.insertOne(CarrotDO),"插入记录错误");
+        carrotDao.deleteOne(CarrotDO.getId());
     }
 
     @Test
     void updateOne() {
-        CarrotPO carrotPO = new CarrotPO("test-updateOne", "",1);
-        CarrotPO targetCarrotPO = new CarrotPO("test-updated", "test",1);
-        carrotDao.insertOne(carrotPO);
-        targetCarrotPO.setId(carrotPO.getId());
+        CarrotDO CarrotDO = new CarrotDO();
+        CarrotDO.setName("test-updateOne");
+        CarrotDO.setPitLevel(1);
+        carrotDao.insertOne(CarrotDO);
+
+        CarrotDO targetCarrotDO = new CarrotDO();
+        targetCarrotDO.setName("test-updateOne");
+        targetCarrotDO.setShortName("test");
+        targetCarrotDO.setPitLevel(1);
+        targetCarrotDO.setId(CarrotDO.getId());
+
         Map<String, Object> params = new HashMap<>();
-        params.put("name", targetCarrotPO.getName());
-        params.put("short_name", targetCarrotPO.getShortName());
-        Assertions.assertTrue(carrotDao.updateOne(carrotPO.getId(), params),"修改记录错误");
-        CarrotPO updatedCarrotPO = carrotDao.getOneById(carrotPO.getId());
-        Assertions.assertEquals(targetCarrotPO, updatedCarrotPO,"修改内容不匹配");
-        carrotDao.deleteOne(carrotPO.getId());
+        params.put("name", targetCarrotDO.getName());
+        params.put("short_name", targetCarrotDO.getShortName());
+        Assertions.assertTrue(carrotDao.updateOne(CarrotDO.getId(), params),"修改记录错误");
+        CarrotDO updatedCarrotDO = carrotDao.getOneById(CarrotDO.getId());
+        Assertions.assertEquals(targetCarrotDO, updatedCarrotDO,"修改内容不匹配");
+        carrotDao.deleteOne(CarrotDO.getId());
     }
 
 }

@@ -1,5 +1,6 @@
 package com.politics.chn.repo.repository;
 
+import com.politics.chn.model.domain.value.PitDO;
 import com.politics.chn.model.po.PitPO;
 import com.politics.chn.repo.dao.PitDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,20 +23,20 @@ public class PitRepository {
         this.pitDao = pitDao;
     }
 
-    public List<PitPO> getAll() {
+    public List<PitDO> getAll() {
         return pitDao.getAll();
     }
 
-    public List<PitPO> getByDistrictLevel(int districtLevel) {
+    public List<PitDO> getByDistrictLevel(int districtLevel) {
         return pitDao.getByDistrictLevel(districtLevel);
     }
 
-    public List<PitPO> getChildren(long id) {
-        PitPO pitPO = getOneById(id);
-        return pitDao.getChildren(pitPO.getLft(), pitPO.getRgt(), pitPO.getLevel());
+    public List<PitDO> getChildren(long id) {
+        PitDO pitDO = getOneById(id);
+        return pitDao.getChildren(pitDO.getLft(), pitDO.getRgt(), pitDO.getLevel());
     }
 
-    public PitPO getOneById(long id) {
+    public PitDO getOneById(long id) {
         return pitDao.getOneById(id);
     }
 

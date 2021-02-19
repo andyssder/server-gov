@@ -1,6 +1,7 @@
 package com.politics.chn.service;
 
 import com.politics.chn.common.exception.CommonException;
+import com.politics.chn.model.domain.value.PitDO;
 import com.politics.chn.model.po.PitPO;
 import com.politics.chn.repo.dao.PitDao;
 import org.junit.jupiter.api.Assertions;
@@ -33,18 +34,19 @@ class PitServiceTest {
 
     @Test
     void addPit() {
-        Map<String, Object> addParams = new HashMap<>();
-        addParams.put("pid", 1L);
-        addParams.put("name", "test-add");
-        addParams.put("districtLevel", 1);
-        addParams.put("rank", 1);
-        Long id1 = pitService.addPit(addParams);
+        PitPO newPit1 = new PitPO();
+        newPit1.setPid(1L);
+        newPit1.setName("test-add");
+        newPit1.setDistrictLevel(1);
+        newPit1.setRank(1);
+        Long id1 = pitService.addPit(newPit1);
         Assertions.assertNotNull(id1, "插入Pit错误");
-        addParams.put("pid", id1);
-        addParams.put("name", "test-add2");
-        addParams.put("districtLevel", 2);
-        addParams.put("rank", 2);
-        Long id2 = pitService.addPit(addParams);
+        PitPO newPit2 = new PitPO();
+        newPit2.setPid(id1);
+        newPit2.setName("test-add2");
+        newPit2.setDistrictLevel(2);
+        newPit2.setRank(2);
+        Long id2 = pitService.addPit(newPit2);
         Assertions.assertNotNull(id2, "插入子Pit错误");
 
         pitDao.deleteOne(id1, true);
@@ -54,33 +56,33 @@ class PitServiceTest {
 
     @Test
     void updatePit() {
-        Map<String, Object> addParams = new HashMap<>();
-        addParams.put("pid", 1L);
-        addParams.put("name", "test-update");
-        addParams.put("districtLevel", 1);
-        addParams.put("rank", 1);
-        Long id = pitService.addPit(addParams);
+        PitPO newPit = new PitPO();
+        newPit.setPid(1L);
+        newPit.setName("test-update");
+        newPit.setDistrictLevel(1);
+        newPit.setRank(1);
+        Long id = pitService.addPit(newPit);
         Map<String, Object> updateParams = new HashMap<>();
         updateParams.put("name", "test-after-update");
         Assertions.assertThrows(CommonException.class, () -> pitService.updatePit(-1, updateParams), "更新不存在Pit错误");
         Assertions.assertDoesNotThrow(() -> pitService.updatePit(id, updateParams), "更新Pit异常");
-        PitPO pitPO = pitDao.getOneById(id);
-        Assertions.assertEquals("test-after-update", pitPO.getName(), "更新Pit名称失败");
+        PitDO pitDO = pitDao.getOneById(id);
+        Assertions.assertEquals("test-after-update", pitDO.getName(), "更新Pit名称失败");
         pitDao.deleteOne(id, true);
     }
 
     @Test
     void deletePit() {
-        Map<String, Object> addParams = new HashMap<>();
-        addParams.put("pid", 1L);
-        addParams.put("name", "test-delete");
-        addParams.put("districtLevel", 1);
-        addParams.put("rank", 1);
-        Long id = pitService.addPit(addParams);
+        PitPO newPit = new PitPO();
+        newPit.setPid(1L);
+        newPit.setName("test-delete");
+        newPit.setDistrictLevel(1);
+        newPit.setRank(1);
+        Long id = pitService.addPit(newPit);
         Assertions.assertThrows(CommonException.class, () -> pitService.deletePit(-1), "删除不存在Pit错误");
         Assertions.assertDoesNotThrow(() -> pitService.deletePit(id), "删除Pit异常");
-        PitPO pitPO = pitDao.getOneById(id);
-        Assertions.assertTrue(pitPO.isDeleted(), "删除Pit失败");
+        PitDO pitDO = pitDao.getOneById(id);
+        Assertions.assertTrue(pitDO.getDeleted(), "删除Pit失败");
         pitDao.deleteOne(id, true);
     }
 

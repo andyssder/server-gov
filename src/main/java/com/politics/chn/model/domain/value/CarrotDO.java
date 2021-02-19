@@ -1,34 +1,17 @@
-package com.politics.chn.model.po;
+package com.politics.chn.model.domain.value;
 
 import java.util.Objects;
 
 /**
- * @author: andyssder
- * @create: 2021-02-18 10:51
+ * @author andyssder
+ * @create 2021-02-19 20:04
  */
-public class CarrotPO {
+public class CarrotDO {
     Long id;
     String name;
     String shortName;
     Integer pitLevel;
-
-    public CarrotPO() {
-    }
-
-    public CarrotPO(String name, Integer pitLevel) {
-        this(name, null, pitLevel);
-    }
-
-    public CarrotPO(String name, String shortName, Integer pitLevel) {
-        this(null, name, shortName, pitLevel);
-    }
-
-    public CarrotPO(Long id, String name, String shortName, Integer pitLevel) {
-        this.id = id;
-        this.name = name;
-        this.shortName = shortName;
-        this.pitLevel = pitLevel;
-    }
+    Boolean isDelete;
 
     public Long getId() {
         return id;
@@ -62,6 +45,14 @@ public class CarrotPO {
         this.pitLevel = pitLevel;
     }
 
+    public Boolean getDelete() {
+        return isDelete;
+    }
+
+    public void setDelete(Boolean delete) {
+        isDelete = delete;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -70,22 +61,23 @@ public class CarrotPO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CarrotPO carrotPO = (CarrotPO) o;
-        return Objects.equals(id, carrotPO.id) && Objects.equals(name, carrotPO.name) && Objects.equals(shortName, carrotPO.shortName) && Objects.equals(pitLevel, carrotPO.pitLevel);
+        CarrotDO carrotDO = (CarrotDO) o;
+        return Objects.equals(id, carrotDO.id) && Objects.equals(name, carrotDO.name) && Objects.equals(shortName, carrotDO.shortName) && Objects.equals(pitLevel, carrotDO.pitLevel) && Objects.equals(isDelete, carrotDO.isDelete);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, shortName, pitLevel);
+        return Objects.hash(id, name, shortName, pitLevel, isDelete);
     }
 
     @Override
     public String toString() {
-        return "CarrotPO{" +
+        return "CarrotDO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", pitLevel=" + pitLevel +
+                ", isDelete=" + isDelete +
                 '}';
     }
 }

@@ -2,14 +2,13 @@ package com.politics.chn.service;
 
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.model.dto.PitDTO;
+import com.politics.chn.model.domain.value.PitDO;
 import com.politics.chn.model.po.PitPO;
 import com.politics.chn.repo.repository.PitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,24 +26,20 @@ public class PitService {
         this.pitRepository = pitRepository;
     }
 
-    public Long addPit(Map<String, Object> addParams) {
+    public Long addPit(PitPO pitPO) {
         // TODO: 优化常量和if代码
-        boolean paramsCheck = addParams.containsKey("pid")
-                && addParams.containsKey("name")
-                && addParams.containsKey("districtLevel")
-                && addParams.containsKey("rank");
+        boolean paramsCheck = pitPO.getPid() != null
+                && pitPO.getName() != null
+                && pitPO.getDistrictLevel() != null
+                && pitPO.getRank() != null;
         Assert.isTrue(paramsCheck, () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
-        String name = (String) addParams.get("name");
-        String shortName = (String) addParams.get("shortName");
-        int districtLevel = (int) addParams.get("districtLevel");
-        int rank = (int) addParams.get("rank");
         int lft, rgt, level;
-        long pid = (long) addParams.get("pid");
-        List<PitPO> brotherPit = pitRepository.getChildren(pid);
+        long pid = pitPO.getPid();
+        List<PitDO> brotherPit = pitRepository.getChildren(pid);
         if (brotherPit.size() > 0) {
-            PitPO lastPit = brotherPit.get(brotherPit.size() - 1);
+            PitDO lastPit = brotherPit.get(brotherPit.size() - 1);
             level = lastPit.getLevel();
             lft = lastPit.getRgt() + 1;
             if(level == 1) {
@@ -55,7 +50,7 @@ public class PitService {
                 rgt = lft + 1;
             }
         } else {
-            PitPO parentPit = pitRepository.getOneById(pid);
+            PitDO parentPit = pitRepository.getOneById(pid);
             Assert.notNull(parentPit, () -> {
                 throw new CommonException(ResultStatusEnum.NOT_FOUND);
             });
@@ -69,11 +64,13 @@ public class PitService {
                 rgt = lft + 1;
             }
         }
-        PitPO newPit = new PitPO(pid, name, shortName, level, rank, districtLevel, lft, rgt);
-        Assert.isTrue(pitRepository.insertOne(newPit), () -> {
+        pitPO.setLevel(level);
+        pitPO.setLft(lft);
+        pitPO.setRgt(rgt);
+        Assert.isTrue(pitRepository.insertOne(pitPO), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
-        return newPit.getId();
+        return pitPO.getId();
     }
 
     public void updatePit(long id, Map<String, Object> updateParams) {
@@ -88,24 +85,16 @@ public class PitService {
         });
     }
 
-    public List<PitDTO> getPitList(Long id, Integer districtLevel) {
+    public List<PitDO> getPitList(Long id, Integer districtLevel) {
         Assert.isTrue(!(id != null && districtLevel != null), () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
-        List<PitPO> tempResult;
         if (id != null) {
-            tempResult = pitRepository.getChildren(id);
+            return pitRepository.getChildren(id);
         } else if (districtLevel != null) {
-            tempResult = pitRepository.getByDistrictLevel(districtLevel);
+            return pitRepository.getByDistrictLevel(districtLevel);
         } else {
-            tempResult = pitRepository.getAll();
+            return pitRepository.getAll();
         }
-        return convertPOList2DTOList(tempResult);
-    }
-
-    private List<PitDTO> convertPOList2DTOList(List<PitPO> pitPOList) {
-        List<PitDTO> result = new ArrayList<>();
-        pitPOList.forEach(pitPO -> result.add(new PitDTO(pitPO.getId(), pitPO.getPid(), pitPO.getName(), pitPO.getShortName(), pitPO.getRank(), pitPO.getDistrictLevel())));
-        return result;
     }
 }

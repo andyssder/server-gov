@@ -1,22 +1,14 @@
-package com.politics.chn.model.po;
+package com.politics.chn.model.domain.value;
 
 import java.util.Objects;
 
 /**
- * @author: andyssder
- * @create: 2021-02-18 17:26
+ * @author andyssder
+ * @create 2021-02-19 19:58
  */
-public class EthnicityPO {
+public class EthnicityDO {
     Integer id;
     String name;
-
-    public EthnicityPO() {
-    }
-
-    public EthnicityPO(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
 
     public Integer getId() {
         return id;
@@ -42,7 +34,7 @@ public class EthnicityPO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EthnicityPO that = (EthnicityPO) o;
+        EthnicityDO that = (EthnicityDO) o;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name);
     }
 
@@ -53,7 +45,7 @@ public class EthnicityPO {
 
     @Override
     public String toString() {
-        return "EthnicityPO{" +
+        return "EthnicityDO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

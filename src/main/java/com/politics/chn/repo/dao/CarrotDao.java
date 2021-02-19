@@ -1,6 +1,6 @@
 package com.politics.chn.repo.dao;
 
-import com.politics.chn.model.po.CarrotPO;
+import com.politics.chn.model.domain.value.CarrotDO;
 import com.politics.chn.repo.dao.mapper.CarrotMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -17,24 +17,24 @@ public class CarrotDao {
     private CarrotMapper carrotMapper;
 
     @Autowired
-    private void setPitDao(CarrotMapper carrotMapper) {
+    private void setCarrotMapper(CarrotMapper carrotMapper) {
         this.carrotMapper = carrotMapper;
     }
 
-    public List<CarrotPO> getAll() {
+    public List<CarrotDO> getAll() {
         return carrotMapper.getAll();
     }
 
-    public List<CarrotPO> getByPitLevel(int pitLevel) {
+    public List<CarrotDO> getByPitLevel(int pitLevel) {
         return carrotMapper.getByPitLevel(pitLevel);
     }
 
-    public CarrotPO getOneById(long id) {
+    public CarrotDO getOneById(long id) {
         return carrotMapper.getOneById(id);
     }
 
-    public boolean insertOne(CarrotPO carrotPO) {
-        return carrotMapper.insertOne(carrotPO) > 0;
+    public boolean insertOne(CarrotDO carrotDO) {
+        return carrotMapper.insertOne(carrotDO) > 0;
     }
 
     public boolean updateOne(long id, Map<String, Object> updateParams) {
@@ -42,6 +42,10 @@ public class CarrotDao {
     }
 
     public boolean deleteOne(long id) {
-        return carrotMapper.deleteOne(id) > 0;
+        return deleteOne(id, false);
+    }
+
+    public boolean deleteOne(long id, boolean realDelete) {
+        return realDelete ? carrotMapper.realDeleteOne(id) > 0 : carrotMapper.deleteOne(id) > 0;
     }
 }

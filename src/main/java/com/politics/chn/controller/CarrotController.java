@@ -1,6 +1,6 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.model.dto.CarrotDTO;
+import com.politics.chn.model.domain.value.CarrotDO;
 import com.politics.chn.service.CarrotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -24,8 +24,8 @@ public class CarrotController {
     }
 
     @PostMapping
-    public Long addCarrot(@RequestBody Map<String, Object> addParams) {
-        return carrotService.addCarrot(addParams);
+    public Long addCarrot(@RequestBody CarrotDO carrotDO) {
+        return carrotService.addCarrot(carrotDO);
     }
 
     @PutMapping(value = "/{id}")
@@ -33,8 +33,8 @@ public class CarrotController {
         carrotService.updateCarrot(id, updateParams);
     }
 
-    @GetMapping(value = "/pits")
-    public List<CarrotDTO> getCarrotList(@RequestParam(value = "pitLevel", required = false) Integer pitLevel) {
+    @GetMapping
+    public List<CarrotDO> getCarrotList(@RequestParam(value = "pitLevel", required = false) Integer pitLevel) {
         return carrotService.getCarrotList(pitLevel);
     }
 

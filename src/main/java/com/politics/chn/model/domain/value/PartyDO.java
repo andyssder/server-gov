@@ -1,30 +1,21 @@
-package com.politics.chn.model.dto;
+package com.politics.chn.model.domain.value;
 
 import java.util.Objects;
 
 /**
- * @author: andyssder
- * @create: 2021-02-18 12:00
+ * @author andyssder
+ * @create 2021-02-19 19:57
  */
-public class CarrotDTO {
-    Long id;
+public class PartyDO {
+    Integer id;
     String name;
     String shortName;
 
-    public CarrotDTO() {
-    }
-
-    public CarrotDTO(Long id, String name, String shortName) {
-        this.id = id;
-        this.name = name;
-        this.shortName = shortName;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -52,8 +43,8 @@ public class CarrotDTO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CarrotDTO carrotDTO = (CarrotDTO) o;
-        return Objects.equals(id, carrotDTO.id) && Objects.equals(name, carrotDTO.name) && Objects.equals(shortName, carrotDTO.shortName);
+        PartyDO partyDO = (PartyDO) o;
+        return Objects.equals(id, partyDO.id) && Objects.equals(name, partyDO.name) && Objects.equals(shortName, partyDO.shortName);
     }
 
     @Override
@@ -63,7 +54,7 @@ public class CarrotDTO {
 
     @Override
     public String toString() {
-        return "CarrotDTO{" +
+        return "PartyDO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +

@@ -1,9 +1,8 @@
 package com.politics.chn.repo.dao.mapper;
 
 
-import com.politics.chn.model.po.DistrictPO;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import com.politics.chn.model.domain.value.DistrictDO;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -15,18 +14,24 @@ import java.util.List;
 public interface DistrictMapper {
 
     @Select("SELECT * FROM district where level != 0")
-    List<DistrictPO> getAll();
+    List<DistrictDO> getAll();
 
     @Select("SELECT * FROM district WHERE level = #{level}")
-    List<DistrictPO> getByLevel(int level);
+    List<DistrictDO> getByLevel(int level);
 
     @Select("SELECT * FROM district WHERE lft < #{lft} AND rgt > #{rgt} ORDER BY lft ASC")
-    List<DistrictPO> getUpper(int lft, int rgt);
+    List<DistrictDO> getUpper(int lft, int rgt);
 
     @Select("SELECT * FROM district WHERE lft > #{lft} AND rgt < #{rgt} AND level=#{level} + 1 ORDER BY lft ASC")
-    List<DistrictPO> getLower(int lft, int rgt, int level);
+    List<DistrictDO> getLower(int lft, int rgt, int level);
 
     @Select("SELECT * FROM district WHERE id = #{id}")
-    DistrictPO getOneById(int id);
+    @Results(id="district", value={
+            @Result(property = "names", javaType = List.class, column = "{lft = lft, rgt = rgt}",
+                    many = @Many(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getUpperNames"))
+    })
+    DistrictDO getOneById(int id);
 
+    @Select("SELECT name FROM district WHERE lft < #{lft} AND rgt > #{rgt} ORDER BY lft ASC")
+    List<String> getUpperNames(int lft, int rgt);
 }

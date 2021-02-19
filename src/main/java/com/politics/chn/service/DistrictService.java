@@ -2,8 +2,8 @@ package com.politics.chn.service;
 
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
+import com.politics.chn.model.domain.value.DistrictDO;
 import com.politics.chn.model.dto.DistrictDTO;
-import com.politics.chn.model.po.DistrictPO;
 import com.politics.chn.repo.repository.DistrictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,7 @@ public class DistrictService {
         return convertPOList2DTOList(districtRepository.getChildrenById(parentId));
     }
 
-    private List<DistrictDTO> convertPOList2DTOList(List<DistrictPO> districtPOList) {
+    private List<DistrictDTO> convertPOList2DTOList(List<DistrictDO> districtPOList) {
         List<DistrictDTO> result = new ArrayList<>();
         districtPOList.forEach(districtPO -> result.add(new DistrictDTO(districtPO.getId(), districtPO.getName())));
         return result;

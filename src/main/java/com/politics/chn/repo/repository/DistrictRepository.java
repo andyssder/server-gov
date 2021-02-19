@@ -1,6 +1,6 @@
 package com.politics.chn.repo.repository;
 
-import com.politics.chn.model.po.DistrictPO;
+import com.politics.chn.model.domain.value.DistrictDO;
 import com.politics.chn.repo.dao.DistrictDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,22 +21,22 @@ public class DistrictRepository {
         this.districtDao = districtDao;
     }
 
-    public DistrictPO getById(int id) {
+    public DistrictDO getById(int id) {
         return districtDao.getOneById(id);
     }
 
-    public List<DistrictPO> getByLevel(int level) {
+    public List<DistrictDO> getByLevel(int level) {
         return districtDao.getByLevel(level);
     }
 
-    public List<DistrictPO> getChildrenById(int id) {
-        DistrictPO districtPO = getById(id);
-        return districtDao.getChildren(districtPO.getLft(), districtPO.getRgt(), districtPO.getLevel());
+    public List<DistrictDO> getChildrenById(int id) {
+        DistrictDO districtDO = getById(id);
+        return districtDao.getChildren(districtDO.getLft(), districtDO.getRgt(), districtDO.getLevel());
     }
 
-    public List<DistrictPO> getParentById(int id) {
-        DistrictPO districtPO = getById(id);
-        return districtDao.getParent(districtPO.getLft(), districtPO.getRgt());
+    public List<DistrictDO> getParentById(int id) {
+        DistrictDO districtDO = getById(id);
+        return districtDao.getParent(districtDO.getLft(), districtDO.getRgt());
     }
 
 }

@@ -1,12 +1,13 @@
-package com.politics.chn.model.po;
+package com.politics.chn.model.domain.value;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
- * @author: andyssder
- * @create: 2021-02-08 17:15
+ * @author andyssder
+ * @create 2021-02-19 20:04
  */
-public class PitPO {
+public class PitDO {
     Long id;
     Long pid;
     String name;
@@ -17,6 +18,7 @@ public class PitPO {
     Integer lft;
     Integer rgt;
     Boolean isDeleted;
+    List<String> names;
 
     public Long getId() {
         return id;
@@ -90,12 +92,20 @@ public class PitPO {
         this.rgt = rgt;
     }
 
-    public boolean isDeleted() {
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
+    }
+
+    public List<String> getNames() {
+        return names;
+    }
+
+    public void setNames(List<String> names) {
+        this.names = names;
     }
 
     @Override
@@ -106,13 +116,13 @@ public class PitPO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PitPO pitPO = (PitPO) o;
-        return Objects.equals(id, pitPO.id) && Objects.equals(pid, pitPO.pid) && Objects.equals(name, pitPO.name) && Objects.equals(shortName, pitPO.shortName) && Objects.equals(level, pitPO.level) && Objects.equals(rank, pitPO.rank) && Objects.equals(districtLevel, pitPO.districtLevel) && Objects.equals(lft, pitPO.lft) && Objects.equals(rgt, pitPO.rgt) && Objects.equals(isDeleted, pitPO.isDeleted);
+        PitDO pitDO = (PitDO) o;
+        return Objects.equals(id, pitDO.id) && Objects.equals(pid, pitDO.pid) && Objects.equals(name, pitDO.name) && Objects.equals(shortName, pitDO.shortName) && Objects.equals(level, pitDO.level) && Objects.equals(rank, pitDO.rank) && Objects.equals(districtLevel, pitDO.districtLevel) && Objects.equals(lft, pitDO.lft) && Objects.equals(rgt, pitDO.rgt) && Objects.equals(isDeleted, pitDO.isDeleted) && Objects.equals(names, pitDO.names);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, isDeleted);
+        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, isDeleted, names);
     }
 
     @Override
@@ -128,6 +138,14 @@ public class PitPO {
                 ", lft=" + lft +
                 ", rgt=" + rgt +
                 ", isDeleted=" + isDeleted +
+                ", names=" + names +
                 '}';
+    }
+
+    public String getFullName() {
+        StringBuffer sb = new StringBuffer();
+        names.forEach(name -> sb.append(name));
+        sb.append(name);
+        return sb.toString();
     }
 }

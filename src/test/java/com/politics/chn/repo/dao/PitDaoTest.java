@@ -1,5 +1,6 @@
 package com.politics.chn.repo.dao;
 
+import com.politics.chn.model.domain.value.PitDO;
 import com.politics.chn.model.po.PitPO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -7,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -27,16 +27,31 @@ class PitDaoTest {
 
     @Test
     void getAll() {
-        List<PitPO> pitPOs = pitDao.getAll();
-        Assertions.assertNotEquals(0, pitPOs.size(), "查询单位信息出错");
+        Assertions.assertNotEquals(0, pitDao.getAll().size(), "查询单位信息出错");
     }
 
     @Test
     void getByDistrictLevel() {
-        PitPO pitPO1 = new PitPO(1L,"test-getByDistrictLevel1", "",100, 1, 10, 10000000,10000003);
+        PitPO pitPO1 = new PitPO();
+        pitPO1.setPid(1L);
+        pitPO1.setName("test-getByDistrictLevel1");
+        pitPO1.setLevel(100);
+        pitPO1.setRank(1);
+        pitPO1.setDistrictLevel(10);
+        pitPO1.setLft(10000000);
+        pitPO1.setRgt(10000003);
         pitDao.insertOne(pitPO1);
-        PitPO pitPO2 = new PitPO(pitPO1.getId(),"test-getByDistrictLevel2",101, 2, 11, 10000001,10000002);
+
+        PitPO pitPO2 = new PitPO();
+        pitPO2.setPid(pitPO1.getId());
+        pitPO2.setName("test-getByDistrictLevel2");
+        pitPO2.setLevel(101);
+        pitPO2.setRank(2);
+        pitPO2.setDistrictLevel(11);
+        pitPO2.setLft(10000001);
+        pitPO2.setRgt(10000002);
         pitDao.insertOne(pitPO2);
+
         Assertions.assertEquals(1, pitDao.getByDistrictLevel(10).size(),"根据地区级别查询记录出错");
         Assertions.assertEquals(1, pitDao.getByDistrictLevel(11).size(),"根据地区级别查询记录出错");
         pitDao.deleteOne(pitPO1.getId(), true);
@@ -45,10 +60,26 @@ class PitDaoTest {
 
     @Test
     void getChildren() {
-        PitPO pitPO1 = new PitPO(1L,"test-getChildren1", "",100, 1, 10, 10000000,10000003);
+        PitPO pitPO1 = new PitPO();
+        pitPO1.setPid(1L);
+        pitPO1.setName("test-getChildren1");
+        pitPO1.setLevel(100);
+        pitPO1.setRank(1);
+        pitPO1.setDistrictLevel(10);
+        pitPO1.setLft(10000000);
+        pitPO1.setRgt(10000003);
         pitDao.insertOne(pitPO1);
-        PitPO pitPO2 = new PitPO(pitPO1.getId(),"test-getChildren2",101, 2, 11, 10000001,10000002);
+
+        PitPO pitPO2 = new PitPO();
+        pitPO2.setPid(pitPO1.getId());
+        pitPO2.setName("test-getChildren2");
+        pitPO2.setLevel(101);
+        pitPO2.setRank(2);
+        pitPO2.setDistrictLevel(11);
+        pitPO2.setLft(10000001);
+        pitPO2.setRgt(10000002);
         pitDao.insertOne(pitPO2);
+
         Assertions.assertEquals(1, pitDao.getChildren(10000000, 10000003, 100).size(),"查询子记录出错");
         pitDao.deleteOne(pitPO1.getId(), true);
         pitDao.deleteOne(pitPO2.getId(), true);
@@ -56,7 +87,15 @@ class PitDaoTest {
 
     @Test
     void getOneById() {
-        PitPO pitPO = new PitPO(1L,"test-getOneById", "",1, 1, 1, 1, 100);
+        PitPO pitPO = new PitPO();
+        pitPO.setPid(1L);
+        pitPO.setName("test-getOneById");
+        pitPO.setLevel(1);
+        pitPO.setRank(1);
+        pitPO.setDistrictLevel(1);
+        pitPO.setLft(1);
+        pitPO.setRgt(100);
+
         pitDao.insertOne(pitPO);
         Assertions.assertEquals(pitPO, pitDao.getOneById(pitPO.getId()));
         pitDao.deleteOne(pitPO.getId(), true);
@@ -64,15 +103,39 @@ class PitDaoTest {
 
     @Test
     void insertOne() {
-        PitPO pitPO = new PitPO(1L,"test-insertOne", "",1, 1, 1, 1, 100);
+        PitPO pitPO = new PitPO();
+        pitPO.setPid(1L);
+        pitPO.setName("test-insertOne");
+        pitPO.setLevel(1);
+        pitPO.setRank(1);
+        pitPO.setDistrictLevel(1);
+        pitPO.setLft(1);
+        pitPO.setRgt(100);
         Assertions.assertTrue(pitDao.insertOne(pitPO),"插入记录错误");
         pitDao.deleteOne(pitPO.getId(), true);
     }
 
     @Test
     void updateOne() {
-        PitPO pitPO = new PitPO(1L,"test-updateOne", "",1, 1, 1, 1, 100);
-        PitPO targetPitPO = new PitPO(1L,"test-updated", "test",2, 1, 1, 1, 100);
+        PitPO pitPO = new PitPO();
+        pitPO.setPid(1L);
+        pitPO.setName("test-updateOne");
+        pitPO.setLevel(1);
+        pitPO.setRank(1);
+        pitPO.setDistrictLevel(1);
+        pitPO.setLft(1);
+        pitPO.setRgt(100);
+
+        PitPO targetPitPO = new PitPO();
+        targetPitPO.setPid(1L);
+        targetPitPO.setName("test-updated");
+        targetPitPO.setShortName("test");
+        targetPitPO.setLevel(2);
+        targetPitPO.setRank(1);
+        targetPitPO.setDistrictLevel(1);
+        targetPitPO.setLft(1);
+        targetPitPO.setRgt(100);
+        
         pitDao.insertOne(pitPO);
         targetPitPO.setId(pitPO.getId());
         Map<String, Object> params = new HashMap<>();
@@ -80,14 +143,21 @@ class PitDaoTest {
         params.put("short_name", targetPitPO.getShortName());
         params.put("level", targetPitPO.getLevel());
         Assertions.assertTrue(pitDao.updateOne(pitPO.getId(), params),"修改记录错误");
-        PitPO updatedPitPO = pitDao.getOneById(pitPO.getId());
-        Assertions.assertEquals(targetPitPO, updatedPitPO,"修改内容不匹配");
+        PitDO updatedPitDO = pitDao.getOneById(pitPO.getId());
+        Assertions.assertEquals(targetPitPO, updatedPitDO,"修改内容不匹配");
         pitDao.deleteOne(pitPO.getId(), true);
     }
 
     @Test
     void deleteOne() {
-        PitPO pitPO = new PitPO(1L,"delete-test", "",1, 1, 1, 0, 0);
+        PitPO pitPO = new PitPO();
+        pitPO.setPid(1L);
+        pitPO.setName("test-delete");
+        pitPO.setLevel(1);
+        pitPO.setRank(1);
+        pitPO.setDistrictLevel(1);
+        pitPO.setLft(1);
+        pitPO.setRgt(100);
         pitDao.insertOne(pitPO);
         Assertions.assertTrue(pitDao.deleteOne(pitPO.getId()));
         pitDao.deleteOne(pitPO.getId(), true);

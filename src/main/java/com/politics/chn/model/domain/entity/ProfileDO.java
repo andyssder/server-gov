@@ -1,20 +1,24 @@
-package com.politics.chn.model.po;
+package com.politics.chn.model.domain.entity;
+
+import com.politics.chn.model.domain.value.CarrotDO;
+import com.politics.chn.model.po.DistrictPO;
+import com.politics.chn.model.po.PitPO;
 
 import java.util.Date;
 import java.util.Objects;
 
 /**
- * @author: andyssder
- * @create: 2021-02-18 14:00
+ * @author andyssder
+ * @create 2021-02-19 19:55
  */
-public class ProfilePO {
+public class ProfileDO {
     Long id;
     Date startTime;
     Date endTime;
     Long personId;
-    Integer districtId;
-    Integer pitId;
-    Integer carrotId;
+    DistrictPO district;
+    PitPO pit;
+    CarrotDO carrot;
     String remark;
     String summary;
     Boolean isDelete;
@@ -51,28 +55,28 @@ public class ProfilePO {
         this.personId = personId;
     }
 
-    public Integer getDistrictId() {
-        return districtId;
+    public DistrictPO getDistrict() {
+        return district;
     }
 
-    public void setDistrictId(Integer districtId) {
-        this.districtId = districtId;
+    public void setDistrict(DistrictPO district) {
+        this.district = district;
     }
 
-    public Integer getPitId() {
-        return pitId;
+    public PitPO getPit() {
+        return pit;
     }
 
-    public void setPitId(Integer pitId) {
-        this.pitId = pitId;
+    public void setPit(PitPO pit) {
+        this.pit = pit;
     }
 
-    public Integer getCarrotId() {
-        return carrotId;
+    public CarrotDO getCarrot() {
+        return carrot;
     }
 
-    public void setCarrotId(Integer carrotId) {
-        this.carrotId = carrotId;
+    public void setCarrot(CarrotDO carrot) {
+        this.carrot = carrot;
     }
 
     public String getRemark() {
@@ -91,6 +95,7 @@ public class ProfilePO {
         this.summary = summary;
     }
 
+
     public Boolean getDelete() {
         return isDelete;
     }
@@ -107,25 +112,25 @@ public class ProfilePO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ProfilePO profilePO = (ProfilePO) o;
-        return Objects.equals(id, profilePO.id) && Objects.equals(startTime, profilePO.startTime) && Objects.equals(endTime, profilePO.endTime) && Objects.equals(personId, profilePO.personId) && Objects.equals(districtId, profilePO.districtId) && Objects.equals(pitId, profilePO.pitId) && Objects.equals(carrotId, profilePO.carrotId) && Objects.equals(remark, profilePO.remark) && Objects.equals(summary, profilePO.summary) && Objects.equals(isDelete, profilePO.isDelete);
+        ProfileDO profileDO = (ProfileDO) o;
+        return Objects.equals(id, profileDO.id) && Objects.equals(startTime, profileDO.startTime) && Objects.equals(endTime, profileDO.endTime) && Objects.equals(personId, profileDO.personId) && Objects.equals(district, profileDO.district) && Objects.equals(pit, profileDO.pit) && Objects.equals(carrot, profileDO.carrot) && Objects.equals(remark, profileDO.remark) && Objects.equals(summary, profileDO.summary) && Objects.equals(isDelete, profileDO.isDelete);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, startTime, endTime, personId, districtId, pitId, carrotId, remark, summary, isDelete);
+        return Objects.hash(id, startTime, endTime, personId, district, pit, carrot, remark, summary, isDelete);
     }
 
     @Override
     public String toString() {
-        return "ProfilePO{" +
+        return "ProfileDO{" +
                 "id=" + id +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", personId=" + personId +
-                ", districtId=" + districtId +
-                ", pitId=" + pitId +
-                ", carrotId=" + carrotId +
+                ", district=" + district +
+                ", pit=" + pit +
+                ", carrot=" + carrot +
                 ", remark='" + remark + '\'' +
                 ", summary='" + summary + '\'' +
                 ", isDelete=" + isDelete +

@@ -1,7 +1,7 @@
 package com.politics.chn.service;
 
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.model.po.CarrotPO;
+import com.politics.chn.model.domain.value.CarrotDO;
 import com.politics.chn.repo.dao.CarrotDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -34,25 +34,25 @@ class CarrotServiceTest {
 
     @Test
     void addCarrot() {
-        Map<String, Object> addParams = new HashMap<>();
-        addParams.put("name", "test-addCarrot");
-        addParams.put("pitLevel", 1);
-        Long id = carrotService.addCarrot(addParams);
+        CarrotDO newCarrot = new CarrotDO();
+        newCarrot.setName("test-addCarrot");
+        newCarrot.setPitLevel(1);
+        Long id = carrotService.addCarrot(newCarrot);
         Assertions.assertNotNull(id, "插入Pit错误");
     }
 
     @Test
     void updateCarrot() {
-        Map<String, Object> addParams = new HashMap<>();
-        addParams.put("name", "test-updateCarrot");
-        addParams.put("pitLevel", 1);
-        Long id = carrotService.addCarrot(addParams);
+        CarrotDO newCarrot = new CarrotDO();
+        newCarrot.setName("test-addCarrot");
+        newCarrot.setPitLevel(1);
+        Long id = carrotService.addCarrot(newCarrot);
         Map<String, Object> updateParams = new HashMap<>();
         updateParams.put("name", "test-after-updateCarrot");
         Assertions.assertThrows(CommonException.class, () -> carrotService.updateCarrot(-1, updateParams), "更新不存在Carrot错误");
         Assertions.assertDoesNotThrow(() -> carrotService.updateCarrot(id, updateParams), "更新Carrot异常");
-        CarrotPO carrotPO = carrotDao.getOneById(id);
-        Assertions.assertEquals("test-after-updateCarrot", carrotPO.getName(), "更新Carrot名称失败");
+        CarrotDO carrotDO = carrotDao.getOneById(id);
+        Assertions.assertEquals("test-after-updateCarrot", carrotDO.getName(), "更新Carrot名称失败");
         carrotDao.deleteOne(id);
     }
 

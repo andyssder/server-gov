@@ -1,5 +1,6 @@
 package com.politics.chn.repo.dao.mapper;
 
+import com.politics.chn.model.domain.value.PitDO;
 import com.politics.chn.model.po.PitPO;
 import org.apache.ibatis.annotations.*;
 
@@ -13,16 +14,16 @@ import java.util.Map;
 @Mapper
 public interface PitMapper {
     @Select("SELECT * FROM pit")
-    List<PitPO> getAll();
+    List<PitDO> getAll();
 
     @Select("SELECT * FROM pit WHERE is_deleted = false AND district_level = #{districtLevel}")
-    List<PitPO> getByDistrictLevel(int districtLevel);
+    List<PitDO> getByDistrictLevel(int districtLevel);
 
     @Select("SELECT * FROM pit WHERE is_deleted = false AND lft > #{lft} AND rgt < #{rgt} AND level=#{level} + 1 ORDER BY lft ASC")
-    List<PitPO> getLower(int lft, int rgt, int level);
+    List<PitDO> getLower(int lft, int rgt, int level);
 
     @Select("SELECT * FROM pit WHERE id = #{id}")
-    PitPO getOneById(long id);
+    PitDO getOneById(long id);
 
     @Insert("INSERT INTO pit(name, short_name, level, rank, district_level, lft, rgt, pid) VALUES(#{name}, #{shortName}, #{level}, #{rank}, #{districtLevel}, #{lft}, #{rgt}, #{pid})")
     @Options(useGeneratedKeys=true, keyProperty="id")

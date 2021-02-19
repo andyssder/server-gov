@@ -1,5 +1,6 @@
 package com.politics.chn.repo.dao;
 
+import com.politics.chn.model.domain.value.PitDO;
 import com.politics.chn.model.po.PitPO;
 import com.politics.chn.repo.dao.mapper.PitMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,23 +18,23 @@ public class PitDao {
     private PitMapper pitMapper;
 
     @Autowired
-    private void setPitDao(PitMapper pitMapper) {
+    private void setPitMapper(PitMapper pitMapper) {
         this.pitMapper = pitMapper;
     }
 
-    public List<PitPO> getAll() {
+    public List<PitDO> getAll() {
         return pitMapper.getAll();
     }
 
-    public List<PitPO> getByDistrictLevel(int districtLevel) {
+    public List<PitDO> getByDistrictLevel(int districtLevel) {
         return pitMapper.getByDistrictLevel(districtLevel);
     }
 
-    public List<PitPO> getChildren(int lft, int rgt, int level) {
+    public List<PitDO> getChildren(int lft, int rgt, int level) {
         return pitMapper.getLower(lft, rgt, level);
     }
 
-    public PitPO getOneById(long id) {
+    public PitDO getOneById(long id) {
         return pitMapper.getOneById(id);
     }
 
