@@ -24,23 +24,28 @@ public class OfficialController {
     }
 
     @PostMapping
-    public void addPerson(@RequestBody OfficialDO officialDO) {
-
+    public void addOfficial(@RequestBody OfficialDO official) {
+        officialService.addOfficial(official);
     }
 
     @PutMapping(value = "/{id}")
-    public void updatePerson(@PathVariable long id, @RequestBody Map<String, Object> updateParams) {
-
+    public void updateOfficial(@RequestBody OfficialDO official) {
+        officialService.updateOfficial(official);
     }
 
     @GetMapping
-    public List<OfficialDO> getAllPerson() {
-        return null;
+    public List<OfficialDO> getAllOfficials() {
+        return officialService.getOfficialList();
+    }
+
+    @GetMapping(value = "/{id}")
+    public OfficialDO getOfficial(@PathVariable long id) {
+        return officialService.getOneOfficial(id);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deletePerson(@PathVariable long id) {
-
+    public void deleteOfficial(@PathVariable long id) {
+        officialService.deleteOfficial(id);
     }
 
 }

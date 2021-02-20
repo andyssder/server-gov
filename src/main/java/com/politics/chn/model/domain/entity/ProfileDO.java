@@ -1,6 +1,8 @@
 package com.politics.chn.model.domain.entity;
 
 import com.politics.chn.model.domain.value.CarrotDO;
+import com.politics.chn.model.domain.value.DistrictDO;
+import com.politics.chn.model.domain.value.PitDO;
 import com.politics.chn.model.po.DistrictPO;
 import com.politics.chn.model.po.PitPO;
 
@@ -16,12 +18,14 @@ public class ProfileDO {
     Date startTime;
     Date endTime;
     Long personId;
-    DistrictPO district;
-    PitPO pit;
+    DistrictDO district;
+    PitDO pit;
     CarrotDO carrot;
     String remark;
     String summary;
-    Boolean isDelete;
+    Integer priority;
+
+    Boolean isDeleted;
 
     public Long getId() {
         return id;
@@ -55,19 +59,19 @@ public class ProfileDO {
         this.personId = personId;
     }
 
-    public DistrictPO getDistrict() {
+    public DistrictDO getDistrict() {
         return district;
     }
 
-    public void setDistrict(DistrictPO district) {
+    public void setDistrict(DistrictDO district) {
         this.district = district;
     }
 
-    public PitPO getPit() {
+    public PitDO getPit() {
         return pit;
     }
 
-    public void setPit(PitPO pit) {
+    public void setPit(PitDO pit) {
         this.pit = pit;
     }
 
@@ -95,13 +99,21 @@ public class ProfileDO {
         this.summary = summary;
     }
 
-
-    public Boolean getDelete() {
-        return isDelete;
+    public Integer getPriority() {
+        return priority;
     }
 
-    public void setDelete(Boolean delete) {
-        isDelete = delete;
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     @Override
@@ -113,12 +125,12 @@ public class ProfileDO {
             return false;
         }
         ProfileDO profileDO = (ProfileDO) o;
-        return Objects.equals(id, profileDO.id) && Objects.equals(startTime, profileDO.startTime) && Objects.equals(endTime, profileDO.endTime) && Objects.equals(personId, profileDO.personId) && Objects.equals(district, profileDO.district) && Objects.equals(pit, profileDO.pit) && Objects.equals(carrot, profileDO.carrot) && Objects.equals(remark, profileDO.remark) && Objects.equals(summary, profileDO.summary) && Objects.equals(isDelete, profileDO.isDelete);
+        return Objects.equals(id, profileDO.id) && Objects.equals(startTime, profileDO.startTime) && Objects.equals(endTime, profileDO.endTime) && Objects.equals(personId, profileDO.personId) && Objects.equals(district, profileDO.district) && Objects.equals(pit, profileDO.pit) && Objects.equals(carrot, profileDO.carrot) && Objects.equals(remark, profileDO.remark) && Objects.equals(summary, profileDO.summary) && Objects.equals(priority, profileDO.priority) && Objects.equals(isDeleted, profileDO.isDeleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, startTime, endTime, personId, district, pit, carrot, remark, summary, isDelete);
+        return Objects.hash(id, startTime, endTime, personId, district, pit, carrot, remark, summary, priority, isDeleted);
     }
 
     @Override
@@ -133,7 +145,8 @@ public class ProfileDO {
                 ", carrot=" + carrot +
                 ", remark='" + remark + '\'' +
                 ", summary='" + summary + '\'' +
-                ", isDelete=" + isDelete +
+                ", priority=" + priority +
+                ", isDeleted=" + isDeleted +
                 '}';
     }
 }

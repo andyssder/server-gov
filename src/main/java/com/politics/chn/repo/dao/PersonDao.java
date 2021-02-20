@@ -1,5 +1,7 @@
 package com.politics.chn.repo.dao;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.politics.chn.model.domain.aggregate.OfficialDO;
 import com.politics.chn.model.domain.entity.PersonDO;
 import com.politics.chn.model.po.PersonPO;
 import com.politics.chn.repo.dao.mapper.PersonMapper;
@@ -22,16 +24,9 @@ public class PersonDao {
         this.personMapper = personMapper;
     }
 
-    public boolean addOne(PersonPO personPO) {
+    public boolean addOne(PersonDO personDO) {
+        PersonPO personPO = personDO2PO(personDO);
         return personMapper.insertOne(personPO) > 0;
-    }
-
-    public boolean updateOne(long id, Map<String, Object> updateParams) {
-        return personMapper.updateOne(id, updateParams) > 0;
-    }
-
-    public List<PersonDO> getAll() {
-        return personMapper.getAll();
     }
 
     public boolean deleteOne(long id) {
@@ -40,5 +35,43 @@ public class PersonDao {
 
     public boolean deleteOne(long id, boolean realDelete) {
         return realDelete ? personMapper.realDeleteOne(id) > 0 : personMapper.deleteOne(id) > 0;
+    }
+
+    public boolean updateOne(PersonDO personDO) {
+        PersonPO personPO = personDO2PO(personDO);
+        return personMapper.updateOne(personPO) > 0;
+    }
+
+    public List<OfficialDO> getAll() {
+        return personMapper.getAll();
+    }
+
+    public OfficialDO getOneById(Long id) {
+        return personMapper.getOneById(id);
+    }
+
+    // TODO: 再考虑如何转换
+    private PersonPO personDO2PO(PersonDO personDO) {
+        PersonPO personPO = new PersonPO();
+        BeanUtil.copyProperties(personDO, personPO);
+        if (personDO.getParty() != null) {
+            personPO.setPartyId(personDO.getParty().getId());
+        }
+        if (personDO.getEthnicity() != null) {
+            personPO.setEthnicityId(personDO.getEthnicity().getId());
+        }
+        if (personDO.getAncestralHome() != null) {
+            personPO.setAncestralHome(personDO.getAncestralHome().getId());
+        }
+
+        if (personDO.getBirthPlace() != null) {
+            personPO.setBirthPlace(personDO.getBirthPlace().getId());
+        }
+
+        if (personDO.getWorkPlace() != null) {
+            personPO.setWorkPlace(personDO.getWorkPlace().getId());
+        }
+
+        return personPO;
     }
 }

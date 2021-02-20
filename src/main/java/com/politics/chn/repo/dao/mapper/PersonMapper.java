@@ -1,5 +1,6 @@
 package com.politics.chn.repo.dao.mapper;
 
+import com.politics.chn.model.domain.aggregate.OfficialDO;
 import com.politics.chn.model.domain.entity.PersonDO;
 import com.politics.chn.model.domain.value.PartyDO;
 import com.politics.chn.model.po.PersonPO;
@@ -16,6 +17,18 @@ import java.util.Map;
 public interface PersonMapper {
 
     @Select("SELECT * FROM person")
+    @Results(id="official", value={
+            @Result(property="person",column="id",one=@One(select="com.politics.chn.repo.dao.mapper.PersonMapper.getOnePersonById")),
+            @Result(property = "profiles", javaType = List.class, column = "id",
+                    many = @Many(select = "com.politics.chn.repo.dao.mapper.ProfileMapper.getByPersonId"))
+    })
+    List<OfficialDO> getAll();
+
+    @Select("SELECT * FROM person WHERE id = #{id}")
+    @ResultMap("official")
+    OfficialDO getOneById(long id);
+
+    @Select("SELECT * FROM person")
     @Results(id="person", value={
             @Result(property="party",column="party_id",one=@One(select="com.politics.chn.repo.dao.mapper.PartyMapper.getOneById")),
             @Result(property="ethnicity",column="ethnicity_id",one=@One(select="com.politics.chn.repo.dao.mapper.EthnicityMapper.getOneById")),
@@ -23,35 +36,54 @@ public interface PersonMapper {
             @Result(property="birthPlace",column="birth_place",one=@One(select="com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
             @Result(property="workPlace",column="work_place",one=@One(select="com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById"))
     })
-    List<PersonDO> getAll();
+    List<PersonDO> getAllPerson();
 
     @Select("SELECT * FROM person WHERE id = #{id}")
     @ResultMap("person")
-    PersonPO getOneById(long id);
+    OfficialDO getOnePersonById(long id);
 
     @Insert("INSERT INTO person(" +
             "name, portrait, gender, ethnicity_id," +
             "birth_date, death_date, work_date, retire_date," +
             "ancestral_home, birth_place, work_place" +
             "university, major, education, degree," +
-            "rank, creat_time, update_time, is_delete,) " +
+            "rank, creat_time, update_time, is_deleted) " +
             "VALUES(" +
             "#{name}, #{portrait}, #{gender}, #{ethnicityId}, " +
             "#{birthDate}, #{deathDate}, #{workDate}, #{retireDate}, " +
             "#{ancestralHome}, #{birthPlace}, #{workPlace}," +
             "#{university}, #{major}, #{education}, #{degree}," +
-            "#{rank}, #{creatTime}, #{updateTime}, #{isDelete})")
+            "#{rank}, #{creatTime}, #{updateTime}, #{isDeleted})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PersonPO personPO);
 
+    // TODO: 存在设置某个属性为null不成功的情况
     @Update("<script> " +
-            "UPDATE person SET" +
-            "<foreach item='value' index='key' collection='updateParams.entrySet()' separator=','>" +
-            "${key} = #{value}" +
-            "</foreach>" +
-            "WHERE id = #{id}" +
+            "UPDATE person" +
+            "<trim prefix='set' suffixOverrides=',' suffix=' where id = #{id}'>" +
+            "<if test='name != null'> name=#{name}, </if>" +
+            "<if test='portrait != null'> portrait=#{portrait}, </if>" +
+            "<if test='gender != null'> gender=#{gender}, </if>" +
+            "<if test='ethnicityId != null'> ethnicityId=#{ethnicityId}, </if>" +
+            "<if test='birthDate != null'> birth_date=#{birthDate}, </if>" +
+            "<if test='deathDate != null'> death_date=#{deathDate}, </if>" +
+            "<if test='workDate != null'> work_date=#{workDate}, </if>" +
+            "<if test='retireDate != null'> retire_date=#{retireDate}, </if>" +
+            "<if test='ancestralHome != null'> ancestral_home=#{ancestralHome}, </if>" +
+            "<if test='birthPlace != null'> birth_place=#{birthPlace}, </if>" +
+            "<if test='workPlace != null'> work_place=#{workPlace}, </if>" +
+            "<if test='university != null'> university=#{university}, </if>" +
+            "<if test='major != null'> major=#{major}, </if>" +
+            "<if test='education != null'> education=#{education}, </if>" +
+            "<if test='major != null'> major=#{major}, </if>" +
+            "<if test='degree != null'> degree=#{degree}, </if>" +
+            "<if test='rank != null'> rank=#{rank}, </if>" +
+            "<if test='creatTime != null'> creat_time=#{creatTime}, </if>" +
+            "<if test='updateTime != null'> update_time=#{updateTime}, </if>" +
+            "<if test='isDeleted != null'> is_deleted=#{isDeleted}, </if>" +
+            "</trim>" +
             "</script>")
-    int updateOne(long id, Map<String, Object> updateParams);
+    int updateOne(PersonPO personPO);
 
     @Update("UPDATE person SET is_deleted = true WHERE id = #{id}")
     int deleteOne(long id);

@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder
@@ -33,35 +32,39 @@ public class OfficialRepository {
     }
 
     public Boolean addOfficial(OfficialDO officialDO) {
-        return true;
+        PersonDO personDO = officialDO.getPerson();
+        List<ProfileDO> profileDOS = officialDO.getProfiles();
+        return addPerson(personDO) && addProfiles(profileDOS);
     }
 
-    private Boolean addProfiles(List<OfficialDO> officialDO) { return true; }
+    private Boolean addPerson(PersonDO personDO) { return personDao.addOne(personDO); }
+
+    private Boolean addProfiles(List<ProfileDO> profileDOs) { return profileDao.addMany(profileDOs); }
 
     public Boolean deleteOfficial(long id) {
         return personDao.deleteOne(id) && profileDao.deleteOneByPersonId(id);
     }
 
-    public Boolean deleteProfile(long id) { return profileDao.deleteOne(id); }
-
-    public Boolean deleteProfiles(List<Long> ids) { return true; }
-
-    public Boolean updateOfficial(long id, OfficialDO officialDO) {
-        return true;
+    public Boolean updateOfficial(OfficialDO officialDO) {
+        PersonDO personDO = officialDO.getPerson();
+        List<ProfileDO> profileDOS = officialDO.getProfiles();
+        return updatePerson(personDO) && updateProfiles(profileDOS);
     }
 
-    private Boolean updatePerson(long id, PersonDO personDO) {
-        return true;
+    private Boolean updatePerson(PersonDO personDO) {
+        return personDao.updateOne(personDO);
     }
 
-    private Boolean updateProfiles(long id, List<ProfileDO> profileDOs) {
-        return true;
+    private Boolean updateProfiles(List<ProfileDO> profileDOs) {
+        return profileDao.updateMany(profileDOs);
     }
 
     public List<OfficialDO> getAllOfficial() {
-        return null;
+        return personDao.getAll();
     }
 
-    public OfficialDO getOfficialById() { return null; }
+    public OfficialDO getOfficialById(Long id) {
+        return personDao.getOneById(id);
+    }
 
 }

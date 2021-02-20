@@ -14,6 +14,18 @@ public class OfficialDO {
     PersonDO person;
     List<ProfileDO> profiles;
 
+    public OfficialDO() {
+    }
+
+    public OfficialDO(PersonDO person) {
+        this.person = person;
+    }
+
+    public OfficialDO(PersonDO person, List<ProfileDO> profiles) {
+        this.person = person;
+        this.profiles = profiles;
+    }
+
     public PersonDO getPerson() {
         return person;
     }
@@ -49,7 +61,7 @@ public class OfficialDO {
 
     @Override
     public String toString() {
-        return "OfficialAR{" +
+        return "OfficialDO{" +
                 "person=" + person +
                 ", profiles=" + profiles +
                 '}';

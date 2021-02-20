@@ -4,22 +4,28 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * @author andyssder
- * @create 2021-02-19 17:22
+ * @create 2021-02-20 23:15
  */
 @SpringBootTest
-class PersonDaoTest {
+class ProfileDaoTest {
 
-    private PersonDao personDao;
+    private ProfileDao profileDao;
 
     @Autowired
-    private void setPersonDao(PersonDao personDao) {
-        this.personDao = personDao;
+    private void setProfileDao(ProfileDao profileDao) {
+        this.profileDao = profileDao;
     }
 
     @Test
     void addOne() {
+    }
+
+    @Test
+    void addMany() {
     }
 
     @Test
@@ -31,7 +37,19 @@ class PersonDaoTest {
     }
 
     @Test
+    void deleteOneByPersonId() {
+    }
+
+    @Test
+    void testDeleteOneByPersonId() {
+    }
+
+    @Test
     void updateOne() {
+    }
+
+    @Test
+    void updateMany() {
     }
 
     @Test
@@ -39,6 +57,6 @@ class PersonDaoTest {
     }
 
     @Test
-    void getOneById() {
+    void getByPersonId() {
     }
 }

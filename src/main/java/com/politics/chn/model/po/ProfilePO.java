@@ -13,11 +13,13 @@ public class ProfilePO {
     Date endTime;
     Long personId;
     Integer districtId;
-    Integer pitId;
-    Integer carrotId;
+    Long pitId;
+    Long carrotId;
     String remark;
     String summary;
-    Boolean isDelete;
+    Integer priority;
+
+    Boolean isDeleted;
 
     public Long getId() {
         return id;
@@ -59,19 +61,19 @@ public class ProfilePO {
         this.districtId = districtId;
     }
 
-    public Integer getPitId() {
+    public Long getPitId() {
         return pitId;
     }
 
-    public void setPitId(Integer pitId) {
+    public void setPitId(Long pitId) {
         this.pitId = pitId;
     }
 
-    public Integer getCarrotId() {
+    public Long getCarrotId() {
         return carrotId;
     }
 
-    public void setCarrotId(Integer carrotId) {
+    public void setCarrotId(Long carrotId) {
         this.carrotId = carrotId;
     }
 
@@ -91,12 +93,20 @@ public class ProfilePO {
         this.summary = summary;
     }
 
-    public Boolean getDelete() {
-        return isDelete;
+    public Integer getPriority() {
+        return priority;
     }
 
-    public void setDelete(Boolean delete) {
-        isDelete = delete;
+    public void setPriority(Integer priority) {
+        this.priority = priority;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 
     @Override
@@ -108,12 +118,12 @@ public class ProfilePO {
             return false;
         }
         ProfilePO profilePO = (ProfilePO) o;
-        return Objects.equals(id, profilePO.id) && Objects.equals(startTime, profilePO.startTime) && Objects.equals(endTime, profilePO.endTime) && Objects.equals(personId, profilePO.personId) && Objects.equals(districtId, profilePO.districtId) && Objects.equals(pitId, profilePO.pitId) && Objects.equals(carrotId, profilePO.carrotId) && Objects.equals(remark, profilePO.remark) && Objects.equals(summary, profilePO.summary) && Objects.equals(isDelete, profilePO.isDelete);
+        return Objects.equals(id, profilePO.id) && Objects.equals(startTime, profilePO.startTime) && Objects.equals(endTime, profilePO.endTime) && Objects.equals(personId, profilePO.personId) && Objects.equals(districtId, profilePO.districtId) && Objects.equals(pitId, profilePO.pitId) && Objects.equals(carrotId, profilePO.carrotId) && Objects.equals(remark, profilePO.remark) && Objects.equals(summary, profilePO.summary) && Objects.equals(priority, profilePO.priority) && Objects.equals(isDeleted, profilePO.isDeleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, startTime, endTime, personId, districtId, pitId, carrotId, remark, summary, isDelete);
+        return Objects.hash(id, startTime, endTime, personId, districtId, pitId, carrotId, remark, summary, priority, isDeleted);
     }
 
     @Override
@@ -128,7 +138,8 @@ public class ProfilePO {
                 ", carrotId=" + carrotId +
                 ", remark='" + remark + '\'' +
                 ", summary='" + summary + '\'' +
-                ", isDelete=" + isDelete +
+                ", priority=" + priority +
+                ", isDeleted=" + isDeleted +
                 '}';
     }
 }

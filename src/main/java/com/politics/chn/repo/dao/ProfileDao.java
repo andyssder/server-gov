@@ -1,5 +1,6 @@
 package com.politics.chn.repo.dao;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.politics.chn.model.domain.entity.PersonDO;
 import com.politics.chn.model.domain.entity.ProfileDO;
 import com.politics.chn.model.po.PersonPO;
@@ -8,6 +9,7 @@ import com.politics.chn.repo.dao.mapper.ProfileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -24,16 +26,14 @@ public class ProfileDao {
         this.profileMapper = profileMapper;
     }
 
-    public boolean addOne(ProfilePO profilePO) {
+    public boolean addOne(ProfileDO profileDO) {
+        ProfilePO profilePO = profileDO2PO(profileDO);
         return profileMapper.insertOne(profilePO) > 0;
     }
 
-    public boolean updateOne(long id, Map<String, Object> updateParams) {
-        return profileMapper.updateOne(id, updateParams) > 0;
-    }
-
-    public List<ProfileDO> getAll() {
-        return profileMapper.getAll();
+    public boolean addMany(List<ProfileDO> profileDOs) {
+        List<ProfilePO> profilePOS = profileDO2PO(profileDOs);
+        return profileMapper.insertMany(profilePOS) > 0;
     }
 
     public boolean deleteOne(long id) {
@@ -53,4 +53,47 @@ public class ProfileDao {
         String field = "person_id";
         return realDelete ? profileMapper.realDeleteOne(field, id) > 0 : profileMapper.deleteOne(field, id) > 0;
     }
+
+    public boolean updateOne(ProfileDO profileDO) {
+        ProfilePO profilePO = profileDO2PO(profileDO);
+        return profileMapper.updateOne(profilePO) > 0;
+    }
+
+    public boolean updateMany(List<ProfileDO> profileDOs) {
+        List<ProfilePO> profilePOS = profileDO2PO(profileDOs);
+        return profileMapper.updateMany(profilePOS) > 0;
+    }
+
+    public List<ProfileDO> getAll() {
+        return profileMapper.getAll();
+    }
+
+    public List<ProfileDO> getByPersonId(Long personId) {
+        return profileMapper.getByPersonId(personId);
+    }
+
+    // TODO: 再考虑如何转换
+    private ProfilePO profileDO2PO(ProfileDO profileDO) {
+        ProfilePO profilePO = new ProfilePO();
+        BeanUtil.copyProperties(profileDO, profilePO);
+        if (profileDO.getDistrict() != null) {
+            profilePO.setDistrictId(profileDO.getDistrict().getId());
+        }
+        if (profileDO.getPit() != null) {
+            profilePO.setPitId(profileDO.getPit().getId());
+        }
+        if (profileDO.getCarrot() != null) {
+            profilePO.setCarrotId(profileDO.getCarrot().getId());
+        }
+
+        return profilePO;
+    }
+
+    // TODO: 再考虑如何转换
+    private List<ProfilePO> profileDO2PO(List<ProfileDO> profileDOS) {
+        List<ProfilePO> profilePOS = new ArrayList<>();
+        profileDOS.forEach(profileDO -> profilePOS.add(profileDO2PO(profileDO)));
+        return profilePOS;
+    }
+
 }
