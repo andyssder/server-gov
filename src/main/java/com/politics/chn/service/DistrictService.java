@@ -3,13 +3,11 @@ package com.politics.chn.service;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.model.domain.value.DistrictDO;
-import com.politics.chn.model.dto.DistrictDTO;
 import com.politics.chn.repo.repository.DistrictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
