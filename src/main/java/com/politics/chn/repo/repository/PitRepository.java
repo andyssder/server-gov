@@ -1,5 +1,6 @@
 package com.politics.chn.repo.repository;
 
+import cn.hutool.core.bean.BeanUtil;
 import com.politics.chn.model.domain.value.PitDO;
 import com.politics.chn.model.po.PitPO;
 import com.politics.chn.repo.dao.PitDao;
@@ -40,12 +41,17 @@ public class PitRepository {
         return pitDao.getOneById(id);
     }
 
-    public Boolean insertOne(PitPO pitPO) {
-        return pitDao.insertOne(pitPO);
+    public Long insertOne(PitDO pitDO) {
+        PitPO pitPO = new PitPO();
+        BeanUtil.copyProperties(pitDO, pitPO);
+        pitDao.insertOne(pitPO);
+        return pitPO.getId();
     }
 
-    public Boolean updateOne(long id, Map<String, Object> updateParams) {
-        return pitDao.updateOne(id, updateParams);
+    public Boolean updateOne(PitDO pitDO) {
+        PitPO pitPO = new PitPO();
+        BeanUtil.copyProperties(pitDO, pitPO);
+        return pitDao.updateOne(pitPO);
     }
 
     public Boolean deleteOne(long id) {

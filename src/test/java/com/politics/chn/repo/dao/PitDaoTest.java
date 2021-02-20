@@ -7,10 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-import java.util.Map;
-
-
 /**
  * @author andyssder
  * @create 2021-02-15 18:26
@@ -127,24 +123,14 @@ class PitDaoTest {
         pitPO.setRgt(100);
 
         PitPO targetPitPO = new PitPO();
-        targetPitPO.setPid(1L);
         targetPitPO.setName("test-updated");
-        targetPitPO.setShortName("test");
-        targetPitPO.setLevel(2);
-        targetPitPO.setRank(1);
-        targetPitPO.setDistrictLevel(1);
-        targetPitPO.setLft(1);
-        targetPitPO.setRgt(100);
         
         pitDao.insertOne(pitPO);
         targetPitPO.setId(pitPO.getId());
-        Map<String, Object> params = new HashMap<>();
-        params.put("name", targetPitPO.getName());
-        params.put("short_name", targetPitPO.getShortName());
-        params.put("level", targetPitPO.getLevel());
-        Assertions.assertTrue(pitDao.updateOne(pitPO.getId(), params),"修改记录错误");
+
+        Assertions.assertTrue(pitDao.updateOne(targetPitPO),"修改记录错误");
         PitDO updatedPitDO = pitDao.getOneById(pitPO.getId());
-        Assertions.assertEquals(targetPitPO, updatedPitDO,"修改内容不匹配");
+        Assertions.assertEquals(targetPitPO.getName(), updatedPitDO.getName(),"修改内容不匹配");
         pitDao.deleteOne(pitPO.getId(), true);
     }
 

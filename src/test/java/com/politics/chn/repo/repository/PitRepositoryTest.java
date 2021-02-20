@@ -1,5 +1,6 @@
 package com.politics.chn.repo.repository;
 
+import com.politics.chn.model.domain.value.PitDO;
 import com.politics.chn.model.po.PitPO;
 import com.politics.chn.repo.dao.PitDao;
 import org.junit.jupiter.api.Assertions;
@@ -40,29 +41,29 @@ class PitRepositoryTest {
     @Test
     void getChildren() {
 
-        PitPO pitPO1 = new PitPO();
-        pitPO1.setPid(1L);
-        pitPO1.setName("test-getChildren1");
-        pitPO1.setLevel(100);
-        pitPO1.setRank(1);
-        pitPO1.setDistrictLevel(10);
-        pitPO1.setLft(10000000);
-        pitPO1.setRgt(10000003);
-        pitRepository.insertOne(pitPO1);
+        PitDO newPit1 = new PitDO();
+        newPit1.setPid(1L);
+        newPit1.setName("test-getChildren1");
+        newPit1.setLevel(100);
+        newPit1.setRank(1);
+        newPit1.setDistrictLevel(10);
+        newPit1.setLft(10000000);
+        newPit1.setRgt(10000003);
+        long id1 = pitRepository.insertOne(newPit1);
 
-        PitPO pitPO2 = new PitPO();
-        pitPO2.setPid(pitPO1.getId());
-        pitPO2.setName("test-getChildren2");
-        pitPO2.setLevel(101);
-        pitPO2.setRank(2);
-        pitPO2.setDistrictLevel(11);
-        pitPO2.setLft(10000001);
-        pitPO2.setRgt(10000002);
-        pitRepository.insertOne(pitPO2);
+        PitDO newPit2 = new PitDO();
+        newPit2.setPid(id1);
+        newPit2.setName("test-getChildren2");
+        newPit2.setLevel(101);
+        newPit2.setRank(2);
+        newPit2.setDistrictLevel(11);
+        newPit2.setLft(10000001);
+        newPit2.setRgt(10000002);
+        long id2 = pitRepository.insertOne(newPit2);
 
-        Assertions.assertEquals(1, pitRepository.getChildren(pitPO1.getId()).size(),"查询子记录出错");
-        pitDao.deleteOne(pitPO1.getId(), true);
-        pitDao.deleteOne(pitPO2.getId(), true);
+        Assertions.assertEquals(1, pitRepository.getChildren(id1).size(),"查询子记录出错");
+        pitDao.deleteOne(id1, true);
+        pitDao.deleteOne(id2, true);
     }
 
     @Test
@@ -71,6 +72,17 @@ class PitRepositoryTest {
 
     @Test
     void insertOne() {
+        PitDO newPit = new PitDO();
+        newPit.setPid(1L);
+        newPit.setName("test-getChildren1");
+        newPit.setLevel(100);
+        newPit.setRank(1);
+        newPit.setDistrictLevel(10);
+        newPit.setLft(10000000);
+        newPit.setRgt(10000003);
+        long id = pitRepository.insertOne(newPit);
+        Assertions.assertNotNull(id,"插入记录出错");
+        pitDao.deleteOne(id, true);
     }
 
     @Test

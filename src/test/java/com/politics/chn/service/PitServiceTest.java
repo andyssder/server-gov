@@ -34,14 +34,14 @@ class PitServiceTest {
 
     @Test
     void addPit() {
-        PitPO newPit1 = new PitPO();
+        PitDO newPit1 = new PitDO();
         newPit1.setPid(1L);
         newPit1.setName("test-add");
         newPit1.setDistrictLevel(1);
         newPit1.setRank(1);
         Long id1 = pitService.addPit(newPit1);
         Assertions.assertNotNull(id1, "插入Pit错误");
-        PitPO newPit2 = new PitPO();
+        PitDO newPit2 = new PitDO();
         newPit2.setPid(id1);
         newPit2.setName("test-add2");
         newPit2.setDistrictLevel(2);
@@ -56,24 +56,29 @@ class PitServiceTest {
 
     @Test
     void updatePit() {
-        PitPO newPit = new PitPO();
+        PitDO newPit = new PitDO();
         newPit.setPid(1L);
         newPit.setName("test-update");
         newPit.setDistrictLevel(1);
         newPit.setRank(1);
         Long id = pitService.addPit(newPit);
-        Map<String, Object> updateParams = new HashMap<>();
-        updateParams.put("name", "test-after-update");
-        Assertions.assertThrows(CommonException.class, () -> pitService.updatePit(-1, updateParams), "更新不存在Pit错误");
-        Assertions.assertDoesNotThrow(() -> pitService.updatePit(id, updateParams), "更新Pit异常");
-        PitDO pitDO = pitDao.getOneById(id);
-        Assertions.assertEquals("test-after-update", pitDO.getName(), "更新Pit名称失败");
+
+        PitDO targetPit = new PitDO();
+        targetPit.setName("test-after-update");
+
+        targetPit.setId(-1L);
+        Assertions.assertThrows(CommonException.class, () -> pitService.updatePit(targetPit), "更新不存在Pit错误");
+
+        targetPit.setId(id);
+        Assertions.assertDoesNotThrow(() -> pitService.updatePit(targetPit), "更新Pit异常");
+        PitDO updatedPit = pitDao.getOneById(id);
+        Assertions.assertEquals(targetPit.getName(), updatedPit.getName(), "更新Pit名称失败");
         pitDao.deleteOne(id, true);
     }
 
     @Test
     void deletePit() {
-        PitPO newPit = new PitPO();
+        PitDO newPit = new PitDO();
         newPit.setPid(1L);
         newPit.setName("test-delete");
         newPit.setDistrictLevel(1);

@@ -26,17 +26,13 @@ public class PitService {
         this.pitRepository = pitRepository;
     }
 
-    public Long addPit(PitPO pitPO) {
+    public Long addPit(PitDO pit) {
         // TODO: 优化常量和if代码
-        boolean paramsCheck = pitPO.getPid() != null
-                && pitPO.getName() != null
-                && pitPO.getDistrictLevel() != null
-                && pitPO.getRank() != null;
-        Assert.isTrue(paramsCheck, () -> {
+        Assert.isTrue(pit.isNotNull(), () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
         int lft, rgt, level;
-        long pid = pitPO.getPid();
+        long pid = pit.getPid();
         List<PitDO> brotherPit = pitRepository.getChildren(pid);
         if (brotherPit.size() > 0) {
             PitDO lastPit = brotherPit.get(brotherPit.size() - 1);
@@ -64,17 +60,21 @@ public class PitService {
                 rgt = lft + 1;
             }
         }
-        pitPO.setLevel(level);
-        pitPO.setLft(lft);
-        pitPO.setRgt(rgt);
-        Assert.isTrue(pitRepository.insertOne(pitPO), () -> {
+        pit.setLevel(level);
+        pit.setLft(lft);
+        pit.setRgt(rgt);
+        Long id = pitRepository.insertOne(pit);
+        Assert.notNull(id, () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
-        return pitPO.getId();
+        return id;
     }
 
-    public void updatePit(long id, Map<String, Object> updateParams) {
-        Assert.isTrue(pitRepository.updateOne(id, updateParams), () -> {
+    public void updatePit(PitDO pit) {
+        Assert.notNull(pit.getId(), () -> {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+        });
+        Assert.isTrue(pitRepository.updateOne(pit), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }

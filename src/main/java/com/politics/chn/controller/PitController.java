@@ -1,13 +1,11 @@
 package com.politics.chn.controller;
 
 import com.politics.chn.model.domain.value.PitDO;
-import com.politics.chn.model.po.PitPO;
 import com.politics.chn.service.PitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder
@@ -26,13 +24,13 @@ public class PitController {
     }
 
     @PostMapping
-    public Long addPit(@RequestBody PitPO pitPO) {
-        return pitService.addPit(pitPO);
+    public Long addPit(@RequestBody PitDO pit) {
+        return pitService.addPit(pit);
     }
 
     @PutMapping(value = "/{id}")
-    public void updatePit(@PathVariable long id, @RequestBody Map<String, Object> updateParams) {
-        pitService.updatePit(id, updateParams);
+    public void updatePit(@RequestBody PitDO pit) {
+        pitService.updatePit(pit);
     }
 
     @DeleteMapping(value = "/{id}")

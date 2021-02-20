@@ -90,11 +90,11 @@ public class PitPO {
         this.rgt = rgt;
     }
 
-    public boolean isDeleted() {
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setDeleted(boolean deleted) {
+    public void setDeleted(Boolean deleted) {
         isDeleted = deleted;
     }
 
@@ -130,4 +130,5 @@ public class PitPO {
                 ", isDeleted=" + isDeleted +
                 '}';
     }
+
 }

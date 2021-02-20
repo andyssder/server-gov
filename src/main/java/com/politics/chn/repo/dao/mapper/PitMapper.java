@@ -29,14 +29,22 @@ public interface PitMapper {
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PitPO pitPO);
 
+    // TODO: 存在设置某个属性为null不成功的情况
     @Update("<script> " +
-            "UPDATE pit SET" +
-            "<foreach item='value' index='key' collection='updateParams.entrySet()' separator=','>" +
-            "${key} = #{value}" +
-            "</foreach>" +
-            "WHERE id = #{id}" +
+            "UPDATE pit" +
+            "<trim prefix='set' suffixOverrides=',' suffix=' where id = #{id}'>" +
+            "<if test='name != null'> name=#{name}, </if>" +
+            "<if test='shortName != null'> short_name=#{shortName}, </if>" +
+            "<if test='level != null'> level=#{level}, </if>" +
+            "<if test='rank != null'> level=#{rank}, </if>" +
+            "<if test='districtLevel != null'> district_level=#{districtLevel}, </if>" +
+            "<if test='lft != null'> lft=#{lft}, </if>" +
+            "<if test='rgt != null'> rgt=#{rgt}, </if>" +
+            "<if test='pid != null'> pid=#{pid}, </if>" +
+            "<if test='isDeleted != null'> is_deleted=#{isDeleted}, </if>" +
+            "</trim>" +
             "</script>")
-    int updateOne(long id, Map<String, Object> updateParams);
+    int updateOne(PitPO pitPO);
 
     @Update("UPDATE pit SET is_deleted = true WHERE id = #{id}")
     int deleteOne(long id);

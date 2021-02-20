@@ -42,8 +42,8 @@ public class PitDao {
         return pitMapper.insertOne(pitPO) > 0;
     }
 
-    public boolean updateOne(long id, Map<String, Object> updateParams) {
-        return pitMapper.updateOne(id, updateParams) > 0;
+    public boolean updateOne(PitPO pitPO) {
+        return pitMapper.updateOne(pitPO) > 0;
     }
 
     public boolean deleteOne(long id) {

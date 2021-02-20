@@ -148,4 +148,8 @@ public class PitDO {
         sb.append(name);
         return sb.toString();
     }
+
+    public Boolean isNotNull() {
+        return pid != null && name != null && districtLevel != null && rank != null;
+    }
 }
