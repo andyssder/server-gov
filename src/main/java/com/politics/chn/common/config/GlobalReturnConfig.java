@@ -1,10 +1,5 @@
 package com.politics.chn.common.config;
 
-/**
- * @author: andyssder
- * @create: 2021-02-07 16:35
- */
-
 import com.politics.chn.common.annotation.GlobalResultDisabled;
 import com.politics.chn.common.result.ReturnResult;
 import org.springframework.context.annotation.Configuration;
@@ -21,8 +16,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import java.lang.annotation.Annotation;
 
 /**
- * @author: andyssder
- * @create: 2021-02-07 17:14
+ * @author andyssder
+ * @create 2021-02-07 17:14
  */
 @EnableWebMvc
 @Configuration

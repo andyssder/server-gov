@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
- * @author: andyssder
- * @create: 2021-02-07 17:33
+ * @author andyssder
+ * @create 2021-02-07 17:33
  */
 @RestControllerAdvice
 public class GlobalExceptionHandler {

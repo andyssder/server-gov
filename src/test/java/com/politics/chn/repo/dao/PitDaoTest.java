@@ -12,8 +12,8 @@ import java.util.Map;
 
 
 /**
- * @author: andyssder
- * @create: 2021-02-15 18:26
+ * @author andyssder
+ * @create 2021-02-15 18:26
  */
 @SpringBootTest
 class PitDaoTest {

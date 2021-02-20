@@ -4,8 +4,8 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * @author: andyssder
- * @create: 2021-02-18 14:00
+ * @author andyssder
+ * @create 2021-02-18 14:00
  */
 public class ProfilePO {
     Long id;

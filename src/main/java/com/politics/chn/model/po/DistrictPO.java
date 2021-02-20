@@ -3,8 +3,8 @@ package com.politics.chn.model.po;
 import java.util.Objects;
 
 /**
- * @author: andyssder
- * @create: 2021-02-06 16:43
+ * @author andyssder
+ * @create 2021-02-06 16:43
  */
 public class DistrictPO {
     Integer id;

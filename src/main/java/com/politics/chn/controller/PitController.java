@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author: andyssder
- * @create: 2021-02-16 16:02
+ * @author andyssder
+ * @create 2021-02-16 16:02
  */
 @RestController
 @RequestMapping("/pits")

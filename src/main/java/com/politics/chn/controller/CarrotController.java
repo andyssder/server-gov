@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author: andyssder
- * @create: 2021-02-18 12:08
+ * @author andyssder
+ * @create 2021-02-18 12:08
  */
 @RestController
 @RequestMapping("/carrots")

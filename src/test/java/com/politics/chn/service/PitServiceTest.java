@@ -13,8 +13,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author: andyssder
- * @create: 2021-02-17 09:55
+ * @author andyssder
+ * @create 2021-02-17 09:55
  */
 @SpringBootTest
 class PitServiceTest {

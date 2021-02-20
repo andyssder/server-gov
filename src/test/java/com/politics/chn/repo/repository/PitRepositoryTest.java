@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
- * @author: andyssder
- * @create: 2021-02-16 10:58
+ * @author andyssder
+ * @create 2021-02-16 10:58
  */
 @SpringBootTest
 class PitRepositoryTest {

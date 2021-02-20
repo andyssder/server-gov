@@ -8,8 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author: andyssder
- * @create: 2021-02-06 16:45
+ * @author andyssder
+ * @create 2021-02-06 16:45
  */
 @Repository
 public class DistrictDao {

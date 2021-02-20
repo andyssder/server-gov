@@ -10,8 +10,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author: andyssder
- * @create: 2021-02-18 17:42
+ * @author andyssder
+ * @create 2021-02-18 17:42
  */
 @Repository
 public class PersonRepository {

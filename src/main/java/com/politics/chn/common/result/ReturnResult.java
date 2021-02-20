@@ -3,8 +3,8 @@ package com.politics.chn.common.result;
 import com.politics.chn.common.enums.ResultStatusEnum;
 
 /**
- * @author: andyssder
- * @create: 2021-02-07 16:20
+ * @author andyssder
+ * @create 2021-02-07 16:20
  */
 public class ReturnResult<T> {
     private String code;

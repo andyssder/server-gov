@@ -3,8 +3,8 @@ package com.politics.chn.model.dto;
 import java.util.Objects;
 
 /**
- * @author: andyssder
- * @create: 2021-02-06 17:03
+ * @author andyssder
+ * @create 2021-02-06 17:03
  */
 public class DistrictDTO {
     Integer id;

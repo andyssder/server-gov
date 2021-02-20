@@ -13,8 +13,8 @@ import java.util.Map;
 
 
 /**
- * @author: andyssder
- * @create: 2021-02-18 12:57
+ * @author andyssder
+ * @create 2021-02-18 12:57
  */
 @SpringBootTest
 class CarrotServiceTest {

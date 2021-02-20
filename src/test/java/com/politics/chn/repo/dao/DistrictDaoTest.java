@@ -9,8 +9,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.util.List;
 
 /**
- * @author: andyssder
- * @create: 2021-02-06 16:46
+ * @author andyssder
+ * @create 2021-02-06 16:46
  */
 @SpringBootTest
 class DistrictDaoTest {

@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author: andyssder
- * @create: 2021-02-18 11:31
+ * @author andyssder
+ * @create 2021-02-18 11:31
  */
 @Repository
 public class CarrotRepository {

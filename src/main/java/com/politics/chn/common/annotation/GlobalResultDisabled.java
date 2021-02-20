@@ -5,8 +5,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.lang.annotation.*;
 
 /**
- * @author: andyssder
- * @create: 2021-02-07 17:18
+ * @author andyssder
+ * @create 2021-02-07 17:18
  */
 
 @Retention(RetentionPolicy.RUNTIME)

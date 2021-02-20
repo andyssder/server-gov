@@ -3,8 +3,8 @@ package com.politics.chn.model.po;
 import java.util.Objects;
 
 /**
- * @author: andyssder
- * @create: 2021-02-08 17:15
+ * @author andyssder
+ * @create 2021-02-08 17:15
  */
 public class PitPO {
     Long id;

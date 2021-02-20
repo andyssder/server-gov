@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author: andyssder
- * @create: 2021-02-08 17:29
+ * @author andyssder
+ * @create 2021-02-08 17:29
  */
 @Mapper
 public interface PitMapper {

@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 /**
- * @author: andyssder
- * @create: 2021-02-06 16:50
+ * @author andyssder
+ * @create 2021-02-06 16:50
  */
 @RestController
 @RequestMapping("/district")
