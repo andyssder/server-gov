@@ -39,21 +39,28 @@ class CarrotServiceTest {
         newCarrot.setPitLevel(1);
         Long id = carrotService.addCarrot(newCarrot);
         Assertions.assertNotNull(id, "插入Pit错误");
+        carrotDao.deleteOne(id, true);
     }
 
     @Test
     void updateCarrot() {
         CarrotDO newCarrot = new CarrotDO();
-        newCarrot.setName("test-addCarrot");
+        newCarrot.setName("test-updateCarrot");
         newCarrot.setPitLevel(1);
+
+        CarrotDO targetDO = new CarrotDO();
+        targetDO.setId(-1L);
+        targetDO.setName("test-after-updateCarrot");
+        targetDO.setPitLevel(1);
+
         Long id = carrotService.addCarrot(newCarrot);
-        Map<String, Object> updateParams = new HashMap<>();
-        updateParams.put("name", "test-after-updateCarrot");
-        Assertions.assertThrows(CommonException.class, () -> carrotService.updateCarrot(-1, updateParams), "更新不存在Carrot错误");
-        Assertions.assertDoesNotThrow(() -> carrotService.updateCarrot(id, updateParams), "更新Carrot异常");
-        CarrotDO carrotDO = carrotDao.getOneById(id);
-        Assertions.assertEquals("test-after-updateCarrot", carrotDO.getName(), "更新Carrot名称失败");
-        carrotDao.deleteOne(id);
+        Assertions.assertThrows(CommonException.class, () -> carrotService.updateCarrot(targetDO), "更新不存在Carrot错误");
+
+        targetDO.setId(id);
+        Assertions.assertDoesNotThrow(() -> carrotService.updateCarrot(targetDO), "更新Carrot异常");
+        CarrotDO updatedCarrotDO = carrotDao.getOneById(id);
+        Assertions.assertEquals(targetDO.getName(), updatedCarrotDO.getName(), "更新Carrot名称失败");
+        carrotDao.deleteOne(id, true);
     }
 
     @Test

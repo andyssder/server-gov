@@ -28,9 +28,9 @@ public class CarrotController {
         return carrotService.addCarrot(carrotDO);
     }
 
-    @PutMapping(value = "/{id}")
-    public void updateCarrot(@PathVariable long id, @RequestBody Map<String, Object> updateParams) {
-        carrotService.updateCarrot(id, updateParams);
+    @PutMapping
+    public void updateCarrot(@RequestBody CarrotDO carrotDO) {
+        carrotService.updateCarrot(carrotDO);
     }
 
     @GetMapping

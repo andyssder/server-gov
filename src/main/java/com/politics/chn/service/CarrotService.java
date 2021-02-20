@@ -37,8 +37,8 @@ public class CarrotService {
         return carrotDO.getId();
     }
 
-    public void updateCarrot(long id, Map<String, Object> updateParams) {
-        Assert.isTrue(carrotRepository.updateOne(id, updateParams), () -> {
+    public void updateCarrot(CarrotDO carrotDO) {
+        Assert.isTrue(carrotRepository.updateOne(carrotDO), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }

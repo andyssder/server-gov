@@ -26,13 +26,15 @@ public interface CarrotMapper {
     int insertOne(CarrotDO carrotDO);
 
     @Update("<script> " +
-            "UPDATE carrot SET" +
-            "<foreach item='value' index='key' collection='updateParams.entrySet()' separator=','>" +
-            "${key} = #{value}" +
-            "</foreach>" +
-            "WHERE id = #{id}" +
+            "UPDATE carrot" +
+            "<trim prefix='set' suffixOverrides=',' suffix=' where id = #{id}'>" +
+            "<if test='name != null'> name=#{name}, </if>" +
+            "<if test='shortName != null'> short_name=#{shortName}, </if>" +
+            "<if test='pitLevel != null'> pit_level=#{pitLevel}, </if>" +
+            "<if test='isDeleted != null'> is_deleted=#{isDeleted}, </if>" +
+            "</trim>" +
             "</script>")
-    int updateOne(long id, Map<String, Object> updateParams);
+    int updateOne(CarrotDO carrotDO);
 
     @Update("UPDATE carrot SET is_deleted = true WHERE id = #{id}")
     int deleteOne(long id);

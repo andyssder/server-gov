@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder
@@ -38,8 +37,8 @@ public class CarrotRepository {
         return carrotDao.insertOne(carrotDO);
     }
 
-    public Boolean updateOne(long id, Map<String, Object> updateParams) {
-        return carrotDao.updateOne(id, updateParams);
+    public Boolean updateOne(CarrotDO carrotDO) {
+        return carrotDao.updateOne(carrotDO);
     }
 
 }
