@@ -26,20 +26,14 @@ public class DistrictService {
         this.districtRepository = districtRepository;
     }
 
-    public List<DistrictDTO> getProvinces() {
-        return convertPOList2DTOList(districtRepository.getByLevel(1));
+    public List<DistrictDO> getProvinces() {
+        return districtRepository.getByLevel(1);
     }
 
-    public List<DistrictDTO> getCities(Integer parentId) {
+    public List<DistrictDO> getCities(Integer parentId) {
         Assert.notNull(parentId, () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
-        return convertPOList2DTOList(districtRepository.getChildrenById(parentId));
-    }
-
-    private List<DistrictDTO> convertPOList2DTOList(List<DistrictDO> districtPOList) {
-        List<DistrictDTO> result = new ArrayList<>();
-        districtPOList.forEach(districtPO -> result.add(new DistrictDTO(districtPO.getId(), districtPO.getName())));
-        return result;
+        return districtRepository.getChildrenById(parentId);
     }
 }

@@ -41,16 +41,15 @@ class DistrictDaoTest {
 
             });
         }
-
     }
 
     @Test
-    public void getByIDTest() {
+    public void getByID() {
         Assertions.assertNotNull(districtDao.getOneById(1), "根据id查询错误");
     }
 
     @Test
-    public void getAllTest() {
+    public void getAll() {
         Assertions.assertEquals(3215, districtDao.getAll().size(), "获取全部数据错误");
     }
 }

@@ -20,22 +20,22 @@ class DistrictRepositoryTest {
     }
 
     @Test
-    void getByIDTest() {
+    void getByID() {
         Assertions.assertNotNull(districtRepository.getById(1), "通过id查询错误");
     }
 
     @Test
-    void getByLevelTest() {
+    void getByLevel() {
         Assertions.assertNotNull(districtRepository.getByLevel(1), "通过level查询错误");
     }
 
     @Test
-    void getChildrenByIdTest() {
+    void getChildrenById() {
         Assertions.assertNotEquals(0, districtRepository.getChildrenById(1).size(),"通过id查询子节点错误");
     }
 
     @Test
-    void getParentByIdTest() {
+    void getParentById() {
         Assertions.assertNotEquals(0, districtRepository.getParentById(10).size(),"通过id查询父节点错误");
     }
 }
