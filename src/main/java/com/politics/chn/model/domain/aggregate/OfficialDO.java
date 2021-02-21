@@ -1,5 +1,6 @@
 package com.politics.chn.model.domain.aggregate;
 
+import cn.hutool.core.collection.ListUtil;
 import com.politics.chn.model.domain.entity.PersonDO;
 import com.politics.chn.model.domain.entity.ProfileDO;
 
@@ -65,5 +66,11 @@ public class OfficialDO {
                 "person=" + person +
                 ", profiles=" + profiles +
                 '}';
+    }
+
+    public Boolean isNotNull() {
+        return person.isNotNull() && profiles != null && !ListUtil.filter(profiles, profile -> {
+            return profile.isNotNull() ? profile : null;
+        }).isEmpty();
     }
 }

@@ -32,6 +32,9 @@ public class OfficialService {
     }
 
     public void addOfficial(OfficialDO official) {
+        Assert.isTrue(official.isNotNull(), () -> {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+        });
         Assert.isTrue(officialRepository.addOfficial(official), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });

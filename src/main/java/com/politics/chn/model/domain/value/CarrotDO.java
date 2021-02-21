@@ -80,4 +80,8 @@ public class CarrotDO {
                 ", isDeleted=" + isDeleted +
                 '}';
     }
+
+    public Boolean isNotNull() {
+        return name != null && pitLevel != null;
+    }
 }

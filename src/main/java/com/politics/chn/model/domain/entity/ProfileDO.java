@@ -149,4 +149,8 @@ public class ProfileDO {
                 ", isDeleted=" + isDeleted +
                 '}';
     }
+
+    public Boolean isNotNull() {
+        return startTime != null && personId != null && district != null && pit.isNotNull() && carrot.isNotNull();
+    }
 }

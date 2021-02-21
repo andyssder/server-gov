@@ -26,9 +26,7 @@ public class CarrotService {
     }
 
     public Long addCarrot(CarrotDO carrotDO) {
-        boolean paramsCheck = carrotDO.getName() != null
-                && carrotDO.getPitLevel() != null;
-        Assert.isTrue(paramsCheck, () -> {
+        Assert.isTrue(carrotDO.isNotNull(), () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
         Assert.isTrue(carrotRepository.insertOne(carrotDO), () -> {

@@ -252,4 +252,8 @@ public class PersonDO {
                 ", isDeleted=" + isDeleted +
                 '}';
     }
+
+    public Boolean isNotNull() {
+        return name != null && gender != null;
+    }
 }
