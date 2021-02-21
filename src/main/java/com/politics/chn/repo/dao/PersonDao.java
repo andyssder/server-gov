@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder
@@ -26,7 +25,12 @@ public class PersonDao {
 
     public boolean addOne(PersonDO personDO) {
         PersonPO personPO = personDO2PO(personDO);
-        return personMapper.insertOne(personPO) > 0;
+        Integer result = personMapper.insertOne(personPO);
+        if (result > 0) {
+            personDO.setId(personPO.getId());
+            return true;
+        }
+        return false;
     }
 
     public boolean deleteOne(long id) {

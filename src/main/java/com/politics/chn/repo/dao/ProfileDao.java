@@ -1,9 +1,7 @@
 package com.politics.chn.repo.dao;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.politics.chn.model.domain.entity.PersonDO;
 import com.politics.chn.model.domain.entity.ProfileDO;
-import com.politics.chn.model.po.PersonPO;
 import com.politics.chn.model.po.ProfilePO;
 import com.politics.chn.repo.dao.mapper.ProfileMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * @author andyssder
@@ -28,12 +26,23 @@ public class ProfileDao {
 
     public boolean addOne(ProfileDO profileDO) {
         ProfilePO profilePO = profileDO2PO(profileDO);
-        return profileMapper.insertOne(profilePO) > 0;
+        int result = profileMapper.insertOne(profilePO);
+        if (result > 0) {
+            profileDO.setId(profilePO.getId());
+            return true;
+        }
+        return false;
     }
 
     public boolean addMany(List<ProfileDO> profileDOs) {
         List<ProfilePO> profilePOS = profileDO2PO(profileDOs);
-        return profileMapper.insertMany(profilePOS) > 0;
+        int result = profileMapper.insertMany(profilePOS);
+        if (result == profileDOs.size()) {
+            AtomicInteger index = new AtomicInteger();
+            profilePOS.forEach(profilePO -> profileDOs.get(index.getAndIncrement()).setId(profilePO.getId()));
+            return true;
+        }
+        return false;
     }
 
     public boolean deleteOne(long id) {
@@ -46,7 +55,7 @@ public class ProfileDao {
     }
 
     public boolean deleteOneByPersonId(long id) {
-        return deleteOne(id, false);
+        return deleteOneByPersonId(id, false);
     }
 
     public boolean deleteOneByPersonId(long id, boolean realDelete) {
@@ -68,8 +77,12 @@ public class ProfileDao {
         return profileMapper.getAll();
     }
 
-    public List<ProfileDO> getByPersonId(Long personId) {
+    public List<ProfileDO> getOneByPersonId(Long personId) {
         return profileMapper.getByPersonId(personId);
+    }
+
+    public ProfileDO getOneById(Long id) {
+        return profileMapper.getOneById(id);
     }
 
     // TODO: 再考虑如何转换

@@ -2,12 +2,10 @@ package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.model.domain.aggregate.OfficialDO;
 import com.politics.chn.model.domain.entity.PersonDO;
-import com.politics.chn.model.domain.value.PartyDO;
 import com.politics.chn.model.po.PersonPO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder
@@ -43,17 +41,17 @@ public interface PersonMapper {
     OfficialDO getOnePersonById(long id);
 
     @Insert("INSERT INTO person(" +
-            "name, portrait, gender, ethnicity_id," +
-            "birth_date, death_date, work_date, retire_date," +
-            "ancestral_home, birth_place, work_place" +
-            "university, major, education, degree," +
-            "rank, creat_time, update_time, is_deleted) " +
+            "name, portrait, gender, ethnicity_id, " +
+            "birth_date, death_date, work_date, retire_date, " +
+            "ancestral_home, birth_place, work_place, " +
+            "university, major, education, degree, " +
+            "rank, create_time, update_time, is_deleted) " +
             "VALUES(" +
             "#{name}, #{portrait}, #{gender}, #{ethnicityId}, " +
             "#{birthDate}, #{deathDate}, #{workDate}, #{retireDate}, " +
             "#{ancestralHome}, #{birthPlace}, #{workPlace}," +
             "#{university}, #{major}, #{education}, #{degree}," +
-            "#{rank}, #{creatTime}, #{updateTime}, #{isDeleted})")
+            "#{rank}, #{createTime}, #{updateTime}, #{isDeleted})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PersonPO personPO);
 
@@ -78,7 +76,7 @@ public interface PersonMapper {
             "<if test='major != null'> major=#{major}, </if>" +
             "<if test='degree != null'> degree=#{degree}, </if>" +
             "<if test='rank != null'> rank=#{rank}, </if>" +
-            "<if test='creatTime != null'> creat_time=#{creatTime}, </if>" +
+            "<if test='createTime != null'> create_time=#{createTime}, </if>" +
             "<if test='updateTime != null'> update_time=#{updateTime}, </if>" +
             "<if test='isDeleted != null'> is_deleted=#{isDeleted}, </if>" +
             "</trim>" +

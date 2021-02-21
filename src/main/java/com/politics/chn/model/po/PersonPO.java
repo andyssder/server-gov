@@ -1,7 +1,5 @@
 package com.politics.chn.model.po;
 
-import com.politics.chn.model.domain.entity.PersonDO;
-
 import java.util.Date;
 import java.util.Objects;
 
@@ -34,7 +32,7 @@ public class PersonPO {
 
     Integer rank;
 
-    Date creatTime;
+    Date createTime;
     Date updateTime;
 
     Boolean isDeleted;
@@ -183,12 +181,12 @@ public class PersonPO {
         this.rank = rank;
     }
 
-    public Date getCreatTime() {
-        return creatTime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatTime(Date creatTime) {
-        this.creatTime = creatTime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
     public Date getUpdateTime() {
@@ -216,12 +214,12 @@ public class PersonPO {
             return false;
         }
         PersonPO personPO = (PersonPO) o;
-        return Objects.equals(id, personPO.id) && Objects.equals(name, personPO.name) && Objects.equals(portrait, personPO.portrait) && Objects.equals(gender, personPO.gender) && Objects.equals(partyId, personPO.partyId) && Objects.equals(ethnicityId, personPO.ethnicityId) && Objects.equals(birthDate, personPO.birthDate) && Objects.equals(deathDate, personPO.deathDate) && Objects.equals(workDate, personPO.workDate) && Objects.equals(retireDate, personPO.retireDate) && Objects.equals(ancestralHome, personPO.ancestralHome) && Objects.equals(birthPlace, personPO.birthPlace) && Objects.equals(workPlace, personPO.workPlace) && Objects.equals(university, personPO.university) && Objects.equals(major, personPO.major) && Objects.equals(education, personPO.education) && Objects.equals(degree, personPO.degree) && Objects.equals(rank, personPO.rank) && Objects.equals(creatTime, personPO.creatTime) && Objects.equals(updateTime, personPO.updateTime) && Objects.equals(isDeleted, personPO.isDeleted);
+        return Objects.equals(id, personPO.id) && Objects.equals(name, personPO.name) && Objects.equals(portrait, personPO.portrait) && Objects.equals(gender, personPO.gender) && Objects.equals(partyId, personPO.partyId) && Objects.equals(ethnicityId, personPO.ethnicityId) && Objects.equals(birthDate, personPO.birthDate) && Objects.equals(deathDate, personPO.deathDate) && Objects.equals(workDate, personPO.workDate) && Objects.equals(retireDate, personPO.retireDate) && Objects.equals(ancestralHome, personPO.ancestralHome) && Objects.equals(birthPlace, personPO.birthPlace) && Objects.equals(workPlace, personPO.workPlace) && Objects.equals(university, personPO.university) && Objects.equals(major, personPO.major) && Objects.equals(education, personPO.education) && Objects.equals(degree, personPO.degree) && Objects.equals(rank, personPO.rank) && Objects.equals(createTime, personPO.createTime) && Objects.equals(updateTime, personPO.updateTime) && Objects.equals(isDeleted, personPO.isDeleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, portrait, gender, partyId, ethnicityId, birthDate, deathDate, workDate, retireDate, ancestralHome, birthPlace, workPlace, university, major, education, degree, rank, creatTime, updateTime, isDeleted);
+        return Objects.hash(id, name, portrait, gender, partyId, ethnicityId, birthDate, deathDate, workDate, retireDate, ancestralHome, birthPlace, workPlace, university, major, education, degree, rank, createTime, updateTime, isDeleted);
     }
 
     @Override
@@ -245,7 +243,7 @@ public class PersonPO {
                 ", education='" + education + '\'' +
                 ", degree='" + degree + '\'' +
                 ", rank=" + rank +
-                ", creatTime=" + creatTime +
+                ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
                 ", isDeleted=" + isDeleted +
                 '}';
