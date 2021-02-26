@@ -14,6 +14,7 @@ import java.util.List;
 public interface ProfileMapper {
     @Select("SELECT * FROM profile")
     @Results(id="profile", value={
+            @Result(property="deleted",column="is_deleted"),
             @Result(property="district",column="district_id",one=@One(select="com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
             @Result(property="pit",column="pit_id",one=@One(select="com.politics.chn.repo.dao.mapper.PitMapper.getOneById")),
             @Result(property="carrot",column="carrot_id",one=@One(select="com.politics.chn.repo.dao.mapper.CarrotMapper.getOneById"))
@@ -35,7 +36,7 @@ public interface ProfileMapper {
             "VALUES(" +
             "#{startTime}, #{endTime}, #{personId}, " +
             "#{districtId}, #{pitId}, #{carrotId}, " +
-            "#{remark}, #{summary}, #{priority}, #{isDeleted})")
+            "#{remark}, #{summary}, #{priority}, #{deleted})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(ProfilePO profilePO);
 
@@ -45,7 +46,7 @@ public interface ProfileMapper {
             "<foreach collection='list' item='item' separator=',' > " +
             "(#{item.startTime}, #{item.endTime}, #{item.personId}, " +
             "#{item.districtId}, #{item.pitId}, #{item.carrotId}, " +
-            "#{item.remark}, #{item.summary}, #{item.priority}, #{item.isDeleted}) " +
+            "#{item.remark}, #{item.summary}, #{item.priority}, #{item.deleted}) " +
             "</foreach>" +
             "</script>")
     @Options(useGeneratedKeys=true, keyProperty="id")
@@ -64,7 +65,7 @@ public interface ProfileMapper {
             "<if test='remark != null'> remark=#{remark}, </if>" +
             "<if test='summary != null'> summary=#{summary}, </if>" +
             "<if test='priority != null'> priority=#{priority}, </if>" +
-            "<if test='isDeleted != null'> is_deleted=#{isDeleted}, </if>" +
+            "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
     int updateOne(ProfilePO profilePO);
@@ -144,8 +145,8 @@ public interface ProfileMapper {
             "</trim>" +
             "<trim prefix='is_deleted=case' suffix='end,'>" +
             "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.isDeleted != null'>" +
-            "when id=#{item.id} then #{item.isDeleted} " +
+            "<if test='item.deleted != null'>" +
+            "when id=#{item.id} then #{item.deleted} " +
             "</if>" +
             "</foreach>" +
             "</trim>" +

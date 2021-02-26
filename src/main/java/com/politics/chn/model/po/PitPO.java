@@ -16,7 +16,7 @@ public class PitPO {
     Integer districtLevel;
     Integer lft;
     Integer rgt;
-    Boolean isDeleted;
+    Boolean deleted;
 
     public Long getId() {
         return id;
@@ -91,11 +91,11 @@ public class PitPO {
     }
 
     public Boolean getDeleted() {
-        return isDeleted;
+        return deleted;
     }
 
     public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
+        this.deleted = deleted;
     }
 
     @Override
@@ -107,12 +107,12 @@ public class PitPO {
             return false;
         }
         PitPO pitPO = (PitPO) o;
-        return Objects.equals(id, pitPO.id) && Objects.equals(pid, pitPO.pid) && Objects.equals(name, pitPO.name) && Objects.equals(shortName, pitPO.shortName) && Objects.equals(level, pitPO.level) && Objects.equals(rank, pitPO.rank) && Objects.equals(districtLevel, pitPO.districtLevel) && Objects.equals(lft, pitPO.lft) && Objects.equals(rgt, pitPO.rgt) && Objects.equals(isDeleted, pitPO.isDeleted);
+        return Objects.equals(id, pitPO.id) && Objects.equals(pid, pitPO.pid) && Objects.equals(name, pitPO.name) && Objects.equals(shortName, pitPO.shortName) && Objects.equals(level, pitPO.level) && Objects.equals(rank, pitPO.rank) && Objects.equals(districtLevel, pitPO.districtLevel) && Objects.equals(lft, pitPO.lft) && Objects.equals(rgt, pitPO.rgt) && Objects.equals(deleted, pitPO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, isDeleted);
+        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, deleted);
     }
 
     @Override
@@ -127,7 +127,7 @@ public class PitPO {
                 ", districtLevel=" + districtLevel +
                 ", lft=" + lft +
                 ", rgt=" + rgt +
-                ", isDeleted=" + isDeleted +
+                ", deleted=" + deleted +
                 '}';
     }
 

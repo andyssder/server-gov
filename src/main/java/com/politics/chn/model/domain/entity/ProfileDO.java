@@ -3,8 +3,6 @@ package com.politics.chn.model.domain.entity;
 import com.politics.chn.model.domain.value.CarrotDO;
 import com.politics.chn.model.domain.value.DistrictDO;
 import com.politics.chn.model.domain.value.PitDO;
-import com.politics.chn.model.po.DistrictPO;
-import com.politics.chn.model.po.PitPO;
 
 import java.util.Date;
 import java.util.Objects;
@@ -25,7 +23,7 @@ public class ProfileDO {
     String summary;
     Integer priority;
 
-    Boolean isDeleted;
+    Boolean deleted;
 
     public Long getId() {
         return id;
@@ -109,11 +107,11 @@ public class ProfileDO {
 
 
     public Boolean getDeleted() {
-        return isDeleted;
+        return deleted;
     }
 
     public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
+        this.deleted = deleted;
     }
 
     @Override
@@ -125,12 +123,12 @@ public class ProfileDO {
             return false;
         }
         ProfileDO profileDO = (ProfileDO) o;
-        return Objects.equals(id, profileDO.id) && Objects.equals(startTime, profileDO.startTime) && Objects.equals(endTime, profileDO.endTime) && Objects.equals(personId, profileDO.personId) && Objects.equals(district, profileDO.district) && Objects.equals(pit, profileDO.pit) && Objects.equals(carrot, profileDO.carrot) && Objects.equals(remark, profileDO.remark) && Objects.equals(summary, profileDO.summary) && Objects.equals(priority, profileDO.priority) && Objects.equals(isDeleted, profileDO.isDeleted);
+        return Objects.equals(id, profileDO.id) && Objects.equals(startTime, profileDO.startTime) && Objects.equals(endTime, profileDO.endTime) && Objects.equals(personId, profileDO.personId) && Objects.equals(district, profileDO.district) && Objects.equals(pit, profileDO.pit) && Objects.equals(carrot, profileDO.carrot) && Objects.equals(remark, profileDO.remark) && Objects.equals(summary, profileDO.summary) && Objects.equals(priority, profileDO.priority) && Objects.equals(deleted, profileDO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, startTime, endTime, personId, district, pit, carrot, remark, summary, priority, isDeleted);
+        return Objects.hash(id, startTime, endTime, personId, district, pit, carrot, remark, summary, priority, deleted);
     }
 
     @Override
@@ -146,7 +144,7 @@ public class ProfileDO {
                 ", remark='" + remark + '\'' +
                 ", summary='" + summary + '\'' +
                 ", priority=" + priority +
-                ", isDeleted=" + isDeleted +
+                ", deleted=" + deleted +
                 '}';
     }
 

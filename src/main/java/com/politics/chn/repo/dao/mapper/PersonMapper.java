@@ -28,6 +28,7 @@ public interface PersonMapper {
 
     @Select("SELECT * FROM person")
     @Results(id="person", value={
+            @Result(property="deleted",column="is_deleted"),
             @Result(property="party",column="party_id",one=@One(select="com.politics.chn.repo.dao.mapper.PartyMapper.getOneById")),
             @Result(property="ethnicity",column="ethnicity_id",one=@One(select="com.politics.chn.repo.dao.mapper.EthnicityMapper.getOneById")),
             @Result(property="ancestralHome",column="ancestral_home",one=@One(select="com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
@@ -51,7 +52,7 @@ public interface PersonMapper {
             "#{birthDate}, #{deathDate}, #{workDate}, #{retireDate}, " +
             "#{ancestralHome}, #{birthPlace}, #{workPlace}," +
             "#{university}, #{major}, #{education}, #{degree}," +
-            "#{rank}, #{createTime}, #{updateTime}, #{isDeleted})")
+            "#{rank}, #{createTime}, #{updateTime}, #{deleted})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PersonPO personPO);
 
@@ -78,7 +79,7 @@ public interface PersonMapper {
             "<if test='rank != null'> rank=#{rank}, </if>" +
             "<if test='createTime != null'> create_time=#{createTime}, </if>" +
             "<if test='updateTime != null'> update_time=#{updateTime}, </if>" +
-            "<if test='isDeleted != null'> is_deleted=#{isDeleted}, </if>" +
+            "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
     int updateOne(PersonPO personPO);

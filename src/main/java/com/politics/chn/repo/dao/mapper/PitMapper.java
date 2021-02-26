@@ -14,15 +14,21 @@ import java.util.Map;
 @Mapper
 public interface PitMapper {
     @Select("SELECT * FROM pit")
+    @Results(id="pit", value={
+            @Result(property="deleted",column="is_deleted")
+    })
     List<PitDO> getAll();
 
     @Select("SELECT * FROM pit WHERE is_deleted = false AND district_level = #{districtLevel}")
+    @ResultMap("pit")
     List<PitDO> getByDistrictLevel(int districtLevel);
 
     @Select("SELECT * FROM pit WHERE is_deleted = false AND lft > #{lft} AND rgt < #{rgt} AND level=#{level} + 1 ORDER BY lft ASC")
+    @ResultMap("pit")
     List<PitDO> getLower(int lft, int rgt, int level);
 
     @Select("SELECT * FROM pit WHERE id = #{id}")
+    @ResultMap("pit")
     PitDO getOneById(long id);
 
     @Insert("INSERT INTO pit(name, short_name, level, rank, district_level, lft, rgt, pid) VALUES(#{name}, #{shortName}, #{level}, #{rank}, #{districtLevel}, #{lft}, #{rgt}, #{pid})")
@@ -41,7 +47,7 @@ public interface PitMapper {
             "<if test='lft != null'> lft=#{lft}, </if>" +
             "<if test='rgt != null'> rgt=#{rgt}, </if>" +
             "<if test='pid != null'> pid=#{pid}, </if>" +
-            "<if test='isDeleted != null'> is_deleted=#{isDeleted}, </if>" +
+            "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
     int updateOne(PitPO pitPO);

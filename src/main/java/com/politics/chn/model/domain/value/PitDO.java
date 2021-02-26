@@ -17,7 +17,7 @@ public class PitDO {
     Integer districtLevel;
     Integer lft;
     Integer rgt;
-    Boolean isDeleted;
+    Boolean deleted;
     List<String> names;
 
     public Long getId() {
@@ -93,11 +93,11 @@ public class PitDO {
     }
 
     public Boolean getDeleted() {
-        return isDeleted;
+        return deleted;
     }
 
     public void setDeleted(Boolean deleted) {
-        isDeleted = deleted;
+        this.deleted = deleted;
     }
 
     public List<String> getNames() {
@@ -117,12 +117,12 @@ public class PitDO {
             return false;
         }
         PitDO pitDO = (PitDO) o;
-        return Objects.equals(id, pitDO.id) && Objects.equals(pid, pitDO.pid) && Objects.equals(name, pitDO.name) && Objects.equals(shortName, pitDO.shortName) && Objects.equals(level, pitDO.level) && Objects.equals(rank, pitDO.rank) && Objects.equals(districtLevel, pitDO.districtLevel) && Objects.equals(lft, pitDO.lft) && Objects.equals(rgt, pitDO.rgt) && Objects.equals(isDeleted, pitDO.isDeleted) && Objects.equals(names, pitDO.names);
+        return Objects.equals(id, pitDO.id) && Objects.equals(pid, pitDO.pid) && Objects.equals(name, pitDO.name) && Objects.equals(shortName, pitDO.shortName) && Objects.equals(level, pitDO.level) && Objects.equals(rank, pitDO.rank) && Objects.equals(districtLevel, pitDO.districtLevel) && Objects.equals(lft, pitDO.lft) && Objects.equals(rgt, pitDO.rgt) && Objects.equals(deleted, pitDO.deleted) && Objects.equals(names, pitDO.names);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, isDeleted, names);
+        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, deleted, names);
     }
 
     @Override
@@ -137,7 +137,7 @@ public class PitDO {
                 ", districtLevel=" + districtLevel +
                 ", lft=" + lft +
                 ", rgt=" + rgt +
-                ", isDeleted=" + isDeleted +
+                ", deleted=" + deleted +
                 ", names=" + names +
                 '}';
     }

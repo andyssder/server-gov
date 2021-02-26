@@ -13,12 +13,17 @@ import java.util.Map;
 @Mapper
 public interface CarrotMapper {
     @Select("SELECT * FROM carrot")
+    @Results(id="carrot", value={
+            @Result(property="deleted",column="is_deleted")
+    })
     List<CarrotDO> getAll();
 
     @Select("SELECT * FROM carrot WHERE pit_level = #{pitLevel}")
+    @ResultMap("carrot")
     List<CarrotDO> getByPitLevel(int pitLevel);
 
     @Select("SELECT * FROM carrot WHERE id = #{id}")
+    @ResultMap("carrot")
     CarrotDO getOneById(long id);
 
     @Insert("INSERT INTO carrot(name, short_name, pit_level) VALUES(#{name}, #{shortName}, #{pitLevel})")
@@ -31,7 +36,7 @@ public interface CarrotMapper {
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='shortName != null'> short_name=#{shortName}, </if>" +
             "<if test='pitLevel != null'> pit_level=#{pitLevel}, </if>" +
-            "<if test='isDeleted != null'> is_deleted=#{isDeleted}, </if>" +
+            "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
     int updateOne(CarrotDO carrotDO);
