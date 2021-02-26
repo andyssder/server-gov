@@ -15,6 +15,7 @@ import java.util.Map;
 public interface PitMapper {
     @Select("SELECT * FROM pit")
     @Results(id="pit", value={
+            @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")
     })
     List<PitDO> getAll();

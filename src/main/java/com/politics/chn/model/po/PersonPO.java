@@ -35,6 +35,7 @@ public class PersonPO {
     Date createTime;
     Date updateTime;
 
+    Boolean enabled;
     Boolean deleted;
 
     public Long getId() {
@@ -197,6 +198,14 @@ public class PersonPO {
         this.updateTime = updateTime;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public Boolean getDeleted() {
         return deleted;
     }
@@ -214,12 +223,12 @@ public class PersonPO {
             return false;
         }
         PersonPO personPO = (PersonPO) o;
-        return Objects.equals(id, personPO.id) && Objects.equals(name, personPO.name) && Objects.equals(portrait, personPO.portrait) && Objects.equals(gender, personPO.gender) && Objects.equals(partyId, personPO.partyId) && Objects.equals(ethnicityId, personPO.ethnicityId) && Objects.equals(birthDate, personPO.birthDate) && Objects.equals(deathDate, personPO.deathDate) && Objects.equals(workDate, personPO.workDate) && Objects.equals(retireDate, personPO.retireDate) && Objects.equals(ancestralHome, personPO.ancestralHome) && Objects.equals(birthPlace, personPO.birthPlace) && Objects.equals(workPlace, personPO.workPlace) && Objects.equals(university, personPO.university) && Objects.equals(major, personPO.major) && Objects.equals(education, personPO.education) && Objects.equals(degree, personPO.degree) && Objects.equals(rank, personPO.rank) && Objects.equals(createTime, personPO.createTime) && Objects.equals(updateTime, personPO.updateTime) && Objects.equals(deleted, personPO.deleted);
+        return Objects.equals(id, personPO.id) && Objects.equals(name, personPO.name) && Objects.equals(portrait, personPO.portrait) && Objects.equals(gender, personPO.gender) && Objects.equals(partyId, personPO.partyId) && Objects.equals(ethnicityId, personPO.ethnicityId) && Objects.equals(birthDate, personPO.birthDate) && Objects.equals(deathDate, personPO.deathDate) && Objects.equals(workDate, personPO.workDate) && Objects.equals(retireDate, personPO.retireDate) && Objects.equals(ancestralHome, personPO.ancestralHome) && Objects.equals(birthPlace, personPO.birthPlace) && Objects.equals(workPlace, personPO.workPlace) && Objects.equals(university, personPO.university) && Objects.equals(major, personPO.major) && Objects.equals(education, personPO.education) && Objects.equals(degree, personPO.degree) && Objects.equals(rank, personPO.rank) && Objects.equals(createTime, personPO.createTime) && Objects.equals(updateTime, personPO.updateTime) && Objects.equals(enabled, personPO.enabled) && Objects.equals(deleted, personPO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, portrait, gender, partyId, ethnicityId, birthDate, deathDate, workDate, retireDate, ancestralHome, birthPlace, workPlace, university, major, education, degree, rank, createTime, updateTime, deleted);
+        return Objects.hash(id, name, portrait, gender, partyId, ethnicityId, birthDate, deathDate, workDate, retireDate, ancestralHome, birthPlace, workPlace, university, major, education, degree, rank, createTime, updateTime, enabled, deleted);
     }
 
     @Override
@@ -245,6 +254,7 @@ public class PersonPO {
                 ", rank=" + rank +
                 ", createTime=" + createTime +
                 ", updateTime=" + updateTime +
+                ", enabled=" + enabled +
                 ", deleted=" + deleted +
                 '}';
     }

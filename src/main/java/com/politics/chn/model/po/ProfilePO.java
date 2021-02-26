@@ -19,6 +19,7 @@ public class ProfilePO {
     String summary;
     Integer priority;
 
+    Boolean enabled;
     Boolean deleted;
 
     public Long getId() {
@@ -101,6 +102,14 @@ public class ProfilePO {
         this.priority = priority;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public Boolean getDeleted() {
         return deleted;
     }
@@ -118,12 +127,12 @@ public class ProfilePO {
             return false;
         }
         ProfilePO profilePO = (ProfilePO) o;
-        return Objects.equals(id, profilePO.id) && Objects.equals(startTime, profilePO.startTime) && Objects.equals(endTime, profilePO.endTime) && Objects.equals(personId, profilePO.personId) && Objects.equals(districtId, profilePO.districtId) && Objects.equals(pitId, profilePO.pitId) && Objects.equals(carrotId, profilePO.carrotId) && Objects.equals(remark, profilePO.remark) && Objects.equals(summary, profilePO.summary) && Objects.equals(priority, profilePO.priority) && Objects.equals(deleted, profilePO.deleted);
+        return Objects.equals(id, profilePO.id) && Objects.equals(startTime, profilePO.startTime) && Objects.equals(endTime, profilePO.endTime) && Objects.equals(personId, profilePO.personId) && Objects.equals(districtId, profilePO.districtId) && Objects.equals(pitId, profilePO.pitId) && Objects.equals(carrotId, profilePO.carrotId) && Objects.equals(remark, profilePO.remark) && Objects.equals(summary, profilePO.summary) && Objects.equals(priority, profilePO.priority) && Objects.equals(enabled, profilePO.enabled) && Objects.equals(deleted, profilePO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, startTime, endTime, personId, districtId, pitId, carrotId, remark, summary, priority, deleted);
+        return Objects.hash(id, startTime, endTime, personId, districtId, pitId, carrotId, remark, summary, priority, enabled, deleted);
     }
 
     @Override
@@ -139,6 +148,7 @@ public class ProfilePO {
                 ", remark='" + remark + '\'' +
                 ", summary='" + summary + '\'' +
                 ", priority=" + priority +
+                ", enabled=" + enabled +
                 ", deleted=" + deleted +
                 '}';
     }

@@ -14,6 +14,7 @@ import java.util.List;
 public interface ProfileMapper {
     @Select("SELECT * FROM profile")
     @Results(id="profile", value={
+            @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
             @Result(property="district",column="district_id",one=@One(select="com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
             @Result(property="pit",column="pit_id",one=@One(select="com.politics.chn.repo.dao.mapper.PitMapper.getOneById")),

@@ -14,6 +14,7 @@ import java.util.Map;
 public interface CarrotMapper {
     @Select("SELECT * FROM carrot")
     @Results(id="carrot", value={
+            @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")
     })
     List<CarrotDO> getAll();

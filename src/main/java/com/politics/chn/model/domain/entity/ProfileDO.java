@@ -23,6 +23,7 @@ public class ProfileDO {
     String summary;
     Integer priority;
 
+    Boolean enabled;
     Boolean deleted;
 
     public Long getId() {
@@ -105,6 +106,13 @@ public class ProfileDO {
         this.priority = priority;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
 
     public Boolean getDeleted() {
         return deleted;
@@ -123,12 +131,12 @@ public class ProfileDO {
             return false;
         }
         ProfileDO profileDO = (ProfileDO) o;
-        return Objects.equals(id, profileDO.id) && Objects.equals(startTime, profileDO.startTime) && Objects.equals(endTime, profileDO.endTime) && Objects.equals(personId, profileDO.personId) && Objects.equals(district, profileDO.district) && Objects.equals(pit, profileDO.pit) && Objects.equals(carrot, profileDO.carrot) && Objects.equals(remark, profileDO.remark) && Objects.equals(summary, profileDO.summary) && Objects.equals(priority, profileDO.priority) && Objects.equals(deleted, profileDO.deleted);
+        return Objects.equals(id, profileDO.id) && Objects.equals(startTime, profileDO.startTime) && Objects.equals(endTime, profileDO.endTime) && Objects.equals(personId, profileDO.personId) && Objects.equals(district, profileDO.district) && Objects.equals(pit, profileDO.pit) && Objects.equals(carrot, profileDO.carrot) && Objects.equals(remark, profileDO.remark) && Objects.equals(summary, profileDO.summary) && Objects.equals(priority, profileDO.priority) && Objects.equals(enabled, profileDO.enabled) && Objects.equals(deleted, profileDO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, startTime, endTime, personId, district, pit, carrot, remark, summary, priority, deleted);
+        return Objects.hash(id, startTime, endTime, personId, district, pit, carrot, remark, summary, priority, enabled, deleted);
     }
 
     @Override
@@ -144,6 +152,7 @@ public class ProfileDO {
                 ", remark='" + remark + '\'' +
                 ", summary='" + summary + '\'' +
                 ", priority=" + priority +
+                ", enabled=" + enabled +
                 ", deleted=" + deleted +
                 '}';
     }

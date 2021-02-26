@@ -28,6 +28,7 @@ public interface PersonMapper {
 
     @Select("SELECT * FROM person")
     @Results(id="person", value={
+            @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
             @Result(property="party",column="party_id",one=@One(select="com.politics.chn.repo.dao.mapper.PartyMapper.getOneById")),
             @Result(property="ethnicity",column="ethnicity_id",one=@One(select="com.politics.chn.repo.dao.mapper.EthnicityMapper.getOneById")),

@@ -11,6 +11,8 @@ public class CarrotDO {
     String name;
     String shortName;
     Integer pitLevel;
+
+    Boolean enabled;
     Boolean deleted;
 
     public Long getId() {
@@ -45,6 +47,14 @@ public class CarrotDO {
         this.pitLevel = pitLevel;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public Boolean getDeleted() {
         return deleted;
     }
@@ -62,12 +72,12 @@ public class CarrotDO {
             return false;
         }
         CarrotDO carrotDO = (CarrotDO) o;
-        return Objects.equals(id, carrotDO.id) && Objects.equals(name, carrotDO.name) && Objects.equals(shortName, carrotDO.shortName) && Objects.equals(pitLevel, carrotDO.pitLevel) && Objects.equals(deleted, carrotDO.deleted);
+        return Objects.equals(id, carrotDO.id) && Objects.equals(name, carrotDO.name) && Objects.equals(shortName, carrotDO.shortName) && Objects.equals(pitLevel, carrotDO.pitLevel) && Objects.equals(enabled, carrotDO.enabled) && Objects.equals(deleted, carrotDO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, shortName, pitLevel, deleted);
+        return Objects.hash(id, name, shortName, pitLevel, enabled, deleted);
     }
 
     @Override
@@ -77,6 +87,7 @@ public class CarrotDO {
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", pitLevel=" + pitLevel +
+                ", enabled=" + enabled +
                 ", deleted=" + deleted +
                 '}';
     }

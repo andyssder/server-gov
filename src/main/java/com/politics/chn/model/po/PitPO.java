@@ -16,6 +16,8 @@ public class PitPO {
     Integer districtLevel;
     Integer lft;
     Integer rgt;
+
+    Boolean enabled;
     Boolean deleted;
 
     public Long getId() {
@@ -90,6 +92,14 @@ public class PitPO {
         this.rgt = rgt;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
     public Boolean getDeleted() {
         return deleted;
     }
@@ -97,6 +107,7 @@ public class PitPO {
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
+
 
     @Override
     public boolean equals(Object o) {
@@ -107,12 +118,12 @@ public class PitPO {
             return false;
         }
         PitPO pitPO = (PitPO) o;
-        return Objects.equals(id, pitPO.id) && Objects.equals(pid, pitPO.pid) && Objects.equals(name, pitPO.name) && Objects.equals(shortName, pitPO.shortName) && Objects.equals(level, pitPO.level) && Objects.equals(rank, pitPO.rank) && Objects.equals(districtLevel, pitPO.districtLevel) && Objects.equals(lft, pitPO.lft) && Objects.equals(rgt, pitPO.rgt) && Objects.equals(deleted, pitPO.deleted);
+        return Objects.equals(id, pitPO.id) && Objects.equals(pid, pitPO.pid) && Objects.equals(name, pitPO.name) && Objects.equals(shortName, pitPO.shortName) && Objects.equals(level, pitPO.level) && Objects.equals(rank, pitPO.rank) && Objects.equals(districtLevel, pitPO.districtLevel) && Objects.equals(lft, pitPO.lft) && Objects.equals(rgt, pitPO.rgt) && Objects.equals(enabled, pitPO.enabled) && Objects.equals(deleted, pitPO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, deleted);
+        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, enabled, deleted);
     }
 
     @Override
@@ -127,6 +138,7 @@ public class PitPO {
                 ", districtLevel=" + districtLevel +
                 ", lft=" + lft +
                 ", rgt=" + rgt +
+                ", enabled=" + enabled +
                 ", deleted=" + deleted +
                 '}';
     }
