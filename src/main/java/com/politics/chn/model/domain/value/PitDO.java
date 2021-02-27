@@ -154,7 +154,7 @@ public class PitDO {
                 '}';
     }
 
-    public String getFullName() {
+    public String fullName() {
         StringBuffer sb = new StringBuffer();
         names.forEach(name -> sb.append(name));
         sb.append(name);

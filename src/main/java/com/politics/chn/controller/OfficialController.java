@@ -13,7 +13,7 @@ import java.util.Map;
  * @create 2021-02-18 17:53
  */
 @RestController
-@RequestMapping("/official")
+@RequestMapping("/officials")
 @CrossOrigin
 public class OfficialController {
     private OfficialService officialService;

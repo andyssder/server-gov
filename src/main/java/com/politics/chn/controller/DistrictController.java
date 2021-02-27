@@ -12,7 +12,7 @@ import java.util.List;
  * @create 2021-02-06 16:50
  */
 @RestController
-@RequestMapping("/district")
+@RequestMapping("/districts")
 @CrossOrigin
 public class DistrictController {
     private DistrictService districtService;
