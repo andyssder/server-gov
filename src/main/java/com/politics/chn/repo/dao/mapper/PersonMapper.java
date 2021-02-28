@@ -26,7 +26,7 @@ public interface PersonMapper {
     @ResultMap("official")
     OfficialDO getOneById(long id);
 
-    @Select("SELECT * FROM person")
+    @Select("SELECT * FROM person where is_deleted = false")
     @Results(id="person", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
@@ -38,7 +38,7 @@ public interface PersonMapper {
     })
     List<PersonDO> getAllPerson();
 
-    @Select("SELECT * FROM person WHERE id = #{id}")
+    @Select("SELECT * FROM person WHERE id = #{id} and is_deleted = false")
     @ResultMap("person")
     OfficialDO getOnePersonById(long id);
 

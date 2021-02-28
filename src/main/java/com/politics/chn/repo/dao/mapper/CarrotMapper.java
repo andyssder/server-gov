@@ -12,18 +12,18 @@ import java.util.Map;
  */
 @Mapper
 public interface CarrotMapper {
-    @Select("SELECT * FROM carrot")
+    @Select("SELECT * FROM carrot where is_deleted = false")
     @Results(id="carrot", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")
     })
     List<CarrotDO> getAll();
 
-    @Select("SELECT * FROM carrot WHERE pit_level = #{pitLevel}")
+    @Select("SELECT * FROM carrot WHERE pit_level = #{pitLevel} and where is_deleted = false")
     @ResultMap("carrot")
     List<CarrotDO> getByPitLevel(int pitLevel);
 
-    @Select("SELECT * FROM carrot WHERE id = #{id}")
+    @Select("SELECT * FROM carrot WHERE id = #{id} and where is_deleted = false")
     @ResultMap("carrot")
     CarrotDO getOneById(long id);
 

@@ -13,7 +13,7 @@ import java.util.Map;
  */
 @Mapper
 public interface PitMapper {
-    @Select("SELECT * FROM pit")
+    @Select("SELECT * FROM pit where is_deleted = false")
     @Results(id="pit", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")
@@ -28,7 +28,7 @@ public interface PitMapper {
     @ResultMap("pit")
     List<PitDO> getLower(int lft, int rgt, int level);
 
-    @Select("SELECT * FROM pit WHERE id = #{id}")
+    @Select("SELECT * FROM pit WHERE id = #{id} and is_deleted = false")
     @ResultMap("pit")
     PitDO getOneById(long id);
 

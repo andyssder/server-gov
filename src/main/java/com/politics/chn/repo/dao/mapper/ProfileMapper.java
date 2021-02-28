@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Mapper
 public interface ProfileMapper {
-    @Select("SELECT * FROM profile")
+    @Select("SELECT * FROM profile where is_deleted = false")
     @Results(id="profile", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
@@ -22,11 +22,11 @@ public interface ProfileMapper {
     })
     List<ProfileDO> getAll();
 
-    @Select("SELECT * FROM profile WHERE person_id = #{personId} ORDER BY start_time, priority")
+    @Select("SELECT * FROM profile WHERE person_id = #{personId} and is_deleted = false ORDER BY start_time, priority")
     @ResultMap("profile")
     List<ProfileDO> getByPersonId(long personId);
 
-    @Select("SELECT * FROM profile WHERE id = #{id}")
+    @Select("SELECT * FROM profile WHERE id = #{id} and is_deleted = false")
     @ResultMap("profile")
     ProfileDO getOneById(long id);
 
