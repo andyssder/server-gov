@@ -66,6 +66,7 @@ public interface ProfileMapper {
             "<if test='remark != null'> remark=#{remark}, </if>" +
             "<if test='summary != null'> summary=#{summary}, </if>" +
             "<if test='priority != null'> priority=#{priority}, </if>" +
+            "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
@@ -141,6 +142,13 @@ public interface ProfileMapper {
             "<foreach collection='list' item='item' index='index'>" +
             "<if test='item.priority != null'>" +
             "when id=#{item.id} then #{item.priority} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='is_enabled=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.enabled != null'>" +
+            "when id=#{item.id} then #{item.enabled} " +
             "</if>" +
             "</foreach>" +
             "</trim>" +

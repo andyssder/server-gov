@@ -47,13 +47,13 @@ public interface PersonMapper {
             "birth_date, death_date, work_date, retire_date, " +
             "ancestral_home, birth_place, work_place, " +
             "university, major, education, degree, " +
-            "rank, create_time, update_time, is_deleted) " +
+            "rank, create_time, update_time, is_enabled, is_deleted) " +
             "VALUES(" +
             "#{name}, #{portrait}, #{gender}, #{ethnicityId}, " +
             "#{birthDate}, #{deathDate}, #{workDate}, #{retireDate}, " +
             "#{ancestralHome}, #{birthPlace}, #{workPlace}," +
             "#{university}, #{major}, #{education}, #{degree}," +
-            "#{rank}, #{createTime}, #{updateTime}, #{deleted})")
+            "#{rank}, #{createTime}, #{updateTime}, #{enabled}, #{deleted})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PersonPO personPO);
 
@@ -80,6 +80,7 @@ public interface PersonMapper {
             "<if test='rank != null'> rank=#{rank}, </if>" +
             "<if test='createTime != null'> create_time=#{createTime}, </if>" +
             "<if test='updateTime != null'> update_time=#{updateTime}, </if>" +
+            "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")

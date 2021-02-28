@@ -27,7 +27,7 @@ public interface CarrotMapper {
     @ResultMap("carrot")
     CarrotDO getOneById(long id);
 
-    @Insert("INSERT INTO carrot(name, short_name, pit_level) VALUES(#{name}, #{shortName}, #{pitLevel})")
+    @Insert("INSERT INTO carrot(name, short_name, pit_level, is_enabled) VALUES(#{name}, #{shortName}, #{pitLevel}, #{enabled})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(CarrotDO carrotDO);
 
@@ -37,6 +37,7 @@ public interface CarrotMapper {
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='shortName != null'> short_name=#{shortName}, </if>" +
             "<if test='pitLevel != null'> pit_level=#{pitLevel}, </if>" +
+            "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
