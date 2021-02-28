@@ -48,4 +48,10 @@ public class CarrotService {
             return carrotRepository.getAll();
         }
     }
+
+    public void deleteCarrot(long id) {
+        Assert.isTrue(carrotRepository.deleteOne(id), () -> {
+            throw new CommonException(ResultStatusEnum.NOT_FOUND);
+        });
+    }
 }

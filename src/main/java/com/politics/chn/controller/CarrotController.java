@@ -38,4 +38,9 @@ public class CarrotController {
         return carrotService.getCarrotList(pitLevel);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public void deleteCarrot(@PathVariable long id) {
+        carrotService.deleteCarrot(id);
+    }
+
 }

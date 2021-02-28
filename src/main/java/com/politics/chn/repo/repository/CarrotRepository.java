@@ -41,4 +41,7 @@ public class CarrotRepository {
         return carrotDao.updateOne(carrotDO);
     }
 
+    public Boolean deleteOne(long id) {
+        return carrotDao.deleteOne(id);
+    }
 }
