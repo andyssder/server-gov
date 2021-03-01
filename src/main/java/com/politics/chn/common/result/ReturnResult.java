@@ -2,6 +2,8 @@ package com.politics.chn.common.result;
 
 import com.politics.chn.common.enums.ResultStatusEnum;
 
+import java.util.Objects;
+
 /**
  * @author andyssder
  * @create 2021-02-07 16:20
@@ -9,30 +11,31 @@ import com.politics.chn.common.enums.ResultStatusEnum;
 public class ReturnResult<T> {
     private String code;
     private String message;
+    private Boolean success;
     private T data;
 
     public ReturnResult() {
     }
 
-    public ReturnResult(String code, String message) {
-        this.code = code;
-        this.message = message;
+    public ReturnResult(String code, String message, Boolean success) {
+        this(code, message, success, null);
     }
 
-    public ReturnResult(String code, String message, T data) {
+    public ReturnResult(String code, String message, Boolean success, T data) {
         this.code = code;
         this.message = message;
+        this.success = success;
         this.data = data;
     }
 
-    public ReturnResult(ResultStatusEnum resultStatusEnum) {
-        this.code = resultStatusEnum.getCode();
-        this.message = resultStatusEnum.getMessage();
+    public ReturnResult(ResultStatusEnum resultStatusEnum, Boolean success) {
+        this(resultStatusEnum, success, null);
     }
 
-    public ReturnResult(ResultStatusEnum resultStatusEnum, T data) {
+    public ReturnResult(ResultStatusEnum resultStatusEnum, Boolean success, T data) {
         this.code = resultStatusEnum.getCode();
         this.message = resultStatusEnum.getMessage();
+        this.success = success;
         this.data = data;
     }
 
@@ -52,6 +55,14 @@ public class ReturnResult<T> {
         this.message = message;
     }
 
+    public Boolean getSuccess() {
+        return success;
+    }
+
+    public void setSuccess(Boolean success) {
+        this.success = success;
+    }
+
     public T getData() {
         return data;
     }
@@ -61,36 +72,27 @@ public class ReturnResult<T> {
     }
 
 
-    @Override
-    public String toString() {
-        return "Result{" +
-                "code=" + code +
-                ", message='" + message + '\'' +
-                ", data=" + data +
-                '}';
-    }
-
     public static ReturnResult<Void> success() {
-        return new ReturnResult<>(ResultStatusEnum.SUCCESS, null);
+        return new ReturnResult<>(ResultStatusEnum.SUCCESS, true);
     }
 
     public static <T> ReturnResult<T> success(T data) {
-        return new ReturnResult<>(ResultStatusEnum.SUCCESS, data);
+        return new ReturnResult<>(ResultStatusEnum.SUCCESS, true, data);
     }
 
     public static <T> ReturnResult<T> success(ResultStatusEnum resultStatus, T data) {
         if (resultStatus == null) {
             return success(data);
         }
-        return new ReturnResult<>(resultStatus, data);
+        return new ReturnResult<>(resultStatus, true, data);
     }
 
     public static <T> ReturnResult<T> failure() {
-        return new ReturnResult<>(ResultStatusEnum.INTERNAL_SERVER_ERROR, null);
+        return new ReturnResult<>(ResultStatusEnum.INTERNAL_SERVER_ERROR, false);
     }
 
     public static <T> ReturnResult<T> failure(String code, String message) {
-        return new ReturnResult<>(code, message);
+        return new ReturnResult<>(code, message, false);
     }
 
     public static <T> ReturnResult<T> failure(ResultStatusEnum resultStatus) {
@@ -99,8 +101,35 @@ public class ReturnResult<T> {
 
     public static <T> ReturnResult<T> failure(ResultStatusEnum resultStatus, T data) {
         if (resultStatus == null) {
-            return new ReturnResult<>(ResultStatusEnum.INTERNAL_SERVER_ERROR, null);
+            return new ReturnResult<>(ResultStatusEnum.INTERNAL_SERVER_ERROR, false);
         }
-        return new ReturnResult<>(resultStatus, data);
+        return new ReturnResult<>(resultStatus, false, data);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ReturnResult<?> that = (ReturnResult<?>) o;
+        return Objects.equals(code, that.code) && Objects.equals(message, that.message) && Objects.equals(success, that.success) && Objects.equals(data, that.data);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(code, message, success, data);
+    }
+
+    @Override
+    public String toString() {
+        return "ReturnResult{" +
+                "code='" + code + '\'' +
+                ", message='" + message + '\'' +
+                ", success=" + success +
+                ", data=" + data +
+                '}';
     }
 }
