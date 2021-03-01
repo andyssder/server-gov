@@ -14,7 +14,7 @@ import java.util.List;
 @Mapper
 public interface PersonMapper {
 
-    @Select("SELECT * FROM person")
+    @Select("SELECT * FROM person where is_deleted = false")
     @Results(id="official", value={
             @Result(property="person",column="id",one=@One(select="com.politics.chn.repo.dao.mapper.PersonMapper.getOnePersonById")),
             @Result(property = "profiles", javaType = List.class, column = "id",
@@ -22,11 +22,11 @@ public interface PersonMapper {
     })
     List<OfficialDO> getAll();
 
-    @Select("SELECT * FROM person WHERE id = #{id}")
+    @Select("SELECT * FROM person WHERE id = #{id} and is_deleted = false")
     @ResultMap("official")
     OfficialDO getOneById(long id);
 
-    @Select("SELECT * FROM person where is_deleted = false")
+    @Select("SELECT * FROM person")
     @Results(id="person", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
@@ -38,7 +38,7 @@ public interface PersonMapper {
     })
     List<PersonDO> getAllPerson();
 
-    @Select("SELECT * FROM person WHERE id = #{id} and is_deleted = false")
+    @Select("SELECT * FROM person WHERE id = #{id}")
     @ResultMap("person")
     OfficialDO getOnePersonById(long id);
 
