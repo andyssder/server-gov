@@ -28,7 +28,7 @@ public class PitController {
         return pitService.addPit(pit);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping
     public void updatePit(@RequestBody PitDO pit) {
         pitService.updatePit(pit);
     }
