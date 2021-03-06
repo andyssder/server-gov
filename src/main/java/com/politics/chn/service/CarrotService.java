@@ -41,9 +41,9 @@ public class CarrotService {
         });
     }
 
-    public List<CarrotDO> getCarrotList(Integer pitLevel) {
-        if (pitLevel != null) {
-            return carrotRepository.getByPitLevel(pitLevel);
+    public List<CarrotDO> getCarrotList(Integer districtLevel) {
+        if (districtLevel != null) {
+            return carrotRepository.getByDistrictLevel(districtLevel);
         } else {
             return carrotRepository.getAll();
         }

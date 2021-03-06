@@ -10,7 +10,7 @@ public class CarrotDO {
     Long id;
     String name;
     String shortName;
-    Integer pitLevel;
+    Integer districtLevel;
 
     Boolean enabled;
     Boolean deleted;
@@ -39,12 +39,12 @@ public class CarrotDO {
         this.shortName = shortName;
     }
 
-    public Integer getPitLevel() {
-        return pitLevel;
+    public Integer getDistrictLevel() {
+        return districtLevel;
     }
 
-    public void setPitLevel(Integer pitLevel) {
-        this.pitLevel = pitLevel;
+    public void setDistrictLevel(Integer districtLevel) {
+        this.districtLevel = districtLevel;
     }
 
     public Boolean getEnabled() {
@@ -72,12 +72,12 @@ public class CarrotDO {
             return false;
         }
         CarrotDO carrotDO = (CarrotDO) o;
-        return Objects.equals(id, carrotDO.id) && Objects.equals(name, carrotDO.name) && Objects.equals(shortName, carrotDO.shortName) && Objects.equals(pitLevel, carrotDO.pitLevel) && Objects.equals(enabled, carrotDO.enabled) && Objects.equals(deleted, carrotDO.deleted);
+        return Objects.equals(id, carrotDO.id) && Objects.equals(name, carrotDO.name) && Objects.equals(shortName, carrotDO.shortName) && Objects.equals(districtLevel, carrotDO.districtLevel) && Objects.equals(enabled, carrotDO.enabled) && Objects.equals(deleted, carrotDO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, shortName, pitLevel, enabled, deleted);
+        return Objects.hash(id, name, shortName, districtLevel, enabled, deleted);
     }
 
     @Override
@@ -86,13 +86,13 @@ public class CarrotDO {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +
-                ", pitLevel=" + pitLevel +
+                ", districtLevel=" + districtLevel +
                 ", enabled=" + enabled +
                 ", deleted=" + deleted +
                 '}';
     }
 
     public Boolean isNotNull() {
-        return name != null && pitLevel != null;
+        return name != null && districtLevel != null;
     }
 }

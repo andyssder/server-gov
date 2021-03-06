@@ -34,8 +34,8 @@ public class CarrotController {
     }
 
     @GetMapping
-    public List<CarrotDO> getCarrotList(@RequestParam(value = "pitLevel", required = false) Integer pitLevel) {
-        return carrotService.getCarrotList(pitLevel);
+    public List<CarrotDO> getCarrotList(@RequestParam(value = "districtLevel", required = false) Integer districtLevel) {
+        return carrotService.getCarrotList(districtLevel);
     }
 
     @DeleteMapping(value = "/{id}")

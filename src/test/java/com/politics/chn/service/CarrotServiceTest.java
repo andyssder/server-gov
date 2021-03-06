@@ -8,9 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-import java.util.Map;
-
 
 /**
  * @author andyssder
@@ -36,7 +33,7 @@ class CarrotServiceTest {
     void addCarrot() {
         CarrotDO newCarrot = new CarrotDO();
         newCarrot.setName("test-addCarrot");
-        newCarrot.setPitLevel(1);
+        newCarrot.setDistrictLevel(1);
         Long id = carrotService.addCarrot(newCarrot);
         Assertions.assertNotNull(id, "插入Pit错误");
         carrotDao.deleteOne(id, true);
@@ -46,12 +43,12 @@ class CarrotServiceTest {
     void updateCarrot() {
         CarrotDO newCarrot = new CarrotDO();
         newCarrot.setName("test-updateCarrot");
-        newCarrot.setPitLevel(1);
+        newCarrot.setDistrictLevel(1);
 
         CarrotDO targetDO = new CarrotDO();
         targetDO.setId(-1L);
         targetDO.setName("test-after-updateCarrot");
-        targetDO.setPitLevel(1);
+        targetDO.setDistrictLevel(1);
 
         Long id = carrotService.addCarrot(newCarrot);
         Assertions.assertThrows(CommonException.class, () -> carrotService.updateCarrot(targetDO), "更新不存在Carrot错误");

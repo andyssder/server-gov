@@ -25,17 +25,17 @@ class CarrotDaoTest {
     }
 
     @Test
-    void getByPitLevel() {
+    void getByDistrictLevel() {
         CarrotDO CarrotDO1 = new CarrotDO();
-        CarrotDO1.setName("test-getByPitLevel1");
-        CarrotDO1.setPitLevel(10);
+        CarrotDO1.setName("test-getByDistrictLevel1");
+        CarrotDO1.setDistrictLevel(10);
         CarrotDO CarrotDO2 = new CarrotDO();
-        CarrotDO2.setName("test-getByPitLevel2");
-        CarrotDO2.setPitLevel(11);
+        CarrotDO2.setName("test-getByDistrictLevel2");
+        CarrotDO2.setDistrictLevel(11);
         carrotDao.insertOne(CarrotDO1);
         carrotDao.insertOne(CarrotDO2);
-        Assertions.assertEquals(1, carrotDao.getByPitLevel(10).size(),"根据pit级别查询记录出错");
-        Assertions.assertEquals(1, carrotDao.getByPitLevel(11).size(),"根据pit级别查询记录出错");
+        Assertions.assertEquals(1, carrotDao.getByDistrictLevel(10).size(),"根据pit级别查询记录出错");
+        Assertions.assertEquals(1, carrotDao.getByDistrictLevel(11).size(),"根据pit级别查询记录出错");
         carrotDao.deleteOne(CarrotDO1.getId(), true);
         carrotDao.deleteOne(CarrotDO2.getId(), true);
     }
@@ -44,7 +44,7 @@ class CarrotDaoTest {
     void getOneById() {
         CarrotDO CarrotDO = new CarrotDO();
         CarrotDO.setName("test-getOneById");
-        CarrotDO.setPitLevel(1);
+        CarrotDO.setDistrictLevel(1);
         CarrotDO.setDeleted(false);
         carrotDao.insertOne(CarrotDO);
         Assertions.assertEquals(CarrotDO, carrotDao.getOneById(CarrotDO.getId()));
@@ -55,7 +55,7 @@ class CarrotDaoTest {
     void insertOne() {
         CarrotDO CarrotDO = new CarrotDO();
         CarrotDO.setName("test-insertOne");
-        CarrotDO.setPitLevel(1);
+        CarrotDO.setDistrictLevel(1);
         Assertions.assertTrue(carrotDao.insertOne(CarrotDO),"插入记录错误");
         carrotDao.deleteOne(CarrotDO.getId(), true);
     }
@@ -64,13 +64,13 @@ class CarrotDaoTest {
     void updateOne() {
         CarrotDO CarrotDO = new CarrotDO();
         CarrotDO.setName("test-updateOne");
-        CarrotDO.setPitLevel(1);
+        CarrotDO.setDistrictLevel(1);
         carrotDao.insertOne(CarrotDO);
 
         CarrotDO targetCarrotDO = new CarrotDO();
         targetCarrotDO.setName("test-updateOne");
         targetCarrotDO.setShortName("test");
-        targetCarrotDO.setPitLevel(1);
+        targetCarrotDO.setDistrictLevel(1);
         targetCarrotDO.setId(CarrotDO.getId());
         targetCarrotDO.setDeleted(false);
 

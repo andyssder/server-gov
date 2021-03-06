@@ -16,7 +16,7 @@ class CarrotRepositoryTest {
     }
 
     @Test
-    void getByPitLevel() {
+    void getByDistrictLevel() {
     }
 
     @Test

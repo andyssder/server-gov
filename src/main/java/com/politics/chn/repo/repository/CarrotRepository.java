@@ -25,8 +25,8 @@ public class CarrotRepository {
         return carrotDao.getAll();
     }
 
-    public List<CarrotDO> getByPitLevel(int pitLevel) {
-        return carrotDao.getByPitLevel(pitLevel);
+    public List<CarrotDO> getByDistrictLevel(int districtLevel) {
+        return carrotDao.getByDistrictLevel(districtLevel);
     }
 
     public CarrotDO getOneById(long id) {
