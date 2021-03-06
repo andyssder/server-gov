@@ -35,6 +35,9 @@ public class ProfileDao {
     }
 
     public boolean addMany(List<ProfileDO> profileDOs) {
+        if (profileDOs == null || profileDOs.isEmpty()) {
+            return true;
+        }
         List<ProfilePO> profilePOS = profileDO2PO(profileDOs);
         int result = profileMapper.insertMany(profilePOS);
         if (result == profileDOs.size()) {
@@ -69,6 +72,9 @@ public class ProfileDao {
     }
 
     public boolean updateMany(List<ProfileDO> profileDOs) {
+        if (profileDOs == null || profileDOs.isEmpty()) {
+            return true;
+        }
         List<ProfilePO> profilePOS = profileDO2PO(profileDOs);
         return profileMapper.updateMany(profilePOS) > 0;
     }
@@ -105,6 +111,9 @@ public class ProfileDao {
     // TODO: 再考虑如何转换
     private List<ProfilePO> profileDO2PO(List<ProfileDO> profileDOS) {
         List<ProfilePO> profilePOS = new ArrayList<>();
+        if (profileDOS == null) {
+            return profilePOS;
+        }
         profileDOS.forEach(profileDO -> profilePOS.add(profileDO2PO(profileDO)));
         return profilePOS;
     }

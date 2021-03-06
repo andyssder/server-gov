@@ -23,12 +23,12 @@ public class CommonController {
         this.commonService = commonService;
     }
 
-    @GetMapping(value = "/party")
+    @GetMapping(value = "/ethnicity")
     public List<EthnicityDO> getEthnicityList() {
         return commonService.getEthnicityList();
     }
 
-    @GetMapping(value = "/ethnicity")
+    @GetMapping(value = "/party")
     public List<PartyDO> getPartyList() {
         return commonService.getPartyList();
     }

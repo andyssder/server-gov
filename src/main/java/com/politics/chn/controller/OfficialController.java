@@ -28,7 +28,7 @@ public class OfficialController {
         officialService.addOfficial(official);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping
     public void updateOfficial(@RequestBody OfficialDO official) {
         officialService.updateOfficial(official);
     }

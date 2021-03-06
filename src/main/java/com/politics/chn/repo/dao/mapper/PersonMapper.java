@@ -64,7 +64,8 @@ public interface PersonMapper {
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='portrait != null'> portrait=#{portrait}, </if>" +
             "<if test='gender != null'> gender=#{gender}, </if>" +
-            "<if test='ethnicityId != null'> ethnicityId=#{ethnicityId}, </if>" +
+            "<if test='ethnicityId != null'> ethnicity_id=#{ethnicityId}, </if>" +
+            "<if test='partyId != null'> party_id=#{partyId}, </if>" +
             "<if test='birthDate != null'> birth_date=#{birthDate}, </if>" +
             "<if test='deathDate != null'> death_date=#{deathDate}, </if>" +
             "<if test='workDate != null'> work_date=#{workDate}, </if>" +

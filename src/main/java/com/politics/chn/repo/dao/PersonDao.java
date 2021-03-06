@@ -57,7 +57,7 @@ public class PersonDao {
     // TODO: 再考虑如何转换
     private PersonPO personDO2PO(PersonDO personDO) {
         PersonPO personPO = new PersonPO();
-        BeanUtil.copyProperties(personDO, personPO);
+        BeanUtil.copyProperties(personDO, personPO, "party", "ethnicity", "ancestralHome", "birthPlace", "workPlace");
         if (personDO.getParty() != null) {
             personPO.setPartyId(personDO.getParty().getId());
         }
