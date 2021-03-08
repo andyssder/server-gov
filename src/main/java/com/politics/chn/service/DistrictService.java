@@ -29,9 +29,10 @@ public class DistrictService {
     }
 
     public List<DistrictDO> getCities(Integer parentId) {
-        Assert.notNull(parentId, () -> {
-            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+        List<DistrictDO> result = districtRepository.getChildrenById(parentId);
+        Assert.notNull(result, () -> {
+            throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
-        return districtRepository.getChildrenById(parentId);
+        return result;
     }
 }

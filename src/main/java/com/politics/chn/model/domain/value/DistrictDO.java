@@ -14,7 +14,8 @@ public class DistrictDO {
     Integer level;
     Integer lft;
     Integer rgt;
-    List<String> names;
+    List<DistrictDO> parents;
+    List<DistrictDO> children;
 
     public Integer getId() {
         return id;
@@ -64,12 +65,20 @@ public class DistrictDO {
         this.rgt = rgt;
     }
 
-    public List<String> getNames() {
-        return names;
+    public List<DistrictDO> getParents() {
+        return parents;
     }
 
-    public void setNames(List<String> names) {
-        this.names = names;
+    public void setParents(List<DistrictDO> parents) {
+        this.parents = parents;
+    }
+
+    public List<DistrictDO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<DistrictDO> children) {
+        this.children = children;
     }
 
     @Override
@@ -81,31 +90,25 @@ public class DistrictDO {
             return false;
         }
         DistrictDO that = (DistrictDO) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(code, that.code) && Objects.equals(level, that.level) && Objects.equals(lft, that.lft) && Objects.equals(rgt, that.rgt) && Objects.equals(names, that.names);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(code, that.code) && Objects.equals(level, that.level) && Objects.equals(lft, that.lft) && Objects.equals(rgt, that.rgt) && Objects.equals(parents, that.parents) && Objects.equals(children, that.children);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, code, level, lft, rgt, names);
+        return Objects.hash(id, name, code, level, lft, rgt, parents, children);
     }
 
     @Override
     public String toString() {
-        return "DistrictPO{" +
+        return "DistrictDO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code=" + code +
                 ", level=" + level +
                 ", lft=" + lft +
                 ", rgt=" + rgt +
-                ", names=" + names +
+                ", parents=" + parents +
+                ", children=" + children +
                 '}';
-    }
-
-    public String fullName() {
-        StringBuffer sb = new StringBuffer();
-        names.forEach(name -> sb.append(name));
-        sb.append(name);
-        return sb.toString();
     }
 }
