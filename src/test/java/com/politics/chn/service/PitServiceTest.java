@@ -35,14 +35,14 @@ class PitServiceTest {
         newPit1.setPid(1L);
         newPit1.setName("test-add");
         newPit1.setDistrictLevel(1);
-        newPit1.setRank(1);
+        newPit1.setRanking(1);
         Long id1 = pitService.addPit(newPit1);
         Assertions.assertNotNull(id1, "插入Pit错误");
         PitDO newPit2 = new PitDO();
         newPit2.setPid(id1);
         newPit2.setName("test-add2");
         newPit2.setDistrictLevel(2);
-        newPit2.setRank(2);
+        newPit2.setRanking(2);
         Long id2 = pitService.addPit(newPit2);
         Assertions.assertNotNull(id2, "插入子Pit错误");
 
@@ -57,7 +57,7 @@ class PitServiceTest {
         newPit.setPid(1L);
         newPit.setName("test-update");
         newPit.setDistrictLevel(1);
-        newPit.setRank(1);
+        newPit.setRanking(1);
         Long id = pitService.addPit(newPit);
 
         PitDO targetPit = new PitDO();
@@ -79,7 +79,7 @@ class PitServiceTest {
         newPit.setPid(1L);
         newPit.setName("test-delete");
         newPit.setDistrictLevel(1);
-        newPit.setRank(1);
+        newPit.setRanking(1);
         Long id = pitService.addPit(newPit);
         Assertions.assertThrows(CommonException.class, () -> pitService.deletePit(-1), "删除不存在Pit错误");
         Assertions.assertDoesNotThrow(() -> pitService.deletePit(id), "删除Pit异常");

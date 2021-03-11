@@ -34,13 +34,13 @@ public interface PersonMapper {
             "birth_date, death_date, work_date, retire_date, " +
             "ancestral_home, birth_place, work_place, " +
             "university, major, education, degree, " +
-            "rank, create_time, update_time, is_enabled, is_deleted) " +
+            "ranking, create_time, update_time, is_enabled, is_deleted) " +
             "VALUES(" +
             "#{name}, #{portrait}, #{gender}, #{party}, #{ethnicity}, " +
             "#{birthDate}, #{deathDate}, #{workDate}, #{retireDate}, " +
             "#{ancestralHome}, #{birthPlace}, #{workPlace}," +
             "#{university}, #{major}, #{education}, #{degree}," +
-            "#{rank}, #{createTime}, #{updateTime}, #{enabled}, #{deleted})")
+            "#{ranking}, #{createTime}, #{updateTime}, #{enabled}, #{deleted})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PersonDO personDO);
 
@@ -65,7 +65,7 @@ public interface PersonMapper {
             "<if test='education != null'> education=#{education}, </if>" +
             "<if test='major != null'> major=#{major}, </if>" +
             "<if test='degree != null'> degree=#{degree}, </if>" +
-            "<if test='rank != null'> rank=#{rank}, </if>" +
+            "<if test='ranking != null'> ranking=#{ranking}, </if>" +
             "<if test='createTime != null'> create_time=#{createTime}, </if>" +
             "<if test='updateTime != null'> update_time=#{updateTime}, </if>" +
             "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +

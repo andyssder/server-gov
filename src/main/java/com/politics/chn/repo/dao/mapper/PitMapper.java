@@ -30,7 +30,7 @@ public interface PitMapper {
     @ResultMap("pit")
     PitDO getOneById(long id);
 
-    @Insert("INSERT INTO pit(name, short_name, level, rank, district_level, lft, rgt, pid, is_enabled) VALUES(#{name}, #{shortName}, #{level}, #{rank}, #{districtLevel}, #{lft}, #{rgt}, #{pid}, #{enabled})")
+    @Insert("INSERT INTO pit(name, short_name, level, district_level, lft, rgt, pid, is_enabled, ranking) VALUES(#{name}, #{shortName}, #{level}, #{districtLevel}, #{lft}, #{rgt}, #{pid}, #{enabled}, #{ranking})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PitDO pit);
 
@@ -41,7 +41,7 @@ public interface PitMapper {
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='shortName != null'> short_name=#{shortName}, </if>" +
             "<if test='level != null'> level=#{level}, </if>" +
-            "<if test='rank != null'> level=#{rank}, </if>" +
+            "<if test='ranking != null'> level=#{ranking}, </if>" +
             "<if test='districtLevel != null'> district_level=#{districtLevel}, </if>" +
             "<if test='lft != null'> lft=#{lft}, </if>" +
             "<if test='rgt != null'> rgt=#{rgt}, </if>" +

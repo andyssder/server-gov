@@ -13,7 +13,7 @@ public class PitDO {
     String name;
     String shortName;
     Integer level;
-    Integer rank;
+    Integer ranking;
     Integer districtLevel;
     Integer lft;
     Integer rgt;
@@ -63,12 +63,12 @@ public class PitDO {
         this.level = level;
     }
 
-    public Integer getRank() {
-        return rank;
+    public Integer getRanking() {
+        return ranking;
     }
 
-    public void setRank(Integer rank) {
-        this.rank = rank;
+    public void setRanking(Integer ranking) {
+        this.ranking = ranking;
     }
 
     public Integer getDistrictLevel() {
@@ -128,12 +128,12 @@ public class PitDO {
             return false;
         }
         PitDO pitDO = (PitDO) o;
-        return Objects.equals(id, pitDO.id) && Objects.equals(pid, pitDO.pid) && Objects.equals(name, pitDO.name) && Objects.equals(shortName, pitDO.shortName) && Objects.equals(level, pitDO.level) && Objects.equals(rank, pitDO.rank) && Objects.equals(districtLevel, pitDO.districtLevel) && Objects.equals(lft, pitDO.lft) && Objects.equals(rgt, pitDO.rgt) && Objects.equals(enabled, pitDO.enabled) && Objects.equals(deleted, pitDO.deleted) && Objects.equals(names, pitDO.names);
+        return Objects.equals(id, pitDO.id) && Objects.equals(pid, pitDO.pid) && Objects.equals(name, pitDO.name) && Objects.equals(shortName, pitDO.shortName) && Objects.equals(level, pitDO.level) && Objects.equals(ranking, pitDO.ranking) && Objects.equals(districtLevel, pitDO.districtLevel) && Objects.equals(lft, pitDO.lft) && Objects.equals(rgt, pitDO.rgt) && Objects.equals(enabled, pitDO.enabled) && Objects.equals(deleted, pitDO.deleted) && Objects.equals(names, pitDO.names);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pid, name, shortName, level, rank, districtLevel, lft, rgt, enabled, deleted, names);
+        return Objects.hash(id, pid, name, shortName, level, ranking, districtLevel, lft, rgt, enabled, deleted, names);
     }
 
     @Override
@@ -144,7 +144,7 @@ public class PitDO {
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +
                 ", level=" + level +
-                ", rank=" + rank +
+                ", ranking=" + ranking +
                 ", districtLevel=" + districtLevel +
                 ", lft=" + lft +
                 ", rgt=" + rgt +
@@ -162,6 +162,6 @@ public class PitDO {
     }
 
     public Boolean isNotNull() {
-        return pid != null && name != null && districtLevel != null && rank != null;
+        return pid != null && name != null && districtLevel != null && ranking != null;
     }
 }

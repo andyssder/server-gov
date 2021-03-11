@@ -31,7 +31,7 @@ class PitDaoTest {
         pit1.setPid(1L);
         pit1.setName("test-getByDistrictLevel1");
         pit1.setLevel(100);
-        pit1.setRank(1);
+        pit1.setRanking(1);
         pit1.setDistrictLevel(10);
         pit1.setLft(10000000);
         pit1.setRgt(10000003);
@@ -41,7 +41,7 @@ class PitDaoTest {
         pit2.setPid(pit1.getId());
         pit2.setName("test-getByDistrictLevel2");
         pit2.setLevel(101);
-        pit2.setRank(2);
+        pit2.setRanking(2);
         pit2.setDistrictLevel(11);
         pit2.setLft(10000001);
         pit2.setRgt(10000002);
@@ -59,7 +59,7 @@ class PitDaoTest {
         pit1.setPid(1L);
         pit1.setName("test-getChildren1");
         pit1.setLevel(100);
-        pit1.setRank(1);
+        pit1.setRanking(1);
         pit1.setDistrictLevel(10);
         pit1.setLft(10000000);
         pit1.setRgt(10000003);
@@ -69,7 +69,7 @@ class PitDaoTest {
         pit2.setPid(pit1.getId());
         pit2.setName("test-getChildren2");
         pit2.setLevel(101);
-        pit2.setRank(2);
+        pit2.setRanking(2);
         pit2.setDistrictLevel(11);
         pit2.setLft(10000001);
         pit2.setRgt(10000002);
@@ -86,7 +86,7 @@ class PitDaoTest {
         pit.setPid(1L);
         pit.setName("test-getOneById");
         pit.setLevel(1);
-        pit.setRank(1);
+        pit.setRanking(1);
         pit.setDistrictLevel(1);
         pit.setLft(1);
         pit.setRgt(100);
@@ -103,7 +103,7 @@ class PitDaoTest {
         pit.setPid(1L);
         pit.setName("test-insertOne");
         pit.setLevel(1);
-        pit.setRank(1);
+        pit.setRanking(1);
         pit.setDistrictLevel(1);
         pit.setLft(1);
         pit.setRgt(100);
@@ -117,7 +117,7 @@ class PitDaoTest {
         pit.setPid(1L);
         pit.setName("test-updateOne");
         pit.setLevel(1);
-        pit.setRank(1);
+        pit.setRanking(1);
         pit.setDistrictLevel(1);
         pit.setLft(1);
         pit.setRgt(100);
@@ -140,7 +140,7 @@ class PitDaoTest {
         pit.setPid(1L);
         pit.setName("test-delete");
         pit.setLevel(1);
-        pit.setRank(1);
+        pit.setRanking(1);
         pit.setDistrictLevel(1);
         pit.setLft(1);
         pit.setRgt(100);

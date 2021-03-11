@@ -44,7 +44,7 @@ class PitRepositoryTest {
         newPit1.setPid(1L);
         newPit1.setName("test-getChildren1");
         newPit1.setLevel(100);
-        newPit1.setRank(1);
+        newPit1.setRanking(1);
         newPit1.setDistrictLevel(10);
         newPit1.setLft(10000000);
         newPit1.setRgt(10000003);
@@ -55,7 +55,7 @@ class PitRepositoryTest {
         newPit2.setPid(id1);
         newPit2.setName("test-getChildren2");
         newPit2.setLevel(101);
-        newPit2.setRank(2);
+        newPit2.setRanking(2);
         newPit2.setDistrictLevel(11);
         newPit2.setLft(10000001);
         newPit2.setRgt(10000002);
@@ -77,7 +77,7 @@ class PitRepositoryTest {
         newPit.setPid(1L);
         newPit.setName("test-getChildren1");
         newPit.setLevel(100);
-        newPit.setRank(1);
+        newPit.setRanking(1);
         newPit.setDistrictLevel(10);
         newPit.setLft(10000000);
         newPit.setRgt(10000003);
