@@ -1,7 +1,6 @@
 package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.model.domain.entity.ProfileDO;
-import com.politics.chn.model.po.ProfilePO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -16,9 +15,9 @@ public interface ProfileMapper {
     @Results(id="profile", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
-            @Result(property="district",column="district_id",one=@One(select="com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
-            @Result(property="pit",column="pit_id",one=@One(select="com.politics.chn.repo.dao.mapper.PitMapper.getOneById")),
-            @Result(property="carrot",column="carrot_id",one=@One(select="com.politics.chn.repo.dao.mapper.CarrotMapper.getOneById"))
+            @Result(property="district",column="district_id"),
+            @Result(property="pit",column="pit_id"),
+            @Result(property="carrot",column="carrot_id")
     })
     List<ProfileDO> getAll();
 
@@ -26,7 +25,7 @@ public interface ProfileMapper {
     @ResultMap("profile")
     List<ProfileDO> getByPersonId(long personId);
 
-    @Select("SELECT * FROM profile WHERE id = #{id} and is_deleted = false")
+    @Select("SELECT * FROM profile WHERE id = #{id}")
     @ResultMap("profile")
     ProfileDO getOneById(long id);
 
@@ -36,22 +35,22 @@ public interface ProfileMapper {
             "remark, summary, priority, is_deleted) " +
             "VALUES(" +
             "#{startTime}, #{endTime}, #{personId}, " +
-            "#{districtId}, #{pitId}, #{carrotId}, " +
+            "#{district}, #{pit}, #{carrot}, " +
             "#{remark}, #{summary}, #{priority}, #{deleted})")
     @Options(useGeneratedKeys=true, keyProperty="id")
-    int insertOne(ProfilePO profilePO);
+    int insertOne(ProfileDO profile);
 
     @Insert("<script> INSERT INTO profile " +
             "(start_time, end_time, person_id, district_id, pit_id, carrot_id, remark, summary, priority, is_deleted) " +
             "VALUES " +
             "<foreach collection='list' item='item' separator=',' > " +
             "(#{item.startTime}, #{item.endTime}, #{item.personId}, " +
-            "#{item.districtId}, #{item.pitId}, #{item.carrotId}, " +
+            "#{item.district}, #{item.pit}, #{item.carrot}, " +
             "#{item.remark}, #{item.summary}, #{item.priority}, #{item.deleted}) " +
             "</foreach>" +
             "</script>")
     @Options(useGeneratedKeys=true, keyProperty="id")
-    int insertMany(List<ProfilePO> profiles);
+    int insertMany(List<ProfileDO> profiles);
 
     // TODO: 存在设置某个属性为null不成功的情况
     @Update("<script> " +
@@ -60,9 +59,9 @@ public interface ProfileMapper {
             "<if test='startTime != null'> start_time=#{startTime}, </if>" +
             "<if test='endTime != null'> end_time=#{endTime}, </if>" +
             "<if test='personId != null'> person_id=#{personId}, </if>" +
-            "<if test='districtId != null'> district_id=#{districtId}, </if>" +
-            "<if test='pitId != null'> pit_id=#{pitId}, </if>" +
-            "<if test='carrotId != null'> carrot_id=#{carrotId}, </if>" +
+            "<if test='district != null'> district_id=#{district}, </if>" +
+            "<if test='pit != null'> pit_id=#{pit}, </if>" +
+            "<if test='carrot != null'> carrot_id=#{carrot}, </if>" +
             "<if test='remark != null'> remark=#{remark}, </if>" +
             "<if test='summary != null'> summary=#{summary}, </if>" +
             "<if test='priority != null'> priority=#{priority}, </if>" +
@@ -70,7 +69,7 @@ public interface ProfileMapper {
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
-    int updateOne(ProfilePO profilePO);
+    int updateOne(ProfileDO profile);
 
     @Update("<script>" +
             "UPDATE profile" +
@@ -105,22 +104,22 @@ public interface ProfileMapper {
             "</trim>" +
             "<trim prefix='district_id=case' suffix='end,'>" +
             "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.districtId != null'>" +
-            "when id=#{item.id} then #{item.districtId} " +
+            "<if test='item.district != null'>" +
+            "when id=#{item.id} then #{item.district} " +
             "</if>" +
             "</foreach>" +
             "</trim>" +
             "<trim prefix='pit_id=case' suffix='end,'>" +
             "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.pitId != null'>" +
-            "when id=#{item.id} then #{item.pitId} " +
+            "<if test='item.pit != null'>" +
+            "when id=#{item.id} then #{item.pit} " +
             "</if>" +
             "</foreach>" +
             "</trim>" +
             "<trim prefix='carrot_id=case' suffix='end,'>" +
             "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.carrotId != null'>" +
-            "when id=#{item.id} then #{item.carrotId} " +
+            "<if test='item.carrot != null'>" +
+            "when id=#{item.id} then #{item.carrot} " +
             "</if>" +
             "</foreach>" +
             "</trim>" +
@@ -165,7 +164,7 @@ public interface ProfileMapper {
             " #{item.id}" +
             "</foreach>" +
             "</script>")
-    int updateMany(List<ProfilePO> profiles);
+    int updateMany(List<ProfileDO> profiles);
 
     @Update("UPDATE profile SET is_deleted = true WHERE ${field} = #{value}")
     int deleteOne(String field, long value);

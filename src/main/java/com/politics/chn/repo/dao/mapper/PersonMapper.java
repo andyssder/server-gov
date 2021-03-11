@@ -2,7 +2,6 @@ package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.model.domain.aggregate.OfficialDO;
 import com.politics.chn.model.domain.entity.PersonDO;
-import com.politics.chn.model.po.PersonPO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -22,19 +21,19 @@ public interface PersonMapper {
     })
     List<OfficialDO> getAll();
 
-    @Select("SELECT * FROM person WHERE id = #{id} and is_deleted = false")
+    @Select("SELECT * FROM person WHERE id = #{id}")
     @ResultMap("official")
     OfficialDO getOneById(long id);
 
-    @Select("SELECT * FROM person")
+    @Select("SELECT * FROM person WHERE is_deleted = false")
     @Results(id="person", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
-            @Result(property="party",column="party_id",one=@One(select="com.politics.chn.repo.dao.mapper.PartyMapper.getOneById")),
-            @Result(property="ethnicity",column="ethnicity_id",one=@One(select="com.politics.chn.repo.dao.mapper.EthnicityMapper.getOneById")),
-            @Result(property="ancestralHome",column="ancestral_home",one=@One(select="com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
-            @Result(property="birthPlace",column="birth_place",one=@One(select="com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
-            @Result(property="workPlace",column="work_place",one=@One(select="com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById"))
+            @Result(property="party",column="party_id"),
+            @Result(property="ethnicity",column="ethnicity_id"),
+            @Result(property="ancestralHome",column="ancestral_home"),
+            @Result(property="birthPlace",column="birth_place"),
+            @Result(property="workPlace",column="work_place")
     })
     List<PersonDO> getAllPerson();
 
@@ -43,19 +42,19 @@ public interface PersonMapper {
     OfficialDO getOnePersonById(long id);
 
     @Insert("INSERT INTO person(" +
-            "name, portrait, gender, ethnicity_id, " +
+            "name, portrait, gender, party_id, ethnicity_id, " +
             "birth_date, death_date, work_date, retire_date, " +
             "ancestral_home, birth_place, work_place, " +
             "university, major, education, degree, " +
             "rank, create_time, update_time, is_enabled, is_deleted) " +
             "VALUES(" +
-            "#{name}, #{portrait}, #{gender}, #{ethnicityId}, " +
+            "#{name}, #{portrait}, #{gender}, #{party}, #{ethnicity}, " +
             "#{birthDate}, #{deathDate}, #{workDate}, #{retireDate}, " +
             "#{ancestralHome}, #{birthPlace}, #{workPlace}," +
             "#{university}, #{major}, #{education}, #{degree}," +
             "#{rank}, #{createTime}, #{updateTime}, #{enabled}, #{deleted})")
     @Options(useGeneratedKeys=true, keyProperty="id")
-    int insertOne(PersonPO personPO);
+    int insertOne(PersonDO personDO);
 
     // TODO: 存在设置某个属性为null不成功的情况
     @Update("<script> " +
@@ -64,8 +63,8 @@ public interface PersonMapper {
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='portrait != null'> portrait=#{portrait}, </if>" +
             "<if test='gender != null'> gender=#{gender}, </if>" +
-            "<if test='ethnicityId != null'> ethnicity_id=#{ethnicityId}, </if>" +
-            "<if test='partyId != null'> party_id=#{partyId}, </if>" +
+            "<if test='ethnicity != null'> ethnicity_id=#{ethnicity}, </if>" +
+            "<if test='party != null'> party_id=#{party}, </if>" +
             "<if test='birthDate != null'> birth_date=#{birthDate}, </if>" +
             "<if test='deathDate != null'> death_date=#{deathDate}, </if>" +
             "<if test='workDate != null'> work_date=#{workDate}, </if>" +
@@ -85,7 +84,7 @@ public interface PersonMapper {
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
-    int updateOne(PersonPO personPO);
+    int updateOne(PersonDO personDO);
 
     @Update("UPDATE person SET is_deleted = true WHERE id = #{id}")
     int deleteOne(long id);

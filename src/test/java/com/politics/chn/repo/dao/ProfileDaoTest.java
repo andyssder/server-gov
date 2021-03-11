@@ -2,9 +2,6 @@ package com.politics.chn.repo.dao;
 
 import cn.hutool.core.date.DateUtil;
 import com.politics.chn.model.domain.entity.ProfileDO;
-import com.politics.chn.model.domain.value.CarrotDO;
-import com.politics.chn.model.domain.value.DistrictDO;
-import com.politics.chn.model.domain.value.PitDO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -118,14 +115,11 @@ class ProfileDaoTest {
         Date date = DateUtil.parse(DateUtil.today());
         profileDO.setStartTime(date);
         profileDO.setPersonId(10000000L);
-        DistrictDO district = new DistrictDO();
-        district.setId(1);
+        Integer district = 1;
         profileDO.setDistrict(district);
-        PitDO pit = new PitDO();
-        pit.setId(1L);
+        Long pit = 1L;
         profileDO.setPit(pit);
-        CarrotDO carrot = new CarrotDO();
-        carrot.setId(40L);
+        Long carrot = 40L;
         profileDO.setCarrot(carrot);
 
         return profileDO;

@@ -1,9 +1,5 @@
 package com.politics.chn.model.domain.entity;
 
-import com.politics.chn.model.domain.value.DistrictDO;
-import com.politics.chn.model.domain.value.EthnicityDO;
-import com.politics.chn.model.domain.value.PartyDO;
-
 import java.util.Date;
 import java.util.Objects;
 
@@ -17,17 +13,17 @@ public class PersonDO {
     String portrait;
     Integer gender;
 
-    PartyDO party;
-    EthnicityDO ethnicity;
+    Integer party;
+    Integer ethnicity;
 
     Date birthDate;
     Date deathDate;
     Date workDate;
     Date retireDate;
 
-    DistrictDO ancestralHome;
-    DistrictDO birthPlace;
-    DistrictDO workPlace;
+    Integer ancestralHome;
+    Integer birthPlace;
+    Integer workPlace;
 
     String university;
     String major;
@@ -74,19 +70,19 @@ public class PersonDO {
         this.gender = gender;
     }
 
-    public PartyDO getParty() {
+    public Integer getParty() {
         return party;
     }
 
-    public void setParty(PartyDO party) {
+    public void setParty(Integer party) {
         this.party = party;
     }
 
-    public EthnicityDO getEthnicity() {
+    public Integer getEthnicity() {
         return ethnicity;
     }
 
-    public void setEthnicity(EthnicityDO ethnicity) {
+    public void setEthnicity(Integer ethnicity) {
         this.ethnicity = ethnicity;
     }
 
@@ -122,27 +118,27 @@ public class PersonDO {
         this.retireDate = retireDate;
     }
 
-    public DistrictDO getAncestralHome() {
+    public Integer getAncestralHome() {
         return ancestralHome;
     }
 
-    public void setAncestralHome(DistrictDO ancestralHome) {
+    public void setAncestralHome(Integer ancestralHome) {
         this.ancestralHome = ancestralHome;
     }
 
-    public DistrictDO getBirthPlace() {
+    public Integer getBirthPlace() {
         return birthPlace;
     }
 
-    public void setBirthPlace(DistrictDO birthPlace) {
+    public void setBirthPlace(Integer birthPlace) {
         this.birthPlace = birthPlace;
     }
 
-    public DistrictDO getWorkPlace() {
+    public Integer getWorkPlace() {
         return workPlace;
     }
 
-    public void setWorkPlace(DistrictDO workPlace) {
+    public void setWorkPlace(Integer workPlace) {
         this.workPlace = workPlace;
     }
 

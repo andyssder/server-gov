@@ -1,9 +1,5 @@
 package com.politics.chn.model.domain.entity;
 
-import com.politics.chn.model.domain.value.CarrotDO;
-import com.politics.chn.model.domain.value.DistrictDO;
-import com.politics.chn.model.domain.value.PitDO;
-
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,9 +12,9 @@ public class ProfileDO {
     Date startTime;
     Date endTime;
     Long personId;
-    DistrictDO district;
-    PitDO pit;
-    CarrotDO carrot;
+    Integer district;
+    Long pit;
+    Long carrot;
     String remark;
     String summary;
     Integer priority;
@@ -58,27 +54,27 @@ public class ProfileDO {
         this.personId = personId;
     }
 
-    public DistrictDO getDistrict() {
+    public Integer getDistrict() {
         return district;
     }
 
-    public void setDistrict(DistrictDO district) {
+    public void setDistrict(Integer district) {
         this.district = district;
     }
 
-    public PitDO getPit() {
+    public Long getPit() {
         return pit;
     }
 
-    public void setPit(PitDO pit) {
+    public void setPit(Long pit) {
         this.pit = pit;
     }
 
-    public CarrotDO getCarrot() {
+    public Long getCarrot() {
         return carrot;
     }
 
-    public void setCarrot(CarrotDO carrot) {
+    public void setCarrot(Long carrot) {
         this.carrot = carrot;
     }
 
@@ -158,6 +154,6 @@ public class ProfileDO {
     }
 
     public Boolean isNotNull() {
-        return startTime != null && personId != null && district != null && pit.isNotNull() && carrot.isNotNull();
+        return startTime != null && personId != null && district != null && pit != null && carrot != null;
     }
 }

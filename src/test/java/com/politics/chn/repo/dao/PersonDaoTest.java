@@ -78,6 +78,7 @@ class PersonDaoTest {
         Date date = DateUtil.parse(DateUtil.today());
         person.setCreateTime(date);
         person.setUpdateTime(date);
+        person.setDeleted(false);
         return person;
     }
 }

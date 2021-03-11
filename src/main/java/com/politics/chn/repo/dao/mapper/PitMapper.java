@@ -1,11 +1,9 @@
 package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.model.domain.value.PitDO;
-import com.politics.chn.model.po.PitPO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder
@@ -34,7 +32,7 @@ public interface PitMapper {
 
     @Insert("INSERT INTO pit(name, short_name, level, rank, district_level, lft, rgt, pid, is_enabled) VALUES(#{name}, #{shortName}, #{level}, #{rank}, #{districtLevel}, #{lft}, #{rgt}, #{pid}, #{enabled})")
     @Options(useGeneratedKeys=true, keyProperty="id")
-    int insertOne(PitPO pitPO);
+    int insertOne(PitDO pit);
 
     // TODO: 存在设置某个属性为null不成功的情况
     @Update("<script> " +
@@ -52,7 +50,7 @@ public interface PitMapper {
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
-    int updateOne(PitPO pitPO);
+    int updateOne(PitDO pit);
 
     @Update("UPDATE pit SET is_deleted = true WHERE id = #{id}")
     int deleteOne(long id);

@@ -2,15 +2,12 @@ package com.politics.chn.service;
 
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.model.domain.value.PitDO;
-import com.politics.chn.model.po.PitPO;
 import com.politics.chn.repo.dao.PitDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * @author andyssder
