@@ -48,7 +48,8 @@ class PitRepositoryTest {
         newPit1.setDistrictLevel(10);
         newPit1.setLft(10000000);
         newPit1.setRgt(10000003);
-        long id1 = pitRepository.insertOne(newPit1);
+        pitRepository.insertOne(newPit1);
+        long id1 = newPit1.getId();
 
         PitDO newPit2 = new PitDO();
         newPit2.setPid(id1);
@@ -58,7 +59,8 @@ class PitRepositoryTest {
         newPit2.setDistrictLevel(11);
         newPit2.setLft(10000001);
         newPit2.setRgt(10000002);
-        long id2 = pitRepository.insertOne(newPit2);
+        pitRepository.insertOne(newPit2);
+        long id2 = newPit2.getId();
 
         Assertions.assertEquals(1, pitRepository.getChildren(id1).size(),"查询子记录出错");
         pitDao.deleteOne(id1, true);
@@ -79,8 +81,8 @@ class PitRepositoryTest {
         newPit.setDistrictLevel(10);
         newPit.setLft(10000000);
         newPit.setRgt(10000003);
-        long id = pitRepository.insertOne(newPit);
-        Assertions.assertNotNull(id,"插入记录出错");
+        Assertions.assertTrue(pitRepository.insertOne(newPit),"插入记录出错");
+        long id = newPit.getId();
         pitDao.deleteOne(id, true);
     }
 

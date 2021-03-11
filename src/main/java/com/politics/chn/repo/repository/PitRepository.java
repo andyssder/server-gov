@@ -39,9 +39,8 @@ public class PitRepository {
         return pitDao.getOneById(id);
     }
 
-    public Long insertOne(PitDO pitDO) {
-        pitDao.insertOne(pitDO);
-        return pitDO.getId();
+    public Boolean insertOne(PitDO pitDO) {
+        return pitDao.insertOne(pitDO);
     }
 
     public Boolean updateOne(PitDO pitDO) {

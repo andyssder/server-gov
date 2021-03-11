@@ -61,11 +61,10 @@ public class PitService {
         pit.setLevel(level);
         pit.setLft(lft);
         pit.setRgt(rgt);
-        Long id = pitRepository.insertOne(pit);
-        Assert.notNull(id, () -> {
+        Assert.isTrue(pitRepository.insertOne(pit), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
-        return id;
+        return pit.getId();
     }
 
     public void updatePit(PitDO pit) {
