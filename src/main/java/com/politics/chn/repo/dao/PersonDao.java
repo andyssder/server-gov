@@ -21,8 +21,8 @@ public class PersonDao {
         this.personMapper = personMapper;
     }
 
-    public boolean addOne(PersonDO personDO) {
-        return personMapper.insertOne(personDO) > 0;
+    public boolean addOne(PersonDO person) {
+        return personMapper.insertOne(person) > 0;
     }
 
     public boolean deleteOne(long id) {
@@ -33,8 +33,8 @@ public class PersonDao {
         return realDelete ? personMapper.realDeleteOne(id) > 0 : personMapper.deleteOne(id) > 0;
     }
 
-    public boolean updateOne(PersonDO personDO) {
-        return personMapper.updateOne(personDO) > 0;
+    public boolean updateOne(PersonDO person) {
+        return personMapper.updateOne(person) > 0;
     }
 
     public List<PersonDO> getAll() {

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -32,31 +33,42 @@ public class OfficialRepository {
     }
 
     public Boolean addOfficial(OfficialDO officialDO) {
-        PersonDO personDO = officialDO.getPerson();
-        List<ProfileDO> profileDOS = officialDO.getProfiles();
-        return addPerson(personDO) && addProfiles(profileDOS);
+        PersonDO person = officialDO.getPerson();
+        Date now = new Date();
+        person.setCreateTime(now);
+        person.setUpdateTime(now);
+        List<ProfileDO> profileList = officialDO.getProfiles();
+        if (!addPerson(person)) {
+            return false;
+        }
+        long id = person.getId();
+        profileList.forEach(profile -> {
+            profile.setPersonId(id);
+        });
+        return addProfiles(profileList);
     }
 
-    private Boolean addPerson(PersonDO personDO) { return personDao.addOne(personDO); }
+    private Boolean addPerson(PersonDO person) { return personDao.addOne(person); }
 
-    private Boolean addProfiles(List<ProfileDO> profileDOs) { return profileDao.addMany(profileDOs); }
+    private Boolean addProfiles(List<ProfileDO> profileList) { return profileDao.addMany(profileList); }
 
     public Boolean deleteOfficial(long id) {
         return personDao.deleteOne(id) && profileDao.deleteOneByPersonId(id);
     }
 
     public Boolean updateOfficial(OfficialDO officialDO) {
-        PersonDO personDO = officialDO.getPerson();
-        List<ProfileDO> profileDOS = officialDO.getProfiles();
-        return updatePerson(personDO) && updateProfiles(profileDOS);
+        PersonDO person = officialDO.getPerson();
+        person.setUpdateTime(new Date());
+        List<ProfileDO> profileList = officialDO.getProfiles();
+        return updatePerson(person) && updateProfiles(profileList);
     }
 
-    private Boolean updatePerson(PersonDO personDO) {
-        return personDao.updateOne(personDO);
+    private Boolean updatePerson(PersonDO person) {
+        return personDao.updateOne(person);
     }
 
-    private Boolean updateProfiles(List<ProfileDO> profileDOs) {
-        return profileDao.updateMany(profileDOs);
+    private Boolean updateProfiles(List<ProfileDO> profileList) {
+        return profileDao.updateMany(profileList);
     }
 
     public List<OfficialDO> getAllOfficial() {

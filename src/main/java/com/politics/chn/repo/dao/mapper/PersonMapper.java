@@ -34,13 +34,13 @@ public interface PersonMapper {
             "birth_date, death_date, work_date, retire_date, " +
             "ancestral_home, birth_place, work_place, " +
             "university, major, education, degree, " +
-            "ranking, create_time, update_time, is_enabled, is_deleted) " +
+            "ranking, create_time, update_time, is_enabled) " +
             "VALUES(" +
             "#{name}, #{portrait}, #{gender}, #{party}, #{ethnicity}, " +
             "#{birthDate}, #{deathDate}, #{workDate}, #{retireDate}, " +
             "#{ancestralHome}, #{birthPlace}, #{workPlace}," +
             "#{university}, #{major}, #{education}, #{degree}," +
-            "#{ranking}, #{createTime}, #{updateTime}, #{enabled}, #{deleted})")
+            "#{ranking}, #{createTime}, #{updateTime}, #{enabled})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PersonDO personDO);
 

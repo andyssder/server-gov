@@ -154,6 +154,6 @@ public class ProfileDO {
     }
 
     public Boolean isNotNull() {
-        return startTime != null && personId != null && district != null && pit != null && carrot != null;
+        return startTime != null && district != null && pit != null && carrot != null;
     }
 }

@@ -19,15 +19,15 @@ public interface CarrotMapper {
     })
     List<CarrotDO> getAll();
 
-    @Select("SELECT * FROM carrot WHERE pit_level = #{districtLevel} and where is_deleted = false")
+    @Select("SELECT * FROM carrot WHERE district_level = #{districtLevel} and is_deleted = false")
     @ResultMap("carrot")
     List<CarrotDO> getByDistrictLevel(int districtLevel);
 
-    @Select("SELECT * FROM carrot WHERE id = #{id} and where is_deleted = false")
+    @Select("SELECT * FROM carrot WHERE id = #{id}")
     @ResultMap("carrot")
     CarrotDO getOneById(long id);
 
-    @Insert("INSERT INTO carrot(name, short_name, pit_level, is_enabled) VALUES(#{name}, #{shortName}, #{districtLevel}, #{enabled})")
+    @Insert("INSERT INTO carrot(name, short_name, district_level, is_enabled) VALUES(#{name}, #{shortName}, #{districtLevel}, #{enabled})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(CarrotDO carrotDO);
 
@@ -36,7 +36,7 @@ public interface CarrotMapper {
             "<trim prefix='set' suffixOverrides=',' suffix=' where id = #{id}'>" +
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='shortName != null'> short_name=#{shortName}, </if>" +
-            "<if test='districtLevel != null'> pit_level=#{districtLevel}, </if>" +
+            "<if test='districtLevel != null'> district_level=#{districtLevel}, </if>" +
             "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +

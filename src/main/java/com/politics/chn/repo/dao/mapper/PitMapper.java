@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Mapper
 public interface PitMapper {
-    @Select("SELECT * FROM pit where is_deleted = false")
+    @Select("SELECT * FROM pit where is_deleted = false and level != 0")
     @Results(id="pit", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")
