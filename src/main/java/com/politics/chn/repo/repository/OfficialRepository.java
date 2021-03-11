@@ -8,6 +8,7 @@ import com.politics.chn.repo.dao.ProfileDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,11 +60,19 @@ public class OfficialRepository {
     }
 
     public List<OfficialDO> getAllOfficial() {
-        return personDao.getAll();
+        List<OfficialDO> officialList = new ArrayList<>();
+        List<PersonDO> personList = personDao.getAll();
+        personList.forEach(person -> {
+            officialList.add(new OfficialDO(person));
+        });
+        return officialList;
     }
 
     public OfficialDO getOfficialById(Long id) {
-        return personDao.getOneById(id);
+        PersonDO person = personDao.getOneById(id);
+        List<ProfileDO> profileList = profileDao.getOneByPersonId(id);
+        OfficialDO official = new OfficialDO(person, profileList);
+        return official;
     }
 
 }

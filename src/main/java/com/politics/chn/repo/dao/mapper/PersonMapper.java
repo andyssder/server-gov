@@ -13,18 +13,6 @@ import java.util.List;
 @Mapper
 public interface PersonMapper {
 
-    @Select("SELECT * FROM person where is_deleted = false")
-    @Results(id="official", value={
-            @Result(property="person",column="id",one=@One(select="com.politics.chn.repo.dao.mapper.PersonMapper.getOnePersonById")),
-            @Result(property = "profiles", javaType = List.class, column = "id",
-                    many = @Many(select = "com.politics.chn.repo.dao.mapper.ProfileMapper.getByPersonId"))
-    })
-    List<OfficialDO> getAll();
-
-    @Select("SELECT * FROM person WHERE id = #{id}")
-    @ResultMap("official")
-    OfficialDO getOneById(long id);
-
     @Select("SELECT * FROM person WHERE is_deleted = false")
     @Results(id="person", value={
             @Result(property="enabled",column="is_enabled"),
@@ -35,11 +23,11 @@ public interface PersonMapper {
             @Result(property="birthPlace",column="birth_place"),
             @Result(property="workPlace",column="work_place")
     })
-    List<PersonDO> getAllPerson();
+    List<PersonDO> getAll();
 
     @Select("SELECT * FROM person WHERE id = #{id}")
     @ResultMap("person")
-    OfficialDO getOnePersonById(long id);
+    PersonDO getOneById(long id);
 
     @Insert("INSERT INTO person(" +
             "name, portrait, gender, party_id, ethnicity_id, " +

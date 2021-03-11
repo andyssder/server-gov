@@ -36,7 +36,7 @@ class PersonDaoTest {
         personDao.addOne(person);
         Long id = person.getId();
         Assertions.assertTrue(personDao.deleteOne(id), "删除person失败");
-        PersonDO deletedPerson = personDao.getOneById(id).getPerson();
+        PersonDO deletedPerson = personDao.getOneById(id);
         Assertions.assertTrue(deletedPerson.getDeleted(), "标记person删除失败");
         personDao.deleteOne(id, true);
     }
@@ -50,7 +50,7 @@ class PersonDaoTest {
         PersonDO targetPerson = getPersonDO("test-after-updateOne");
         targetPerson.setId(id);
         Assertions.assertTrue(personDao.updateOne(targetPerson), "更新person失败");
-        PersonDO updatedPerson = personDao.getOneById(id).getPerson();
+        PersonDO updatedPerson = personDao.getOneById(id);
         Assertions.assertEquals(targetPerson.getName(), updatedPerson.getName(), "更新person name失败");
         personDao.deleteOne(id, true);
     }
@@ -66,7 +66,7 @@ class PersonDaoTest {
         personDao.addOne(person1);
         Long id = person1.getId();
 
-        PersonDO person2 = personDao.getOneById(id).getPerson();
+        PersonDO person2 = personDao.getOneById(id);
         Assertions.assertEquals(person1, person2, "根据Id获取person失败");
         personDao.deleteOne(id, true);
     }

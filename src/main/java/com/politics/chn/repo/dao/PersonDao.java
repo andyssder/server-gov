@@ -37,11 +37,11 @@ public class PersonDao {
         return personMapper.updateOne(personDO) > 0;
     }
 
-    public List<OfficialDO> getAll() {
+    public List<PersonDO> getAll() {
         return personMapper.getAll();
     }
 
-    public OfficialDO getOneById(Long id) {
+    public PersonDO getOneById(Long id) {
         return personMapper.getOneById(id);
     }
 
