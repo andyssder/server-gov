@@ -32,21 +32,21 @@ public interface ProfileMapper {
     @Insert("INSERT INTO profile(" +
             "start_time, end_time, person_id, " +
             "district_id, pit_id, carrot_id, " +
-            "remark, summary, priority, is_deleted) " +
+            "remark, summary, priority, is_enabled) " +
             "VALUES(" +
             "#{startTime}, #{endTime}, #{personId}, " +
             "#{district}, #{pit}, #{carrot}, " +
-            "#{remark}, #{summary}, #{priority}, #{deleted})")
+            "#{remark}, #{summary}, #{priority}, #{enabled})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(ProfileDO profile);
 
     @Insert("<script> INSERT INTO profile " +
-            "(start_time, end_time, person_id, district_id, pit_id, carrot_id, remark, summary, priority, is_deleted) " +
+            "(start_time, end_time, person_id, district_id, pit_id, carrot_id, remark, summary, priority, is_enabled) " +
             "VALUES " +
             "<foreach collection='list' item='item' separator=',' > " +
             "(#{item.startTime}, #{item.endTime}, #{item.personId}, " +
             "#{item.district}, #{item.pit}, #{item.carrot}, " +
-            "#{item.remark}, #{item.summary}, #{item.priority}, #{item.deleted}) " +
+            "#{item.remark}, #{item.summary}, #{item.priority}, #{item.enabled}) " +
             "</foreach>" +
             "</script>")
     @Options(useGeneratedKeys=true, keyProperty="id")
@@ -71,99 +71,29 @@ public interface ProfileMapper {
             "</script>")
     int updateOne(ProfileDO profile);
 
-    @Update("<script>" +
-            "UPDATE profile" +
-            "<set>" +
-            "<trim prefix='start_time=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.startTime != null'>" +
-            "when id=#{item.id} then #{item.startTime} " +
-            "</if>" +
+    @Insert("<script> INSERT INTO profile " +
+            "(id, start_time, end_time, person_id, district_id, pit_id, carrot_id, remark, summary, priority, is_deleted, is_enabled) " +
+            "VALUES " +
+            "<foreach collection='list' item='item' separator=',' > " +
+            "(#{item.id}, #{item.startTime}, #{item.endTime}, #{item.personId}, " +
+            "#{item.district}, #{item.pit}, #{item.carrot}, " +
+            "#{item.remark}, #{item.summary}, #{item.priority}, #{item.deleted}, #{item.enabled}) " +
             "</foreach>" +
-            "</trim>" +
-            "<trim prefix='start_time=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.startTime != null'>" +
-            "when id=#{item.id} then #{item.startTime} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='end_time=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.endTime != null'>" +
-            "when id=#{item.id} then #{item.endTime} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='person_id=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.personId != null'>" +
-            "when id=#{item.id} then #{item.personId} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='district_id=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.district != null'>" +
-            "when id=#{item.id} then #{item.district} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='pit_id=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.pit != null'>" +
-            "when id=#{item.id} then #{item.pit} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='carrot_id=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.carrot != null'>" +
-            "when id=#{item.id} then #{item.carrot} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='remark=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.remark != null'>" +
-            "when id=#{item.id} then #{item.remark} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='summary=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.summary != null'>" +
-            "when id=#{item.id} then #{item.summary} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='priority=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.priority != null'>" +
-            "when id=#{item.id} then #{item.priority} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='is_enabled=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.enabled != null'>" +
-            "when id=#{item.id} then #{item.enabled} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "<trim prefix='is_deleted=case' suffix='end,'>" +
-            "<foreach collection='list' item='item' index='index'>" +
-            "<if test='item.deleted != null'>" +
-            "when id=#{item.id} then #{item.deleted} " +
-            "</if>" +
-            "</foreach>" +
-            "</trim>" +
-            "</set>" +
-            "where id in" +
-            "<foreach collection='list' item='item' index='index' separator=',' open='(' close=')'>" +
-            " #{item.id}" +
-            "</foreach>" +
+            "ON DUPLICATE KEY UPDATE " +
+            "id = VALUES(id)," +
+            "start_time = VALUES(start_time)," +
+            "end_time = VALUES(end_time)," +
+            "person_id = VALUES(person_id)," +
+            "district_id = VALUES(district_id)," +
+            "pit_id = VALUES(pit_id)," +
+            "carrot_id = VALUES(carrot_id)," +
+            "remark = VALUES(remark)," +
+            "summary = VALUES(summary)," +
+            "priority = VALUES(priority)," +
+            "is_deleted = VALUES(is_deleted)," +
+            "is_enabled = VALUES(is_enabled)" +
             "</script>")
+    @Options(useGeneratedKeys=true, keyProperty="id")
     int updateMany(List<ProfileDO> profiles);
 
     @Update("UPDATE profile SET is_deleted = true WHERE ${field} = #{value}")

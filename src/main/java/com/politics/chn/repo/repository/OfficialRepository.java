@@ -59,8 +59,10 @@ public class OfficialRepository {
     public Boolean updateOfficial(OfficialDO officialDO) {
         PersonDO person = officialDO.getPerson();
         person.setUpdateTime(new Date());
-        List<ProfileDO> profileList = officialDO.getProfiles();
-        return updatePerson(person) && updateProfiles(profileList);
+        officialDO.getProfiles().forEach(profile -> {
+            profile.setPersonId(person.getId());
+        });
+        return updatePerson(person) && updateProfiles(officialDO.getProfiles());
     }
 
     private Boolean updatePerson(PersonDO person) {
