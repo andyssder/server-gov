@@ -1,5 +1,6 @@
 package com.politics.chn.repo.repository;
 
+import cn.hutool.core.collection.CollectionUtil;
 import com.politics.chn.model.domain.aggregate.OfficialDO;
 import com.politics.chn.model.domain.entity.PersonDO;
 import com.politics.chn.model.domain.entity.ProfileDO;
@@ -38,19 +39,15 @@ public class OfficialRepository {
         person.setCreateTime(now);
         person.setUpdateTime(now);
         List<ProfileDO> profileList = officialDO.getProfiles();
-        if (!addPerson(person)) {
+        if (!personDao.addOne(person)) {
             return false;
         }
         long id = person.getId();
         profileList.forEach(profile -> {
             profile.setPersonId(id);
         });
-        return addProfiles(profileList);
+        return profileDao.addMany(profileList);
     }
-
-    private Boolean addPerson(PersonDO person) { return personDao.addOne(person); }
-
-    private Boolean addProfiles(List<ProfileDO> profileList) { return profileDao.addMany(profileList); }
 
     public Boolean deleteOfficial(long id) {
         return personDao.deleteOne(id) && profileDao.deleteOneByPersonId(id);
@@ -58,19 +55,28 @@ public class OfficialRepository {
 
     public Boolean updateOfficial(OfficialDO officialDO) {
         PersonDO person = officialDO.getPerson();
+        Long personId = person.getId();
         person.setUpdateTime(new Date());
-        officialDO.getProfiles().forEach(profile -> {
-            profile.setPersonId(person.getId());
+        List<ProfileDO> profileList = officialDO.getProfiles();
+        List<Long> remainIds = new ArrayList<>();
+        profileList.forEach(profile -> {
+            profile.setPersonId(personId);
+            if (profile.getId() != null) {
+                remainIds.add(profile.getId());
+            }
         });
-        return updatePerson(person) && updateProfiles(officialDO.getProfiles());
-    }
-
-    private Boolean updatePerson(PersonDO person) {
-        return personDao.updateOne(person);
-    }
-
-    private Boolean updateProfiles(List<ProfileDO> profileList) {
-        return profileDao.updateMany(profileList);
+        List<ProfileDO> oldProfileList = profileDao.getOneByPersonId(personId);
+        List<Long> oldProfileIds = new ArrayList<>();
+        oldProfileList.forEach(profile -> {
+            oldProfileIds.add(profile.getId());
+        });
+        List<Long> deleteIds = CollectionUtil.subtractToList(oldProfileIds, remainIds);
+        // TODO: 批量删除
+        // profileDao.deleteMany(deleteIds);
+        deleteIds.forEach(id -> {
+            profileDao.deleteOne(id);
+        });
+        return personDao.updateOne(person) && profileDao.updateMany(profileList);
     }
 
     public List<OfficialDO> getAllOfficial() {
