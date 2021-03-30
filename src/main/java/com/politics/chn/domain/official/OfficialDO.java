@@ -1,8 +1,8 @@
-package com.politics.chn.model.domain.aggregate;
+package com.politics.chn.domain.official;
 
 import cn.hutool.core.collection.ListUtil;
-import com.politics.chn.model.domain.entity.PersonDO;
-import com.politics.chn.model.domain.entity.ProfileDO;
+import com.politics.chn.domain.official.entity.PersonDO;
+import com.politics.chn.domain.official.entity.ProfileDO;
 
 import java.util.List;
 import java.util.Objects;

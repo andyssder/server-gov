@@ -1,4 +1,4 @@
-package com.politics.chn.model.domain.value;
+package com.politics.chn.domain.official.value;
 
 import java.util.Objects;
 

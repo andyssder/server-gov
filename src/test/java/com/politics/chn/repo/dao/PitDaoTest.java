@@ -1,6 +1,6 @@
 package com.politics.chn.repo.dao;
 
-import com.politics.chn.model.domain.value.PitDO;
+import com.politics.chn.domain.official.value.PitDO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,9 +1,9 @@
 package com.politics.chn.repo.repository;
 
 import cn.hutool.core.collection.CollectionUtil;
-import com.politics.chn.model.domain.aggregate.OfficialDO;
-import com.politics.chn.model.domain.entity.PersonDO;
-import com.politics.chn.model.domain.entity.ProfileDO;
+import com.politics.chn.domain.official.OfficialDO;
+import com.politics.chn.domain.official.entity.PersonDO;
+import com.politics.chn.domain.official.entity.ProfileDO;
 import com.politics.chn.repo.dao.PersonDao;
 import com.politics.chn.repo.dao.ProfileDao;
 import org.springframework.beans.factory.annotation.Autowired;

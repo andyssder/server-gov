@@ -1,6 +1,6 @@
 package com.politics.chn.repo.repository;
 
-import com.politics.chn.model.domain.value.DistrictDO;
+import com.politics.chn.domain.official.value.DistrictDO;
 import com.politics.chn.repo.dao.DistrictDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

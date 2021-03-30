@@ -1,7 +1,7 @@
 package com.politics.chn.service;
 
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.model.domain.value.CarrotDO;
+import com.politics.chn.domain.official.value.CarrotDO;
 import com.politics.chn.repo.dao.CarrotDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

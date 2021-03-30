@@ -1,7 +1,6 @@
 package com.politics.chn.repo.dao.mapper;
 
-import com.politics.chn.model.domain.aggregate.OfficialDO;
-import com.politics.chn.model.domain.entity.PersonDO;
+import com.politics.chn.domain.official.entity.PersonDO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

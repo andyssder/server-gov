@@ -1,7 +1,7 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.model.domain.value.EthnicityDO;
-import com.politics.chn.model.domain.value.PartyDO;
+import com.politics.chn.domain.official.value.EthnicityDO;
+import com.politics.chn.domain.official.value.PartyDO;
 import com.politics.chn.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

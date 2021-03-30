@@ -1,12 +1,11 @@
 package com.politics.chn.repo.repository;
 
-import com.politics.chn.model.domain.value.PitDO;
+import com.politics.chn.domain.official.value.PitDO;
 import com.politics.chn.repo.dao.PitDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder

@@ -1,7 +1,7 @@
 package com.politics.chn.repo.dao.mapper;
 
 
-import com.politics.chn.model.domain.value.DistrictDO;
+import com.politics.chn.domain.official.value.DistrictDO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;

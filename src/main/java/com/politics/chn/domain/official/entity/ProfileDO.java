@@ -1,4 +1,4 @@
-package com.politics.chn.model.domain.entity;
+package com.politics.chn.domain.official.entity;
 
 import java.util.Date;
 import java.util.Objects;

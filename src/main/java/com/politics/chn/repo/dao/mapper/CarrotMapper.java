@@ -1,10 +1,9 @@
 package com.politics.chn.repo.dao.mapper;
 
-import com.politics.chn.model.domain.value.CarrotDO;
+import com.politics.chn.domain.official.value.CarrotDO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder

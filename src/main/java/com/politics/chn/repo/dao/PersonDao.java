@@ -1,7 +1,6 @@
 package com.politics.chn.repo.dao;
 
-import com.politics.chn.model.domain.aggregate.OfficialDO;
-import com.politics.chn.model.domain.entity.PersonDO;
+import com.politics.chn.domain.official.entity.PersonDO;
 import com.politics.chn.repo.dao.mapper.PersonMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

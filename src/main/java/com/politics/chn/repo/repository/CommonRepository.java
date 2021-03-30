@@ -1,7 +1,7 @@
 package com.politics.chn.repo.repository;
 
-import com.politics.chn.model.domain.value.EthnicityDO;
-import com.politics.chn.model.domain.value.PartyDO;
+import com.politics.chn.domain.official.value.EthnicityDO;
+import com.politics.chn.domain.official.value.PartyDO;
 import com.politics.chn.repo.dao.EthnicityDao;
 import com.politics.chn.repo.dao.PartyDao;
 import org.springframework.beans.factory.annotation.Autowired;

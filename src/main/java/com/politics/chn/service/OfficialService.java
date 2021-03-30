@@ -2,7 +2,7 @@ package com.politics.chn.service;
 
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.model.domain.aggregate.OfficialDO;
+import com.politics.chn.domain.official.OfficialDO;
 import com.politics.chn.repo.repository.OfficialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

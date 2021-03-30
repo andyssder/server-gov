@@ -1,6 +1,6 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.model.domain.value.PitDO;
+import com.politics.chn.domain.official.value.PitDO;
 import com.politics.chn.service.PitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

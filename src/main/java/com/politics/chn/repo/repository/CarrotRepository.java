@@ -1,6 +1,6 @@
 package com.politics.chn.repo.repository;
 
-import com.politics.chn.model.domain.value.CarrotDO;
+import com.politics.chn.domain.official.value.CarrotDO;
 import com.politics.chn.repo.dao.CarrotDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

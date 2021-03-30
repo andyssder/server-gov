@@ -1,6 +1,6 @@
 package com.politics.chn.repo.repository;
 
-import com.politics.chn.model.domain.value.PitDO;
+import com.politics.chn.domain.official.value.PitDO;
 import com.politics.chn.repo.dao.PitDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

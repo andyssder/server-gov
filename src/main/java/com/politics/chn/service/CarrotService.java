@@ -2,14 +2,13 @@ package com.politics.chn.service;
 
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.model.domain.value.CarrotDO;
+import com.politics.chn.domain.official.value.CarrotDO;
 import com.politics.chn.repo.repository.CarrotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder

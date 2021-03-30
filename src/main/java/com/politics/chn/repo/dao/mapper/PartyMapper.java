@@ -1,6 +1,6 @@
 package com.politics.chn.repo.dao.mapper;
 
-import com.politics.chn.model.domain.value.PartyDO;
+import com.politics.chn.domain.official.value.PartyDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

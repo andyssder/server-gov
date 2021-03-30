@@ -1,6 +1,6 @@
 package com.politics.chn.repo.dao;
 
-import com.politics.chn.model.domain.value.DistrictDO;
+import com.politics.chn.domain.official.value.DistrictDO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

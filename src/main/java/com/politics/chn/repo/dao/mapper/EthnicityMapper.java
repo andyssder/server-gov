@@ -1,6 +1,6 @@
 package com.politics.chn.repo.dao.mapper;
 
-import com.politics.chn.model.domain.value.EthnicityDO;
+import com.politics.chn.domain.official.value.EthnicityDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

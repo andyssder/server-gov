@@ -1,12 +1,11 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.model.domain.aggregate.OfficialDO;
+import com.politics.chn.domain.official.OfficialDO;
 import com.politics.chn.service.OfficialService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author andyssder

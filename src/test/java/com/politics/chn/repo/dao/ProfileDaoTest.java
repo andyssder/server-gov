@@ -1,7 +1,7 @@
 package com.politics.chn.repo.dao;
 
 import cn.hutool.core.date.DateUtil;
-import com.politics.chn.model.domain.entity.ProfileDO;
+import com.politics.chn.domain.official.entity.ProfileDO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

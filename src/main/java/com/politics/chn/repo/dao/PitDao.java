@@ -1,6 +1,6 @@
 package com.politics.chn.repo.dao;
 
-import com.politics.chn.model.domain.value.PitDO;
+import com.politics.chn.domain.official.value.PitDO;
 import com.politics.chn.repo.dao.mapper.PitMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
