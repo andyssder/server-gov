@@ -6,7 +6,7 @@ import java.util.*;
  * @author xu
  * @create 2021-03-31 21:05
  */
-public class UserDO {
+public class UserInfoDO {
 
     private Long id;
 
@@ -148,8 +148,8 @@ public class UserDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        UserDO userDO = (UserDO) o;
-        return accountNonExpired == userDO.accountNonExpired && accountNonLocked == userDO.accountNonLocked && credentialsNonExpired == userDO.credentialsNonExpired && enabled == userDO.enabled && Objects.equals(id, userDO.id) && Objects.equals(username, userDO.username) && Objects.equals(password, userDO.password) && Objects.equals(nickName, userDO.nickName) && Objects.equals(icon, userDO.icon) && Objects.equals(note, userDO.note) && Objects.equals(email, userDO.email) && Objects.equals(phone, userDO.phone) && Objects.equals(createTime, userDO.createTime) && Objects.equals(loginTime, userDO.loginTime);
+        UserInfoDO userInfoDO = (UserInfoDO) o;
+        return accountNonExpired == userInfoDO.accountNonExpired && accountNonLocked == userInfoDO.accountNonLocked && credentialsNonExpired == userInfoDO.credentialsNonExpired && enabled == userInfoDO.enabled && Objects.equals(id, userInfoDO.id) && Objects.equals(username, userInfoDO.username) && Objects.equals(password, userInfoDO.password) && Objects.equals(nickName, userInfoDO.nickName) && Objects.equals(icon, userInfoDO.icon) && Objects.equals(note, userInfoDO.note) && Objects.equals(email, userInfoDO.email) && Objects.equals(phone, userInfoDO.phone) && Objects.equals(createTime, userInfoDO.createTime) && Objects.equals(loginTime, userInfoDO.loginTime);
     }
 
     @Override
@@ -159,7 +159,7 @@ public class UserDO {
 
     @Override
     public String toString() {
-        return "UserDO{" +
+        return "UserInfoDO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
