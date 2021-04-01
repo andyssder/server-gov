@@ -51,4 +51,22 @@ public class UserDO implements UserDetails {
     public boolean isEnabled() {
         return userInfoDO.isEnabled();
     }
+
+
+    public UserInfoDO getUserInfoDO() {
+        return userInfoDO;
+    }
+
+    public void setUserInfoDO(UserInfoDO userInfoDO) {
+        this.userInfoDO = userInfoDO;
+    }
+
+    public List<RoleDO> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<RoleDO> roles) {
+        this.roles = roles;
+    }
+
 }

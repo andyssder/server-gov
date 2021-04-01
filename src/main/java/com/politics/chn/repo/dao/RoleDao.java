@@ -4,10 +4,8 @@ import org.springframework.stereotype.Repository;
 
 /**
  * @author xu
- * @create 2021-03-31 22:31
+ * @create 2021-04-01 20:30
  */
 @Repository
-public class UserInfoDao {
-
-
+public class RoleDao {
 }
