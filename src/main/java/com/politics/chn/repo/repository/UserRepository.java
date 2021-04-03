@@ -1,8 +1,16 @@
 package com.politics.chn.repo.repository;
 
+import com.politics.chn.domain.user.Entity.PermissionDO;
+import com.politics.chn.domain.user.Entity.RoleDO;
 import com.politics.chn.domain.user.Entity.UserInfoDO;
 import com.politics.chn.domain.user.UserDO;
+import com.politics.chn.repo.dao.PermissionDao;
+import com.politics.chn.repo.dao.RoleDao;
+import com.politics.chn.repo.dao.UserInfoDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @author xu
@@ -11,12 +19,32 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UserRepository {
 
-    public UserDO getUserByUsername(String username) {
-        UserDO userDO = new UserDO();
-        UserInfoDO userInfoDO = new UserInfoDO();
-        userInfoDO.setUsername("admin");
-        userInfoDO.setPassword("123");
-        userDO.setUserInfoDO(userInfoDO);
+    private UserInfoDao userInfoDao;
+    private RoleDao roleDao;
+    private PermissionDao permissionDao;
+
+    @Autowired
+    public void setUserInfoDao(UserInfoDao userInfoDao) {
+        this.userInfoDao = userInfoDao;
+    }
+
+    @Autowired
+    public void setRoleDao(RoleDao roleDao) {
+        this.roleDao = roleDao;
+    }
+
+    @Autowired
+    public void setPermissionDao(PermissionDao permissionMapper) {
+        this.permissionDao = permissionDao;
+    }
+
+    public UserDO getUserByField(String field, String value) {
+        UserInfoDO userInfoDO = userInfoDao.getOneByField(field, value);
+        long id = userInfoDO.getId();
+        List<RoleDO> roles = roleDao.getRolesByUserId(id);
+        List<PermissionDO> permissions = permissionDao.getPermissionsByUserId(id);
+
+        UserDO userDO = new UserDO(userInfoDO, roles, permissions);
         return userDO;
     }
 }

@@ -1,8 +1,7 @@
-package com.politics.chn.common.config;
+package com.politics.chn.common.secuity;
 
 
 import cn.hutool.core.lang.Assert;
-import com.politics.chn.common.component.JwtAuthenticationTokenFilter;
 import com.politics.chn.domain.user.UserDO;
 import com.politics.chn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +17,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-
-import java.util.List;
 
 
 /**
@@ -34,12 +30,25 @@ import java.util.List;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
+
     private UserService userService;
-//    @Autowired
-//    private RestfulAccessDeniedHandler restfulAccessDeniedHandler;
-//    @Autowired
-//    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+    private NoAuthenticationEntryPoint noAuthenticationEntryPoint;
+    private NoAccessHandler noAccessHandler;
+
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
+
+    @Autowired
+    public void setNoAuthenticationEntryPoint(NoAuthenticationEntryPoint noAuthenticationEntryPoint) {
+        this.noAuthenticationEntryPoint = noAuthenticationEntryPoint;
+    }
+
+    @Autowired
+    public void setAccessDeniedHandler(NoAccessHandler noAccessHandler) {
+        this.noAccessHandler = noAccessHandler;
+    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -49,17 +58,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeRequests()
-//                .antMatchers(HttpMethod.GET, // 允许对于网站静态资源的无授权访问
-//                        "/",
-//                        "/*.html",
-//                        "/favicon.ico",
-//                        "/**/*.html",
-//                        "/**/*.css",
-//                        "/**/*.js",
-//                        "/swagger-resources/**",
-//                        "/v2/api-docs/**"
-//                )
-//                .permitAll()
                 .antMatchers("/login", "/register")// 对登录注册要允许匿名访问
                 .permitAll()
                 .antMatchers(HttpMethod.OPTIONS)//跨域请求会先进行一次options请求
@@ -73,9 +71,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 添加JWT filter
         httpSecurity.addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);
         //添加自定义未授权和未登录结果返回
-//        httpSecurity.exceptionHandling()
-//                .accessDeniedHandler(restfulAccessDeniedHandler)
-//                .authenticationEntryPoint(restAuthenticationEntryPoint);
+        httpSecurity.exceptionHandling()
+                .accessDeniedHandler(noAccessHandler)
+                .authenticationEntryPoint(noAuthenticationEntryPoint);
     }
 
     @Override
@@ -105,12 +103,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter(){
         return new JwtAuthenticationTokenFilter();
-    }
-
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
     }
 
 }

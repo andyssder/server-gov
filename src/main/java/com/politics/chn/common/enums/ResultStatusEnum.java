@@ -8,8 +8,8 @@ public enum ResultStatusEnum {
     // 数据操作定义
     SUCCESS("200", "成功"),
     BAD_REQUEST("400", "请求错误，请修正请求"),
-    NO_AUTH("401", "未经授权访问"),
-    NO_PERMISSION("403", "拒绝访问"),
+    UNAUTHORIZED("401", "未经授权访问"),
+    FORBIDDEN("403", "拒绝访问"),
     NOT_FOUND("404", "无法找到资源"),
     METHOD_NOT_ALLOWED("405", "不支持当前请求方法"),
     INTERNAL_SERVER_ERROR("500", " 服务器运行异常"),

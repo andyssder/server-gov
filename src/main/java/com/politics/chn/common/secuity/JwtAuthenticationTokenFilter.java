@@ -1,4 +1,4 @@
-package com.politics.chn.common.component;
+package com.politics.chn.common.secuity;
 
 import com.politics.chn.common.utils.JwtTokenUtil;
 import org.slf4j.Logger;
@@ -23,7 +23,6 @@ import java.io.IOException;
  * Created by macro on 2018/4/26.
  */
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
-    private static final Logger LOGGER = LoggerFactory.getLogger(JwtAuthenticationTokenFilter.class);
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
@@ -39,15 +38,13 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
                                     FilterChain chain) throws ServletException, IOException {
         String authHeader = request.getHeader(this.tokenHeader);
         if (authHeader != null && authHeader.startsWith(this.tokenHead)) {
-            String authToken = authHeader.substring(this.tokenHead.length());// The part after "Bearer "
+            String authToken = authHeader.substring(this.tokenHead.length());
             String username = jwtTokenUtil.getUserNameFromToken(authToken);
-            LOGGER.info("checking username:{}", username);
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
                 if (jwtTokenUtil.validateToken(authToken, userDetails)) {
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                     authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                    LOGGER.info("authenticated user:{}", username);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }

@@ -13,7 +13,6 @@ public class UserInfoDO {
     private String username;
     private String password;
 
-    private String nickName;
     private String icon;
     private String note;
 
@@ -50,14 +49,6 @@ public class UserInfoDO {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getNickName() {
-        return nickName;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
     }
 
     public String getIcon() {
@@ -149,12 +140,12 @@ public class UserInfoDO {
             return false;
         }
         UserInfoDO userInfoDO = (UserInfoDO) o;
-        return accountNonExpired == userInfoDO.accountNonExpired && accountNonLocked == userInfoDO.accountNonLocked && credentialsNonExpired == userInfoDO.credentialsNonExpired && enabled == userInfoDO.enabled && Objects.equals(id, userInfoDO.id) && Objects.equals(username, userInfoDO.username) && Objects.equals(password, userInfoDO.password) && Objects.equals(nickName, userInfoDO.nickName) && Objects.equals(icon, userInfoDO.icon) && Objects.equals(note, userInfoDO.note) && Objects.equals(email, userInfoDO.email) && Objects.equals(phone, userInfoDO.phone) && Objects.equals(createTime, userInfoDO.createTime) && Objects.equals(loginTime, userInfoDO.loginTime);
+        return accountNonExpired == userInfoDO.accountNonExpired && accountNonLocked == userInfoDO.accountNonLocked && credentialsNonExpired == userInfoDO.credentialsNonExpired && enabled == userInfoDO.enabled && Objects.equals(id, userInfoDO.id) && Objects.equals(username, userInfoDO.username) && Objects.equals(password, userInfoDO.password) && Objects.equals(icon, userInfoDO.icon) && Objects.equals(note, userInfoDO.note) && Objects.equals(email, userInfoDO.email) && Objects.equals(phone, userInfoDO.phone) && Objects.equals(createTime, userInfoDO.createTime) && Objects.equals(loginTime, userInfoDO.loginTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, nickName, icon, note, email, phone, createTime, loginTime, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled);
+        return Objects.hash(id, username, password, icon, note, email, phone, createTime, loginTime, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled);
     }
 
     @Override
@@ -163,7 +154,6 @@ public class UserInfoDO {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", nickName='" + nickName + '\'' +
                 ", icon='" + icon + '\'' +
                 ", note='" + note + '\'' +
                 ", email='" + email + '\'' +

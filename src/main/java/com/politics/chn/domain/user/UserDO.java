@@ -1,5 +1,6 @@
 package com.politics.chn.domain.user;
 
+import com.politics.chn.domain.user.Entity.PermissionDO;
 import com.politics.chn.domain.user.Entity.RoleDO;
 import com.politics.chn.domain.user.Entity.UserInfoDO;
 import org.springframework.security.core.GrantedAuthority;
@@ -16,6 +17,16 @@ import java.util.List;
 public class UserDO implements UserDetails {
     private UserInfoDO userInfoDO;
     private List<RoleDO> roles;
+    private List<PermissionDO> permissions;
+
+    public UserDO() {
+    }
+
+    public UserDO(UserInfoDO userInfoDO, List<RoleDO> roles, List<PermissionDO> permissions) {
+        this.userInfoDO = userInfoDO;
+        this.roles = roles;
+        this.permissions = permissions;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -67,6 +78,14 @@ public class UserDO implements UserDetails {
 
     public void setRoles(List<RoleDO> roles) {
         this.roles = roles;
+    }
+
+    public List<PermissionDO> getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(List<PermissionDO> permissions) {
+        this.permissions = permissions;
     }
 
 }

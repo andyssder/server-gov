@@ -1,6 +1,8 @@
 package com.politics.chn.repo.dao.mapper;
 
+import com.politics.chn.domain.user.Entity.UserInfoDO;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 
 /**
  * @author xu
@@ -8,5 +10,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface UserInfoMapper {
-
+    @Select("SELECT * FROM user WHERE #{field} = #{value}")
+    UserInfoDO getOneById(String field, String value);
 }

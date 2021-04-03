@@ -1,6 +1,7 @@
 package com.politics.chn.controller;
 
 import com.politics.chn.common.annotation.GlobalResultDisabled;
+import com.politics.chn.common.result.ReturnResult;
 import com.politics.chn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -24,9 +25,9 @@ public class UserController {
 
     @GlobalResultDisabled
     @PostMapping(value = "/login")
-    public String login(@RequestBody Map<String, String> loginParam) {
-
-        return userService.login(loginParam);
+    public ReturnResult<String> login(@RequestBody Map<String, String> loginParam) {
+        String token = userService.login(loginParam);
+        return ReturnResult.success(token);
     }
 
     @PostMapping(value = "/register")
