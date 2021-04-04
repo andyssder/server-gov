@@ -49,7 +49,11 @@ public class UserService {
     }
 
     public String login(Map<String, String> loginParam) {
-        String username = loginParam.get("username");
+        Assert.isTrue(loginParam.containsKey("username") && loginParam.containsKey("password"), () -> {
+            throw new CommonException(ResultStatusEnum.NOT_FOUND);
+        });
+
+        String username = loginParam.get("username").trim();
         String password = loginParam.get("password");
         Assert.isTrue(username != null && password != null, () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
@@ -61,7 +65,7 @@ public class UserService {
 
         BaseUserDO baseUser = user.getBaseUser();
         boolean passwordCheckResult = passwordEncoder.matches(password, baseUser.getPassword());
-        Assert.isTrue(!passwordCheckResult, () -> {
+        Assert.isTrue(passwordCheckResult, () -> {
             throw new BadCredentialsException("密码不正确!");
         });
 
@@ -78,6 +82,7 @@ public class UserService {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
 
+        baseUser.setUsername(baseUser.getUsername().trim());
         baseUser.setCreateTime(new Date());
 
         Assert.isNull(getUserByUserName(baseUser.getUsername()), () -> {
