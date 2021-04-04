@@ -16,7 +16,7 @@ public class RoleDO {
 
     private String description;
 
-    private Long userCount;
+    private Long count;
 
     private Date createTime;
 
@@ -48,12 +48,12 @@ public class RoleDO {
         this.description = description;
     }
 
-    public Long getUserCount() {
-        return userCount;
+    public Long getCount() {
+        return count;
     }
 
-    public void setUserCount(Long userCount) {
-        this.userCount = userCount;
+    public void setCount(Long count) {
+        this.count = count;
     }
 
     public Date getCreateTime() {
@@ -89,12 +89,12 @@ public class RoleDO {
             return false;
         }
         RoleDO roleDO = (RoleDO) o;
-        return enabled == roleDO.enabled && Objects.equals(id, roleDO.id) && Objects.equals(name, roleDO.name) && Objects.equals(description, roleDO.description) && Objects.equals(userCount, roleDO.userCount) && Objects.equals(createTime, roleDO.createTime) && Objects.equals(sort, roleDO.sort);
+        return enabled == roleDO.enabled && Objects.equals(id, roleDO.id) && Objects.equals(name, roleDO.name) && Objects.equals(description, roleDO.description) && Objects.equals(count, roleDO.count) && Objects.equals(createTime, roleDO.createTime) && Objects.equals(sort, roleDO.sort);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, userCount, createTime, enabled, sort);
+        return Objects.hash(id, name, description, count, createTime, enabled, sort);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class RoleDO {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", userCount=" + userCount +
+                ", count=" + count +
                 ", createTime=" + createTime +
                 ", enabled=" + enabled +
                 ", sort=" + sort +

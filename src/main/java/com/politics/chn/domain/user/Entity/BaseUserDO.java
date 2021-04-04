@@ -6,7 +6,7 @@ import java.util.*;
  * @author xu
  * @create 2021-03-31 21:05
  */
-public class UserInfoDO {
+public class BaseUserDO {
 
     private Long id;
 
@@ -14,7 +14,7 @@ public class UserInfoDO {
     private String password;
 
     private String icon;
-    private String note;
+    private String description;
 
     private String email;
     private String phone;
@@ -59,12 +59,12 @@ public class UserInfoDO {
         this.icon = icon;
     }
 
-    public String getNote() {
-        return note;
+    public String getDescription() {
+        return description;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getEmail() {
@@ -139,23 +139,23 @@ public class UserInfoDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        UserInfoDO userInfoDO = (UserInfoDO) o;
-        return accountNonExpired == userInfoDO.accountNonExpired && accountNonLocked == userInfoDO.accountNonLocked && credentialsNonExpired == userInfoDO.credentialsNonExpired && enabled == userInfoDO.enabled && Objects.equals(id, userInfoDO.id) && Objects.equals(username, userInfoDO.username) && Objects.equals(password, userInfoDO.password) && Objects.equals(icon, userInfoDO.icon) && Objects.equals(note, userInfoDO.note) && Objects.equals(email, userInfoDO.email) && Objects.equals(phone, userInfoDO.phone) && Objects.equals(createTime, userInfoDO.createTime) && Objects.equals(loginTime, userInfoDO.loginTime);
+        BaseUserDO baseUserDO = (BaseUserDO) o;
+        return accountNonExpired == baseUserDO.accountNonExpired && accountNonLocked == baseUserDO.accountNonLocked && credentialsNonExpired == baseUserDO.credentialsNonExpired && enabled == baseUserDO.enabled && Objects.equals(id, baseUserDO.id) && Objects.equals(username, baseUserDO.username) && Objects.equals(password, baseUserDO.password) && Objects.equals(icon, baseUserDO.icon) && Objects.equals(description, baseUserDO.description) && Objects.equals(email, baseUserDO.email) && Objects.equals(phone, baseUserDO.phone) && Objects.equals(createTime, baseUserDO.createTime) && Objects.equals(loginTime, baseUserDO.loginTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, icon, note, email, phone, createTime, loginTime, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled);
+        return Objects.hash(id, username, password, icon, description, email, phone, createTime, loginTime, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled);
     }
 
     @Override
     public String toString() {
-        return "UserInfoDO{" +
+        return "BaseUserDO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", icon='" + icon + '\'' +
-                ", note='" + note + '\'' +
+                ", description='" + description + '\'' +
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 ", createTime=" + createTime +
@@ -165,5 +165,9 @@ public class UserInfoDO {
                 ", credentialsNonExpired=" + credentialsNonExpired +
                 ", enabled=" + enabled +
                 '}';
+    }
+
+    public boolean isNotNull() {
+        return username != null && password != null;
     }
 }

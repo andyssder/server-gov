@@ -2,6 +2,8 @@ package com.politics.chn.controller;
 
 import com.politics.chn.common.annotation.GlobalResultDisabled;
 import com.politics.chn.common.result.ReturnResult;
+import com.politics.chn.domain.user.Entity.BaseUserDO;
+import com.politics.chn.domain.user.UserDO;
 import com.politics.chn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
@@ -31,7 +33,7 @@ public class UserController {
     }
 
     @PostMapping(value = "/register")
-    public void register() {
-        return;
+    public void register(@RequestBody BaseUserDO registerUser) {
+        userService.register(registerUser);
     }
 }

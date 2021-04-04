@@ -1,10 +1,9 @@
 package com.politics.chn.service;
 
-import cn.hutool.core.lang.Assert;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.JwtTokenUtil;
-import com.politics.chn.domain.user.Entity.UserInfoDO;
+import com.politics.chn.domain.user.Entity.BaseUserDO;
 import com.politics.chn.domain.user.UserDO;
 import com.politics.chn.repo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,9 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -29,13 +30,14 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtTokenUtil jwtTokenUtil;
+
     @Autowired
     private void setUserRepository(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
     public UserDO getUserByUserName(String userName) {
-        return userRepository.getUserByField("userName", userName);
+        return userRepository.getUserByField("username", userName);
     }
 
     public UserDO getUserByEmail(String email) {
@@ -53,13 +55,40 @@ public class UserService {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
         UserDO user = getUserByUserName(username);
-        UserInfoDO userInfo = user.getUserInfoDO();
-        if (!passwordEncoder.matches(password, userInfo.getPassword())) {
-            throw new BadCredentialsException("密码不正确");
-        }
+        Assert.notNull(user, () -> {
+            throw new CommonException(ResultStatusEnum.NOT_FOUND.getCode(), "用户不存在!");
+        });
+
+        BaseUserDO baseUser = user.getBaseUser();
+        boolean passwordCheckResult = passwordEncoder.matches(password, baseUser.getPassword());
+        Assert.isTrue(!passwordCheckResult, () -> {
+            throw new BadCredentialsException("密码不正确!");
+        });
+
+        // 更新登录时间
+
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String token = jwtTokenUtil.generateToken(user);
         return token;
+    }
+
+    public void register(BaseUserDO baseUser) {
+        Assert.isTrue(baseUser.isNotNull(), () -> {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+        });
+
+        baseUser.setCreateTime(new Date());
+
+        Assert.isNull(getUserByUserName(baseUser.getUsername()), () -> {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST.getCode(), "用户名已经存在!");
+        });
+
+        //将密码进行加密操作
+        String encodePassword = passwordEncoder.encode(baseUser.getPassword());
+        baseUser.setPassword(encodePassword);
+
+        userRepository.addUser(baseUser);
+
     }
 }

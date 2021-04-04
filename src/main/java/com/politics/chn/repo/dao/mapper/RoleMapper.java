@@ -1,7 +1,6 @@
 package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.domain.user.Entity.RoleDO;
-import com.politics.chn.domain.user.Entity.UserInfoDO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 

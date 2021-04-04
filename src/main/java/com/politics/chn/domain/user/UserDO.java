@@ -1,8 +1,8 @@
 package com.politics.chn.domain.user;
 
+import com.politics.chn.domain.user.Entity.BaseUserDO;
 import com.politics.chn.domain.user.Entity.PermissionDO;
 import com.politics.chn.domain.user.Entity.RoleDO;
-import com.politics.chn.domain.user.Entity.UserInfoDO;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -15,15 +15,15 @@ import java.util.List;
  * @create 2021-03-31 21:36
  */
 public class UserDO implements UserDetails {
-    private UserInfoDO userInfoDO;
+    private BaseUserDO baseUser;
     private List<RoleDO> roles;
     private List<PermissionDO> permissions;
 
     public UserDO() {
     }
 
-    public UserDO(UserInfoDO userInfoDO, List<RoleDO> roles, List<PermissionDO> permissions) {
-        this.userInfoDO = userInfoDO;
+    public UserDO(BaseUserDO baseUser, List<RoleDO> roles, List<PermissionDO> permissions) {
+        this.baseUser = baseUser;
         this.roles = roles;
         this.permissions = permissions;
     }
@@ -35,41 +35,41 @@ public class UserDO implements UserDetails {
 
     @Override
     public String getPassword() {
-        return userInfoDO.getPassword();
+        return baseUser.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return userInfoDO.getUsername();
+        return baseUser.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return userInfoDO.isAccountNonExpired();
+        return baseUser.isAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return userInfoDO.isAccountNonLocked();
+        return baseUser.isAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return userInfoDO.isCredentialsNonExpired();
+        return baseUser.isCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return userInfoDO.isEnabled();
+        return baseUser.isEnabled();
     }
 
 
-    public UserInfoDO getUserInfoDO() {
-        return userInfoDO;
+    public BaseUserDO getBaseUser() {
+        return baseUser;
     }
 
-    public void setUserInfoDO(UserInfoDO userInfoDO) {
-        this.userInfoDO = userInfoDO;
+    public void setBaseUser(BaseUserDO baseUser) {
+        this.baseUser = baseUser;
     }
 
     public List<RoleDO> getRoles() {
