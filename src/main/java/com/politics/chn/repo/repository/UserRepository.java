@@ -35,7 +35,7 @@ public class UserRepository {
     }
 
     @Autowired
-    public void setPermissionDao(PermissionDao permissionMapper) {
+    public void setPermissionDao(PermissionDao permissionDao) {
         this.permissionDao = permissionDao;
     }
 
@@ -46,10 +46,10 @@ public class UserRepository {
         }
 
         long id = baseUserDO.getId();
-//        List<RoleDO> roles = roleDao.getRolesByUserId(id);
-//        List<PermissionDO> permissions = permissionDao.getPermissionsByUserId(id);
+        List<RoleDO> roles = roleDao.getRolesByUserId(id);
+        List<PermissionDO> permissions = permissionDao.getPermissionsByUserId(id);
 
-        UserDO userDO = new UserDO(baseUserDO, new ArrayList<>(), new ArrayList<>());
+        UserDO userDO = new UserDO(baseUserDO, roles, permissions);
         return userDO;
     }
 

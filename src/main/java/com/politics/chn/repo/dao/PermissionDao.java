@@ -21,7 +21,7 @@ public class PermissionDao {
         this.permissionMapper = permissionMapper;
     }
 
-    public List<PermissionDO> getPermissionsByUserId(Long userId) {
+    public List<PermissionDO> getPermissionsByUserId(long userId) {
         return permissionMapper.getListByUserId(userId);
     }
 }

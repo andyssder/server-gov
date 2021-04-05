@@ -12,7 +12,10 @@ import java.util.List;
  */
 @Mapper
 public interface RoleMapper {
-    // mysql不对
-    @Select("SELECT * FROM role WHERE userId = #{userId}")
+    @Select("<script> " +
+            "SELECT r.* " +
+            "FROM sys_role r, sys_user_role ur " +
+            "WHERE ur.user_id=#{userId} AND ur.role_id=r.id" +
+            "</script>")
     List<RoleDO> getListByUserId(long userId);
 }

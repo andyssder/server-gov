@@ -12,10 +12,10 @@ import org.apache.ibatis.annotations.Select;
  */
 @Mapper
 public interface BaseUserMapper {
-    @Select("SELECT * FROM user WHERE ${field} = #{value} LIMIT 0, 1")
+    @Select("SELECT * FROM sys_user WHERE ${field} = #{value} LIMIT 0, 1")
     BaseUserDO getOneByField(String field, String value);
 
-    @Insert("INSERT INTO user(username, password, icon, description, email, phone, create_time) VALUES(#{username}, #{password}, #{icon}, #{description}, #{email}, #{phone}, #{createTime})")
+    @Insert("INSERT INTO sys_user(username, password, icon, description, email, phone, create_time) VALUES(#{username}, #{password}, #{icon}, #{description}, #{email}, #{phone}, #{createTime})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(BaseUserDO baseUser);
 }

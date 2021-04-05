@@ -11,11 +11,10 @@ public class PermissionDO {
     private Long id;
     private Long pid;
     private String name;
-    private String value;
-    private String icon;
+    private String description;
     // 权限类型
     private Integer type;
-    // 前端资源路径
+    // 资源路径
     private String uri;
     private Boolean enabled;
     private Date createTime;
@@ -45,20 +44,12 @@ public class PermissionDO {
         this.name = name;
     }
 
-    public String getValue() {
-        return value;
+    public String getDescription() {
+        return description;
     }
 
-    public void setValue(String value) {
-        this.value = value;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Integer getType() {
@@ -110,12 +101,12 @@ public class PermissionDO {
             return false;
         }
         PermissionDO that = (PermissionDO) o;
-        return Objects.equals(id, that.id) && Objects.equals(pid, that.pid) && Objects.equals(name, that.name) && Objects.equals(value, that.value) && Objects.equals(icon, that.icon) && Objects.equals(type, that.type) && Objects.equals(uri, that.uri) && Objects.equals(enabled, that.enabled) && Objects.equals(createTime, that.createTime) && Objects.equals(sort, that.sort);
+        return Objects.equals(id, that.id) && Objects.equals(pid, that.pid) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(type, that.type) && Objects.equals(uri, that.uri) && Objects.equals(enabled, that.enabled) && Objects.equals(createTime, that.createTime) && Objects.equals(sort, that.sort);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pid, name, value, icon, type, uri, enabled, createTime, sort);
+        return Objects.hash(id, pid, name, description, type, uri, enabled, createTime, sort);
     }
 
     @Override
@@ -124,8 +115,7 @@ public class PermissionDO {
                 "id=" + id +
                 ", pid=" + pid +
                 ", name='" + name + '\'' +
-                ", value='" + value + '\'' +
-                ", icon='" + icon + '\'' +
+                ", description='" + description + '\'' +
                 ", type=" + type +
                 ", uri='" + uri + '\'' +
                 ", enabled=" + enabled +

@@ -4,10 +4,13 @@ import com.politics.chn.domain.user.Entity.BaseUserDO;
 import com.politics.chn.domain.user.Entity.PermissionDO;
 import com.politics.chn.domain.user.Entity.RoleDO;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 
 /**
@@ -30,7 +33,17 @@ public class UserDO implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        List<SimpleGrantedAuthority> roleList = roles.stream().
+                filter(role -> role.getName() != null)
+                .map(role -> new SimpleGrantedAuthority("Role_" + role.getName()))
+                .collect(Collectors.toList());
+
+        List<SimpleGrantedAuthority> permissionList =  permissions.stream()
+                .filter(permission -> permission.getDescription()!=null)
+                .map(permission ->new SimpleGrantedAuthority(permission.getDescription()))
+                .collect(Collectors.toList());
+        return Stream.concat(roleList.stream(), permissionList.stream())
+                .collect(Collectors.toList());
     }
 
     @Override

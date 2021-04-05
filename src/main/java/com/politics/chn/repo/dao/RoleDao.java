@@ -21,7 +21,7 @@ public class RoleDao {
         this.roleMapper = roleMapper;
     }
 
-    public List<RoleDO> getRolesByUserId(Long userId) {
+    public List<RoleDO> getRolesByUserId(long userId) {
         return roleMapper.getListByUserId(userId);
     }
 }
