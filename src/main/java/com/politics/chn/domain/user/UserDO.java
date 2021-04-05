@@ -58,22 +58,22 @@ public class UserDO implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return baseUser.isAccountNonExpired();
+        return baseUser.getAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return baseUser.isAccountNonLocked();
+        return baseUser.getAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return baseUser.isCredentialsNonExpired();
+        return baseUser.getCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return baseUser.isEnabled();
+        return baseUser.getEnabled();
     }
 
 

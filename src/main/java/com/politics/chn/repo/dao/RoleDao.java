@@ -1,5 +1,6 @@
 package com.politics.chn.repo.dao;
 
+import com.politics.chn.domain.official.value.CarrotDO;
 import com.politics.chn.domain.user.Entity.RoleDO;
 import com.politics.chn.repo.dao.mapper.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,25 @@ public class RoleDao {
 
     public List<RoleDO> getRolesByUserId(long userId) {
         return roleMapper.getListByUserId(userId);
+    }
+
+    public List<RoleDO> getAll() {
+        return roleMapper.getAll();
+    }
+
+    public boolean insertOne(RoleDO role) {
+        return roleMapper.insertOne(role) > 0;
+    }
+
+    public boolean updateOne(RoleDO role) {
+        return roleMapper.updateOne(role) > 0;
+    }
+
+    public boolean deleteOne(long id) {
+        return deleteOne(id, false);
+    }
+
+    public boolean deleteOne(long id, boolean realDelete) {
+        return realDelete ? roleMapper.realDeleteOne(id) > 0 : roleMapper.deleteOne(id) > 0;
     }
 }

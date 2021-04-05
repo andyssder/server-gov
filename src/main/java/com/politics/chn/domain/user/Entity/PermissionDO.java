@@ -16,9 +16,11 @@ public class PermissionDO {
     private Integer type;
     // 资源路径
     private String uri;
-    private Boolean enabled;
     private Date createTime;
     private Integer sort;
+
+    private Boolean enabled;
+    private Boolean deleted;
 
     public Long getId() {
         return id;
@@ -68,14 +70,6 @@ public class PermissionDO {
         this.uri = uri;
     }
 
-    public Boolean getEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(Boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public Date getCreateTime() {
         return createTime;
     }
@@ -92,6 +86,22 @@ public class PermissionDO {
         this.sort = sort;
     }
 
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -101,12 +111,12 @@ public class PermissionDO {
             return false;
         }
         PermissionDO that = (PermissionDO) o;
-        return Objects.equals(id, that.id) && Objects.equals(pid, that.pid) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(type, that.type) && Objects.equals(uri, that.uri) && Objects.equals(enabled, that.enabled) && Objects.equals(createTime, that.createTime) && Objects.equals(sort, that.sort);
+        return Objects.equals(id, that.id) && Objects.equals(pid, that.pid) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(type, that.type) && Objects.equals(uri, that.uri) && Objects.equals(createTime, that.createTime) && Objects.equals(sort, that.sort) && Objects.equals(enabled, that.enabled) && Objects.equals(deleted, that.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pid, name, description, type, uri, enabled, createTime, sort);
+        return Objects.hash(id, pid, name, description, type, uri, createTime, sort, enabled, deleted);
     }
 
     @Override
@@ -118,9 +128,14 @@ public class PermissionDO {
                 ", description='" + description + '\'' +
                 ", type=" + type +
                 ", uri='" + uri + '\'' +
-                ", enabled=" + enabled +
                 ", createTime=" + createTime +
                 ", sort=" + sort +
+                ", enabled=" + enabled +
+                ", deleted=" + deleted +
                 '}';
+    }
+
+    public boolean isNotNull() {
+        return name != null && type != null && uri != null;
     }
 }

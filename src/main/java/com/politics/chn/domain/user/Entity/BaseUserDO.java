@@ -22,10 +22,12 @@ public class BaseUserDO {
     private Date createTime;
     private Date loginTime;
 
-    private boolean accountNonExpired;
-    private boolean accountNonLocked;
-    private boolean credentialsNonExpired;
-    private boolean enabled;
+    private Boolean accountNonExpired;
+    private Boolean accountNonLocked;
+    private Boolean credentialsNonExpired;
+
+    private Boolean enabled;
+    private Boolean deleted;
 
     public Long getId() {
         return id;
@@ -99,36 +101,44 @@ public class BaseUserDO {
         this.loginTime = loginTime;
     }
 
-    public boolean isAccountNonExpired() {
-        return isAccountNonExpired();
+    public Boolean getAccountNonExpired() {
+        return accountNonExpired;
     }
 
-    public void setAccountNonExpired(boolean accountNonExpired) {
+    public void setAccountNonExpired(Boolean accountNonExpired) {
         this.accountNonExpired = accountNonExpired;
     }
 
-    public boolean isAccountNonLocked() {
-        return isAccountNonLocked();
+    public Boolean getAccountNonLocked() {
+        return accountNonLocked;
     }
 
-    public void setAccountNonLocked(boolean accountNonLocked) {
+    public void setAccountNonLocked(Boolean accountNonLocked) {
         this.accountNonLocked = accountNonLocked;
     }
 
-    public boolean isCredentialsNonExpired() {
+    public Boolean getCredentialsNonExpired() {
         return credentialsNonExpired;
     }
 
-    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+    public void setCredentialsNonExpired(Boolean credentialsNonExpired) {
         this.credentialsNonExpired = credentialsNonExpired;
     }
 
-    public boolean isEnabled() {
+    public Boolean getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(Boolean enabled) {
         this.enabled = enabled;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
@@ -139,13 +149,13 @@ public class BaseUserDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BaseUserDO baseUserDO = (BaseUserDO) o;
-        return accountNonExpired == baseUserDO.accountNonExpired && accountNonLocked == baseUserDO.accountNonLocked && credentialsNonExpired == baseUserDO.credentialsNonExpired && enabled == baseUserDO.enabled && Objects.equals(id, baseUserDO.id) && Objects.equals(username, baseUserDO.username) && Objects.equals(password, baseUserDO.password) && Objects.equals(icon, baseUserDO.icon) && Objects.equals(description, baseUserDO.description) && Objects.equals(email, baseUserDO.email) && Objects.equals(phone, baseUserDO.phone) && Objects.equals(createTime, baseUserDO.createTime) && Objects.equals(loginTime, baseUserDO.loginTime);
+        BaseUserDO that = (BaseUserDO) o;
+        return Objects.equals(id, that.id) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(icon, that.icon) && Objects.equals(description, that.description) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone) && Objects.equals(createTime, that.createTime) && Objects.equals(loginTime, that.loginTime) && Objects.equals(accountNonExpired, that.accountNonExpired) && Objects.equals(accountNonLocked, that.accountNonLocked) && Objects.equals(credentialsNonExpired, that.credentialsNonExpired) && Objects.equals(enabled, that.enabled) && Objects.equals(deleted, that.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, password, icon, description, email, phone, createTime, loginTime, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled);
+        return Objects.hash(id, username, password, icon, description, email, phone, createTime, loginTime, accountNonExpired, accountNonLocked, credentialsNonExpired, enabled, deleted);
     }
 
     @Override
@@ -164,6 +174,7 @@ public class BaseUserDO {
                 ", accountNonLocked=" + accountNonLocked +
                 ", credentialsNonExpired=" + credentialsNonExpired +
                 ", enabled=" + enabled +
+                ", deleted=" + deleted +
                 '}';
     }
 

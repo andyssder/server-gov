@@ -20,9 +20,11 @@ public class RoleDO {
 
     private Date createTime;
 
-    private boolean enabled;
-
     private Integer sort;
+
+    private Boolean enabled;
+    private Boolean deleted;
+
 
     public Long getId() {
         return id;
@@ -64,20 +66,28 @@ public class RoleDO {
         this.createTime = createTime;
     }
 
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    public void setEnabled(boolean enabled) {
-        this.enabled = enabled;
-    }
-
     public Integer getSort() {
         return sort;
     }
 
     public void setSort(Integer sort) {
         this.sort = sort;
+    }
+
+    public Boolean getEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Override
@@ -89,12 +99,12 @@ public class RoleDO {
             return false;
         }
         RoleDO roleDO = (RoleDO) o;
-        return enabled == roleDO.enabled && Objects.equals(id, roleDO.id) && Objects.equals(name, roleDO.name) && Objects.equals(description, roleDO.description) && Objects.equals(count, roleDO.count) && Objects.equals(createTime, roleDO.createTime) && Objects.equals(sort, roleDO.sort);
+        return Objects.equals(id, roleDO.id) && Objects.equals(name, roleDO.name) && Objects.equals(description, roleDO.description) && Objects.equals(count, roleDO.count) && Objects.equals(createTime, roleDO.createTime) && Objects.equals(sort, roleDO.sort) && Objects.equals(enabled, roleDO.enabled) && Objects.equals(deleted, roleDO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, description, count, createTime, enabled, sort);
+        return Objects.hash(id, name, description, count, createTime, sort, enabled, deleted);
     }
 
     @Override
@@ -105,8 +115,13 @@ public class RoleDO {
                 ", description='" + description + '\'' +
                 ", count=" + count +
                 ", createTime=" + createTime +
-                ", enabled=" + enabled +
                 ", sort=" + sort +
+                ", enabled=" + enabled +
+                ", deleted=" + deleted +
                 '}';
+    }
+
+    public boolean isNotNull() {
+        return name != null;
     }
 }

@@ -24,4 +24,24 @@ public class PermissionDao {
     public List<PermissionDO> getPermissionsByUserId(long userId) {
         return permissionMapper.getListByUserId(userId);
     }
+
+    public List<PermissionDO> getAll() {
+        return permissionMapper.getAll();
+    }
+
+    public boolean insertOne(PermissionDO permission) {
+        return permissionMapper.insertOne(permission) > 0;
+    }
+
+    public boolean updateOne(PermissionDO permission) {
+        return permissionMapper.updateOne(permission) > 0;
+    }
+
+    public boolean deleteOne(long id) {
+        return deleteOne(id, false);
+    }
+
+    public boolean deleteOne(long id, boolean realDelete) {
+        return realDelete ? permissionMapper.realDeleteOne(id) > 0 : permissionMapper.deleteOne(id) > 0;
+    }
 }
