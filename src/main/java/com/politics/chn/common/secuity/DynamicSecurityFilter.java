@@ -19,12 +19,13 @@ public class DynamicSecurityFilter extends AbstractSecurityInterceptor implement
 
     @Autowired
     private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
-
-
 //    @Autowired
-//    public void setMyAccessDecisionManager(DynamicAccessDecisionManager dynamicAccessDecisionManager) {
-//        super.setAccessDecisionManager(dynamicAccessDecisionManager);
-//    }
+//    private IgnoreUrlsConfig ignoreUrlsConfig;
+
+    @Autowired
+    public void setMyAccessDecisionManager(DynamicAccessDecisionManager dynamicAccessDecisionManager) {
+        super.setAccessDecisionManager(dynamicAccessDecisionManager);
+    }
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
@@ -59,6 +60,6 @@ public class DynamicSecurityFilter extends AbstractSecurityInterceptor implement
 
     @Override
     public SecurityMetadataSource obtainSecurityMetadataSource() {
-        return null;
+        return dynamicSecurityMetadataSource;
     }
 }
