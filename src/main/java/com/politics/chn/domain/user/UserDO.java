@@ -36,7 +36,7 @@ public class UserDO implements UserDetails {
         // 过滤掉不属于后端接口的权限
         return permissions.stream()
 //                .filter(permission -> permission.getType() != 1)
-                .map(permission ->new SimpleGrantedAuthority(permission.getId() + ":" + permission.getName()))
+                .map(permission ->new SimpleGrantedAuthority(permission.getId() + ":" + permission.getMethod() + "," + permission.getUri()))
                 .collect(Collectors.toList());
     }
 

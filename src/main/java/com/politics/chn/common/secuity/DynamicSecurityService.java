@@ -25,7 +25,7 @@ public class DynamicSecurityService {
         List<PermissionDO> permissions = permissionService.getPermissionList();
         for (PermissionDO permission : permissions) {
             // TODO: 过滤掉不是后端接口的permission
-            map.put(permission.getUri(), new SecurityConfig(permission.getId() + ":" + permission.getName()));
+            map.put(permission.getUri(), new SecurityConfig(permission.getId() + ":" + permission.getMethod() + "," + permission.getUri()));
         }
         return map;
     }
