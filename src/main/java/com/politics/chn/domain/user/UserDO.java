@@ -33,16 +33,10 @@ public class UserDO implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<SimpleGrantedAuthority> roleList = roles.stream().
-                filter(role -> role.getName() != null)
-                .map(role -> new SimpleGrantedAuthority("Role_" + role.getName()))
-                .collect(Collectors.toList());
-
-        List<SimpleGrantedAuthority> permissionList =  permissions.stream()
-                .filter(permission -> permission.getDescription()!=null)
-                .map(permission ->new SimpleGrantedAuthority(permission.getDescription()))
-                .collect(Collectors.toList());
-        return Stream.concat(roleList.stream(), permissionList.stream())
+        // 过滤掉不属于后端接口的权限
+        return permissions.stream()
+//                .filter(permission -> permission.getType() != 1)
+                .map(permission ->new SimpleGrantedAuthority(permission.getId() + ":" + permission.getName()))
                 .collect(Collectors.toList());
     }
 
