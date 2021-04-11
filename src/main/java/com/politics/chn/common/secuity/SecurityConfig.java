@@ -20,6 +20,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import java.time.Duration;
+import java.util.Arrays;
+import java.util.Collections;
 
 
 /**
@@ -56,9 +63,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        for (String url : ignoreUrlsConfig().getUrls()) {
 //            registry.antMatchers(url).permitAll();
 //        }
+        httpSecurity.authorizeRequests()
+                .antMatchers("/login", "/register")
+                .permitAll();
         //允许跨域请求的OPTIONS请求
-        httpSecurity.authorizeRequests().
-                antMatchers(HttpMethod.OPTIONS)
+        httpSecurity.authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS)
                 .permitAll();
         // 任何请求需要身份认证
         httpSecurity.authorizeRequests()
@@ -77,12 +87,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authenticationEntryPoint(noAuthenticationEntryPoint)
                 // 自定义权限拦截器JWT过滤器
                 .and()
+                .cors()
+                .and()
                 .addFilterBefore(jwtAuthenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(dynamicSecurityFilter(), FilterSecurityInterceptor.class)
                 .headers().cacheControl();
 
     }
-
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        CorsConfiguration configuration = new CorsConfiguration();
+        configuration.setAllowCredentials(true);
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
+        configuration.setAllowedMethods(Arrays.asList("*"));
+        configuration.setAllowedHeaders(Arrays.asList("*"));
+        configuration.setMaxAge(Duration.ofHours(1));
+        source.registerCorsConfiguration("/**",configuration);
+        return source;
+    }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService())
