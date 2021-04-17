@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Mapper
 public interface ProfileMapper {
-    @Select("SELECT * FROM profile where is_deleted = false")
+    @Select("SELECT * FROM profile WHERE is_deleted = false")
     @Results(id="profile", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
@@ -25,7 +25,7 @@ public interface ProfileMapper {
     @ResultMap("profile")
     List<ProfileDO> getByPersonId(long personId);
 
-    @Select("SELECT * FROM profile WHERE id = #{id}")
+    @Select("SELECT * FROM profile WHERE id = #{id} LIMIT 1")
     @ResultMap("profile")
     ProfileDO getOneById(long id);
 

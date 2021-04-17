@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface RoleMapper {
 
-    @Select("SELECT * FROM sys_role where is_deleted = false")
+    @Select("SELECT * FROM sys_role WHERE is_deleted = false ORDER BY sort ASC")
     @Results(id="role", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")

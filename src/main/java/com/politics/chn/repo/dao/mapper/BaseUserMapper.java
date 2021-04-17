@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.*;
  */
 @Mapper
 public interface BaseUserMapper {
-    @Select("SELECT * FROM sys_user WHERE ${field} = #{value} LIMIT 0, 1")
+    @Select("SELECT * FROM sys_user WHERE ${field} = #{value} LIMIT 1")
     @Results(id="user", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")

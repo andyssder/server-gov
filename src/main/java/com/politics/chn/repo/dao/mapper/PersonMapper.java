@@ -24,7 +24,7 @@ public interface PersonMapper {
     })
     List<PersonDO> getAll();
 
-    @Select("SELECT * FROM person WHERE id = #{id}")
+    @Select("SELECT * FROM person WHERE id = #{id} LIMIT 1")
     @ResultMap("person")
     PersonDO getOneById(long id);
 
@@ -46,7 +46,7 @@ public interface PersonMapper {
     // TODO: 存在设置某个属性为null不成功的情况
     @Update("<script> " +
             "UPDATE person" +
-            "<trim prefix='set' suffixOverrides=',' suffix=' where id = #{id}'>" +
+            "<trim prefix='set' suffixOverrides=',' suffix=' WHERE id = #{id}'>" +
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='portrait != null'> portrait=#{portrait}, </if>" +
             "<if test='gender != null'> gender=#{gender}, </if>" +

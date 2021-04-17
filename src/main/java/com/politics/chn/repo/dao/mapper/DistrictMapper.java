@@ -13,10 +13,10 @@ import java.util.List;
 @Mapper
 public interface DistrictMapper {
 
-    @Select("SELECT * FROM district where level != 0")
+    @Select("SELECT * FROM district WHERE level != 0")
     List<DistrictDO> getAll();
 
-    @Select("SELECT * FROM district WHERE id = #{id} limit 1")
+    @Select("SELECT * FROM district WHERE id = #{id} LIMIT 1")
     @Results(id="district", value={
             @Result(property = "parents", javaType = List.class, column = "{lft = lft, rgt = rgt}",
                     many = @Many(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getUpper")),

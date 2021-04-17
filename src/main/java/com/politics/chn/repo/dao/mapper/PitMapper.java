@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Mapper
 public interface PitMapper {
-    @Select("SELECT * FROM pit where is_deleted = false and level != 0")
+    @Select("SELECT * FROM pit WHERE is_deleted = false and level != 0")
     @Results(id="pit", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")
@@ -26,7 +26,7 @@ public interface PitMapper {
     @ResultMap("pit")
     List<PitDO> getLower(int lft, int rgt, int level);
 
-    @Select("SELECT * FROM pit WHERE id = #{id} and is_deleted = false")
+    @Select("SELECT * FROM pit WHERE id = #{id} and is_deleted = false LIMIT 1")
     @ResultMap("pit")
     PitDO getOneById(long id);
 
@@ -37,7 +37,7 @@ public interface PitMapper {
     // TODO: 存在设置某个属性为null不成功的情况
     @Update("<script> " +
             "UPDATE pit" +
-            "<trim prefix='set' suffixOverrides=',' suffix=' where id = #{id}'>" +
+            "<trim prefix='set' suffixOverrides=',' suffix=' WHERE id = #{id}'>" +
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='shortName != null'> short_name=#{shortName}, </if>" +
             "<if test='level != null'> level=#{level}, </if>" +

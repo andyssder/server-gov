@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface PermissionMapper {
 
-    @Select("SELECT * FROM sys_permission where is_deleted = false")
+    @Select("SELECT * FROM sys_permission WHERE is_deleted = false ORDER BY sort ASC")
     @Results(id="permission", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")

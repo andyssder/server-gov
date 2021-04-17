@@ -15,6 +15,6 @@ public interface PartyMapper {
     @Select("SELECT * FROM party")
     List<PartyDO> getAll();
 
-    @Select("SELECT * FROM party WHERE id = #{id}")
+    @Select("SELECT * FROM party WHERE id = #{id} LIMIT 1")
     PartyDO getOneById(int id);
 }

@@ -16,6 +16,6 @@ public interface EthnicityMapper {
     @Select("SELECT * FROM ethnicity")
     List<EthnicityDO> getAll();
 
-    @Select("SELECT * FROM ethnicity WHERE id = #{id}")
+    @Select("SELECT * FROM ethnicity WHERE id = #{id} LIMIT 1")
     EthnicityDO getOneById(int id);
 }

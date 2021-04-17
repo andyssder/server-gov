@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Mapper
 public interface CarrotMapper {
-    @Select("SELECT * FROM carrot where is_deleted = false")
+    @Select("SELECT * FROM carrot WHERE is_deleted = false")
     @Results(id="carrot", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")
@@ -22,7 +22,7 @@ public interface CarrotMapper {
     @ResultMap("carrot")
     List<CarrotDO> getByDistrictLevel(int districtLevel);
 
-    @Select("SELECT * FROM carrot WHERE id = #{id}")
+    @Select("SELECT * FROM carrot WHERE id = #{id} LIMIT 1")
     @ResultMap("carrot")
     CarrotDO getOneById(long id);
 
