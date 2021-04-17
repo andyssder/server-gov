@@ -33,6 +33,10 @@ public class RoleRepository {
         return roleDao.updateOne(role);
     }
 
+    public boolean updateMany(List<RoleDO> roles) {
+        return roleDao.updateMany(roles);
+    }
+
     public boolean deleteOne(long id) {
         return roleDao.deleteOne(id);
     }

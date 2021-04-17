@@ -33,6 +33,11 @@ public class PermissionController {
         permissionService.updatePermission(permission);
     }
 
+    @PutMapping(value = "/patch")
+    public void patchUpdatePermission(@RequestBody List<PermissionDO> permissions) {
+        permissionService.patchUpdatePermission(permissions);
+    }
+
     @GetMapping
     public List<PermissionDO> getPermissionList() {
         return permissionService.getPermissionList();

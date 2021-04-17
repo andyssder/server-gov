@@ -33,6 +33,11 @@ public class RoleController {
         roleService.updateRole(role);
     }
 
+    @PutMapping(value = "/patch")
+    public void patchUpdatePermission(@RequestBody List<RoleDO> roles) {
+        roleService.patchUpdateRole(roles);
+    }
+
     @GetMapping
     public List<RoleDO> getRoleList() {
         return roleService.getRoleList();

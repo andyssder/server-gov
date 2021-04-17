@@ -1,6 +1,5 @@
 package com.politics.chn.repo.dao;
 
-import com.politics.chn.domain.official.value.CarrotDO;
 import com.politics.chn.domain.user.Entity.RoleDO;
 import com.politics.chn.repo.dao.mapper.RoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +35,10 @@ public class RoleDao {
 
     public boolean updateOne(RoleDO role) {
         return roleMapper.updateOne(role) > 0;
+    }
+
+    public boolean updateMany(List<RoleDO> roles) {
+        return roleMapper.updateMany(roles) == roles.size();
     }
 
     public boolean deleteOne(long id) {

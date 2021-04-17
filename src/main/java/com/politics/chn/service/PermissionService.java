@@ -41,6 +41,12 @@ public class PermissionService {
         });
     }
 
+    public void patchUpdatePermission(List<PermissionDO> permissions) {
+        Assert.isTrue(permissionRepository.updateMany(permissions), () -> {
+            throw new CommonException(ResultStatusEnum.NOT_FOUND);
+        });
+    }
+
     public List<PermissionDO> getPermissionList() {
         return permissionRepository.getAll();
     }

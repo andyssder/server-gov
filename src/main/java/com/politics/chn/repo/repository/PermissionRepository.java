@@ -35,6 +35,11 @@ public class PermissionRepository {
         return permissionDao.updateOne(permission);
     }
 
+    public boolean updateMany(List<PermissionDO> permissions) {
+        return permissionDao.updateMany(permissions);
+    }
+
+
     public boolean deleteOne(long id) {
         return permissionDao.deleteOne(id);
     }

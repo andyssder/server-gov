@@ -45,6 +45,59 @@ public interface RoleMapper {
             "</script>")
     int updateOne(RoleDO role);
 
+    @Update("<script>" +
+            "UPDATE sys_permission" +
+            "<set>" +
+            "<trim prefix='name=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.name != null'>" +
+            "when id=#{item.id} then #{item.name} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='description=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.description != null'>" +
+            "when id=#{item.id} then #{item.description} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='count=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.count != null'>" +
+            "when id=#{item.id} then #{item.count} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='sort=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.sort != null'>" +
+            "when id=#{item.id} then #{item.sort} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='enabled=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.enabled != null'>" +
+            "when id=#{item.id} then #{item.enabled} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='deleted=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.deleted != null'>" +
+            "when id=#{item.id} then #{item.deleted} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "</set>" +
+            "where id in" +
+            "<foreach collection='list' item='item' index='index' separator=',' open='(' close=')'>" +
+            " #{item.id}" +
+            "</foreach>" +
+            "</script>")
+    int updateMany(List<RoleDO> roles);
+
     @Update("UPDATE sys_role SET is_deleted = true WHERE id = #{id}")
     int deleteOne(long id);
 

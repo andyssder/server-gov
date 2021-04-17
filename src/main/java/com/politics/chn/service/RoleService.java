@@ -41,6 +41,12 @@ public class RoleService {
         });
     }
 
+    public void patchUpdateRole(List<RoleDO> roles) {
+        Assert.isTrue(roleRepository.updateMany(roles), () -> {
+            throw new CommonException(ResultStatusEnum.NOT_FOUND);
+        });
+    }
+
     public List<RoleDO> getRoleList() {
         return roleRepository.getAll();
     }

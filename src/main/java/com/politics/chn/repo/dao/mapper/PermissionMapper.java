@@ -12,7 +12,7 @@ import java.util.List;
 @Mapper
 public interface PermissionMapper {
 
-    @Select("SELECT * FROM sys_permission WHERE is_deleted = false ORDER BY sort ASC")
+    @Select("SELECT * FROM sys_permission WHERE is_deleted = false ORDER BY type, sort")
     @Results(id="permission", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")
@@ -52,6 +52,66 @@ public interface PermissionMapper {
             "</trim>" +
             "</script>")
     int updateOne(PermissionDO permission);
+
+    @Update("<script>" +
+            "UPDATE sys_permission" +
+            "<set>" +
+            "<trim prefix='name=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.name != null'>" +
+            "when id=#{item.id} then #{item.name} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='description=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.description != null'>" +
+            "when id=#{item.id} then #{item.description} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='type=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.type != null'>" +
+            "when id=#{item.id} then #{item.type} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='uri=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.uri != null'>" +
+            "when id=#{item.id} then #{item.uri} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='sort=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.sort != null'>" +
+            "when id=#{item.id} then #{item.sort} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='enabled=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.enabled != null'>" +
+            "when id=#{item.id} then #{item.enabled} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='deleted=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.deleted != null'>" +
+            "when id=#{item.id} then #{item.deleted} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "</set>" +
+            "where id in" +
+            "<foreach collection='list' item='item' index='index' separator=',' open='(' close=')'>" +
+            " #{item.id}" +
+            "</foreach>" +
+            "</script>")
+    int updateMany(List<PermissionDO> permissions);
 
     @Update("UPDATE sys_permission SET is_deleted = true WHERE id = #{id}")
     int deleteOne(long id);

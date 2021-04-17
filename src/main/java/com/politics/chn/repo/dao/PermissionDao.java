@@ -37,6 +37,10 @@ public class PermissionDao {
         return permissionMapper.updateOne(permission) > 0;
     }
 
+    public boolean updateMany(List<PermissionDO> permissions) {
+        return permissionMapper.updateMany(permissions) == permissions.size();
+    }
+
     public boolean deleteOne(long id) {
         return deleteOne(id, false);
     }
