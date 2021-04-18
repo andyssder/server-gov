@@ -3,6 +3,7 @@ package com.politics.chn.service;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.user.Entity.RoleDO;
+import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.repo.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +55,21 @@ public class RoleService {
     public void deleteRole(long id) {
         Assert.isTrue(roleRepository.deleteOne(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
+        });
+    }
+
+    public void allocRole(long userId, List<Long> roleIds) {
+        Assert.isTrue(roleRepository.deleteUserRoleRelation(userId), () -> {
+            throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
+        });
+
+        if (roleIds == null || roleIds.size() == 0) {
+            return;
+        }
+
+        roleIds.forEach(roleId -> {
+            UserRoleRelation userRoleRelation = new UserRoleRelation(userId, roleId);
+            roleRepository.insertUserRoleRelation(userRoleRelation);
         });
     }
 }

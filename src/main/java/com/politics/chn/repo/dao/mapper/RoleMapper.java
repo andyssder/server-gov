@@ -1,6 +1,7 @@
 package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.domain.user.Entity.RoleDO;
+import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -103,5 +104,13 @@ public interface RoleMapper {
 
     @Delete("Delete FROM sys_role WHERE id = #{id}")
     int realDeleteOne(long id);
+
+    @Insert("INSERT INTO sys_user_role(user_id, role_id) " +
+            "VALUES(#{userId}, #{roleId})")
+    @Options(useGeneratedKeys=true, keyProperty="id")
+    int insertOneUserRoleRelation(UserRoleRelation userRoleRelation);
+
+    @Delete("Delete FROM sys_user_role WHERE user_id = #{userId}")
+    int deleteUserRoleRelationByUserId(long userId);
 
 }

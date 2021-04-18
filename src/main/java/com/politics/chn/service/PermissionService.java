@@ -3,6 +3,8 @@ package com.politics.chn.service;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.user.Entity.PermissionDO;
+import com.politics.chn.domain.user.Entity.RolePermissionRelation;
+import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.repo.repository.PermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,6 +56,21 @@ public class PermissionService {
     public void deletePermission(long id) {
         Assert.isTrue(permissionRepository.deleteOne(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
+        });
+    }
+
+    public void allocPermission(long roleId, List<Long> permissionIds) {
+        Assert.isTrue(permissionRepository.deleteRolePermissionRelation(roleId), () -> {
+            throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
+        });
+
+        if (permissionIds == null || permissionIds.size() == 0) {
+            return;
+        }
+
+        permissionIds.forEach(permissionId -> {
+            RolePermissionRelation rolePermissionRelation = new RolePermissionRelation(roleId, permissionId);
+            permissionRepository.insertRolePermissionRelation(rolePermissionRelation);
         });
     }
 }

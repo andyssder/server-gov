@@ -1,7 +1,9 @@
 package com.politics.chn.repo.dao;
 
 import com.politics.chn.domain.user.Entity.RoleDO;
+import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.repo.dao.mapper.RoleMapper;
+import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -47,5 +49,13 @@ public class RoleDao {
 
     public boolean deleteOne(long id, boolean realDelete) {
         return realDelete ? roleMapper.realDeleteOne(id) > 0 : roleMapper.deleteOne(id) > 0;
+    }
+
+    public boolean insertUserRoleRelation(UserRoleRelation userRoleRelation) {
+        return roleMapper.insertOneUserRoleRelation(userRoleRelation) > 0;
+    }
+
+    public boolean deleteUserRoleRelation(long userId) {
+        return roleMapper.deleteUserRoleRelationByUserId(userId) > 0;
     }
 }

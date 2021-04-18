@@ -47,4 +47,9 @@ public class RoleController {
     public void deleteRole(@PathVariable long id) {
         roleService.deleteRole(id);
     }
+
+    @PostMapping("/alloc/{id}")
+    public void allocRole(@PathVariable(value = "id") long userId, @RequestBody List<Long> roleIds) {
+        roleService.allocRole(userId, roleIds);
+    }
 }

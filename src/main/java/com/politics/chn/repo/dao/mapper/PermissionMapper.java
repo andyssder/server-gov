@@ -1,6 +1,8 @@
 package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.domain.user.Entity.PermissionDO;
+import com.politics.chn.domain.user.Entity.RolePermissionRelation;
+import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -118,4 +120,13 @@ public interface PermissionMapper {
 
     @Delete("Delete FROM sys_permission WHERE id = #{id}")
     int realDeleteOne(long id);
+
+    @Insert("INSERT INTO sys_role_permission(role_id, permission_id) " +
+            "VALUES(#{roleId}, #{permissionId})")
+    @Options(useGeneratedKeys=true, keyProperty="id")
+    int insertOneRolePermissionRelation(RolePermissionRelation rolePermissionRelation);
+
+    @Delete("Delete FROM sys_role_permission WHERE role_id = #{roleId}")
+    int deleteRolePermissionRelationByRoleId(long roleId);
+
 }
