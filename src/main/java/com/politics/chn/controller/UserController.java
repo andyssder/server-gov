@@ -8,13 +8,12 @@ import com.politics.chn.service.PermissionService;
 import com.politics.chn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -50,18 +49,21 @@ public class UserController {
         userService.register(registerUser);
     }
 
-    @RequestMapping(value = "/user/details", method = RequestMethod.GET)
-    @ResponseBody
-    public Map<String, Object> getAdminInfo(Principal principal) {
-        if(principal==null){
+    @GetMapping(value = "/users/details/{name}")
+    public UserDO getUserInfo(@PathVariable(value = "name", required = false) String username, Principal principal) {
+        // TODO: 先拿username判断
+        if (username == null && principal == null) {
             return null;
-        }
-        String username = principal.getName();
-        UserDO user = userService.getUserByUserName(username);
+        } else if (principal != null) {
+            username = principal.getName();
 
-        Map<String, Object> result = new HashMap<>();
-        result.put("username", user.getUsername());
-        result.put("permissions", user.getPermissions());
-        return result;
+        }
+        UserDO user = userService.getUserByUserName(username);
+        return user;
+    }
+
+    @GetMapping(value = "/users")
+    public List<BaseUserDO> getUserList() {
+        return userService.getUserList();
     }
 }

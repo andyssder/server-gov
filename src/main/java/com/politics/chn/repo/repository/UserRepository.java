@@ -56,4 +56,8 @@ public class UserRepository {
     public boolean addUser(BaseUserDO baseUser) {
         return baseUserDao.insertOne(baseUser);
     }
+
+    public List<BaseUserDO> getAll() {
+        return baseUserDao.getAll();
+    }
 }

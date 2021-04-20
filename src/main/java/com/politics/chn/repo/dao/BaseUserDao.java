@@ -5,6 +5,8 @@ import com.politics.chn.repo.dao.mapper.BaseUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @author xu
  * @create 2021-03-31 22:31
@@ -24,5 +26,9 @@ public class BaseUserDao {
 
     public boolean insertOne(BaseUserDO baseUser) {
         return baseUserMapper.insertOne(baseUser) > 0;
+    }
+
+    public List<BaseUserDO> getAll() {
+        return baseUserMapper.getAll();
     }
 }

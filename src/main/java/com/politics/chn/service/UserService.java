@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -95,5 +96,9 @@ public class UserService {
 
         userRepository.addUser(baseUser);
 
+    }
+
+    public List<BaseUserDO> getUserList() {
+        return userRepository.getAll();
     }
 }
