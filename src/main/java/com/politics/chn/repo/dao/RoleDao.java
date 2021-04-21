@@ -56,6 +56,6 @@ public class RoleDao {
     }
 
     public boolean deleteUserRoleRelation(long userId) {
-        return roleMapper.deleteUserRoleRelationByUserId(userId) > 0;
+        return roleMapper.deleteUserRoleRelationByUserId(userId) >= 0;
     }
 }

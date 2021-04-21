@@ -26,6 +26,10 @@ public class PermissionDao {
         return permissionMapper.getListByUserId(userId);
     }
 
+    public List<PermissionDO> getPermissionsByRoleId(long roleId) {
+        return permissionMapper.getListByRoleId(roleId);
+    }
+
     public List<PermissionDO> getAll() {
         return permissionMapper.getAll();
     }
@@ -55,6 +59,6 @@ public class PermissionDao {
     }
 
     public boolean deleteRolePermissionRelation(long roleId) {
-        return permissionMapper.deleteRolePermissionRelationByRoleId(roleId) > 0;
+        return permissionMapper.deleteRolePermissionRelationByRoleId(roleId) >= 0;
     }
 }

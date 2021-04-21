@@ -1,6 +1,7 @@
 package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.domain.user.Entity.PermissionDO;
+import com.politics.chn.domain.user.Entity.RoleDO;
 import com.politics.chn.domain.user.Entity.RolePermissionRelation;
 import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import org.apache.ibatis.annotations.*;
@@ -35,6 +36,14 @@ public interface PermissionMapper {
             "</script>")
     @ResultMap("permission")
     List<PermissionDO> getListByUserId(long userId);
+
+    @Select("<script> " +
+            "SELECT p.* " +
+            "FROM sys_permission p, sys_role_permission rp " +
+            "WHERE rp.role_id=#{roleId} AND rp.permission_id=p.id" +
+            "</script>")
+    @ResultMap("permission")
+    List<PermissionDO> getListByRoleId(long roleId);
 
     @Insert("INSERT INTO sys_permission(pid, name, description, type, uri, sort, create_time) " +
             "VALUES(#{pid}, #{name}, #{description}, #{type}, #{uri}, #{sort}, #{createTime})")

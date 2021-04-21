@@ -22,6 +22,10 @@ public class PermissionRepository {
         this.permissionDao = permissionDao;
     }
 
+    public List<PermissionDO> getPermissionsByRoleId(long roleId) {
+        return permissionDao.getPermissionsByRoleId(roleId);
+    }
+
     public List<PermissionDO> getAll() {
         return permissionDao.getAll();
     }

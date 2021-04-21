@@ -53,6 +53,10 @@ public class PermissionService {
         return permissionRepository.getAll();
     }
 
+    public List<PermissionDO> getPermissionListByRole(long roleId) {
+        return permissionRepository.getPermissionsByRoleId(roleId);
+    }
+
     public void deletePermission(long id) {
         Assert.isTrue(permissionRepository.deleteOne(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);

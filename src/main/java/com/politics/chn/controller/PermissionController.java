@@ -39,8 +39,12 @@ public class PermissionController {
     }
 
     @GetMapping
-    public List<PermissionDO> getPermissionList() {
-        return permissionService.getPermissionList();
+    public List<PermissionDO> getPermissionList(@RequestParam(value = "role", required = false) Long roleId ) {
+        if (roleId == null) {
+            return permissionService.getPermissionList();
+        } else {
+            return permissionService.getPermissionListByRole(roleId);
+        }
     }
 
     @DeleteMapping(value = "/{id}")
@@ -52,4 +56,6 @@ public class PermissionController {
     public void allocPermission(@PathVariable(value = "id") long roleId, @RequestBody List<Long> permissionIds) {
         permissionService.allocPermission(roleId, permissionIds);
     }
+
+
 }

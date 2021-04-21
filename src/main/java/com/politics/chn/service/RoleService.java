@@ -52,6 +52,10 @@ public class RoleService {
         return roleRepository.getAll();
     }
 
+    public List<RoleDO> getRoleListByUser(long userId) {
+        return roleRepository.getRolesByUserId(userId);
+    }
+
     public void deleteRole(long id) {
         Assert.isTrue(roleRepository.deleteOne(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);

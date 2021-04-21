@@ -49,15 +49,9 @@ public class UserController {
         userService.register(registerUser);
     }
 
-    @GetMapping(value = "/users/details/{name}")
-    public UserDO getUserInfo(@PathVariable(value = "name", required = false) String username, Principal principal) {
-        // TODO: 先拿username判断
-        if (username == null && principal == null) {
-            return null;
-        } else if (principal != null) {
-            username = principal.getName();
-
-        }
+    @GetMapping(value = "/users/details")
+    public UserDO getUserInfo(Principal principal) {
+        String username = principal.getName();
         UserDO user = userService.getUserByUserName(username);
         return user;
     }

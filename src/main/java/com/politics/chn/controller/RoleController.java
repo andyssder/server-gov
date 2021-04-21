@@ -1,10 +1,12 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.domain.user.Entity.PermissionDO;
 import com.politics.chn.domain.user.Entity.RoleDO;
 import com.politics.chn.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -39,8 +41,12 @@ public class RoleController {
     }
 
     @GetMapping
-    public List<RoleDO> getRoleList() {
-        return roleService.getRoleList();
+    public List<RoleDO> getRoleList(@RequestParam(value = "user", required = false) Long userId) {
+        if (userId == null) {
+            return roleService.getRoleList();
+        } else {
+            return roleService.getRoleListByUser(userId);
+        }
     }
 
     @DeleteMapping(value = "/{id}")

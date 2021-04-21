@@ -26,6 +26,10 @@ public class RoleRepository {
         return roleDao.getAll();
     }
 
+    public List<RoleDO> getRolesByUserId(long userId) {
+        return roleDao.getRolesByUserId(userId);
+    }
+
     public boolean insertOne(RoleDO role) {
         return roleDao.insertOne(role);
     }
