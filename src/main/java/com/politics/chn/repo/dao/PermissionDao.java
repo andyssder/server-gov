@@ -54,11 +54,4 @@ public class PermissionDao {
         return realDelete ? permissionMapper.realDeleteOne(id) > 0 : permissionMapper.deleteOne(id) > 0;
     }
 
-    public boolean insertRolePermissionRelation(RolePermissionRelation rolePermissionRelation) {
-        return permissionMapper.insertOneRolePermissionRelation(rolePermissionRelation) > 0;
-    }
-
-    public boolean deleteRolePermissionRelation(long roleId) {
-        return permissionMapper.deleteRolePermissionRelationByRoleId(roleId) >= 0;
-    }
 }

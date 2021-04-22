@@ -3,6 +3,7 @@ package com.politics.chn.service;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.user.Entity.RoleDO;
+import com.politics.chn.domain.user.Entity.RolePermissionRelation;
 import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.repo.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,20 +61,21 @@ public class RoleService {
         Assert.isTrue(roleRepository.deleteOne(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
+        roleRepository.deleteRolePermissionRelation(id);
     }
 
-    public void allocRole(long userId, List<Long> roleIds) {
-        Assert.isTrue(roleRepository.deleteUserRoleRelation(userId), () -> {
+    public void allocPermission(long roleId, List<Long> permissionIds) {
+        Assert.isTrue(roleRepository.deleteRolePermissionRelation(roleId), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
 
-        if (roleIds == null || roleIds.size() == 0) {
+        if (permissionIds == null || permissionIds.size() == 0) {
             return;
         }
 
-        roleIds.forEach(roleId -> {
-            UserRoleRelation userRoleRelation = new UserRoleRelation(userId, roleId);
-            roleRepository.insertUserRoleRelation(userRoleRelation);
+        permissionIds.forEach(permissionId -> {
+            RolePermissionRelation rolePermissionRelation = new RolePermissionRelation(roleId, permissionId);
+            roleRepository.insertRolePermissionRelation(rolePermissionRelation);
         });
     }
 }

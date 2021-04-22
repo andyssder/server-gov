@@ -55,7 +55,8 @@ public class RoleController {
     }
 
     @PostMapping("/alloc/{id}")
-    public void allocRole(@PathVariable(value = "id") long userId, @RequestBody List<Long> roleIds) {
-        roleService.allocRole(userId, roleIds);
+    public void allocPermission(@PathVariable(value = "id") long roleId, @RequestBody List<Long> permissionIds) {
+        roleService.allocPermission(roleId, permissionIds);
     }
+
 }

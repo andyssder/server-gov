@@ -63,18 +63,4 @@ public class PermissionService {
         });
     }
 
-    public void allocPermission(long roleId, List<Long> permissionIds) {
-        Assert.isTrue(permissionRepository.deleteRolePermissionRelation(roleId), () -> {
-            throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
-        });
-
-        if (permissionIds == null || permissionIds.size() == 0) {
-            return;
-        }
-
-        permissionIds.forEach(permissionId -> {
-            RolePermissionRelation rolePermissionRelation = new RolePermissionRelation(roleId, permissionId);
-            permissionRepository.insertRolePermissionRelation(rolePermissionRelation);
-        });
-    }
 }

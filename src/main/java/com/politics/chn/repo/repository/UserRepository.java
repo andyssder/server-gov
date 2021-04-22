@@ -3,6 +3,7 @@ package com.politics.chn.repo.repository;
 import com.politics.chn.domain.user.Entity.BaseUserDO;
 import com.politics.chn.domain.user.Entity.PermissionDO;
 import com.politics.chn.domain.user.Entity.RoleDO;
+import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.domain.user.UserDO;
 import com.politics.chn.repo.dao.PermissionDao;
 import com.politics.chn.repo.dao.RoleDao;
@@ -10,7 +11,6 @@ import com.politics.chn.repo.dao.BaseUserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -59,5 +59,18 @@ public class UserRepository {
 
     public List<BaseUserDO> getAll() {
         return baseUserDao.getAll();
+    }
+
+
+    public boolean insertUserRoleRelation(UserRoleRelation userRoleRelation) {
+        return baseUserDao.insertUserRoleRelation(userRoleRelation);
+    }
+
+    public boolean deleteUserRoleRelation(long userId) {
+        return baseUserDao.deleteUserRoleRelation(userId);
+    }
+
+    public List<RoleDO> getRoleListByUserId(long userId) {
+        return roleDao.getRolesByUserId(userId);
     }
 }

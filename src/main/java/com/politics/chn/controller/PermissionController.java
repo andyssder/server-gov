@@ -52,10 +52,4 @@ public class PermissionController {
         permissionService.deletePermission(id);
     }
 
-    @PostMapping("/alloc/{id}")
-    public void allocPermission(@PathVariable(value = "id") long roleId, @RequestBody List<Long> permissionIds) {
-        permissionService.allocPermission(roleId, permissionIds);
-    }
-
-
 }

@@ -47,11 +47,4 @@ public class PermissionRepository {
         return permissionDao.deleteOne(id);
     }
 
-    public boolean insertRolePermissionRelation(RolePermissionRelation rolePermissionRelation) {
-        return permissionDao.insertRolePermissionRelation(rolePermissionRelation);
-    }
-
-    public boolean deleteRolePermissionRelation(long roleId) {
-        return permissionDao.deleteRolePermissionRelation(roleId);
-    }
 }

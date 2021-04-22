@@ -1,6 +1,7 @@
 package com.politics.chn.repo.dao;
 
 import com.politics.chn.domain.user.Entity.BaseUserDO;
+import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.repo.dao.mapper.BaseUserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -30,5 +31,13 @@ public class BaseUserDao {
 
     public List<BaseUserDO> getAll() {
         return baseUserMapper.getAll();
+    }
+
+    public boolean insertUserRoleRelation(UserRoleRelation userRoleRelation) {
+        return baseUserMapper.insertOneUserRoleRelation(userRoleRelation) > 0;
+    }
+
+    public boolean deleteUserRoleRelation(long userId) {
+        return baseUserMapper.deleteUserRoleRelationByUserId(userId) >= 0;
     }
 }

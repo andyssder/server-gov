@@ -27,9 +27,6 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private PermissionService permissionService;
-
     @Value("${jwt.tokenHead}")
     private String tokenHead;
 
@@ -59,5 +56,10 @@ public class UserController {
     @GetMapping(value = "/users")
     public List<BaseUserDO> getUserList() {
         return userService.getUserList();
+    }
+
+    @PostMapping("/users/alloc/{id}")
+    public void allocRole(@PathVariable(value = "id") long userId, @RequestBody List<Long> roleIds) {
+        userService.allocRole(userId, roleIds);
     }
 }

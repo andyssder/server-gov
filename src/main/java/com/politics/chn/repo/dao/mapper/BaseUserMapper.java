@@ -1,6 +1,7 @@
 package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.domain.user.Entity.BaseUserDO;
+import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -26,5 +27,14 @@ public interface BaseUserMapper {
     @Insert("INSERT INTO sys_user(username, password, icon, description, email, phone, create_time) VALUES(#{username}, #{password}, #{icon}, #{description}, #{email}, #{phone}, #{createTime})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(BaseUserDO baseUser);
+
+
+    @Insert("INSERT INTO sys_user_role(user_id, role_id) " +
+            "VALUES(#{userId}, #{roleId})")
+    @Options(useGeneratedKeys=true, keyProperty="id")
+    int insertOneUserRoleRelation(UserRoleRelation userRoleRelation);
+
+    @Delete("Delete FROM sys_user_role WHERE user_id = #{userId}")
+    int deleteUserRoleRelationByUserId(long userId);
 
 }

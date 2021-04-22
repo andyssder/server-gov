@@ -4,6 +4,7 @@ import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.JwtTokenUtil;
 import com.politics.chn.domain.user.Entity.BaseUserDO;
+import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.domain.user.UserDO;
 import com.politics.chn.repo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,5 +101,21 @@ public class UserService {
 
     public List<BaseUserDO> getUserList() {
         return userRepository.getAll();
+    }
+    
+    public void allocRole(long userId, List<Long> roleIds) {
+        // TODO: 暂时不维护角色的用户数
+        Assert.isTrue(userRepository.deleteUserRoleRelation(userId), () -> {
+            throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
+        });
+
+        if (roleIds == null || roleIds.size() == 0) {
+            return;
+        }
+
+        roleIds.forEach(roleId -> {
+            UserRoleRelation userRoleRelation = new UserRoleRelation(userId, roleId);
+            userRepository.insertUserRoleRelation(userRoleRelation);
+        });
     }
 }
