@@ -102,7 +102,7 @@ public class UserService {
     public List<BaseUserDO> getUserList() {
         return userRepository.getAll();
     }
-    
+
     public void allocRole(long userId, List<Long> roleIds) {
         // TODO: 暂时不维护角色的用户数
         Assert.isTrue(userRepository.deleteUserRoleRelation(userId), () -> {
