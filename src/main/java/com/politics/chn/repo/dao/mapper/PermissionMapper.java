@@ -42,8 +42,8 @@ public interface PermissionMapper {
     @ResultMap("permission")
     List<PermissionDO> getListByRoleId(long roleId);
 
-    @Insert("INSERT INTO sys_permission(pid, name, description, type, uri, sort, create_time) " +
-            "VALUES(#{pid}, #{name}, #{description}, #{type}, #{uri}, #{sort}, #{createTime})")
+    @Insert("INSERT INTO sys_permission(pid, name, description, type, uri, method, sort, create_time) " +
+            "VALUES(#{pid}, #{name}, #{description}, #{type}, #{uri},  #{method}, #{sort}, #{createTime})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PermissionDO permission);
 
@@ -54,6 +54,7 @@ public interface PermissionMapper {
             "<if test='description != null'> description=#{description}, </if>" +
             "<if test='type != null'> type=#{type}, </if>" +
             "<if test='uri != null'> uri=#{uri}, </if>" +
+            "<if test='method != null'> method=#{method}, </if>" +
             "<if test='sort != null'> sort=#{sort}, </if>" +
             "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
@@ -89,6 +90,13 @@ public interface PermissionMapper {
             "<foreach collection='list' item='item' index='index'>" +
             "<if test='item.uri != null'>" +
             "when id=#{item.id} then #{item.uri} " +
+            "</if>" +
+            "</foreach>" +
+            "</trim>" +
+            "<trim prefix='method=case' suffix='end,'>" +
+            "<foreach collection='list' item='item' index='index'>" +
+            "<if test='item.method != null'>" +
+            "when id=#{item.id} then #{item.method} " +
             "</if>" +
             "</foreach>" +
             "</trim>" +

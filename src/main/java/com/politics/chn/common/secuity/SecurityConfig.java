@@ -68,7 +68,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //            registry.antMatchers(url).permitAll();
 //        }
         httpSecurity.authorizeRequests()
-                .antMatchers("/login", "/register", "/**")
+                .antMatchers("/login", "/register")
                 .permitAll();
         //允许跨域请求的OPTIONS请求
         httpSecurity.authorizeRequests()

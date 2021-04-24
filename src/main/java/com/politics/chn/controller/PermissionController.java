@@ -1,5 +1,6 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.common.secuity.DynamicSecurityMetadataSource;
 import com.politics.chn.domain.user.Entity.PermissionDO;
 import com.politics.chn.service.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ public class PermissionController {
 
     private PermissionService permissionService;
 
+    private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
+
     @Autowired
     private void setPermissionService(PermissionService permissionService) {
         this.permissionService = permissionService;
@@ -25,7 +28,9 @@ public class PermissionController {
 
     @PostMapping
     public Long addPermission(@RequestBody PermissionDO permission) {
-        return permissionService.addPermission(permission);
+        long id = permissionService.addPermission(permission);
+        dynamicSecurityMetadataSource.clearDataSource();
+        return id;
     }
 
     @PutMapping
@@ -50,6 +55,7 @@ public class PermissionController {
     @DeleteMapping(value = "/{id}")
     public void deletePermission(@PathVariable long id) {
         permissionService.deletePermission(id);
+        dynamicSecurityMetadataSource.clearDataSource();
     }
 
 }
