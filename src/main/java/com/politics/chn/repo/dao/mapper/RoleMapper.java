@@ -48,7 +48,7 @@ public interface RoleMapper {
     int updateOne(RoleDO role);
 
     @Update("<script>" +
-            "UPDATE sys_permission" +
+            "UPDATE sys_role" +
             "<set>" +
             "<trim prefix='name=case' suffix='end,'>" +
             "<foreach collection='list' item='item' index='index'>" +
