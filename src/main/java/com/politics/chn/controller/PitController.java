@@ -39,9 +39,9 @@ public class PitController {
     }
 
     @GetMapping
-    public List<PitDO> getPitList(@RequestParam(value = "id", required = false) Long id,
-                                  @RequestParam(value = "districtLevel", required = false) Integer districtLevel) {
-        return pitService.getPitList(id, districtLevel);
+    public List<PitDO> getPitList(@RequestParam(value = "type", required = false) String type,
+                                  @RequestParam(value = "value", required = false) Long value) {
+        return pitService.getPitList(type, value);
     }
 
 }

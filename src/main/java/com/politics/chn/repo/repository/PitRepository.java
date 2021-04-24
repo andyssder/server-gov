@@ -29,6 +29,11 @@ public class PitRepository {
         return pitDao.getByDistrictLevel(districtLevel);
     }
 
+    public List<PitDO> getPitListByLevel(int level) {
+        return pitDao.getByLevel(level);
+    }
+
+
     public List<PitDO> getChildren(long id) {
         PitDO pitDO = getOneById(id);
         return pitDao.getChildren(pitDO.getLft(), pitDO.getRgt(), pitDO.getLevel());

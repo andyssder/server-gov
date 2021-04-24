@@ -22,6 +22,10 @@ public interface PitMapper {
     @ResultMap("pit")
     List<PitDO> getByDistrictLevel(int districtLevel);
 
+    @Select("SELECT * FROM pit WHERE is_deleted = false AND level = #{level}")
+    @ResultMap("pit")
+    List<PitDO> getByLevel(int level);
+
     @Select("SELECT * FROM pit WHERE is_deleted = false AND lft > #{lft} AND rgt < #{rgt} AND level=#{level} + 1 ORDER BY lft ASC")
     @ResultMap("pit")
     List<PitDO> getLower(int lft, int rgt, int level);

@@ -28,6 +28,10 @@ public class PitDao {
         return pitMapper.getByDistrictLevel(districtLevel);
     }
 
+    public List<PitDO> getByLevel(int level) {
+        return pitMapper.getByLevel(level);
+    }
+
     public List<PitDO> getChildren(int lft, int rgt, int level) {
         return pitMapper.getLower(lft, rgt, level);
     }

@@ -82,16 +82,22 @@ public class PitService {
         });
     }
 
-    public List<PitDO> getPitList(Long id, Integer districtLevel) {
-        Assert.isTrue(!(id != null && districtLevel != null), () -> {
+    public List<PitDO> getPitList(String type, Long value) {
+        Assert.isTrue(type == null || value != null, () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
-        if (id != null) {
-            return pitRepository.getChildren(id);
-        } else if (districtLevel != null) {
-            return pitRepository.getByDistrictLevel(districtLevel);
-        } else {
+        if ("pid".equals(type)) {
+            return pitRepository.getChildren(value);
+        } else if ("level".equals(type)) {
+            // TODO: 校验
+            return pitRepository.getPitListByLevel(value.intValue());
+        } else if ("district".equals(type)) {
+            // TODO: 校验
+            return pitRepository.getByDistrictLevel(value.intValue());
+        } else if(type == null || type.isEmpty()){
             return pitRepository.getAll();
+        } else {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         }
     }
 }
