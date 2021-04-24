@@ -1,5 +1,8 @@
 package com.politics.chn.domain.official.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -9,7 +12,13 @@ import java.util.Objects;
  */
 public class ProfileDO {
     Long id;
+
+    @DateTimeFormat(pattern = "yyyy-MM")
+    @JsonFormat(pattern="yyyy-MM")
     Date startTime;
+
+    @DateTimeFormat(pattern = "yyyy-MM")
+    @JsonFormat(pattern="yyyy-MM")
     Date endTime;
     Long personId;
     Integer district;

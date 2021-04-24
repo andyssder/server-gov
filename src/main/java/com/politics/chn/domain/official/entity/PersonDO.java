@@ -1,5 +1,8 @@
 package com.politics.chn.domain.official.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -16,9 +19,20 @@ public class PersonDO {
     Integer party;
     Integer ethnicity;
 
+    @DateTimeFormat(pattern = "yyyy-MM")
+    @JsonFormat(pattern="yyyy-MM")
     Date birthDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM")
+    @JsonFormat(pattern="yyyy-MM")
     Date deathDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM")
+    @JsonFormat(pattern="yyyy-MM")
     Date workDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM")
+    @JsonFormat(pattern="yyyy-MM")
     Date retireDate;
 
     Integer ancestralHome;
