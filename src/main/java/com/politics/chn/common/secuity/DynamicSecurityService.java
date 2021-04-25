@@ -28,6 +28,9 @@ public class DynamicSecurityService {
             if (permission.getType() == 1) {
                 continue;
             }
+            if (!permission.getEnabled()) {
+                continue;
+            }
             map.put(permission.getMethod() + ":" + permission.getUri(), new SecurityConfig(permission.getId() + ":" + permission.getMethod() + "," + permission.getUri()));
         }
         return map;

@@ -19,9 +19,13 @@ import java.io.IOException;
 public class NoAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException {
+        // 这个地方不能设置跨域, 会造成前端
+        // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include
+        // response.setHeader("Access-Control-Allow-Origin", "http://localhost:3000");
+        response.setHeader("Cache-Control","no-cache");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
-        response.getWriter().println(JSONUtil.parse(ReturnResult.failure(ResultStatusEnum.UNAUTHORIZED)));
+        response.getWriter().println(JSONUtil.parse(ReturnResult.failure(ResultStatusEnum.FORBIDDEN)));
         response.getWriter().flush();
     }
 }
