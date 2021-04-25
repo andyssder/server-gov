@@ -1,8 +1,8 @@
 package com.politics.chn.common.enums;
 
 /**
+ * @since 2021-02-07
  * @author andyssder
- * @create 2021-02-07 16:07
  */
 public enum ResultStatusEnum {
     // 数据操作定义

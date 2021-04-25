@@ -5,8 +5,8 @@ import com.politics.chn.common.enums.ResultStatusEnum;
 import java.util.Objects;
 
 /**
+ * @since 2021-02-07
  * @author andyssder
- * @create 2021-02-07 16:20
  */
 public class ReturnResult<T> {
     private String code;

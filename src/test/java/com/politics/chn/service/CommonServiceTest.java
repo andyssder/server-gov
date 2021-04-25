@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 /**
+ * @since 2021-02-20
  * @author andyssder
- * @create 2021-02-20 16:37
  */
 @SpringBootTest
 class CommonServiceTest {

@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 
 
 /**
+ * @since 2021-03-31
  * @author xu
- * @create 2021-03-31 21:36
  */
 public class UserDO implements UserDetails {
     private BaseUserDO baseUser;

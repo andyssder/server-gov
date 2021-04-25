@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 /**
+ * @since 2021-02-06
  * @author andyssder
- * @create 2021-02-06 16:50
  */
 @RestController
 @RequestMapping("/districts")

@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * @since 2021-04-03
  * @author xu
- * @create 2021-04-03 10:31
  */
 @Component
 public class NoAuthenticationEntryPoint implements AuthenticationEntryPoint {

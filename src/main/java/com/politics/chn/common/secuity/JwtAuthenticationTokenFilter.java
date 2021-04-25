@@ -1,8 +1,6 @@
 package com.politics.chn.common.secuity;
 
 import com.politics.chn.common.utils.JwtTokenUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +19,8 @@ import java.io.IOException;
 
 /**
  * JWT登录授权过滤器
- * Created by macro on 2018/4/26.
+ * @since 2021-04-03
+ * @author xu
  */
 public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
     @Autowired

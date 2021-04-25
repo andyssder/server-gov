@@ -4,11 +4,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 /**
+ * @since 2021-02-20
  * @author andyssder
- * @create 2021-02-20 23:18
  */
 @SpringBootTest
 class OfficialServiceTest {

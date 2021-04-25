@@ -6,8 +6,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.*;
 
 /**
+ * @since 2021-03-31
  * @author xu
- * @create 2021-03-31 21:05
  */
 public class BaseUserDO {
 

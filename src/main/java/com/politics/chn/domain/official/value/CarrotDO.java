@@ -3,8 +3,8 @@ package com.politics.chn.domain.official.value;
 import java.util.Objects;
 
 /**
+ * @since 2021-02-19
  * @author andyssder
- * @create 2021-02-19 20:04
  */
 public class CarrotDO {
     Long id;

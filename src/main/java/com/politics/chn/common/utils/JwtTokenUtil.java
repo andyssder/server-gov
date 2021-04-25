@@ -13,6 +13,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+
+/**
+ * JwtToken生成的工具类
+ * @since 2021-04-01
+ * @author xu
+ */
 /**
  * JwtToken生成的工具类
  * JWT token的格式：header.payload.signature

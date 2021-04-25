@@ -16,8 +16,8 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 import java.lang.annotation.Annotation;
 
 /**
+ * @since 2021-02-07
  * @author andyssder
- * @create 2021-02-07 17:14
  */
 @EnableWebMvc
 @Configuration

@@ -23,19 +23,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
-import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import javax.servlet.http.HttpServletResponse;
-import java.time.Duration;
-import java.util.Arrays;
-import java.util.Collections;
-
 
 /**
+ * @since 2021-04-01
  * @author xu
- * @create 2021-04-01 20:45
  */
 @Configuration
 @EnableWebSecurity

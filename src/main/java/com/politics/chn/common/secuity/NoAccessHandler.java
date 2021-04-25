@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
+ * @since 2021-04-03
  * @author xu
- * @create 2021-04-03 11:12
  */
 @Component
 public class NoAccessHandler implements AccessDeniedHandler {

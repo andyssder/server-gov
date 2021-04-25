@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Objects;
 
 /**
+ * @since 2021-02-19
  * @author andyssder
- * @create 2021-02-19 19:52
  */
 public class OfficialDO {
     PersonDO person;

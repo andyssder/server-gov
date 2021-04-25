@@ -3,8 +3,8 @@ package com.politics.chn.domain.user.Entity;
 import java.util.Objects;
 
 /**
+ * @since 2021-04-18
  * @author xu
- * @create 2021-04-18 09:13
  */
 public class UserRoleRelation {
     Long id;

@@ -8,10 +8,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
 /**
+ * @since 2021-02-17
  * @author andyssder
- * @create 2021-02-17 09:55
  */
 @SpringBootTest
 class PitServiceTest {

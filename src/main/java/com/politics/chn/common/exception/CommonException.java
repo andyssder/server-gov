@@ -3,8 +3,8 @@ package com.politics.chn.common.exception;
 import com.politics.chn.common.enums.ResultStatusEnum;
 
 /**
+ * @since 2021-02-07
  * @author andyssder
- * @create 2021-02-07 17:58
  */
 public class CommonException extends RuntimeException{
 

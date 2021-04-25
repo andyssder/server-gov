@@ -10,8 +10,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
+ * @since 2021-02-20 16:32
  * @author andyssder
- * @create 2021-02-20 16:32
  */
 @Repository
 public class CommonRepository {

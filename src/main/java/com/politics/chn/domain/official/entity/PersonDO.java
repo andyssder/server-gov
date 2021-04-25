@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
+ * @since 2021-02-19
  * @author andyssder
- * @create 2021-02-19 19:54
  */
 public class PersonDO {
     Long id;

@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
+ * @since 2021-04-03
  * @author xu
- * @create 2021-04-03 21:38
  */
 public class PermissionDO {
     private Long id;

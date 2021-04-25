@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * @author xu
- * @create 2021-03-31 22:32
+ * @since 2021-03-31 22:32
  */
 @Mapper
 public interface BaseUserMapper {

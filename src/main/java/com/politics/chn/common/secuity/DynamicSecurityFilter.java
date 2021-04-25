@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
+ * @since 2021-04-06
  * @author andyssder
- * @create 2021-04-06 08:21
  */
 public class DynamicSecurityFilter extends AbstractSecurityInterceptor implements Filter {
 

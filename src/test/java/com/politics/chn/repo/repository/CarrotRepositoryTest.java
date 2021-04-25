@@ -3,10 +3,9 @@ package com.politics.chn.repo.repository;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
 /**
+ * @since 2021-02-18
  * @author andyssder
- * @create 2021-02-18 12:57
  */
 @SpringBootTest
 class CarrotRepositoryTest {

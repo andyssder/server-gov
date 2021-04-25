@@ -7,8 +7,8 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 /**
+ * @since 2021-02-06
  * @author andyssder
- * @create 2021-02-06 16:45
  */
 @Mapper
 public interface DistrictMapper {
