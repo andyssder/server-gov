@@ -108,18 +108,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("loginState");
 
     }
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowCredentials(true);
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000"));
-        configuration.setAllowedMethods(Arrays.asList("*"));
-        configuration.setAllowedHeaders(Arrays.asList("*"));
-        configuration.setMaxAge(Duration.ofHours(1));
-        source.registerCorsConfiguration("/**",configuration);
-        return source;
-    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

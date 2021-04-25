@@ -13,7 +13,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/pits")
-@CrossOrigin
 public class PitController {
 
     private PitService pitService;

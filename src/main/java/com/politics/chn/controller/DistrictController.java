@@ -13,7 +13,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/districts")
-@CrossOrigin
 public class DistrictController {
     private DistrictService districtService;
 

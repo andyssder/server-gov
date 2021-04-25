@@ -13,7 +13,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/officials")
-@CrossOrigin
 public class OfficialController {
     private OfficialService officialService;
 

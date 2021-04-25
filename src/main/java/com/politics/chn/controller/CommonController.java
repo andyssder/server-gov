@@ -14,7 +14,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping
-@CrossOrigin
 public class CommonController {
     private CommonService commonService;
 

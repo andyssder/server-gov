@@ -4,7 +4,6 @@ import com.politics.chn.common.annotation.GlobalResultDisabled;
 import com.politics.chn.common.result.ReturnResult;
 import com.politics.chn.domain.user.Entity.BaseUserDO;
 import com.politics.chn.domain.user.UserDO;
-import com.politics.chn.service.PermissionService;
 import com.politics.chn.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,7 +21,6 @@ import java.util.Map;
  * @create 2021-03-31 22:39
  */
 @RestController
-@CrossOrigin
 public class UserController {
     @Autowired
     private UserService userService;

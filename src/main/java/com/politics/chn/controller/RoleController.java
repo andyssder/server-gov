@@ -1,21 +1,18 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.domain.user.Entity.PermissionDO;
 import com.politics.chn.domain.user.Entity.RoleDO;
 import com.politics.chn.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.List;
 
 /**
  * @author xu
- * @create 2021-04-05 10:57
+ * @since  2021-04-05 10:57
  */
 @RestController
 @RequestMapping("/roles")
-@CrossOrigin
 public class RoleController {
 
     private RoleService roleService;

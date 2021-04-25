@@ -13,7 +13,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/carrots")
-@CrossOrigin
 public class CarrotController {
     private CarrotService carrotService;
 
