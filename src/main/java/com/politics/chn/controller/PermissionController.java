@@ -26,6 +26,11 @@ public class PermissionController {
         this.permissionService = permissionService;
     }
 
+    @Autowired
+    public void setDynamicSecurityMetadataSource(DynamicSecurityMetadataSource dynamicSecurityMetadataSource) {
+        this.dynamicSecurityMetadataSource = dynamicSecurityMetadataSource;
+    }
+
     @PostMapping
     public Long addPermission(@RequestBody PermissionDO permission) {
         long id = permissionService.addPermission(permission);

@@ -47,11 +47,7 @@ public class PermissionDao {
     }
 
     public boolean deleteOne(long id) {
-        return deleteOne(id, false);
-    }
-
-    public boolean deleteOne(long id, boolean realDelete) {
-        return realDelete ? permissionMapper.realDeleteOne(id) > 0 : permissionMapper.deleteOne(id) > 0;
+        return permissionMapper.deleteOne(id) > 0;
     }
 
 }

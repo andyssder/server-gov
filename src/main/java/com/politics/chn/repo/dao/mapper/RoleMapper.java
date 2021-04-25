@@ -100,11 +100,8 @@ public interface RoleMapper {
             "</script>")
     int updateMany(List<RoleDO> roles);
 
-    @Update("UPDATE sys_role SET is_deleted = true WHERE id = #{id}")
-    int deleteOne(long id);
-
     @Delete("Delete FROM sys_role WHERE id = #{id}")
-    int realDeleteOne(long id);
+    int deleteOne(long id);
 
     @Insert("INSERT INTO sys_role_permission(role_id, permission_id) " +
             "VALUES(#{roleId}, #{permissionId})")

@@ -129,10 +129,7 @@ public interface PermissionMapper {
             "</script>")
     int updateMany(List<PermissionDO> permissions);
 
-    @Update("UPDATE sys_permission SET is_deleted = true WHERE id = #{id}")
-    int deleteOne(long id);
-
     @Delete("Delete FROM sys_permission WHERE id = #{id}")
-    int realDeleteOne(long id);
+    int deleteOne(long id);
 
 }
