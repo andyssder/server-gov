@@ -15,7 +15,9 @@ public interface PersonMapper {
     @Select("SELECT * FROM person WHERE is_deleted = false")
     @Results(id="person", value={
             @Result(property="enabled",column="is_enabled"),
-            @Result(property="deleted",column="is_deleted")
+            @Result(property="deleted",column="is_deleted"),
+            @Result(property="party",column="party_id"),
+            @Result(property="ethnicity",column="ethnicity_id")
     })
     List<PersonDO> getAll();
 
@@ -50,7 +52,7 @@ public interface PersonMapper {
             "<if test='birthDate != null'> birth_date=#{birthDate}, </if>" +
             "<if test='deathDate != null'> death_date=#{deathDate}, </if>" +
             "<if test='workDate != null'> work_date=#{workDate}, </if>" +
-            "<if test='partyData != null'> party_date=#{partyDate}, </if>" +
+            "<if test='partyDate != null'> party_date=#{partyDate}, </if>" +
             "<if test='retireDate != null'> retire_date=#{retireDate}, </if>" +
             "<if test='ancestralHome != null'> ancestral_home=#{ancestralHome}, </if>" +
             "<if test='birthPlace != null'> birth_place=#{birthPlace}, </if>" +
