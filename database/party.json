@@ -1,0 +1,11 @@
+[{"id":1, "name":"\u4e2d\u56fd\u5171\u4ea7\u515a", "short_name":"\u5171\u4ea7\u515a"},
+ {"id":2, "name":"\u4e2d\u56fd\u56fd\u6c11\u515a\u9769\u547d\u59d4\u5458\u4f1a", "short_name":"\u6c11\u9769"},
+ {"id":3, "name":"\u4e2d\u56fd\u6c11\u4e3b\u540c\u76df", "short_name":"\u6c11\u76df"},
+ {"id":4, "name":"\u4e2d\u56fd\u6c11\u4e3b\u5efa\u56fd\u4f1a", "short_name":"\u6c11\u5efa"},
+ {"id":5, "name":"\u4e2d\u56fd\u6c11\u4e3b\u4fc3\u8fdb\u4f1a", "short_name":"\u6c11\u8fdb"},
+ {"id":6, "name":"\u4e2d\u56fd\u519c\u5de5\u6c11\u4e3b\u515a", "short_name":"\u519c\u5de5\u515a"},
+ {"id":7, "name":"\u4e2d\u56fd\u81f4\u516c\u515a", "short_name":"\u81f4\u516c\u515a"},
+ {"id":8, "name":"\u4e5d\u4e09\u5b66\u793e", "short_name":"\u4e5d\u4e09"},
+ {"id":9, "name":"\u53f0\u6e7e\u6c11\u4e3b\u81ea\u6cbb\u540c\u76df", "short_name":"\u53f0\u76df"},
+ {"id":10, "name":"\u65e0\u515a\u6d3e", "short_name":"\u65e0\u515a\u6d3e"},
+ {"id":11, "name":"\u672a\u77e5", "short_name":"\u672a\u77e5"}]
