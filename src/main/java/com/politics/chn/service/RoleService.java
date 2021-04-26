@@ -61,7 +61,6 @@ public class RoleService {
         Assert.isTrue(roleRepository.deleteOne(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
-        roleRepository.deleteRolePermissionRelation(id);
     }
 
     public void allocPermission(long roleId, List<Long> permissionIds) {
