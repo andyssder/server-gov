@@ -33,6 +33,10 @@ public class PersonDO {
 
     @DateTimeFormat(pattern = "yyyy-MM")
     @JsonFormat(pattern="yyyy-MM")
+    Date partyDate;
+
+    @DateTimeFormat(pattern = "yyyy-MM")
+    @JsonFormat(pattern="yyyy-MM")
     Date retireDate;
 
     Integer ancestralHome;
@@ -123,6 +127,15 @@ public class PersonDO {
     public void setWorkDate(Date workDate) {
         this.workDate = workDate;
     }
+
+    public Date getPartyDate() {
+        return partyDate;
+    }
+
+    public void setPartyDate(Date partyDate) {
+        this.partyDate = partyDate;
+    }
+
 
     public Date getRetireDate() {
         return retireDate;
@@ -237,12 +250,12 @@ public class PersonDO {
             return false;
         }
         PersonDO personDO = (PersonDO) o;
-        return Objects.equals(id, personDO.id) && Objects.equals(name, personDO.name) && Objects.equals(portrait, personDO.portrait) && Objects.equals(gender, personDO.gender) && Objects.equals(party, personDO.party) && Objects.equals(ethnicity, personDO.ethnicity) && Objects.equals(birthDate, personDO.birthDate) && Objects.equals(deathDate, personDO.deathDate) && Objects.equals(workDate, personDO.workDate) && Objects.equals(retireDate, personDO.retireDate) && Objects.equals(ancestralHome, personDO.ancestralHome) && Objects.equals(birthPlace, personDO.birthPlace) && Objects.equals(workPlace, personDO.workPlace) && Objects.equals(university, personDO.university) && Objects.equals(major, personDO.major) && Objects.equals(education, personDO.education) && Objects.equals(degree, personDO.degree) && Objects.equals(ranking, personDO.ranking) && Objects.equals(createTime, personDO.createTime) && Objects.equals(updateTime, personDO.updateTime) && Objects.equals(enabled, personDO.enabled) && Objects.equals(deleted, personDO.deleted);
+        return Objects.equals(id, personDO.id) && Objects.equals(name, personDO.name) && Objects.equals(portrait, personDO.portrait) && Objects.equals(gender, personDO.gender) && Objects.equals(party, personDO.party) && Objects.equals(ethnicity, personDO.ethnicity) && Objects.equals(birthDate, personDO.birthDate) && Objects.equals(deathDate, personDO.deathDate) && Objects.equals(workDate, personDO.workDate) && Objects.equals(partyDate, personDO.partyDate) && Objects.equals(retireDate, personDO.retireDate) && Objects.equals(ancestralHome, personDO.ancestralHome) && Objects.equals(birthPlace, personDO.birthPlace) && Objects.equals(workPlace, personDO.workPlace) && Objects.equals(university, personDO.university) && Objects.equals(major, personDO.major) && Objects.equals(education, personDO.education) && Objects.equals(degree, personDO.degree) && Objects.equals(ranking, personDO.ranking) && Objects.equals(createTime, personDO.createTime) && Objects.equals(updateTime, personDO.updateTime) && Objects.equals(enabled, personDO.enabled) && Objects.equals(deleted, personDO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, portrait, gender, party, ethnicity, birthDate, deathDate, workDate, retireDate, ancestralHome, birthPlace, workPlace, university, major, education, degree, ranking, createTime, updateTime, enabled, deleted);
+        return Objects.hash(id, name, portrait, gender, party, ethnicity, birthDate, deathDate, workDate, partyDate, retireDate, ancestralHome, birthPlace, workPlace, university, major, education, degree, ranking, createTime, updateTime, enabled, deleted);
     }
 
     @Override
@@ -257,6 +270,7 @@ public class PersonDO {
                 ", birthDate=" + birthDate +
                 ", deathDate=" + deathDate +
                 ", workDate=" + workDate +
+                ", partyDate=" + partyDate +
                 ", retireDate=" + retireDate +
                 ", ancestralHome=" + ancestralHome +
                 ", birthPlace=" + birthPlace +

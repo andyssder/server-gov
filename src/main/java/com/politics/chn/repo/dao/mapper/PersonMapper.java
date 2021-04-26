@@ -15,12 +15,7 @@ public interface PersonMapper {
     @Select("SELECT * FROM person WHERE is_deleted = false")
     @Results(id="person", value={
             @Result(property="enabled",column="is_enabled"),
-            @Result(property="deleted",column="is_deleted"),
-            @Result(property="party",column="party_id"),
-            @Result(property="ethnicity",column="ethnicity_id"),
-            @Result(property="ancestralHome",column="ancestral_home"),
-            @Result(property="birthPlace",column="birth_place"),
-            @Result(property="workPlace",column="work_place")
+            @Result(property="deleted",column="is_deleted")
     })
     List<PersonDO> getAll();
 
@@ -30,13 +25,13 @@ public interface PersonMapper {
 
     @Insert("INSERT INTO person(" +
             "name, portrait, gender, party_id, ethnicity_id, " +
-            "birth_date, death_date, work_date, retire_date, " +
+            "birth_date, death_date, work_date, party_date, retire_date, " +
             "ancestral_home, birth_place, work_place, " +
             "university, major, education, degree, " +
             "ranking, create_time, update_time, is_enabled) " +
             "VALUES(" +
             "#{name}, #{portrait}, #{gender}, #{party}, #{ethnicity}, " +
-            "#{birthDate}, #{deathDate}, #{workDate}, #{retireDate}, " +
+            "#{birthDate}, #{deathDate}, #{workDate}, #{partyDate}, #{retireDate}, " +
             "#{ancestralHome}, #{birthPlace}, #{workPlace}," +
             "#{university}, #{major}, #{education}, #{degree}," +
             "#{ranking}, #{createTime}, #{updateTime}, #{enabled})")
@@ -55,6 +50,7 @@ public interface PersonMapper {
             "<if test='birthDate != null'> birth_date=#{birthDate}, </if>" +
             "<if test='deathDate != null'> death_date=#{deathDate}, </if>" +
             "<if test='workDate != null'> work_date=#{workDate}, </if>" +
+            "<if test='partyData != null'> party_date=#{partyDate}, </if>" +
             "<if test='retireDate != null'> retire_date=#{retireDate}, </if>" +
             "<if test='ancestralHome != null'> ancestral_home=#{ancestralHome}, </if>" +
             "<if test='birthPlace != null'> birth_place=#{birthPlace}, </if>" +
