@@ -1,6 +1,8 @@
 package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.domain.official.entity.PersonDO;
+import com.politics.chn.domain.official.value.DistrictDO;
+import com.politics.chn.repo.po.PersonPO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -17,12 +19,23 @@ public interface PersonMapper {
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
             @Result(property="party",column="party_id"),
-            @Result(property="ethnicity",column="ethnicity_id")
+            @Result(property="ethnicity",column="ethnicity_id"),
     })
     List<PersonDO> getAll();
 
     @Select("SELECT * FROM person WHERE id = #{id} LIMIT 1")
-    @ResultMap("person")
+    @Results(id="onePerson", value={
+            @Result(property="enabled",column="is_enabled"),
+            @Result(property="deleted",column="is_deleted"),
+            @Result(property="party",column="party_id"),
+            @Result(property="ethnicity",column="ethnicity_id"),
+            @Result(property = "ancestralHome", javaType = DistrictDO.class, column = "ancestral_home",
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
+            @Result(property = "birthPlace", javaType = DistrictDO.class, column = "birth_place",
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
+            @Result(property = "workPlace", javaType = DistrictDO.class, column = "work_place",
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
+    })
     PersonDO getOneById(long id);
 
     @Insert("INSERT INTO person(" +
@@ -38,7 +51,7 @@ public interface PersonMapper {
             "#{university}, #{major}, #{education}, #{degree}," +
             "#{ranking}, #{createTime}, #{updateTime}, #{enabled})")
     @Options(useGeneratedKeys=true, keyProperty="id")
-    int insertOne(PersonDO personDO);
+    int insertOne(PersonPO person);
 
     // TODO: 存在设置某个属性为null不成功的情况
     @Update("<script> " +
@@ -69,7 +82,7 @@ public interface PersonMapper {
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
-    int updateOne(PersonDO personDO);
+    int updateOne(PersonPO personPO);
 
     @Update("UPDATE person SET is_deleted = true WHERE id = #{id}")
     int deleteOne(long id);

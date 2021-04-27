@@ -1,15 +1,16 @@
-package com.politics.chn.domain.official.entity;
+package com.politics.chn.repo.po;
 
+import com.politics.chn.domain.official.entity.PersonDO;
 import com.politics.chn.domain.official.value.DistrictDO;
 
 import java.util.Date;
 import java.util.Objects;
 
 /**
- * @since 2021-02-19
- * @author andyssder
+ * @author xu
+ * @since 2021-04-27
  */
-public class PersonDO {
+public class PersonPO {
     Long id;
     String name;
     String portrait;
@@ -28,9 +29,9 @@ public class PersonDO {
 
     Date retireDate;
 
-    DistrictDO ancestralHome;
-    DistrictDO birthPlace;
-    DistrictDO workPlace;
+    Integer ancestralHome;
+    Integer birthPlace;
+    Integer workPlace;
 
     String university;
     String major;
@@ -134,27 +135,27 @@ public class PersonDO {
         this.retireDate = retireDate;
     }
 
-    public DistrictDO getAncestralHome() {
+    public Integer getAncestralHome() {
         return ancestralHome;
     }
 
-    public void setAncestralHome(DistrictDO ancestralHome) {
+    public void setAncestralHome(Integer ancestralHome) {
         this.ancestralHome = ancestralHome;
     }
 
-    public DistrictDO getBirthPlace() {
+    public Integer getBirthPlace() {
         return birthPlace;
     }
 
-    public void setBirthPlace(DistrictDO birthPlace) {
+    public void setBirthPlace(Integer birthPlace) {
         this.birthPlace = birthPlace;
     }
 
-    public DistrictDO getWorkPlace() {
+    public Integer getWorkPlace() {
         return workPlace;
     }
 
-    public void setWorkPlace(DistrictDO workPlace) {
+    public void setWorkPlace(Integer workPlace) {
         this.workPlace = workPlace;
     }
 
@@ -238,8 +239,8 @@ public class PersonDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PersonDO personDO = (PersonDO) o;
-        return Objects.equals(id, personDO.id) && Objects.equals(name, personDO.name) && Objects.equals(portrait, personDO.portrait) && Objects.equals(gender, personDO.gender) && Objects.equals(party, personDO.party) && Objects.equals(ethnicity, personDO.ethnicity) && Objects.equals(birthDate, personDO.birthDate) && Objects.equals(deathDate, personDO.deathDate) && Objects.equals(workDate, personDO.workDate) && Objects.equals(partyDate, personDO.partyDate) && Objects.equals(retireDate, personDO.retireDate) && Objects.equals(ancestralHome, personDO.ancestralHome) && Objects.equals(birthPlace, personDO.birthPlace) && Objects.equals(workPlace, personDO.workPlace) && Objects.equals(university, personDO.university) && Objects.equals(major, personDO.major) && Objects.equals(education, personDO.education) && Objects.equals(degree, personDO.degree) && Objects.equals(ranking, personDO.ranking) && Objects.equals(createTime, personDO.createTime) && Objects.equals(updateTime, personDO.updateTime) && Objects.equals(enabled, personDO.enabled) && Objects.equals(deleted, personDO.deleted);
+        PersonPO personPO = (PersonPO) o;
+        return Objects.equals(id, personPO.id) && Objects.equals(name, personPO.name) && Objects.equals(portrait, personPO.portrait) && Objects.equals(gender, personPO.gender) && Objects.equals(party, personPO.party) && Objects.equals(ethnicity, personPO.ethnicity) && Objects.equals(birthDate, personPO.birthDate) && Objects.equals(deathDate, personPO.deathDate) && Objects.equals(workDate, personPO.workDate) && Objects.equals(partyDate, personPO.partyDate) && Objects.equals(retireDate, personPO.retireDate) && Objects.equals(ancestralHome, personPO.ancestralHome) && Objects.equals(birthPlace, personPO.birthPlace) && Objects.equals(workPlace, personPO.workPlace) && Objects.equals(university, personPO.university) && Objects.equals(major, personPO.major) && Objects.equals(education, personPO.education) && Objects.equals(degree, personPO.degree) && Objects.equals(ranking, personPO.ranking) && Objects.equals(createTime, personPO.createTime) && Objects.equals(updateTime, personPO.updateTime) && Objects.equals(enabled, personPO.enabled) && Objects.equals(deleted, personPO.deleted);
     }
 
     @Override
@@ -249,7 +250,7 @@ public class PersonDO {
 
     @Override
     public String toString() {
-        return "PersonDO{" +
+        return "PersonPO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", portrait='" + portrait + '\'' +
@@ -274,9 +275,5 @@ public class PersonDO {
                 ", enabled=" + enabled +
                 ", deleted=" + deleted +
                 '}';
-    }
-
-    public Boolean isNotNull() {
-        return name != null && gender != null;
     }
 }
