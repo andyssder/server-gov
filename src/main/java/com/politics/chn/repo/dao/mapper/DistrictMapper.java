@@ -17,13 +17,21 @@ public interface DistrictMapper {
     List<DistrictDO> getAll();
 
     @Select("SELECT * FROM district WHERE id = #{id} LIMIT 1")
-    @Results(id="district", value={
+    DistrictDO getOneById(int id);
+
+    @Select("SELECT * FROM district WHERE id = #{id} LIMIT 1")
+    @Results(id="districtParents", value={
             @Result(property = "parents", javaType = List.class, column = "{lft = lft, rgt = rgt}",
-                    many = @Many(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getUpper")),
+                    many = @Many(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getUpper"))
+    })
+    DistrictDO getOneByIdWithParents(int id);
+
+    @Select("SELECT * FROM district WHERE id = #{id} LIMIT 1")
+    @Results(id="districtChildren", value={
             @Result(property = "children", javaType = List.class, column = "{lft = lft, rgt = rgt, level = level}",
                     many = @Many(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getLower"))
     })
-    DistrictDO getOneById(int id);
+    DistrictDO getOneByIdWithChildren(int id);
 
     @Select("SELECT * FROM district WHERE level = #{level}")
     List<DistrictDO> getByLevel(int level);

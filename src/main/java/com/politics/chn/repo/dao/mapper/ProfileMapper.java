@@ -1,6 +1,8 @@
 package com.politics.chn.repo.dao.mapper;
 
 import com.politics.chn.domain.official.entity.ProfileDO;
+import com.politics.chn.domain.official.value.DistrictDO;
+import com.politics.chn.repo.po.ProfilePO;
 import org.apache.ibatis.annotations.*;
 
 import java.util.List;
@@ -15,14 +17,22 @@ public interface ProfileMapper {
     @Results(id="profile", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
-            @Result(property="district",column="district_id"),
             @Result(property="pit",column="pit_id"),
-            @Result(property="carrot",column="carrot_id")
+            @Result(property="carrot",column="carrot_id"),
+            @Result(property = "district", javaType = DistrictDO.class, column = "district_id",
+            one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
     })
     List<ProfileDO> getAll();
 
     @Select("SELECT * FROM profile WHERE person_id = #{personId} and is_deleted = false ORDER BY start_time, priority")
-    @ResultMap("profile")
+    @Results(id="oneProfile", value={
+            @Result(property="enabled",column="is_enabled"),
+            @Result(property="deleted",column="is_deleted"),
+            @Result(property="pit",column="pit_id"),
+            @Result(property="carrot",column="carrot_id"),
+            @Result(property = "district", javaType = DistrictDO.class, column = "district_id",
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneByIdWithParents")),
+    })
     List<ProfileDO> getByPersonId(long personId);
 
     @Select("SELECT * FROM profile WHERE id = #{id} LIMIT 1")
@@ -38,7 +48,7 @@ public interface ProfileMapper {
             "#{district}, #{pit}, #{carrot}, " +
             "#{remark}, #{summary}, #{priority}, #{enabled})")
     @Options(useGeneratedKeys=true, keyProperty="id")
-    int insertOne(ProfileDO profile);
+    int insertOne(ProfilePO profile);
 
     @Insert("<script> INSERT INTO profile " +
             "(start_time, end_time, person_id, district_id, pit_id, carrot_id, remark, summary, priority, is_enabled) " +
@@ -50,7 +60,7 @@ public interface ProfileMapper {
             "</foreach>" +
             "</script>")
     @Options(useGeneratedKeys=true, keyProperty="id")
-    int insertMany(List<ProfileDO> profiles);
+    int insertMany(List<ProfilePO> profiles);
 
     // TODO: 存在设置某个属性为null不成功的情况
     @Update("<script> " +
@@ -69,7 +79,7 @@ public interface ProfileMapper {
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
             "</script>")
-    int updateOne(ProfileDO profile);
+    int updateOne(ProfilePO profile);
 
     @Insert("<script> INSERT INTO profile " +
             "(id, start_time, end_time, person_id, district_id, pit_id, carrot_id, remark, summary, priority, is_deleted, is_enabled) " +
@@ -94,12 +104,9 @@ public interface ProfileMapper {
             "is_enabled = VALUES(is_enabled)" +
             "</script>")
     @Options(useGeneratedKeys=true, keyProperty="id")
-    int updateMany(List<ProfileDO> profiles);
-
-    @Update("UPDATE profile SET is_deleted = true WHERE ${field} = #{value}")
-    int deleteOne(String field, long value);
+    int updateMany(List<ProfilePO> profiles);
 
     @Delete("Delete FROM profile WHERE ${field} = #{value}")
-    int realDeleteOne(String field, long value);
+    int deleteOne(String field, long value);
 
 }

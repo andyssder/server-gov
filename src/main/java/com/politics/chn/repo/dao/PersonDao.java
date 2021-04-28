@@ -48,7 +48,7 @@ public class PersonDao {
         return personMapper.getOneById(id);
     }
 
-    public PersonPO transfer(PersonDO personDO) {
+    private PersonPO transfer(PersonDO personDO) {
         PersonPO personPO = BeanUtil.copyProperties(personDO, PersonPO.class,
                 "ancestralHome", "birthPlace", "workPlace");
         if (personDO.getAncestralHome() != null) {

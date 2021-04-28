@@ -1,6 +1,4 @@
-package com.politics.chn.domain.official.entity;
-
-import com.politics.chn.domain.official.value.DistrictDO;
+package com.politics.chn.repo.po;
 
 import java.util.Date;
 import java.util.Objects;
@@ -9,13 +7,13 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class ProfileDO {
+public class ProfilePO {
     Long id;
 
     Date startTime;
     Date endTime;
     Long personId;
-    DistrictDO district;
+    Integer district;
     Long pit;
     Long carrot;
     String remark;
@@ -57,11 +55,11 @@ public class ProfileDO {
         this.personId = personId;
     }
 
-    public DistrictDO getDistrict() {
+    public Integer getDistrict() {
         return district;
     }
 
-    public void setDistrict(DistrictDO district) {
+    public void setDistrict(Integer district) {
         this.district = district;
     }
 
@@ -129,8 +127,8 @@ public class ProfileDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ProfileDO profileDO = (ProfileDO) o;
-        return Objects.equals(id, profileDO.id) && Objects.equals(startTime, profileDO.startTime) && Objects.equals(endTime, profileDO.endTime) && Objects.equals(personId, profileDO.personId) && Objects.equals(district, profileDO.district) && Objects.equals(pit, profileDO.pit) && Objects.equals(carrot, profileDO.carrot) && Objects.equals(remark, profileDO.remark) && Objects.equals(summary, profileDO.summary) && Objects.equals(priority, profileDO.priority) && Objects.equals(enabled, profileDO.enabled) && Objects.equals(deleted, profileDO.deleted);
+        ProfilePO profilePO = (ProfilePO) o;
+        return Objects.equals(id, profilePO.id) && Objects.equals(startTime, profilePO.startTime) && Objects.equals(endTime, profilePO.endTime) && Objects.equals(personId, profilePO.personId) && Objects.equals(district, profilePO.district) && Objects.equals(pit, profilePO.pit) && Objects.equals(carrot, profilePO.carrot) && Objects.equals(remark, profilePO.remark) && Objects.equals(summary, profilePO.summary) && Objects.equals(priority, profilePO.priority) && Objects.equals(enabled, profilePO.enabled) && Objects.equals(deleted, profilePO.deleted);
     }
 
     @Override
@@ -140,7 +138,7 @@ public class ProfileDO {
 
     @Override
     public String toString() {
-        return "ProfileDO{" +
+        return "ProfilePO{" +
                 "id=" + id +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
@@ -155,8 +153,5 @@ public class ProfileDO {
                 ", deleted=" + deleted +
                 '}';
     }
-
-    public Boolean isNotNull() {
-        return startTime != null && district != null && pit != null && carrot != null;
-    }
 }
+

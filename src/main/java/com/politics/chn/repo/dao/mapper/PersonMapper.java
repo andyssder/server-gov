@@ -20,6 +20,12 @@ public interface PersonMapper {
             @Result(property="deleted",column="is_deleted"),
             @Result(property="party",column="party_id"),
             @Result(property="ethnicity",column="ethnicity_id"),
+            @Result(property = "ancestralHome", javaType = DistrictDO.class, column = "ancestral_home",
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
+            @Result(property = "birthPlace", javaType = DistrictDO.class, column = "birth_place",
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
+            @Result(property = "workPlace", javaType = DistrictDO.class, column = "work_place",
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
     })
     List<PersonDO> getAll();
 
@@ -30,11 +36,11 @@ public interface PersonMapper {
             @Result(property="party",column="party_id"),
             @Result(property="ethnicity",column="ethnicity_id"),
             @Result(property = "ancestralHome", javaType = DistrictDO.class, column = "ancestral_home",
-                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneByIdWithParents")),
             @Result(property = "birthPlace", javaType = DistrictDO.class, column = "birth_place",
-                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneByIdWithParents")),
             @Result(property = "workPlace", javaType = DistrictDO.class, column = "work_place",
-                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneById")),
+                    one = @One(select = "com.politics.chn.repo.dao.mapper.DistrictMapper.getOneByIdWithParents")),
     })
     PersonDO getOneById(long id);
 

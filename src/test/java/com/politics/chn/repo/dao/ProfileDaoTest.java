@@ -2,6 +2,7 @@ package com.politics.chn.repo.dao;
 
 import cn.hutool.core.date.DateUtil;
 import com.politics.chn.domain.official.entity.ProfileDO;
+import com.politics.chn.domain.official.value.DistrictDO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ class ProfileDaoTest {
         ProfileDO profile = getProfileDO();
         Assertions.assertTrue(profileDao.addOne(profile), "插入profile失败");
 
-        profileDao.deleteOne(profile.getId(), true);
+        profileDao.deleteOne(profile.getId());
     }
 
     @Test
@@ -39,7 +40,7 @@ class ProfileDaoTest {
 
         Assertions.assertTrue(profileDao.addMany(profiles), "批量插入profile失败");
 
-        profileDao.deleteOneByPersonId(profiles.get(0).getPersonId(), true);
+        profileDao.deleteOneByPersonId(profiles.get(0).getPersonId());
     }
 
     @Test
@@ -49,7 +50,7 @@ class ProfileDaoTest {
         Long id = profile.getId();
         Assertions.assertTrue(profileDao.deleteOne(id), "删除profile错误");
         Assertions.assertTrue(profileDao.getOneById(id).getDeleted(), "标记删除profile错误");
-        profileDao.deleteOne(id, true);
+        profileDao.deleteOne(id);
     }
 
     @Test
@@ -59,7 +60,7 @@ class ProfileDaoTest {
         Long personId = profile.getPersonId();
         Assertions.assertTrue(profileDao.deleteOneByPersonId(personId), "根据personId删除profile错误");
         Assertions.assertTrue(profileDao.getOneByPersonId(personId).get(0).getDeleted(), "根据personId标记删除profile错误");
-        profileDao.deleteOneByPersonId(personId, true);
+        profileDao.deleteOneByPersonId(personId);
     }
 
     @Test
@@ -72,7 +73,7 @@ class ProfileDaoTest {
         ProfileDO updatedProfileDO = profileDao.getOneById(id);
         Assertions.assertEquals(profile.getRemark(), updatedProfileDO.getRemark(),"更新profile内容检验失败");
 
-        profileDao.deleteOne(id, true);
+        profileDao.deleteOne(id);
     }
 
     @Test
@@ -88,7 +89,7 @@ class ProfileDaoTest {
             Assertions.assertEquals(profile.getRemark(),updatedProfile.getRemark(), "批量更新profile失败内容校验");
         });
 
-        profileDao.deleteOneByPersonId(profiles.get(0).getPersonId(), true);
+        profileDao.deleteOneByPersonId(profiles.get(0).getPersonId());
 
     }
 
@@ -103,7 +104,7 @@ class ProfileDaoTest {
         profileDao.addMany(profiles);
         Long personId = profiles.get(0).getPersonId();
         Assertions.assertEquals(profiles.size(), profileDao.getOneByPersonId(personId).size(), "根据personId获取profile失败");
-        profileDao.deleteOneByPersonId(personId, true);
+        profileDao.deleteOneByPersonId(personId);
     }
 
     @Test
@@ -115,8 +116,8 @@ class ProfileDaoTest {
         Date date = DateUtil.parse(DateUtil.today());
         profileDO.setStartTime(date);
         profileDO.setPersonId(10000000L);
-        Integer district = 1;
-        profileDO.setDistrict(district);
+//        DistrictDO district = 1;
+//        profileDO.setDistrict(district);
         Long pit = 1L;
         profileDO.setPit(pit);
         Long carrot = 40L;
