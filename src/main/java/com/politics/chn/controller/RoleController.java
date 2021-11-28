@@ -1,7 +1,8 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.application.UseBiz;
 import com.politics.chn.domain.user.Entity.RoleDO;
-import com.politics.chn.service.RoleService;
+import com.politics.chn.service.user.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,12 +16,11 @@ import java.util.List;
 @RequestMapping("/roles")
 public class RoleController {
 
-    private RoleService roleService;
+    @Autowired
+    private UseBiz useBiz;
 
     @Autowired
-    private void setRoleService(RoleService roleService) {
-        this.roleService = roleService;
-    }
+    private RoleService roleService;
 
     @PostMapping
     public Long addRole(@RequestBody RoleDO role) {
@@ -53,7 +53,7 @@ public class RoleController {
 
     @PostMapping("/alloc/{id}")
     public void allocPermission(@PathVariable(value = "id") long roleId, @RequestBody List<Long> permissionIds) {
-        roleService.allocPermission(roleId, permissionIds);
+        useBiz.allocPermission(roleId, permissionIds);
     }
 
 }

@@ -114,7 +114,7 @@ public class RoleDO {
 
     @Override
     public String toString() {
-        return "RoleDO{" +
+        return "RolePO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +

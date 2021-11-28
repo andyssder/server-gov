@@ -2,7 +2,7 @@ package com.politics.chn.controller;
 
 import com.politics.chn.common.secuity.DynamicSecurityMetadataSource;
 import com.politics.chn.domain.user.Entity.PermissionDO;
-import com.politics.chn.service.PermissionService;
+import com.politics.chn.service.user.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

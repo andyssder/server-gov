@@ -59,7 +59,7 @@ public class UserRoleRelation {
 
     @Override
     public String toString() {
-        return "UserRoleRelation{" +
+        return "UserRoleRelationPO{" +
                 "id=" + id +
                 ", userId=" + userId +
                 ", roleId=" + roleId +

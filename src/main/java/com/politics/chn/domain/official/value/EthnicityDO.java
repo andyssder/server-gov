@@ -45,7 +45,7 @@ public class EthnicityDO {
 
     @Override
     public String toString() {
-        return "EthnicityDO{" +
+        return "EthnicityPO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

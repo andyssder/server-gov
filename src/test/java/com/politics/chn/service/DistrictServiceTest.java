@@ -1,6 +1,7 @@
 package com.politics.chn.service;
 
 import com.politics.chn.common.exception.CommonException;
+import com.politics.chn.service.official.DistrictService;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @since 2021-02-08
  * @author andyssder
  */
-@SpringBootTest
+//@SpringBootTest
 class DistrictServiceTest {
 
     private DistrictService districtService;

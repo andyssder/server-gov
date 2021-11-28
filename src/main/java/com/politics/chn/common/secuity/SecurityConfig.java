@@ -6,7 +6,7 @@ import cn.hutool.json.JSONUtil;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.result.ReturnResult;
 import com.politics.chn.domain.user.UserDO;
-import com.politics.chn.service.UserService;
+import com.politics.chn.application.UseBiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,13 +33,13 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private UserService userService;
+    private UseBiz useBiz;
     private NoAuthenticationEntryPoint noAuthenticationEntryPoint;
     private NoAccessHandler noAccessHandler;
 
     @Autowired
-    public void setUserService(UserService userService) {
-        this.userService = userService;
+    public void setUserService(UseBiz useBiz) {
+        this.useBiz = useBiz;
     }
 
     @Autowired
@@ -116,7 +116,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
         //获取登录用户信息
         return username -> {
-            UserDO user = userService.getUserByUserName(username);
+            UserDO user = useBiz.getUserByUserName(username);
             Assert.notNull(user, () -> {
                 throw new UsernameNotFoundException("用户名或密码错误");
             });

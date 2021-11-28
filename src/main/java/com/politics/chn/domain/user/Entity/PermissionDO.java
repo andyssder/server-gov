@@ -144,7 +144,7 @@ public class PermissionDO {
 
     @Override
     public String toString() {
-        return "PermissionDO{" +
+        return "PermissionPO{" +
                 "id=" + id +
                 ", pid=" + pid +
                 ", name='" + name + '\'' +

@@ -54,7 +54,7 @@ public class PartyDO {
 
     @Override
     public String toString() {
-        return "PartyDO{" +
+        return "PartyPO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +

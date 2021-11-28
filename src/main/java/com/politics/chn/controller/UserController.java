@@ -4,7 +4,7 @@ import com.politics.chn.common.annotation.GlobalResultDisabled;
 import com.politics.chn.common.result.ReturnResult;
 import com.politics.chn.domain.user.Entity.BaseUserDO;
 import com.politics.chn.domain.user.UserDO;
-import com.politics.chn.service.UserService;
+import com.politics.chn.application.UseBiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +23,7 @@ import java.util.Map;
 @RestController
 public class UserController {
     @Autowired
-    private UserService userService;
+    private UseBiz useBiz;
 
     @Value("${jwt.tokenHead}")
     private String tokenHead;
@@ -31,7 +31,7 @@ public class UserController {
     @GlobalResultDisabled
     @PostMapping(value = "/login")
     public ReturnResult login(HttpServletResponse response, @RequestBody Map<String, String> loginParam) {
-        String token = userService.login(loginParam);
+        String token = useBiz.login(loginParam);
         Cookie tokenCookie = new Cookie("token", tokenHead + token);
         tokenCookie.setHttpOnly(true);
         response.addCookie(tokenCookie);
@@ -41,23 +41,23 @@ public class UserController {
 
     @PostMapping(value = "/register")
     public void register(@RequestBody BaseUserDO registerUser) {
-        userService.register(registerUser);
+        useBiz.register(registerUser);
     }
 
     @GetMapping(value = "/users/details")
     public UserDO getUserInfo(Principal principal) {
         String username = principal.getName();
-        UserDO user = userService.getUserByUserName(username);
+        UserDO user = useBiz.getUserByUserName(username);
         return user;
     }
 
     @GetMapping(value = "/users")
     public List<BaseUserDO> getUserList() {
-        return userService.getUserList();
+        return useBiz.getUserList();
     }
 
     @PostMapping("/users/alloc/{id}")
     public void allocRole(@PathVariable(value = "id") long userId, @RequestBody List<Long> roleIds) {
-        userService.allocRole(userId, roleIds);
+        useBiz.allocRole(userId, roleIds);
     }
 }

@@ -100,7 +100,7 @@ public class DistrictDO {
 
     @Override
     public String toString() {
-        return "DistrictDO{" +
+        return "DistrictPO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code=" + code +

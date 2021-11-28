@@ -1,7 +1,7 @@
 package com.politics.chn.common.secuity;
 
 import com.politics.chn.domain.user.Entity.PermissionDO;
-import com.politics.chn.service.PermissionService;
+import com.politics.chn.service.user.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;

@@ -168,7 +168,7 @@ public class BaseUserDO {
 
     @Override
     public String toString() {
-        return "BaseUserDO{" +
+        return "BaseUserPO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

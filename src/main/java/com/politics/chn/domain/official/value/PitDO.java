@@ -138,7 +138,7 @@ public class PitDO {
 
     @Override
     public String toString() {
-        return "PitDO{" +
+        return "PitPO{" +
                 "id=" + id +
                 ", pid=" + pid +
                 ", name='" + name + '\'' +

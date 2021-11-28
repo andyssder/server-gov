@@ -1,7 +1,7 @@
 package com.politics.chn.controller;
 
 import com.politics.chn.domain.official.value.DistrictDO;
-import com.politics.chn.service.DistrictService;
+import com.politics.chn.service.official.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

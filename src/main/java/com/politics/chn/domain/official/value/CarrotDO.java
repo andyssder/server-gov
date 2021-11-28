@@ -82,7 +82,7 @@ public class CarrotDO {
 
     @Override
     public String toString() {
-        return "CarrotDO{" +
+        return "CarrotPO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +
