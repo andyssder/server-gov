@@ -23,4 +23,8 @@ public class PartyRepository {
     public List<PartyPO> getPartyList() {
         return partyDao.getAll();
     }
+
+    public PartyPO getOneById(int id) {
+        return partyDao.getOneById(id);
+    }
 }

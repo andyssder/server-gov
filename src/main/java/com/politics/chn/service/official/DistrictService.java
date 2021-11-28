@@ -41,4 +41,10 @@ public class DistrictService {
         List<DistrictDO> result = list.stream().map(item -> BeanUtil.toBean(item, DistrictDO.class)).collect(Collectors.toList());
         return result;
     }
+
+    public DistrictDO getById(int id) {
+        DistrictPO districtPO = districtRepository.getById(id);
+        DistrictDO districtDO =  BeanUtil.toBean(districtPO, DistrictDO.class);
+        return districtDO;
+    }
 }

@@ -31,5 +31,9 @@ public class EthnicityService {
         return result;
     }
 
+    public EthnicityDO getEthnicityById(int id) {
+        EthnicityPO ethnicityPO = ethnicityRepository.getOneById(id);
+        return BeanUtil.toBean(ethnicityPO, EthnicityDO.class);
+    }
 
 }

@@ -16,11 +16,9 @@ public interface PersonMapper {
     @Results(id="person", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted"),
-            @Result(property="party",column="party_id"),
-            @Result(property="ethnicity",column="ethnicity_id"),
-            @Result(property="ancestralHome",column="ancestral_home"),
-            @Result(property="birthPlace",column="birth_place"),
-            @Result(property="workPlace",column="work_place")
+            @Result(property="ancestralHomeId",column="ancestral_home"),
+            @Result(property="birthPlaceId",column="birth_place"),
+            @Result(property="workPlaceId",column="work_place")
     })
     List<PersonPO> getAll();
 
@@ -35,9 +33,9 @@ public interface PersonMapper {
             "university, major, education, degree, " +
             "ranking, create_time, update_time, is_enabled) " +
             "VALUES(" +
-            "#{name}, #{portrait}, #{gender}, #{party}, #{ethnicity}, " +
+            "#{name}, #{portrait}, #{gender}, #{partyId}, #{ethnicityId}, " +
             "#{birthDate}, #{deathDate}, #{workDate}, #{partyDate}, #{retireDate}, " +
-            "#{ancestralHome}, #{birthPlace}, #{workPlace}," +
+            "#{ancestralHomeId}, #{birthPlaceId}, #{workPlaceId}," +
             "#{university}, #{major}, #{education}, #{degree}," +
             "#{ranking}, #{createTime}, #{updateTime}, #{enabled})")
     @Options(useGeneratedKeys=true, keyProperty="id")
@@ -50,16 +48,16 @@ public interface PersonMapper {
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='portrait != null'> portrait=#{portrait}, </if>" +
             "<if test='gender != null'> gender=#{gender}, </if>" +
-            "<if test='ethnicity != null'> ethnicity_id=#{ethnicity}, </if>" +
-            "<if test='party != null'> party_id=#{party}, </if>" +
+            "<if test='ethnicityId != null'> ethnicity_id=#{ethnicityId}, </if>" +
+            "<if test='partyId != null'> party_id=#{partyId}, </if>" +
             "<if test='birthDate != null'> birth_date=#{birthDate}, </if>" +
             "<if test='deathDate != null'> death_date=#{deathDate}, </if>" +
             "<if test='workDate != null'> work_date=#{workDate}, </if>" +
             "<if test='partyDate != null'> party_date=#{partyDate}, </if>" +
             "<if test='retireDate != null'> retire_date=#{retireDate}, </if>" +
-            "<if test='ancestralHome != null'> ancestral_home=#{ancestralHome}, </if>" +
-            "<if test='birthPlace != null'> birth_place=#{birthPlace}, </if>" +
-            "<if test='workPlace != null'> work_place=#{workPlace}, </if>" +
+            "<if test='ancestralHomeId != null'> ancestral_home=#{ancestralHomeId}, </if>" +
+            "<if test='birthPlaceId != null'> birth_place=#{birthPlaceId}, </if>" +
+            "<if test='workPlaceId != null'> work_place=#{workPlaceId}, </if>" +
             "<if test='university != null'> university=#{university}, </if>" +
             "<if test='major != null'> major=#{major}, </if>" +
             "<if test='education != null'> education=#{education}, </if>" +

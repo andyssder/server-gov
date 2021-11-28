@@ -1,6 +1,8 @@
 package com.politics.chn.domain.official.entity;
 
 import com.politics.chn.domain.official.value.DistrictDO;
+import com.politics.chn.domain.official.value.EthnicityDO;
+import com.politics.chn.domain.official.value.PartyDO;
 
 import java.util.Date;
 import java.util.Objects;
@@ -15,8 +17,8 @@ public class PersonDO {
     String portrait;
     Integer gender;
 
-    Integer party;
-    Integer ethnicity;
+    PartyDO party;
+    EthnicityDO ethnicity;
 
     Date birthDate;
 
@@ -77,19 +79,19 @@ public class PersonDO {
         this.gender = gender;
     }
 
-    public Integer getParty() {
+    public PartyDO getParty() {
         return party;
     }
 
-    public void setParty(Integer party) {
+    public void setParty(PartyDO party) {
         this.party = party;
     }
 
-    public Integer getEthnicity() {
+    public EthnicityDO getEthnicity() {
         return ethnicity;
     }
 
-    public void setEthnicity(Integer ethnicity) {
+    public void setEthnicity(EthnicityDO ethnicity) {
         this.ethnicity = ethnicity;
     }
 

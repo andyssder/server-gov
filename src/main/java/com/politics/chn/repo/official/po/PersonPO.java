@@ -13,8 +13,8 @@ public class PersonPO {
     String portrait;
     Integer gender;
 
-    Integer party;
-    Integer ethnicity;
+    Integer partyId;
+    Integer ethnicityId;
 
     Date birthDate;
 
@@ -26,9 +26,9 @@ public class PersonPO {
 
     Date retireDate;
 
-    Integer ancestralHome;
-    Integer birthPlace;
-    Integer workPlace;
+    Integer ancestralHomeId;
+    Integer birthPlaceId;
+    Integer workPlaceId;
 
     String university;
     String major;
@@ -75,20 +75,20 @@ public class PersonPO {
         this.gender = gender;
     }
 
-    public Integer getParty() {
-        return party;
+    public Integer getPartyId() {
+        return partyId;
     }
 
-    public void setParty(Integer party) {
-        this.party = party;
+    public void setPartyId(Integer partyId) {
+        this.partyId = partyId;
     }
 
-    public Integer getEthnicity() {
-        return ethnicity;
+    public Integer getEthnicityId() {
+        return ethnicityId;
     }
 
-    public void setEthnicity(Integer ethnicity) {
-        this.ethnicity = ethnicity;
+    public void setEthnicityId(Integer ethnicityId) {
+        this.ethnicityId = ethnicityId;
     }
 
     public Date getBirthDate() {
@@ -132,28 +132,28 @@ public class PersonPO {
         this.retireDate = retireDate;
     }
 
-    public Integer getAncestralHome() {
-        return ancestralHome;
+    public Integer getAncestralHomeId() {
+        return ancestralHomeId;
     }
 
-    public void setAncestralHome(Integer ancestralHome) {
-        this.ancestralHome = ancestralHome;
+    public void setAncestralHomeId(Integer ancestralHomeId) {
+        this.ancestralHomeId = ancestralHomeId;
     }
 
-    public Integer getBirthPlace() {
-        return birthPlace;
+    public Integer getBirthPlaceId() {
+        return birthPlaceId;
     }
 
-    public void setBirthPlace(Integer birthPlace) {
-        this.birthPlace = birthPlace;
+    public void setBirthPlaceId(Integer birthPlaceId) {
+        this.birthPlaceId = birthPlaceId;
     }
 
-    public Integer getWorkPlace() {
-        return workPlace;
+    public Integer getWorkPlaceId() {
+        return workPlaceId;
     }
 
-    public void setWorkPlace(Integer workPlace) {
-        this.workPlace = workPlace;
+    public void setWorkPlaceId(Integer workPlaceId) {
+        this.workPlaceId = workPlaceId;
     }
 
     public String getUniversity() {
@@ -237,12 +237,12 @@ public class PersonPO {
             return false;
         }
         PersonPO personPO = (PersonPO) o;
-        return Objects.equals(id, personPO.id) && Objects.equals(name, personPO.name) && Objects.equals(portrait, personPO.portrait) && Objects.equals(gender, personPO.gender) && Objects.equals(party, personPO.party) && Objects.equals(ethnicity, personPO.ethnicity) && Objects.equals(birthDate, personPO.birthDate) && Objects.equals(deathDate, personPO.deathDate) && Objects.equals(workDate, personPO.workDate) && Objects.equals(partyDate, personPO.partyDate) && Objects.equals(retireDate, personPO.retireDate) && Objects.equals(ancestralHome, personPO.ancestralHome) && Objects.equals(birthPlace, personPO.birthPlace) && Objects.equals(workPlace, personPO.workPlace) && Objects.equals(university, personPO.university) && Objects.equals(major, personPO.major) && Objects.equals(education, personPO.education) && Objects.equals(degree, personPO.degree) && Objects.equals(ranking, personPO.ranking) && Objects.equals(createTime, personPO.createTime) && Objects.equals(updateTime, personPO.updateTime) && Objects.equals(enabled, personPO.enabled) && Objects.equals(deleted, personPO.deleted);
+        return Objects.equals(id, personPO.id) && Objects.equals(name, personPO.name) && Objects.equals(portrait, personPO.portrait) && Objects.equals(gender, personPO.gender) && Objects.equals(partyId, personPO.partyId) && Objects.equals(ethnicityId, personPO.ethnicityId) && Objects.equals(birthDate, personPO.birthDate) && Objects.equals(deathDate, personPO.deathDate) && Objects.equals(workDate, personPO.workDate) && Objects.equals(partyDate, personPO.partyDate) && Objects.equals(retireDate, personPO.retireDate) && Objects.equals(ancestralHomeId, personPO.ancestralHomeId) && Objects.equals(birthPlaceId, personPO.birthPlaceId) && Objects.equals(workPlaceId, personPO.workPlaceId) && Objects.equals(university, personPO.university) && Objects.equals(major, personPO.major) && Objects.equals(education, personPO.education) && Objects.equals(degree, personPO.degree) && Objects.equals(ranking, personPO.ranking) && Objects.equals(createTime, personPO.createTime) && Objects.equals(updateTime, personPO.updateTime) && Objects.equals(enabled, personPO.enabled) && Objects.equals(deleted, personPO.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, portrait, gender, party, ethnicity, birthDate, deathDate, workDate, partyDate, retireDate, ancestralHome, birthPlace, workPlace, university, major, education, degree, ranking, createTime, updateTime, enabled, deleted);
+        return Objects.hash(id, name, portrait, gender, partyId, ethnicityId, birthDate, deathDate, workDate, partyDate, retireDate, ancestralHomeId, birthPlaceId, workPlaceId, university, major, education, degree, ranking, createTime, updateTime, enabled, deleted);
     }
 
     @Override
@@ -252,16 +252,16 @@ public class PersonPO {
                 ", name='" + name + '\'' +
                 ", portrait='" + portrait + '\'' +
                 ", gender=" + gender +
-                ", party=" + party +
-                ", ethnicity=" + ethnicity +
+                ", party=" + partyId +
+                ", ethnicity=" + ethnicityId +
                 ", birthDate=" + birthDate +
                 ", deathDate=" + deathDate +
                 ", workDate=" + workDate +
                 ", partyDate=" + partyDate +
                 ", retireDate=" + retireDate +
-                ", ancestralHome=" + ancestralHome +
-                ", birthPlace=" + birthPlace +
-                ", workPlace=" + workPlace +
+                ", ancestralHome=" + ancestralHomeId +
+                ", birthPlace=" + birthPlaceId +
+                ", workPlace=" + workPlaceId +
                 ", university='" + university + '\'' +
                 ", major='" + major + '\'' +
                 ", education='" + education + '\'' +

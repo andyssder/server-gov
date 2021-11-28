@@ -29,4 +29,11 @@ public class PartyService {
         List<PartyDO> result = list.stream().map(item -> BeanUtil.toBean(item, PartyDO.class)).collect(Collectors.toList());
         return result;
     }
+
+
+    public PartyDO getPartyById(int id) {
+        PartyPO partyPO = partyRepository.getOneById(id);
+        PartyDO partyDO = BeanUtil.toBean(partyPO, PartyDO.class);
+        return partyDO;
+    }
 }

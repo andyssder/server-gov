@@ -24,4 +24,7 @@ public class EthnicityRepository {
         return ethnicityDao.getAll();
     }
 
+    public EthnicityPO getOneById(int id) {
+        return ethnicityDao.getOneById(id);
+    }
 }
