@@ -1,6 +1,7 @@
 package com.politics.chn.repo.official.repository;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.politics.chn.domain.official.entity.ProfileDO;
 import com.politics.chn.repo.official.dao.ProfileDao;
 import com.politics.chn.repo.official.po.ProfilePO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +25,21 @@ public class ProfileRepository {
         this.profileDao = profileDao;
     }
 
-    public boolean addOne(ProfilePO profilePO) {
-        return profileDao.addOne(profilePO);
+    public boolean addOne(ProfileDO profileDO) {
+        ProfilePO profilePO = BeanUtil.toBean(profileDO, ProfilePO.class);
+        if(!profileDao.addOne(profilePO)) {;
+            return false;
+        }
+        profileDO.setId(profilePO.getId());
+        return true;
     }
 
-    public boolean addMany(List<ProfilePO> profilePOS) {
-        if (profilePOS == null || profilePOS.isEmpty()) {
+    public boolean addMany(List<ProfileDO> profileDOS) {
+        if (profileDOS == null || profileDOS.isEmpty()) {
             return true;
         }
+        List<ProfilePO> profilePOS = profileDOS.stream().map(profileDO -> BeanUtil.toBean(profileDO, ProfilePO.class)).collect(Collectors.toList());
+
         return profileDao.addMany(profilePOS);
     }
 
@@ -43,26 +51,30 @@ public class ProfileRepository {
         return profileDao.deleteOneByPersonId(id);
     }
 
-    public boolean updateOne(ProfilePO profilePO) {
+    public boolean updateOne(ProfileDO profileDO) {
+        ProfilePO profilePO = BeanUtil.toBean(profileDO, ProfilePO.class);
         return profileDao.updateOne(profilePO);
     }
 
-    public boolean updateMany(List<ProfilePO> profiles) {
-        if (profiles == null || profiles.isEmpty()) {
+    public boolean updateMany(List<ProfileDO> profileDOS) {
+        if (profileDOS == null || profileDOS.isEmpty()) {
             return true;
         }
-        return profileDao.updateMany(profiles);
+        List<ProfilePO> profilePOS = profileDOS.stream().map(profileDO -> BeanUtil.toBean(profileDO, ProfilePO.class)).collect(Collectors.toList());
+        return profileDao.updateMany(profilePOS);
     }
 
     public List<ProfilePO> getAll() {
         return profileDao.getAll();
     }
 
-    public List<ProfilePO> getOneByPersonId(Long personId) {
-        return profileDao.getOneByPersonId(personId);
+    public List<ProfileDO> getOneByPersonId(Long personId) {
+        List<ProfilePO> list = profileDao.getOneByPersonId(personId);
+        return list.stream().map(profileDO -> BeanUtil.toBean(profileDO, ProfileDO.class)).collect(Collectors.toList());
     }
 
-    public ProfilePO getOneById(Long id) {
-        return profileDao.getOneById(id);
+    public ProfileDO getOneById(Long id) {
+        ProfilePO profilePO = profileDao.getOneById(id);
+        return BeanUtil.toBean(profilePO, ProfileDO.class);
     }
 }

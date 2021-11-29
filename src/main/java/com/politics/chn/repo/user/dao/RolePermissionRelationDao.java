@@ -1,6 +1,6 @@
 package com.politics.chn.repo.user.dao;
 
-import com.politics.chn.domain.user.Entity.RolePermissionRelation;
+import com.politics.chn.repo.user.po.RolePermissionRelationPO;
 import com.politics.chn.repo.user.dao.mapper.RolePermissionRelationMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,8 +19,8 @@ public class RolePermissionRelationDao {
         this.rolePermissionRelationMapper = rolePermissionRelationMapper;
     }
 
-    public boolean insertRolePermissionRelation(RolePermissionRelation rolePermissionRelation) {
-        return rolePermissionRelationMapper.insertOneRolePermissionRelation(rolePermissionRelation) > 0;
+    public boolean insertRolePermissionRelation(RolePermissionRelationPO rolePermissionRelationPO) {
+        return rolePermissionRelationMapper.insertOneRolePermissionRelation(rolePermissionRelationPO) > 0;
     }
 
     public boolean deleteRolePermissionRelation(long roleId) {

@@ -31,42 +31,30 @@ public class PermissionService {
         Assert.isTrue(permissionDO.isNotNull(), () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
-        PermissionPO permission = BeanUtil.toBean(permissionDO, PermissionPO.class);
-        permission.setCreateTime(new Date());
-        Assert.isTrue(permissionRepository.insertOne(permission), () -> {
+        Assert.isTrue(permissionRepository.insertOne(permissionDO), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
-        return permission.getId();
+        return permissionDO.getId();
     }
 
     public void updatePermission(PermissionDO permissionDO) {
-        PermissionPO permission = BeanUtil.toBean(permissionDO, PermissionPO.class);
-        permission.setCreateTime(new Date());
-        Assert.isTrue(permissionRepository.updateOne(permission), () -> {
+        Assert.isTrue(permissionRepository.updateOne(permissionDO), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }
 
     public void patchUpdatePermission(List<PermissionDO> permissionDOS) {
-        List<PermissionPO> permissions = permissionDOS.stream().map(permissionDO -> BeanUtil.toBean(permissionDO, PermissionPO.class)).collect(Collectors.toList());
-
-        Assert.isTrue(permissionRepository.updateMany(permissions), () -> {
+        Assert.isTrue(permissionRepository.updateMany(permissionDOS), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }
 
     public List<PermissionDO> getPermissionList() {
-        List<PermissionPO> list = permissionRepository.getAll();
-        List<PermissionDO> result = list.stream().map(permissionPO -> BeanUtil.toBean(permissionPO, PermissionDO.class)).collect(Collectors.toList());
-
-        return result;
+        return permissionRepository.getAll();
     }
 
     public List<PermissionDO> getPermissionListByRole(long roleId) {
-        List<PermissionPO> list = permissionRepository.getPermissionsByRoleId(roleId);
-        List<PermissionDO> result = list.stream().map(permissionPO -> BeanUtil.toBean(permissionPO, PermissionDO.class)).collect(Collectors.toList());
-
-        return result;
+        return permissionRepository.getPermissionsByRoleId(roleId);
     }
 
     public void deletePermission(long id) {

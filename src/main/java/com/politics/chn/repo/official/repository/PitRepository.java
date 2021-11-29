@@ -1,11 +1,14 @@
 package com.politics.chn.repo.official.repository;
 
+import cn.hutool.core.bean.BeanUtil;
+import com.politics.chn.domain.official.value.PitDO;
 import com.politics.chn.repo.official.dao.PitDao;
 import com.politics.chn.repo.official.po.PitPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @since 2021-02-08
@@ -21,37 +24,51 @@ public class PitRepository {
         this.pitDao = pitDao;
     }
 
-    public List<PitPO> getAll() {
-        return pitDao.getAll();
+    public List<PitDO> getAll() {
+        List<PitPO> list = pitDao.getAll();
+        return list.stream().map(item -> BeanUtil.toBean(item, PitDO.class)).collect(Collectors.toList());
     }
 
-    public List<PitPO> getByDistrictLevel(int districtLevel) {
-        return pitDao.getByDistrictLevel(districtLevel);
+    public List<PitDO> getByDistrictLevel(int districtLevel) {
+        List<PitPO> list = pitDao.getByDistrictLevel(districtLevel);
+        return list.stream().map(item -> BeanUtil.toBean(item, PitDO.class)).collect(Collectors.toList());
     }
 
-    public List<PitPO> getPitListByLevel(int level) {
-        return pitDao.getByLevel(level);
+    public List<PitDO> getPitListByLevel(int level) {
+        List<PitPO> list =  pitDao.getByLevel(level);
+        return list.stream().map(item -> BeanUtil.toBean(item, PitDO.class)).collect(Collectors.toList());
     }
 
-
-    public List<PitPO> getChildren(long id) {
-        PitPO pitPO = getOneById(id);
-        return pitDao.getChildren(pitPO.getLft(), pitPO.getRgt(), pitPO.getLevel());
+    public List<PitDO> getChildren(long id) {
+        PitPO pitPO = getPitPOById(id);
+        List<PitPO> list =  pitDao.getChildren(pitPO.getLft(), pitPO.getRgt(), pitPO.getLevel());
+        return list.stream().map(item -> BeanUtil.toBean(item, PitDO.class)).collect(Collectors.toList());
     }
 
-    public PitPO getOneById(long id) {
-        return pitDao.getOneById(id);
+    public PitDO getOneById(long id) {
+        PitPO pitPO = pitDao.getOneById(id);
+        return BeanUtil.toBean(pitPO, PitDO.class);
     }
 
-    public Boolean insertOne(PitPO pitPO) {
+    public Boolean insertOne(PitDO pitDO) {
+        PitPO pitPO = BeanUtil.toBean(pitDO, PitPO.class);
+        if (!pitDao.insertOne(pitPO)) {
+            return false;
+        }
+        pitDO.setId(pitPO.getId());
         return pitDao.insertOne(pitPO);
     }
 
-    public Boolean updateOne(PitPO pitPO) {
+    public Boolean updateOne(PitDO pitDO) {
+        PitPO pitPO = BeanUtil.toBean(pitDO, PitPO.class);
         return pitDao.updateOne(pitPO);
     }
 
     public Boolean deleteOne(long id) {
         return pitDao.deleteOne(id);
+    }
+
+    private PitPO getPitPOById(long id) {
+        return pitDao.getOneById(id);
     }
 }

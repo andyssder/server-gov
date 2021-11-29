@@ -25,15 +25,11 @@ public class PartyService {
     }
 
     public List<PartyDO> getPartyList() {
-        List<PartyPO> list = partyRepository.getPartyList();
-        List<PartyDO> result = list.stream().map(item -> BeanUtil.toBean(item, PartyDO.class)).collect(Collectors.toList());
-        return result;
+        return partyRepository.getPartyList();
     }
 
 
     public PartyDO getPartyById(int id) {
-        PartyPO partyPO = partyRepository.getOneById(id);
-        PartyDO partyDO = BeanUtil.toBean(partyPO, PartyDO.class);
-        return partyDO;
+        return partyRepository.getOneById(id);
     }
 }

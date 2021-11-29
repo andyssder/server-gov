@@ -26,14 +26,11 @@ public class EthnicityService {
     }
 
     public List<EthnicityDO> getEthnicityList() {
-        List<EthnicityPO> list = ethnicityRepository.getEthnicityList();
-        List<EthnicityDO> result = list.stream().map(item -> BeanUtil.toBean(item, EthnicityDO.class)).collect(Collectors.toList());
-        return result;
+        return ethnicityRepository.getEthnicityList();
     }
 
     public EthnicityDO getEthnicityById(int id) {
-        EthnicityPO ethnicityPO = ethnicityRepository.getOneById(id);
-        return BeanUtil.toBean(ethnicityPO, EthnicityDO.class);
+        return ethnicityRepository.getOneById(id);
     }
 
 }

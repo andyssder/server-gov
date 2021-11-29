@@ -1,6 +1,5 @@
 package com.politics.chn.repo.user.dao;
 
-import com.politics.chn.domain.user.Entity.RolePermissionRelation;
 import com.politics.chn.repo.user.dao.mapper.RoleMapper;
 import com.politics.chn.repo.user.po.RolePO;
 import org.springframework.beans.factory.annotation.Autowired;

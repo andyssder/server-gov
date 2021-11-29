@@ -24,8 +24,7 @@ public class ProfileService {
     }
 
     public boolean addOne(ProfileDO profileDO) {
-        ProfilePO profile = BeanUtil.toBean(profileDO, ProfilePO.class);
-        return profileRepository.addOne(profile);
+        return profileRepository.addOne(profileDO);
     }
 
     public boolean addMany(List<ProfileDO> profileDOS) {
@@ -33,8 +32,7 @@ public class ProfileService {
             return true;
         }
 
-        List<ProfilePO> profiles = profileDOS.stream().map(profileDO -> BeanUtil.toBean(profileDO, ProfilePO.class)).collect(Collectors.toList());
-        return profileRepository.addMany(profiles);
+        return profileRepository.addMany(profileDOS);
     }
 
     public boolean deleteOne(long id) {
@@ -45,16 +43,15 @@ public class ProfileService {
         return profileRepository.deleteOneByPersonId(id);
     }
 
-    public boolean updateOne(ProfilePO profilePO) {
-        return profileRepository.updateOne(profilePO);
+    public boolean updateOne(ProfileDO profileDO) {
+        return profileRepository.updateOne(profileDO);
     }
 
     public boolean updateMany(List<ProfileDO> profileDOS) {
         if (profileDOS == null || profileDOS.isEmpty()) {
             return true;
         }
-        List<ProfilePO> profiles = profileDOS.stream().map(profileDO -> BeanUtil.toBean(profileDO, ProfilePO.class)).collect(Collectors.toList());
-        return profileRepository.updateMany(profiles);
+        return profileRepository.updateMany(profileDOS);
     }
 
     public List<ProfileDO> getAll() {
@@ -65,16 +62,10 @@ public class ProfileService {
     }
 
     public List<ProfileDO> getOneByPersonId(Long personId) {
-        List<ProfilePO> list = profileRepository.getOneByPersonId(personId);
-        List<ProfileDO> profiles = list.stream().map(profileDO -> BeanUtil.toBean(profileDO, ProfileDO.class)).collect(Collectors.toList());
-
-        return profiles;
+        return profileRepository.getOneByPersonId(personId);
     }
 
     public ProfileDO getOneById(Long id) {
-        ProfilePO profilePO = profileRepository.getOneById(id);
-
-        ProfileDO profile = BeanUtil.toBean(profilePO, ProfileDO.class);
-        return profile;
+        return profileRepository.getOneById(id);
     }
 }

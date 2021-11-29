@@ -1,19 +1,16 @@
 package com.politics.chn.service.user;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.politics.chn.domain.user.Entity.BaseUserDO;
 import com.politics.chn.domain.user.Entity.PermissionDO;
 import com.politics.chn.domain.user.Entity.RoleDO;
-import com.politics.chn.domain.user.Entity.UserRoleRelation;
+import com.politics.chn.repo.user.po.UserRoleRelationPO;
 import com.politics.chn.domain.user.UserDO;
-import com.politics.chn.repo.user.po.BaseUserPO;
 import com.politics.chn.repo.user.repository.BaseUserRepository;
 import com.politics.chn.repo.user.repository.UserRoleRelationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author xu
@@ -33,11 +30,6 @@ public class UserService {
     }
 
     @Autowired
-    public void setUserRoleRelationRepository(UserRoleRelationRepository userRoleRelationRepository) {
-        this.userRoleRelationRepository = userRoleRelationRepository;
-    }
-
-    @Autowired
     public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
     }
@@ -48,12 +40,10 @@ public class UserService {
     }
 
     public UserDO getUserByField(String field, String value) {
-        BaseUserPO baseUserPO = baseUserRepository.getOneByField(field, value);
-        if (baseUserPO == null) {
+        BaseUserDO baseUserDO = baseUserRepository.getOneByField(field, value);
+        if (baseUserDO == null) {
             return null;
         }
-
-        BaseUserDO baseUserDO = BeanUtil.toBean(baseUserPO, BaseUserDO.class);
 
         long id = baseUserDO.getId();
         List<RoleDO> roles = roleService.getRoleListByUser(id);
@@ -64,24 +54,18 @@ public class UserService {
     }
 
     public boolean addUser(BaseUserDO baseUserDO) {
-        BaseUserPO baseUserPO = BeanUtil.toBean(baseUserDO, BaseUserPO.class);
-        return baseUserRepository.addUser(baseUserPO);
+        return baseUserRepository.addUser(baseUserDO);
     }
 
     public List<BaseUserDO> getAll() {
-        List<BaseUserPO> list = baseUserRepository.getAll();
-
-        List<BaseUserDO> result = list.stream().map(baseUserPO -> BeanUtil.toBean(baseUserPO, BaseUserDO.class)).collect(Collectors.toList());
-
-        return result;
+        return baseUserRepository.getAll();
     }
 
     public boolean deleteUserRole(long userId) {
-        return userRoleRelationRepository.deleteUserRoleRelation(userId);
+        return baseUserRepository.deleteUserRoleRelation(userId);
     }
 
     public boolean addUserRole(long userId, long roleId) {
-        UserRoleRelation userRoleRelation = new UserRoleRelation(userId, roleId);
-        return userRoleRelationRepository.insertUserRoleRelation(userRoleRelation);
+        return baseUserRepository.insertUserRoleRelation(userId, roleId);
     }
 }

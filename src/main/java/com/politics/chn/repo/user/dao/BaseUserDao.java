@@ -1,6 +1,5 @@
 package com.politics.chn.repo.user.dao;
 
-import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.repo.user.dao.mapper.BaseUserMapper;
 import com.politics.chn.repo.user.po.BaseUserPO;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -34,12 +34,11 @@ public class PitService {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
 
-        PitPO pit = BeanUtil.toBean(pitDO, PitPO.class);
         int lft, rgt, level;
-        long pid = pit.getPid();
-        List<PitPO> brotherPit = pitRepository.getChildren(pid);
+        long pid = pitDO.getPid();
+        List<PitDO> brotherPit = pitRepository.getChildren(pid);
         if (brotherPit.size() > 0) {
-            PitPO lastPit = brotherPit.get(brotherPit.size() - 1);
+            PitDO lastPit = brotherPit.get(brotherPit.size() - 1);
             level = lastPit.getLevel();
             lft = lastPit.getRgt() + 1;
             if(level == 1) {
@@ -50,7 +49,7 @@ public class PitService {
                 rgt = lft + 1;
             }
         } else {
-            PitPO parentPit = pitRepository.getOneById(pid);
+            PitDO parentPit = pitRepository.getOneById(pid);
             Assert.notNull(parentPit, () -> {
                 throw new CommonException(ResultStatusEnum.NOT_FOUND);
             });
@@ -64,13 +63,13 @@ public class PitService {
                 rgt = lft + 1;
             }
         }
-        pit.setLevel(level);
-        pit.setLft(lft);
-        pit.setRgt(rgt);
-        Assert.isTrue(pitRepository.insertOne(pit), () -> {
+        pitDO.setLevel(level);
+        pitDO.setLft(lft);
+        pitDO.setRgt(rgt);
+        Assert.isTrue(pitRepository.insertOne(pitDO), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
-        return pit.getId();
+        return pitDO.getId();
     }
 
     public void updatePit(PitDO pitDO) {
@@ -78,8 +77,7 @@ public class PitService {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
 
-        PitPO pit = BeanUtil.toBean(pitDO, PitPO.class);
-        Assert.isTrue(pitRepository.updateOne(pit), () -> {
+        Assert.isTrue(pitRepository.updateOne(pitDO), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }
@@ -94,21 +92,20 @@ public class PitService {
         Assert.isTrue(type == null || value != null, () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
-        List<PitPO> list;
+        List<PitDO> result;
         if ("pid".equals(type)) {
-            list = pitRepository.getChildren(value);
+            result = pitRepository.getChildren(value);
         } else if ("level".equals(type)) {
             // TODO: 校验
-            list = pitRepository.getPitListByLevel(value.intValue());
+            result = pitRepository.getPitListByLevel(value.intValue());
         } else if ("district".equals(type)) {
             // TODO: 校验
-            list = pitRepository.getByDistrictLevel(value.intValue());
+            result = pitRepository.getByDistrictLevel(value.intValue());
         } else if(type == null || type.isEmpty()){
-            list = pitRepository.getAll();
+            result = pitRepository.getAll();
         } else {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         }
-        List<PitDO> result = list.stream().map(item -> BeanUtil.toBean(item, PitDO.class)).collect(Collectors.toList());
         return result;
     }
 }

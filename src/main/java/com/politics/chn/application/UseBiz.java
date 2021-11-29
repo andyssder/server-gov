@@ -4,8 +4,6 @@ import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.JwtTokenUtil;
 import com.politics.chn.domain.user.Entity.BaseUserDO;
-import com.politics.chn.domain.user.Entity.RolePermissionRelation;
-import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.domain.user.UserDO;
 import com.politics.chn.service.user.PermissionService;
 import com.politics.chn.service.user.RoleService;

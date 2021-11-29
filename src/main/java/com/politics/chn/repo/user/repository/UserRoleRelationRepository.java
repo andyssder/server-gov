@@ -1,12 +1,9 @@
 package com.politics.chn.repo.user.repository;
 
-import com.politics.chn.domain.user.Entity.RoleDO;
-import com.politics.chn.domain.user.Entity.UserRoleRelation;
+import com.politics.chn.repo.user.po.UserRoleRelationPO;
 import com.politics.chn.repo.user.dao.UserRoleRelationDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 /**
  * @author xu
@@ -28,7 +25,7 @@ public class UserRoleRelationRepository {
     }
 
 
-    public boolean insertUserRoleRelation(UserRoleRelation userRoleRelation) {
-        return userRoleRelationDao.insertUserRoleRelation(userRoleRelation);
+    public boolean insertUserRoleRelation(UserRoleRelationPO userRoleRelationPO) {
+        return userRoleRelationDao.insertUserRoleRelation(userRoleRelationPO);
     }
 }

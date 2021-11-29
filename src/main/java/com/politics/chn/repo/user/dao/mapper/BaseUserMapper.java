@@ -1,6 +1,5 @@
 package com.politics.chn.repo.user.dao.mapper;
 
-import com.politics.chn.domain.user.Entity.UserRoleRelation;
 import com.politics.chn.repo.user.po.BaseUserPO;
 import org.apache.ibatis.annotations.*;
 
