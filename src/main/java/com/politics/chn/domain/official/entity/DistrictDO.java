@@ -1,6 +1,7 @@
-package com.politics.chn.domain.official.value;
+package com.politics.chn.domain.official.entity;
 
-import java.util.List;
+import com.politics.chn.common.utils.StringUtils;
+
 import java.util.Objects;
 
 /**
@@ -14,8 +15,19 @@ public class DistrictDO {
     Integer level;
     Integer lft;
     Integer rgt;
-    List<DistrictDO> parents;
-    List<DistrictDO> children;
+
+    public DistrictDO(Integer id, String name, Integer code, Integer level, Integer lft, Integer rgt) {
+        assert StringUtils.isNotBlank(name);
+        assert Objects.nonNull(code);
+        assert level >= 0;
+
+        this.id = id;
+        this.name = name;
+        this.code = code;
+        this.level = level;
+        this.lft = lft;
+        this.rgt = rgt;
+    }
 
     public Integer getId() {
         return id;
@@ -65,22 +77,6 @@ public class DistrictDO {
         this.rgt = rgt;
     }
 
-    public List<DistrictDO> getParents() {
-        return parents;
-    }
-
-    public void setParents(List<DistrictDO> parents) {
-        this.parents = parents;
-    }
-
-    public List<DistrictDO> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<DistrictDO> children) {
-        this.children = children;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -90,12 +86,12 @@ public class DistrictDO {
             return false;
         }
         DistrictDO that = (DistrictDO) o;
-        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(code, that.code) && Objects.equals(level, that.level) && Objects.equals(lft, that.lft) && Objects.equals(rgt, that.rgt) && Objects.equals(parents, that.parents) && Objects.equals(children, that.children);
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(code, that.code) && Objects.equals(level, that.level) && Objects.equals(lft, that.lft) && Objects.equals(rgt, that.rgt);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, code, level, lft, rgt, parents, children);
+        return Objects.hash(id, name, code, level, lft, rgt);
     }
 
     @Override
@@ -107,8 +103,6 @@ public class DistrictDO {
                 ", level=" + level +
                 ", lft=" + lft +
                 ", rgt=" + rgt +
-                ", parents=" + parents +
-                ", children=" + children +
                 '}';
     }
 }

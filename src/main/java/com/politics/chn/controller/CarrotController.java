@@ -1,6 +1,7 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.domain.official.value.CarrotDO;
+import com.politics.chn.domain.official.query.CarrotQuery;
+import com.politics.chn.domain.official.entity.CarrotDO;
 import com.politics.chn.service.official.CarrotService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,9 @@ public class CarrotController {
 
     @GetMapping
     public List<CarrotDO> getCarrotList(@RequestParam(value = "districtLevel", required = false) Integer districtLevel) {
-        return carrotService.getCarrotList(districtLevel);
+        CarrotQuery carrotQuery = new CarrotQuery();
+        carrotQuery.setDistrictLevel(districtLevel);
+        return carrotService.queryCarrot(carrotQuery);
     }
 
     @DeleteMapping(value = "/{id}")

@@ -1,17 +1,14 @@
 package com.politics.chn.service.official;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.domain.official.value.PitDO;
-import com.politics.chn.repo.official.po.PitPO;
+import com.politics.chn.domain.official.entity.PitDO;
 import com.politics.chn.repo.official.repository.PitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @since 2021-02-16

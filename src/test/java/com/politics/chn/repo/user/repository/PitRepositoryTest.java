@@ -1,12 +1,9 @@
 package com.politics.chn.repo.user.repository;
 
-import com.politics.chn.domain.official.value.PitDO;
 import com.politics.chn.repo.official.dao.PitDao;
 import com.politics.chn.repo.official.repository.PitRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @since 2021-02-16

@@ -1,4 +1,6 @@
-package com.politics.chn.domain.official.value;
+package com.politics.chn.domain.official.entity;
+
+import com.politics.chn.common.utils.StringUtils;
 
 import java.util.Objects;
 
@@ -10,6 +12,14 @@ public class PartyDO {
     Integer id;
     String name;
     String shortName;
+
+    public PartyDO(Integer id, String name, String shortName) {
+        assert StringUtils.isNotBlank(name);
+        assert StringUtils.isNotBlank(shortName);
+        this.id = id;
+        this.name = name;
+        this.shortName = shortName;
+    }
 
     public Integer getId() {
         return id;

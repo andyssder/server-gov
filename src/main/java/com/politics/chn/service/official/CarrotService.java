@@ -1,9 +1,10 @@
 package com.politics.chn.service.official;
 
+import com.politics.chn.domain.official.query.CarrotQuery;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.domain.official.value.CarrotDO;
-import com.politics.chn.repo.official.repository.CarrotRepository;
+import com.politics.chn.domain.official.entity.CarrotDO;
+import com.politics.chn.domain.official.repository.CarrotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -25,33 +26,24 @@ public class CarrotService {
     }
 
     public Long addCarrot(CarrotDO carrotDO) {
-        Assert.isTrue(carrotDO.isNotNull(), () -> {
-            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
-        });
-        Assert.isTrue(carrotRepository.insertOne(carrotDO), () -> {
+        Assert.isTrue(carrotRepository.save(carrotDO), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
         return carrotDO.getId();
     }
 
     public void updateCarrot(CarrotDO carrotDO) {
-        Assert.isTrue(carrotRepository.updateOne(carrotDO), () -> {
+        Assert.isTrue(carrotRepository.save(carrotDO), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }
 
-    public List<CarrotDO> getCarrotList(Integer districtLevel) {
-        List<CarrotDO> result;
-        if (districtLevel != null) {
-            result = carrotRepository.getByDistrictLevel(districtLevel);
-        } else {
-            result = carrotRepository.getAll();
-        }
-        return result;
+    public List<CarrotDO> queryCarrot(CarrotQuery carrotQuery) {
+        return carrotRepository.query(carrotQuery);
     }
 
     public void deleteCarrot(long id) {
-        Assert.isTrue(carrotRepository.deleteOne(id), () -> {
+        Assert.isTrue(carrotRepository.remove(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }

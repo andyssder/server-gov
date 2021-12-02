@@ -1,4 +1,6 @@
-package com.politics.chn.domain.official.value;
+package com.politics.chn.domain.official.entity;
+
+import com.politics.chn.common.utils.StringUtils;
 
 import java.util.Objects;
 
@@ -13,7 +15,17 @@ public class CarrotDO {
     Integer districtLevel;
 
     Boolean enabled;
-    Boolean deleted;
+
+    public CarrotDO(Long id, String name, String shortName, Integer districtLevel, Boolean enabled) {
+        assert StringUtils.isNotBlank(name);
+        assert districtLevel >= 0;
+
+        this.id = id;
+        this.name = name;
+        this.shortName = StringUtils.isNotBlank(shortName) ? shortName : "";
+        this.districtLevel = districtLevel;
+        this.enabled = Objects.nonNull(enabled) ? enabled : true;
+    }
 
     public Long getId() {
         return id;
@@ -55,14 +67,6 @@ public class CarrotDO {
         this.enabled = enabled;
     }
 
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void setDeleted(Boolean deleted) {
-        this.deleted = deleted;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -72,12 +76,12 @@ public class CarrotDO {
             return false;
         }
         CarrotDO carrotDO = (CarrotDO) o;
-        return Objects.equals(id, carrotDO.id) && Objects.equals(name, carrotDO.name) && Objects.equals(shortName, carrotDO.shortName) && Objects.equals(districtLevel, carrotDO.districtLevel) && Objects.equals(enabled, carrotDO.enabled) && Objects.equals(deleted, carrotDO.deleted);
+        return Objects.equals(id, carrotDO.id) && Objects.equals(name, carrotDO.name) && Objects.equals(shortName, carrotDO.shortName) && Objects.equals(districtLevel, carrotDO.districtLevel) && Objects.equals(enabled, carrotDO.enabled);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, shortName, districtLevel, enabled, deleted);
+        return Objects.hash(id, name, shortName, districtLevel, enabled);
     }
 
     @Override
@@ -88,11 +92,6 @@ public class CarrotDO {
                 ", shortName='" + shortName + '\'' +
                 ", districtLevel=" + districtLevel +
                 ", enabled=" + enabled +
-                ", deleted=" + deleted +
                 '}';
-    }
-
-    public Boolean isNotNull() {
-        return name != null && districtLevel != null;
     }
 }

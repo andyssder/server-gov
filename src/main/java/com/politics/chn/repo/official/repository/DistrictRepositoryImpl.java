@@ -1,7 +1,11 @@
 package com.politics.chn.repo.official.repository;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.politics.chn.domain.official.value.DistrictDO;
+import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.exception.CommonException;
+import com.politics.chn.domain.official.entity.DistrictDO;
+import com.politics.chn.domain.official.query.DistrictQuery;
+import com.politics.chn.domain.official.repository.DistrictRepository;
 import com.politics.chn.repo.official.dao.DistrictDao;
 import com.politics.chn.repo.official.po.DistrictPO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +19,7 @@ import java.util.stream.Collectors;
  * @author andyssder
  */
 @Repository
-public class DistrictRepository {
+public class DistrictRepositoryImpl implements DistrictRepository {
 
     private DistrictDao districtDao;
 
@@ -50,4 +54,24 @@ public class DistrictRepository {
         return list.stream().map(item -> BeanUtil.toBean(item, DistrictDO.class)).collect(Collectors.toList());
     }
 
+    @Override
+    public DistrictDO find(Long id) {
+        DistrictPO districtPO = districtDao.getOneById(id.intValue());
+        return BeanUtil.toBean(districtPO, DistrictDO.class);
+    }
+
+    @Override
+    public List<DistrictDO> query(DistrictQuery query) {
+        return null;
+    }
+
+    @Override
+    public boolean remove(Long id) {
+        throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+    }
+
+    @Override
+    public boolean save(DistrictDO aggregate) {
+        throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+    }
 }

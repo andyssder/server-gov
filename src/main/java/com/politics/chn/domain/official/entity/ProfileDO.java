@@ -1,7 +1,5 @@
 package com.politics.chn.domain.official.entity;
 
-import com.politics.chn.domain.official.value.DistrictDO;
-
 import java.util.Date;
 import java.util.Objects;
 

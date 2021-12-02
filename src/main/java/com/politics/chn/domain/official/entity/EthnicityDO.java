@@ -1,4 +1,6 @@
-package com.politics.chn.domain.official.value;
+package com.politics.chn.domain.official.entity;
+
+import com.politics.chn.common.utils.StringUtils;
 
 import java.util.Objects;
 
@@ -9,6 +11,12 @@ import java.util.Objects;
 public class EthnicityDO {
     Integer id;
     String name;
+
+    public EthnicityDO(Integer id, String name) {
+        assert StringUtils.isNotBlank(name);
+        this.id = id;
+        this.name = name;
+    }
 
     public Integer getId() {
         return id;

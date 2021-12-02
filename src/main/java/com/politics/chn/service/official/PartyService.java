@@ -1,14 +1,11 @@
 package com.politics.chn.service.official;
 
-import cn.hutool.core.bean.BeanUtil;
-import com.politics.chn.domain.official.value.PartyDO;
-import com.politics.chn.repo.official.po.PartyPO;
+import com.politics.chn.domain.official.entity.PartyDO;
 import com.politics.chn.repo.official.repository.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @since 2021-02-20

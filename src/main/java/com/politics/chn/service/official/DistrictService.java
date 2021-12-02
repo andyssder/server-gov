@@ -2,8 +2,9 @@ package com.politics.chn.service.official;
 
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.domain.official.value.DistrictDO;
-import com.politics.chn.repo.official.repository.DistrictRepository;
+import com.politics.chn.domain.official.entity.DistrictDO;
+import com.politics.chn.domain.official.query.DistrictQuery;
+import com.politics.chn.domain.official.repository.DistrictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -25,18 +26,16 @@ public class DistrictService {
     }
 
     public List<DistrictDO> getProvinces() {
-        return districtRepository.getByLevel(1);
+        DistrictQuery query = new DistrictQuery();
+        query.setLevel(1);
+        return districtRepository.query(query);
     }
 
     public List<DistrictDO> getCities(Integer parentId) {
-        List<DistrictDO> result = districtRepository.getChildrenById(parentId);
-        Assert.notNull(result, () -> {
-            throw new CommonException(ResultStatusEnum.NOT_FOUND);
-        });
-        return result;
+
+        DistrictQuery query = new DistrictQuery();
+        query.setPid(parentId);
+        return districtRepository.query(query);
     }
 
-    public DistrictDO getById(int id) {
-        return districtRepository.getById(id);
-    }
 }

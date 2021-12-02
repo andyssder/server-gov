@@ -1,9 +1,5 @@
 package com.politics.chn.domain.official.entity;
 
-import com.politics.chn.domain.official.value.DistrictDO;
-import com.politics.chn.domain.official.value.EthnicityDO;
-import com.politics.chn.domain.official.value.PartyDO;
-
 import java.util.Date;
 import java.util.Objects;
 

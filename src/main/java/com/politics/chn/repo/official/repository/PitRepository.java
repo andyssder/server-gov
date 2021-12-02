@@ -1,7 +1,7 @@
 package com.politics.chn.repo.official.repository;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.politics.chn.domain.official.value.PitDO;
+import com.politics.chn.domain.official.entity.PitDO;
 import com.politics.chn.repo.official.dao.PitDao;
 import com.politics.chn.repo.official.po.PitPO;
 import org.springframework.beans.factory.annotation.Autowired;

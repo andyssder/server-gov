@@ -1,4 +1,4 @@
-package com.politics.chn.domain.official.value;
+package com.politics.chn.domain.official.entity;
 
 import java.util.List;
 import java.util.Objects;

@@ -1,13 +1,8 @@
 package com.politics.chn.service;
 
-import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.domain.official.value.CarrotDO;
 import com.politics.chn.repo.official.dao.CarrotDao;
 import com.politics.chn.service.official.CarrotService;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 
 /**

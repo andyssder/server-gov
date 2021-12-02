@@ -1,13 +1,9 @@
 package com.politics.chn.service;
 
-import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.domain.official.value.PitDO;
 import com.politics.chn.repo.official.dao.PitDao;
 import com.politics.chn.service.official.PitService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
 
 /**
  * @since 2021-02-17

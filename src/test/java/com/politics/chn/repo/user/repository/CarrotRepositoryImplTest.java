@@ -8,7 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @author andyssder
  */
 //@SpringBootTest
-class CarrotRepositoryTest {
+class CarrotRepositoryImplTest {
 
     @Test
     void getAll() {

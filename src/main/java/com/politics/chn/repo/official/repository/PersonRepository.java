@@ -2,14 +2,8 @@ package com.politics.chn.repo.official.repository;
 
 import cn.hutool.core.bean.BeanUtil;
 import com.politics.chn.domain.official.entity.PersonDO;
-import com.politics.chn.repo.official.dao.DistrictDao;
-import com.politics.chn.repo.official.dao.EthnicityDao;
-import com.politics.chn.repo.official.dao.PartyDao;
 import com.politics.chn.repo.official.dao.PersonDao;
 import com.politics.chn.repo.official.po.PersonPO;
-import com.politics.chn.service.official.DistrictService;
-import com.politics.chn.service.official.EthnicityService;
-import com.politics.chn.service.official.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -25,7 +19,7 @@ public class PersonRepository {
 
     private PersonDao personDao;
 
-    private DistrictRepository districtRepository;
+    private DistrictRepositoryImpl districtRepositoryImpl;
 
     private EthnicityRepository ethnicityRepository;
 
@@ -37,8 +31,8 @@ public class PersonRepository {
     }
 
     @Autowired
-    public void setDistrictRepository(DistrictRepository districtRepository) {
-        this.districtRepository = districtRepository;
+    public void setDistrictRepository(DistrictRepositoryImpl districtRepositoryImpl) {
+        this.districtRepositoryImpl = districtRepositoryImpl;
     }
 
     @Autowired
@@ -73,9 +67,9 @@ public class PersonRepository {
         List<PersonPO> list = personDao.getAll();
         List<PersonDO> result = list.stream().map(item -> {
             PersonDO personDO = BeanUtil.toBean(item, PersonDO.class);
-            personDO.setAncestralHome(districtRepository.getById(item.getAncestralHomeId()));
-            personDO.setBirthPlace(districtRepository.getById(item.getBirthPlaceId()));
-            personDO.setWorkPlace(districtRepository.getById(item.getWorkPlaceId()));
+            personDO.setAncestralHome(districtRepositoryImpl.getById(item.getAncestralHomeId()));
+            personDO.setBirthPlace(districtRepositoryImpl.getById(item.getBirthPlaceId()));
+            personDO.setWorkPlace(districtRepositoryImpl.getById(item.getWorkPlaceId()));
             personDO.setEthnicity(ethnicityRepository.getOneById(item.getEthnicityId()));
             personDO.setParty(partyRepository.getOneById(item.getPartyId()));
             return personDO;
@@ -86,9 +80,9 @@ public class PersonRepository {
     public PersonDO getOneById(Long id) {
         PersonPO personPO = personDao.getOneById(id);
         PersonDO personDO = BeanUtil.toBean(personPO, PersonDO.class);
-        personDO.setAncestralHome(districtRepository.getById(personPO.getAncestralHomeId()));
-        personDO.setBirthPlace(districtRepository.getById(personPO.getBirthPlaceId()));
-        personDO.setWorkPlace(districtRepository.getById(personPO.getWorkPlaceId()));
+        personDO.setAncestralHome(districtRepositoryImpl.getById(personPO.getAncestralHomeId()));
+        personDO.setBirthPlace(districtRepositoryImpl.getById(personPO.getBirthPlaceId()));
+        personDO.setWorkPlace(districtRepositoryImpl.getById(personPO.getWorkPlaceId()));
         personDO.setEthnicity(ethnicityRepository.getOneById(personPO.getEthnicityId()));
         personDO.setParty(partyRepository.getOneById(personPO.getPartyId()));
         return personDO;
