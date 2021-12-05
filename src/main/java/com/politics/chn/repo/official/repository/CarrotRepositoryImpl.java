@@ -1,8 +1,8 @@
 package com.politics.chn.repo.official.repository;
 
 import cn.hutool.core.bean.BeanUtil;
+import com.politics.chn.domain.official.entity.Carrot;
 import com.politics.chn.domain.official.query.CarrotQuery;
-import com.politics.chn.domain.official.entity.CarrotDO;
 import com.politics.chn.domain.official.repository.CarrotRepository;
 import com.politics.chn.repo.official.dao.CarrotDao;
 import com.politics.chn.repo.official.po.CarrotPO;
@@ -28,29 +28,29 @@ public class CarrotRepositoryImpl implements CarrotRepository {
     }
 
     @Override
-    public CarrotDO find(Long id) {
+    public Carrot find(Long id) {
         CarrotPO carrotPO = carrotDao.getOneById(id);
-        return BeanUtil.toBean(carrotPO, CarrotDO.class);
+        return BeanUtil.toBean(carrotPO, Carrot.class);
     }
 
     @Override
-    public List<CarrotDO> query(CarrotQuery query) {
+    public List<Carrot> query(CarrotQuery query) {
         if (Objects.nonNull(query.getDistrictLevel())) {
             return getByDistrictLevel(query.getDistrictLevel());
         }
         return getAll();
     }
 
-    private List<CarrotDO> getByDistrictLevel(int districtLevel) {
+    private List<Carrot> getByDistrictLevel(int districtLevel) {
         List<CarrotPO> list = carrotDao.getByDistrictLevel(districtLevel);
 
-        return list.stream().map(item -> BeanUtil.toBean(item, CarrotDO.class)).collect(Collectors.toList());
+        return list.stream().map(item -> BeanUtil.toBean(item, Carrot.class)).collect(Collectors.toList());
     }
 
-    private List<CarrotDO> getAll() {
+    private List<Carrot> getAll() {
         List<CarrotPO> list = carrotDao.getAll();
 
-        return list.stream().map(item -> BeanUtil.toBean(item, CarrotDO.class)).collect(Collectors.toList());
+        return list.stream().map(item -> BeanUtil.toBean(item, Carrot.class)).collect(Collectors.toList());
     }
 
     @Override
@@ -59,25 +59,25 @@ public class CarrotRepositoryImpl implements CarrotRepository {
     }
 
     @Override
-    public boolean save(CarrotDO carrotDO) {
-        if (Objects.isNull(carrotDO.getId())) {
-            return insertOne(carrotDO);
+    public boolean save(Carrot carrot) {
+        if (Objects.isNull(carrot.getId())) {
+            return insertOne(carrot);
         } else {
-            return updateOne(carrotDO);
+            return updateOne(carrot);
         }
     }
 
-    private Boolean insertOne(CarrotDO carrotDO) {
-        CarrotPO carrotPO = BeanUtil.toBean(carrotDO, CarrotPO.class);
+    private Boolean insertOne(Carrot carrot) {
+        CarrotPO carrotPO = BeanUtil.toBean(carrot, CarrotPO.class);
         if (!carrotDao.insertOne(carrotPO)) {
             return false;
         }
-        carrotDO.setId(carrotPO.getId());
+        carrot.setId(carrotPO.getId());
         return true;
     }
 
-    private Boolean updateOne(CarrotDO carrotDO) {
-        CarrotPO carrotPO = BeanUtil.toBean(carrotDO, CarrotPO.class);
+    private Boolean updateOne(Carrot carrot) {
+        CarrotPO carrotPO = BeanUtil.toBean(carrot, CarrotPO.class);
         return carrotDao.updateOne(carrotPO);
     }
 

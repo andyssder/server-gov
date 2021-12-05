@@ -1,6 +1,6 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.domain.official.OfficialDO;
+import com.politics.chn.domain.official.entity.Official;
 import com.politics.chn.application.OfficialBiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,22 +22,22 @@ public class OfficialController {
     }
 
     @PostMapping
-    public void addOfficial(@RequestBody OfficialDO official) {
+    public void addOfficial(@RequestBody Official official) {
         officialBiz.addOfficial(official);
     }
 
     @PutMapping
-    public void updateOfficial(@RequestBody OfficialDO official) {
+    public void updateOfficial(@RequestBody Official official) {
         officialBiz.updateOfficial(official);
     }
 
     @GetMapping
-    public List<OfficialDO> getAllOfficials() {
+    public List<Official> getAllOfficials() {
         return officialBiz.getOfficialList();
     }
 
     @GetMapping(value = "/{id}")
-    public OfficialDO getOfficial(@PathVariable long id) {
+    public Official getOfficial(@PathVariable long id) {
         return officialBiz.getOneOfficial(id);
     }
 

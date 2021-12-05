@@ -7,7 +7,9 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class PitDO {
+public class Pit {
+
+    // TODO 验证参数
     Long id;
     Long pid;
     String name;
@@ -127,8 +129,8 @@ public class PitDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PitDO pitDO = (PitDO) o;
-        return Objects.equals(id, pitDO.id) && Objects.equals(pid, pitDO.pid) && Objects.equals(name, pitDO.name) && Objects.equals(shortName, pitDO.shortName) && Objects.equals(level, pitDO.level) && Objects.equals(ranking, pitDO.ranking) && Objects.equals(districtLevel, pitDO.districtLevel) && Objects.equals(lft, pitDO.lft) && Objects.equals(rgt, pitDO.rgt) && Objects.equals(enabled, pitDO.enabled) && Objects.equals(deleted, pitDO.deleted) && Objects.equals(names, pitDO.names);
+        Pit pit = (Pit) o;
+        return Objects.equals(id, pit.id) && Objects.equals(pid, pit.pid) && Objects.equals(name, pit.name) && Objects.equals(shortName, pit.shortName) && Objects.equals(level, pit.level) && Objects.equals(ranking, pit.ranking) && Objects.equals(districtLevel, pit.districtLevel) && Objects.equals(lft, pit.lft) && Objects.equals(rgt, pit.rgt) && Objects.equals(enabled, pit.enabled) && Objects.equals(deleted, pit.deleted) && Objects.equals(names, pit.names);
     }
 
     @Override

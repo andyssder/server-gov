@@ -25,10 +25,10 @@ class CarrotDaoTest {
 
 //    @Test
 //    void getByDistrictLevel() {
-//        CarrotDO CarrotDO1 = new CarrotDO();
+//        Carrot CarrotDO1 = new Carrot();
 //        CarrotDO1.setName("test-getByDistrictLevel1");
 //        CarrotDO1.setDistrictLevel(10);
-//        CarrotDO CarrotDO2 = new CarrotDO();
+//        Carrot CarrotDO2 = new Carrot();
 //        CarrotDO2.setName("test-getByDistrictLevel2");
 //        CarrotDO2.setDistrictLevel(11);
 //        carrotDao.insertOne(CarrotDO1);
@@ -41,42 +41,42 @@ class CarrotDaoTest {
 //
 //    @Test
 //    void getOneById() {
-//        CarrotDO CarrotDO = new CarrotDO();
-//        CarrotDO.setName("test-getOneById");
-//        CarrotDO.setDistrictLevel(1);
-//        CarrotDO.setDeleted(false);
-//        carrotDao.insertOne(CarrotDO);
-//        Assertions.assertEquals(CarrotDO, carrotDao.getOneById(CarrotDO.getId()));
-//        carrotDao.deleteOne(CarrotDO.getId(), true);
+//        Carrot Carrot = new Carrot();
+//        Carrot.setName("test-getOneById");
+//        Carrot.setDistrictLevel(1);
+//        Carrot.setDeleted(false);
+//        carrotDao.insertOne(Carrot);
+//        Assertions.assertEquals(Carrot, carrotDao.getOneById(Carrot.getId()));
+//        carrotDao.deleteOne(Carrot.getId(), true);
 //    }
 //
 //    @Test
 //    void insertOne() {
-//        CarrotDO CarrotDO = new CarrotDO();
-//        CarrotDO.setName("test-insertOne");
-//        CarrotDO.setDistrictLevel(1);
-//        Assertions.assertTrue(carrotDao.insertOne(CarrotDO),"插入记录错误");
-//        carrotDao.deleteOne(CarrotDO.getId(), true);
+//        Carrot Carrot = new Carrot();
+//        Carrot.setName("test-insertOne");
+//        Carrot.setDistrictLevel(1);
+//        Assertions.assertTrue(carrotDao.insertOne(Carrot),"插入记录错误");
+//        carrotDao.deleteOne(Carrot.getId(), true);
 //    }
 //
 //    @Test
 //    void updateOne() {
-//        CarrotDO CarrotDO = new CarrotDO();
-//        CarrotDO.setName("test-updateOne");
-//        CarrotDO.setDistrictLevel(1);
-//        carrotDao.insertOne(CarrotDO);
+//        Carrot Carrot = new Carrot();
+//        Carrot.setName("test-updateOne");
+//        Carrot.setDistrictLevel(1);
+//        carrotDao.insertOne(Carrot);
 //
-//        CarrotDO targetCarrotDO = new CarrotDO();
+//        Carrot targetCarrotDO = new Carrot();
 //        targetCarrotDO.setName("test-updateOne");
 //        targetCarrotDO.setShortName("test");
 //        targetCarrotDO.setDistrictLevel(1);
-//        targetCarrotDO.setId(CarrotDO.getId());
+//        targetCarrotDO.setId(Carrot.getId());
 //        targetCarrotDO.setDeleted(false);
 //
 //        Assertions.assertTrue(carrotDao.updateOne(targetCarrotDO),"修改记录错误");
-//        CarrotDO updatedCarrotDO = carrotDao.getOneById(CarrotDO.getId());
+//        Carrot updatedCarrotDO = carrotDao.getOneById(Carrot.getId());
 //        Assertions.assertEquals(targetCarrotDO, updatedCarrotDO,"修改内容不匹配");
-//        carrotDao.deleteOne(CarrotDO.getId(), true);
+//        carrotDao.deleteOne(Carrot.getId(), true);
 //    }
 
 }

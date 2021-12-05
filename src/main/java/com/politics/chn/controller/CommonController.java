@@ -1,7 +1,7 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.domain.official.entity.EthnicityDO;
-import com.politics.chn.domain.official.entity.PartyDO;
+import com.politics.chn.domain.official.entity.Ethnicity;
+import com.politics.chn.domain.official.entity.Party;
 import com.politics.chn.service.official.EthnicityService;
 import com.politics.chn.service.official.PartyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +23,12 @@ public class CommonController {
     private EthnicityService ethnicityService;
 
     @GetMapping(value = "/ethnicity")
-    public List<EthnicityDO> getEthnicityList() {
+    public List<Ethnicity> getEthnicityList() {
         return ethnicityService.getEthnicityList();
     }
 
     @GetMapping(value = "/party")
-    public List<PartyDO> getPartyList() {
+    public List<Party> getPartyList() {
         return partyService.getPartyList();
     }
 }

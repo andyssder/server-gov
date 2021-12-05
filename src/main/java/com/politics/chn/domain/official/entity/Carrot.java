@@ -8,7 +8,7 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class CarrotDO {
+public class Carrot {
     Long id;
     String name;
     String shortName;
@@ -16,7 +16,7 @@ public class CarrotDO {
 
     Boolean enabled;
 
-    public CarrotDO(Long id, String name, String shortName, Integer districtLevel, Boolean enabled) {
+    public Carrot(Long id, String name, String shortName, Integer districtLevel, Boolean enabled) {
         assert StringUtils.isNotBlank(name);
         assert districtLevel >= 0;
 
@@ -75,8 +75,8 @@ public class CarrotDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CarrotDO carrotDO = (CarrotDO) o;
-        return Objects.equals(id, carrotDO.id) && Objects.equals(name, carrotDO.name) && Objects.equals(shortName, carrotDO.shortName) && Objects.equals(districtLevel, carrotDO.districtLevel) && Objects.equals(enabled, carrotDO.enabled);
+        Carrot carrot = (Carrot) o;
+        return Objects.equals(id, carrot.id) && Objects.equals(name, carrot.name) && Objects.equals(shortName, carrot.shortName) && Objects.equals(districtLevel, carrot.districtLevel) && Objects.equals(enabled, carrot.enabled);
     }
 
     @Override

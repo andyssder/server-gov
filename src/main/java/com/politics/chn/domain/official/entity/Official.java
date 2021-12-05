@@ -1,8 +1,6 @@
-package com.politics.chn.domain.official;
+package com.politics.chn.domain.official.entity;
 
 import cn.hutool.core.collection.ListUtil;
-import com.politics.chn.domain.official.entity.PersonDO;
-import com.politics.chn.domain.official.entity.ProfileDO;
 
 import java.util.List;
 import java.util.Objects;
@@ -11,35 +9,35 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class OfficialDO {
-    PersonDO person;
-    List<ProfileDO> profiles;
+public class Official {
+    Person person;
+    List<Profile> profiles;
 
-    public OfficialDO() {
+    public Official() {
     }
 
-    public OfficialDO(PersonDO person) {
+    public Official(Person person) {
         this.person = person;
     }
 
-    public OfficialDO(PersonDO person, List<ProfileDO> profiles) {
+    public Official(Person person, List<Profile> profiles) {
         this.person = person;
         this.profiles = profiles;
     }
 
-    public PersonDO getPerson() {
+    public Person getPerson() {
         return person;
     }
 
-    public void setPerson(PersonDO person) {
+    public void setPerson(Person person) {
         this.person = person;
     }
 
-    public List<ProfileDO> getProfiles() {
+    public List<Profile> getProfiles() {
         return profiles;
     }
 
-    public void setProfiles(List<ProfileDO> profiles) {
+    public void setProfiles(List<Profile> profiles) {
         this.profiles = profiles;
     }
 
@@ -51,7 +49,7 @@ public class OfficialDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        OfficialDO that = (OfficialDO) o;
+        Official that = (Official) o;
         return Objects.equals(person, that.person) && Objects.equals(profiles, that.profiles);
     }
 
@@ -62,7 +60,7 @@ public class OfficialDO {
 
     @Override
     public String toString() {
-        return "OfficialDO{" +
+        return "Official{" +
                 "person=" + person +
                 ", profiles=" + profiles +
                 '}';

@@ -8,7 +8,7 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class DistrictDO {
+public class District {
     Integer id;
     String name;
     Integer code;
@@ -16,7 +16,7 @@ public class DistrictDO {
     Integer lft;
     Integer rgt;
 
-    public DistrictDO(Integer id, String name, Integer code, Integer level, Integer lft, Integer rgt) {
+    public District(Integer id, String name, Integer code, Integer level, Integer lft, Integer rgt) {
         assert StringUtils.isNotBlank(name);
         assert Objects.nonNull(code);
         assert level >= 0;
@@ -85,7 +85,7 @@ public class DistrictDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DistrictDO that = (DistrictDO) o;
+        District that = (District) o;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(code, that.code) && Objects.equals(level, that.level) && Objects.equals(lft, that.lft) && Objects.equals(rgt, that.rgt);
     }
 

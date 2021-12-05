@@ -8,11 +8,11 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class EthnicityDO {
+public class Ethnicity {
     Integer id;
     String name;
 
-    public EthnicityDO(Integer id, String name) {
+    public Ethnicity(Integer id, String name) {
         assert StringUtils.isNotBlank(name);
         this.id = id;
         this.name = name;
@@ -42,7 +42,7 @@ public class EthnicityDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EthnicityDO that = (EthnicityDO) o;
+        Ethnicity that = (Ethnicity) o;
         return Objects.equals(id, that.id) && Objects.equals(name, that.name);
     }
 

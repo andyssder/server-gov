@@ -7,13 +7,14 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class ProfileDO {
+public class Profile {
+    // TODO 验证参数
     Long id;
 
     Date startTime;
     Date endTime;
     Long personId;
-    DistrictDO district;
+    District district;
     Long pit;
     Long carrot;
     String remark;
@@ -55,11 +56,11 @@ public class ProfileDO {
         this.personId = personId;
     }
 
-    public DistrictDO getDistrict() {
+    public District getDistrict() {
         return district;
     }
 
-    public void setDistrict(DistrictDO district) {
+    public void setDistrict(District district) {
         this.district = district;
     }
 
@@ -127,8 +128,8 @@ public class ProfileDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ProfileDO profileDO = (ProfileDO) o;
-        return Objects.equals(id, profileDO.id) && Objects.equals(startTime, profileDO.startTime) && Objects.equals(endTime, profileDO.endTime) && Objects.equals(personId, profileDO.personId) && Objects.equals(district, profileDO.district) && Objects.equals(pit, profileDO.pit) && Objects.equals(carrot, profileDO.carrot) && Objects.equals(remark, profileDO.remark) && Objects.equals(summary, profileDO.summary) && Objects.equals(priority, profileDO.priority) && Objects.equals(enabled, profileDO.enabled) && Objects.equals(deleted, profileDO.deleted);
+        Profile profile = (Profile) o;
+        return Objects.equals(id, profile.id) && Objects.equals(startTime, profile.startTime) && Objects.equals(endTime, profile.endTime) && Objects.equals(personId, profile.personId) && Objects.equals(district, profile.district) && Objects.equals(pit, profile.pit) && Objects.equals(carrot, profile.carrot) && Objects.equals(remark, profile.remark) && Objects.equals(summary, profile.summary) && Objects.equals(priority, profile.priority) && Objects.equals(enabled, profile.enabled) && Objects.equals(deleted, profile.deleted);
     }
 
     @Override
@@ -138,7 +139,7 @@ public class ProfileDO {
 
     @Override
     public String toString() {
-        return "ProfileDO{" +
+        return "Profile{" +
                 "id=" + id +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +

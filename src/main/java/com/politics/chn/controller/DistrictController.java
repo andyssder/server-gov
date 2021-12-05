@@ -1,6 +1,6 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.domain.official.entity.DistrictDO;
+import com.politics.chn.domain.official.entity.District;
 import com.politics.chn.service.official.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +22,12 @@ public class DistrictController {
     }
 
     @GetMapping(value = "/provinces")
-    public List<DistrictDO> getProvinces() {
+    public List<District> getProvinces() {
         return districtService.getProvinces();
     }
 
     @GetMapping(value = "/cities")
-    public List<DistrictDO> getCities(@RequestParam (value = "id") Integer id) {
+    public List<District> getCities(@RequestParam (value = "id") Integer id) {
         return districtService.getCities(id);
     }
 }

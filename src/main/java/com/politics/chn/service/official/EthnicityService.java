@@ -1,7 +1,7 @@
 package com.politics.chn.service.official;
 
-import com.politics.chn.domain.official.entity.EthnicityDO;
-import com.politics.chn.repo.official.repository.EthnicityRepository;
+import com.politics.chn.domain.official.entity.Ethnicity;
+import com.politics.chn.domain.official.repository.EthnicityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,12 +20,8 @@ public class EthnicityService {
         this.ethnicityRepository = ethnicityRepository;
     }
 
-    public List<EthnicityDO> getEthnicityList() {
-        return ethnicityRepository.getEthnicityList();
-    }
-
-    public EthnicityDO getEthnicityById(int id) {
-        return ethnicityRepository.getOneById(id);
+    public List<Ethnicity> getEthnicityList() {
+        return ethnicityRepository.query(null);
     }
 
 }

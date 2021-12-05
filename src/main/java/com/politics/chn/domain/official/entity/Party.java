@@ -8,12 +8,12 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class PartyDO {
+public class Party {
     Integer id;
     String name;
     String shortName;
 
-    public PartyDO(Integer id, String name, String shortName) {
+    public Party(Integer id, String name, String shortName) {
         assert StringUtils.isNotBlank(name);
         assert StringUtils.isNotBlank(shortName);
         this.id = id;
@@ -53,8 +53,8 @@ public class PartyDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PartyDO partyDO = (PartyDO) o;
-        return Objects.equals(id, partyDO.id) && Objects.equals(name, partyDO.name) && Objects.equals(shortName, partyDO.shortName);
+        Party party = (Party) o;
+        return Objects.equals(id, party.id) && Objects.equals(name, party.name) && Objects.equals(shortName, party.shortName);
     }
 
     @Override

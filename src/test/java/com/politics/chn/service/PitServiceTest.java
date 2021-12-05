@@ -27,14 +27,14 @@ class PitServiceTest {
 
 //    @Test
 //    void addPit() {
-//        PitDO newPit1 = new PitDO();
+//        Pit newPit1 = new Pit();
 //        newPit1.setPid(1L);
 //        newPit1.setName("test-add");
 //        newPit1.setDistrictLevel(1);
 //        newPit1.setRanking(1);
 //        Long id1 = pitService.addPit(newPit1);
 //        Assertions.assertNotNull(id1, "插入Pit错误");
-//        PitDO newPit2 = new PitDO();
+//        Pit newPit2 = new Pit();
 //        newPit2.setPid(id1);
 //        newPit2.setName("test-add2");
 //        newPit2.setDistrictLevel(2);
@@ -49,14 +49,14 @@ class PitServiceTest {
 //
 //    @Test
 //    void updatePit() {
-//        PitDO newPit = new PitDO();
+//        Pit newPit = new Pit();
 //        newPit.setPid(1L);
 //        newPit.setName("test-update");
 //        newPit.setDistrictLevel(1);
 //        newPit.setRanking(1);
 //        Long id = pitService.addPit(newPit);
 //
-//        PitDO targetPit = new PitDO();
+//        Pit targetPit = new Pit();
 //        targetPit.setName("test-after-update");
 //
 //        targetPit.setId(-1L);
@@ -64,14 +64,14 @@ class PitServiceTest {
 //
 //        targetPit.setId(id);
 //        Assertions.assertDoesNotThrow(() -> pitService.updatePit(targetPit), "更新Pit异常");
-//        PitDO updatedPit = pitDao.getOneById(id);
+//        Pit updatedPit = pitDao.getOneById(id);
 //        Assertions.assertEquals(targetPit.getName(), updatedPit.getName(), "更新Pit名称失败");
 //        pitDao.deleteOne(id, true);
 //    }
 //
 //    @Test
 //    void deletePit() {
-//        PitDO newPit = new PitDO();
+//        Pit newPit = new Pit();
 //        newPit.setPid(1L);
 //        newPit.setName("test-delete");
 //        newPit.setDistrictLevel(1);
@@ -79,7 +79,7 @@ class PitServiceTest {
 //        Long id = pitService.addPit(newPit);
 //        Assertions.assertThrows(CommonException.class, () -> pitService.deletePit(-1), "删除不存在Pit错误");
 //        Assertions.assertDoesNotThrow(() -> pitService.deletePit(id), "删除Pit异常");
-//        PitDO pitDO = pitDao.getOneById(id);
+//        Pit pitDO = pitDao.getOneById(id);
 //        Assertions.assertTrue(pitDO.getDeleted(), "删除Pit失败");
 //        pitDao.deleteOne(id, true);
 //    }

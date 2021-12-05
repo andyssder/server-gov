@@ -14,28 +14,28 @@ class DistrictRepositoryImplTest {
 
     private DistrictRepositoryImpl districtRepositoryImpl;
 
-    @Autowired
-    private void setDistrictRepository(DistrictRepositoryImpl districtRepositoryImpl) {
-        this.districtRepositoryImpl = districtRepositoryImpl;
-    }
-
-    @Test
-    void getByID() {
-        Assertions.assertNotNull(districtRepositoryImpl.getById(1), "通过id查询错误");
-    }
-
-    @Test
-    void getByLevel() {
-        Assertions.assertNotNull(districtRepositoryImpl.getByLevel(1), "通过level查询错误");
-    }
-
-    @Test
-    void getChildrenById() {
-        Assertions.assertNotEquals(0, districtRepositoryImpl.getChildrenById(1).size(),"通过id查询子节点错误");
-    }
-
-    @Test
-    void getParentById() {
-        Assertions.assertNotEquals(0, districtRepositoryImpl.getParentById(10).size(),"通过id查询父节点错误");
-    }
+//    @Autowired
+//    private void setDistrictRepository(DistrictRepositoryImpl districtRepositoryImpl) {
+//        this.districtRepositoryImpl = districtRepositoryImpl;
+//    }
+//
+//    @Test
+//    void getByID() {
+//        Assertions.assertNotNull(districtRepositoryImpl.getById(1), "通过id查询错误");
+//    }
+//
+//    @Test
+//    void getByLevel() {
+//        Assertions.assertNotNull(districtRepositoryImpl.getByLevel(1), "通过level查询错误");
+//    }
+//
+//    @Test
+//    void getChildrenById() {
+//        Assertions.assertNotEquals(0, districtRepositoryImpl.getChildrenById(1).size(),"通过id查询子节点错误");
+//    }
+//
+//    @Test
+//    void getParentById() {
+//        Assertions.assertNotEquals(0, districtRepositoryImpl.getParentById(10).size(),"通过id查询父节点错误");
+//    }
 }

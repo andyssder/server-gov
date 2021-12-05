@@ -26,7 +26,7 @@ class PitDaoTest {
 //
 //    @Test
 //    void getByDistrictLevel() {
-//        PitDO pit1 = new PitDO();
+//        Pit pit1 = new Pit();
 //        pit1.setPid(1L);
 //        pit1.setName("test-getByDistrictLevel1");
 //        pit1.setLevel(100);
@@ -36,7 +36,7 @@ class PitDaoTest {
 //        pit1.setRgt(10000003);
 //        pitDao.insertOne(pit1);
 //
-//        PitDO pit2 = new PitDO();
+//        Pit pit2 = new Pit();
 //        pit2.setPid(pit1.getId());
 //        pit2.setName("test-getByDistrictLevel2");
 //        pit2.setLevel(101);
@@ -54,7 +54,7 @@ class PitDaoTest {
 //
 //    @Test
 //    void getChildren() {
-//        PitDO pit1 = new PitDO();
+//        Pit pit1 = new Pit();
 //        pit1.setPid(1L);
 //        pit1.setName("test-getChildren1");
 //        pit1.setLevel(100);
@@ -64,7 +64,7 @@ class PitDaoTest {
 //        pit1.setRgt(10000003);
 //        pitDao.insertOne(pit1);
 //
-//        PitDO pit2 = new PitDO();
+//        Pit pit2 = new Pit();
 //        pit2.setPid(pit1.getId());
 //        pit2.setName("test-getChildren2");
 //        pit2.setLevel(101);
@@ -81,7 +81,7 @@ class PitDaoTest {
 //
 //    @Test
 //    void getOneById() {
-//        PitDO pit = new PitDO();
+//        Pit pit = new Pit();
 //        pit.setPid(1L);
 //        pit.setName("test-getOneById");
 //        pit.setLevel(1);
@@ -98,7 +98,7 @@ class PitDaoTest {
 //
 //    @Test
 //    void insertOne() {
-//        PitDO pit = new PitDO();
+//        Pit pit = new Pit();
 //        pit.setPid(1L);
 //        pit.setName("test-insertOne");
 //        pit.setLevel(1);
@@ -112,7 +112,7 @@ class PitDaoTest {
 //
 //    @Test
 //    void updateOne() {
-//        PitDO pit = new PitDO();
+//        Pit pit = new Pit();
 //        pit.setPid(1L);
 //        pit.setName("test-updateOne");
 //        pit.setLevel(1);
@@ -121,21 +121,21 @@ class PitDaoTest {
 //        pit.setLft(1);
 //        pit.setRgt(100);
 //
-//        PitDO targetPit = new PitDO();
+//        Pit targetPit = new Pit();
 //        targetPit.setName("test-updated");
 //
 //        pitDao.insertOne(pit);
 //        targetPit.setId(pit.getId());
 //
 //        Assertions.assertTrue(pitDao.updateOne(targetPit),"修改记录错误");
-//        PitDO updatedPit = pitDao.getOneById(pit.getId());
+//        Pit updatedPit = pitDao.getOneById(pit.getId());
 //        Assertions.assertEquals(targetPit.getName(), updatedPit.getName(),"修改内容不匹配");
 //        pitDao.deleteOne(pit.getId(), true);
 //    }
 //
 //    @Test
 //    void deleteOne() {
-//        PitDO pit = new PitDO();
+//        Pit pit = new Pit();
 //        pit.setPid(1L);
 //        pit.setName("test-delete");
 //        pit.setLevel(1);

@@ -1,14 +1,11 @@
 package com.politics.chn.repo.official.dao;
 
-import cn.hutool.core.bean.BeanUtil;
-import com.politics.chn.domain.official.entity.ProfileDO;
 import com.politics.chn.repo.official.dao.mapper.ProfileMapper;
 import com.politics.chn.repo.official.po.ProfilePO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @since 2021-02-19
@@ -58,7 +55,7 @@ public class ProfileDao {
         return profileMapper.getAll();
     }
 
-    public List<ProfilePO> getOneByPersonId(Long personId) {
+    public List<ProfilePO> getByPersonId(Long personId) {
         return profileMapper.getByPersonId(personId);
     }
 

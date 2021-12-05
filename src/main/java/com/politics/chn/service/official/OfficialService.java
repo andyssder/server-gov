@@ -1,15 +1,11 @@
 package com.politics.chn.service.official;
 
-import cn.hutool.core.collection.CollectionUtil;
-import com.politics.chn.domain.official.OfficialDO;
-import com.politics.chn.domain.official.entity.PersonDO;
-import com.politics.chn.domain.official.entity.ProfileDO;
+import com.politics.chn.domain.official.entity.Official;
+import com.politics.chn.domain.official.repository.OfficialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -18,84 +14,32 @@ import java.util.List;
  */
 @Repository
 public class OfficialService {
-    private PersonService personService;
-
-    private ProfileService profileService;
+    private OfficialRepository officialRepository;
 
     @Autowired
-    private void setPersonService(PersonService personService) {
-        this.personService = personService;
-    }
-
-    @Autowired
-    private void setProfileService(ProfileService profileService) {
-        this.profileService = profileService;
+    private void setOfficialRepository(OfficialRepository officialRepository) {
+        this.officialRepository = officialRepository;
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public Boolean addOfficial(OfficialDO officialDO) {
-        PersonDO person = officialDO.getPerson();
-        Date now = new Date();
-        person.setCreateTime(now);
-        person.setUpdateTime(now);
-        List<ProfileDO> profileList = officialDO.getProfiles();
-        if (!personService.addPerson(person)) {
-            return false;
-        }
-        long id = person.getId();
-        profileList.forEach(profile -> {
-            profile.setPersonId(id);
-        });
-        return profileService.addMany(profileList);
+    public Boolean addOfficial(Official official) {
+        return officialRepository.save(official);
     }
 
-    @Transactional(rollbackFor = Exception.class)
     public Boolean deleteOfficial(long id) {
-        return personService.deletePerson(id) && profileService.deleteOneByPersonId(id);
+        return officialRepository.remove(id);
     }
 
-    @Transactional(rollbackFor = Exception.class)
-    public Boolean updateOfficial(OfficialDO officialDO) {
-        PersonDO person = officialDO.getPerson();
-        Long personId = person.getId();
-        person.setUpdateTime(new Date());
-        List<ProfileDO> profileList = officialDO.getProfiles();
-        List<Long> remainIds = new ArrayList<>();
-        profileList.forEach(profile -> {
-            profile.setPersonId(personId);
-            if (profile.getId() != null) {
-                remainIds.add(profile.getId());
-            }
-        });
-        List<ProfileDO> oldProfileList = profileService.getOneByPersonId(personId);
-        List<Long> oldProfileIds = new ArrayList<>();
-        oldProfileList.forEach(profile -> {
-            oldProfileIds.add(profile.getId());
-        });
-        List<Long> deleteIds = CollectionUtil.subtractToList(oldProfileIds, remainIds);
-        // TODO: 批量删除
-        // profileDao.deleteMany(deleteIds);
-        deleteIds.forEach(id -> {
-            profileService.deleteOne(id);
-        });
-        return personService.updatePerson(person) && profileService.updateMany(profileList);
+    public Boolean updateOfficial(Official official) {
+        return officialRepository.save(official);
     }
 
-    public List<OfficialDO> getAllOfficial() {
-        List<OfficialDO> officialList = new ArrayList<>();
-        List<PersonDO> personList = personService.getAllPerson();
-        personList.forEach(person -> {
-//            List<ProfileDO> profiles = profileService.getOneByPersonId(person.getId());
-            officialList.add(new OfficialDO(person));
-        });
-        return officialList;
+    public List<Official> getAllOfficial() {
+        return officialRepository.queryPerson(null);
     }
 
-    public OfficialDO getOfficialById(Long id) {
-        PersonDO person = personService.getPersonById(id);
-        List<ProfileDO> profileList = profileService.getOneByPersonId(id);
-        OfficialDO official = new OfficialDO(person, profileList);
-        return official;
+    public Official getOfficialById(Long id) {
+        return officialRepository.find(id);
     }
 
 }

@@ -1,7 +1,7 @@
 package com.politics.chn.repo.user.repository;
 
 import com.politics.chn.repo.official.dao.PitDao;
-import com.politics.chn.repo.official.repository.PitRepository;
+import com.politics.chn.repo.official.repository.PitRepositoryImpl;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -10,14 +10,14 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author andyssder
  */
 //@SpringBootTest
-class PitRepositoryTest {
+class PitRepositoryImplTest {
 
-    private PitRepository pitRepository;
+    private PitRepositoryImpl pitRepositoryImpl;
     private PitDao pitDao;
 
     @Autowired
-    private void setPitRepository(PitRepository pitRepository) {
-        this.pitRepository = pitRepository;
+    private void setPitRepository(PitRepositoryImpl pitRepositoryImpl) {
+        this.pitRepositoryImpl = pitRepositoryImpl;
     }
 
     @Autowired
@@ -38,7 +38,7 @@ class PitRepositoryTest {
 //    @Test
 //    void getChildren() {
 //
-//        PitDO newPit1 = new PitDO();
+//        Pit newPit1 = new Pit();
 //        newPit1.setPid(1L);
 //        newPit1.setName("test-getChildren1");
 //        newPit1.setLevel(100);
@@ -49,7 +49,7 @@ class PitRepositoryTest {
 //        pitRepository.insertOne(newPit1);
 //        long id1 = newPit1.getId();
 //
-//        PitDO newPit2 = new PitDO();
+//        Pit newPit2 = new Pit();
 //        newPit2.setPid(id1);
 //        newPit2.setName("test-getChildren2");
 //        newPit2.setLevel(101);
@@ -71,7 +71,7 @@ class PitRepositoryTest {
 //
 //    @Test
 //    void insertOne() {
-//        PitDO newPit = new PitDO();
+//        Pit newPit = new Pit();
 //        newPit.setPid(1L);
 //        newPit.setName("test-getChildren1");
 //        newPit.setLevel(100);

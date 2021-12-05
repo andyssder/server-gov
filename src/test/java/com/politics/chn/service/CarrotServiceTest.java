@@ -27,7 +27,7 @@ class CarrotServiceTest {
 
 //    @Test
 //    void addCarrot() {
-//        CarrotDO newCarrot = new CarrotDO();
+//        Carrot newCarrot = new Carrot();
 //        newCarrot.setName("test-addCarrot");
 //        newCarrot.setDistrictLevel(1);
 //        Long id = carrotService.addCarrot(newCarrot);
@@ -37,11 +37,11 @@ class CarrotServiceTest {
 //
 //    @Test
 //    void updateCarrot() {
-//        CarrotDO newCarrot = new CarrotDO();
+//        Carrot newCarrot = new Carrot();
 //        newCarrot.setName("test-updateCarrot");
 //        newCarrot.setDistrictLevel(1);
 //
-//        CarrotDO targetDO = new CarrotDO();
+//        Carrot targetDO = new Carrot();
 //        targetDO.setId(-1L);
 //        targetDO.setName("test-after-updateCarrot");
 //        targetDO.setDistrictLevel(1);
@@ -51,7 +51,7 @@ class CarrotServiceTest {
 //
 //        targetDO.setId(id);
 //        Assertions.assertDoesNotThrow(() -> carrotService.updateCarrot(targetDO), "更新Carrot异常");
-//        CarrotDO updatedCarrotDO = carrotDao.getOneById(id);
+//        Carrot updatedCarrotDO = carrotDao.getOneById(id);
 //        Assertions.assertEquals(targetDO.getName(), updatedCarrotDO.getName(), "更新Carrot名称失败");
 //        carrotDao.deleteOne(id, true);
 //    }

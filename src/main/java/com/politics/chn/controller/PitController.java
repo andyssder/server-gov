@@ -1,6 +1,6 @@
 package com.politics.chn.controller;
 
-import com.politics.chn.domain.official.entity.PitDO;
+import com.politics.chn.domain.official.entity.Pit;
 import com.politics.chn.service.official.PitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,12 +23,12 @@ public class PitController {
     }
 
     @PostMapping
-    public Long addPit(@RequestBody PitDO pit) {
+    public Long addPit(@RequestBody Pit pit) {
         return pitService.addPit(pit);
     }
 
     @PutMapping
-    public void updatePit(@RequestBody PitDO pit) {
+    public void updatePit(@RequestBody Pit pit) {
         pitService.updatePit(pit);
     }
 
@@ -38,8 +38,8 @@ public class PitController {
     }
 
     @GetMapping
-    public List<PitDO> getPitList(@RequestParam(value = "type", required = false) String type,
-                                  @RequestParam(value = "value", required = false) Long value) {
+    public List<Pit> getPitList(@RequestParam(value = "type", required = false) String type,
+                                @RequestParam(value = "value", required = false) Long value) {
         return pitService.getPitList(type, value);
     }
 
