@@ -1,18 +1,16 @@
 package com.politics.chn.service.user;
 
-import cn.hutool.core.bean.BeanUtil;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.domain.user.Entity.PermissionDO;
-import com.politics.chn.repo.user.po.PermissionPO;
-import com.politics.chn.repo.user.repository.PermissionRepository;
+import com.politics.chn.domain.user.entity.Permission;
+import com.politics.chn.domain.user.query.PermissionQuery;
+import com.politics.chn.domain.user.repository.PermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
-import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author xu
@@ -27,38 +25,43 @@ public class PermissionService {
         this.permissionRepository = permissionRepository;
     }
 
-    public Long addPermission(PermissionDO permissionDO) {
-        Assert.isTrue(permissionDO.isNotNull(), () -> {
-            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
-        });
-        Assert.isTrue(permissionRepository.insertOne(permissionDO), () -> {
+    public Long addPermission(Permission permission) {
+//        Assert.isTrue(permission.isNotNull(), () -> {
+//            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+//        });
+        Assert.isTrue(permissionRepository.save(permission), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
-        return permissionDO.getId();
+        return permission.getId();
     }
 
-    public void updatePermission(PermissionDO permissionDO) {
-        Assert.isTrue(permissionRepository.updateOne(permissionDO), () -> {
+    public void updatePermission(Permission permission) {
+        Assert.isTrue(permissionRepository.save(permission), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }
 
-    public void patchUpdatePermission(List<PermissionDO> permissionDOS) {
-        Assert.isTrue(permissionRepository.updateMany(permissionDOS), () -> {
-            throw new CommonException(ResultStatusEnum.NOT_FOUND);
+    @Transactional(rollbackFor = Exception.class)
+    public void patchUpdatePermission(List<Permission> permissions) {
+        permissions.forEach(permissionDO -> {
+            Assert.isTrue(permissionRepository.save(permissionDO), () -> {
+                throw new CommonException(ResultStatusEnum.NOT_FOUND);
+            });
         });
     }
 
-    public List<PermissionDO> getPermissionList() {
-        return permissionRepository.getAll();
+    public List<Permission> getPermissionList() {
+        return permissionRepository.query(new PermissionQuery());
     }
 
-    public List<PermissionDO> getPermissionListByRole(long roleId) {
-        return permissionRepository.getPermissionsByRoleId(roleId);
+    public List<Permission> getPermissionListByRole(long roleId) {
+        PermissionQuery permissionQuery = new PermissionQuery();
+        permissionQuery.setRoleId(roleId);
+        return permissionRepository.query(permissionQuery);
     }
 
     public void deletePermission(long id) {
-        Assert.isTrue(permissionRepository.deleteOne(id), () -> {
+        Assert.isTrue(permissionRepository.remove(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }

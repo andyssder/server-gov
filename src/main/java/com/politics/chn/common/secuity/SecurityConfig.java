@@ -5,7 +5,7 @@ import cn.hutool.core.lang.Assert;
 import cn.hutool.json.JSONUtil;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.result.ReturnResult;
-import com.politics.chn.domain.user.UserDO;
+import com.politics.chn.application.dto.UserAuthDTO;
 import com.politics.chn.application.UseBiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -116,7 +116,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public UserDetailsService userDetailsService() {
         //获取登录用户信息
         return username -> {
-            UserDO user = useBiz.getUserByUserName(username);
+            UserAuthDTO user = useBiz.getUserByUserName(username);
             Assert.notNull(user, () -> {
                 throw new UsernameNotFoundException("用户名或密码错误");
             });

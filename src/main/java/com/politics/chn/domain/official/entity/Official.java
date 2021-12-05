@@ -1,6 +1,7 @@
 package com.politics.chn.domain.official.entity;
 
 import cn.hutool.core.collection.ListUtil;
+import com.politics.chn.domain.common.Entity;
 
 import java.util.List;
 import java.util.Objects;
@@ -9,7 +10,7 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class Official {
+public class Official implements Entity {
     Person person;
     List<Profile> profiles;
 

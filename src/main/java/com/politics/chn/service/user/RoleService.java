@@ -2,11 +2,13 @@ package com.politics.chn.service.user;
 
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.domain.user.Entity.RoleDO;
+import com.politics.chn.domain.user.entity.Role;
+import com.politics.chn.domain.user.query.RoleQuery;
+import com.politics.chn.domain.user.repository.RoleRepository;
 import com.politics.chn.repo.user.po.RolePermissionRelationPO;
-import com.politics.chn.repo.user.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -24,40 +26,45 @@ public class RoleService {
         this.roleRepository = roleRepository;
     }
 
-    public Long addRole(RoleDO roleDO) {
-        Assert.isTrue(roleDO.isNotNull(), () -> {
-            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
-        });
+    public Long addRole(Role role) {
+//        Assert.isTrue(role.isNotNull(), () -> {
+//            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+//        });
 
-        Assert.isTrue(roleRepository.insertOne(roleDO), () -> {
+        Assert.isTrue(roleRepository.save(role), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
-        return roleDO.getId();
+        return role.getId();
     }
 
-    public void updateRole(RoleDO roleDO) {
-        Assert.isTrue(roleRepository.updateOne(roleDO), () -> {
+    public void updateRole(Role role) {
+        Assert.isTrue(roleRepository.save(role), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }
 
-    public void patchUpdateRole(List<RoleDO> roleDOS) {
-        Assert.isTrue(roleRepository.updateMany(roleDOS), () -> {
-            throw new CommonException(ResultStatusEnum.NOT_FOUND);
+    @Transactional(rollbackFor = Exception.class)
+    public void patchUpdateRole(List<Role> roles) {
+        roles.forEach(roleDO -> {
+            Assert.isTrue(roleRepository.save(roleDO), () -> {
+                throw new CommonException(ResultStatusEnum.NOT_FOUND);
+            });
         });
     }
 
-    public List<RoleDO> getRoleList() {
-        return roleRepository.getAll();
+    public List<Role> getRoleList() {
+        return roleRepository.query(new RoleQuery());
     }
 
-    public List<RoleDO> getRoleListByUser(long userId) {
-        return roleRepository.getRolesByUserId(userId);
+    public List<Role> getRoleListByUser(long userId) {
+        RoleQuery roleQuery = new RoleQuery();
+        roleQuery.setUserId(userId);
+        return roleRepository.query(roleQuery);
 
     }
 
     public void deleteRole(long id) {
-        Assert.isTrue(roleRepository.deleteOne(id), () -> {
+        Assert.isTrue(roleRepository.remove(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
     }

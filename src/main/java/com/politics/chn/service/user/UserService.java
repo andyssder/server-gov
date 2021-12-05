@@ -1,12 +1,9 @@
 package com.politics.chn.service.user;
 
-import com.politics.chn.domain.user.Entity.BaseUserDO;
-import com.politics.chn.domain.user.Entity.PermissionDO;
-import com.politics.chn.domain.user.Entity.RoleDO;
-import com.politics.chn.repo.user.po.UserRoleRelationPO;
-import com.politics.chn.domain.user.UserDO;
-import com.politics.chn.repo.user.repository.BaseUserRepository;
-import com.politics.chn.repo.user.repository.UserRoleRelationRepository;
+import com.politics.chn.domain.user.entity.User;
+import com.politics.chn.domain.user.query.UserQuery;
+import com.politics.chn.domain.user.repository.UserRepository;
+import com.politics.chn.repo.user.repository.UserRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -19,53 +16,30 @@ import java.util.List;
 @Repository
 public class UserService {
 
-    private BaseUserRepository baseUserRepository;
-    private UserRoleRelationRepository userRoleRelationRepository;
-    private RoleService roleService;
-    private PermissionService permissionService;
+    private UserRepository userRepository;
 
     @Autowired
-    public void setBaseUserRepository(BaseUserRepository baseUserRepository) {
-        this.baseUserRepository = baseUserRepository;
+    public void setBaseUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
     }
 
-    @Autowired
-    public void setRoleService(RoleService roleService) {
-        this.roleService = roleService;
+    public User getUserByField(UserQuery userQuery) {
+        return userRepository.queryOne(userQuery);
     }
 
-    @Autowired
-    public void setPermissionService(PermissionService permissionService) {
-        this.permissionService = permissionService;
+    public boolean addUser(User user) {
+        return userRepository.save(user);
     }
 
-    public UserDO getUserByField(String field, String value) {
-        BaseUserDO baseUserDO = baseUserRepository.getOneByField(field, value);
-        if (baseUserDO == null) {
-            return null;
-        }
-
-        long id = baseUserDO.getId();
-        List<RoleDO> roles = roleService.getRoleListByUser(id);
-        List<PermissionDO> permissions = permissionService.getPermissionListByRole(id);
-
-        UserDO userDO = new UserDO(baseUserDO, roles, permissions);
-        return userDO;
-    }
-
-    public boolean addUser(BaseUserDO baseUserDO) {
-        return baseUserRepository.addUser(baseUserDO);
-    }
-
-    public List<BaseUserDO> getAll() {
-        return baseUserRepository.getAll();
+    public List<User> getAll() {
+        return userRepository.query(new UserQuery());
     }
 
     public boolean deleteUserRole(long userId) {
-        return baseUserRepository.deleteUserRoleRelation(userId);
+        return userRepository.deleteUserRoleRelation(userId);
     }
 
     public boolean addUserRole(long userId, long roleId) {
-        return baseUserRepository.insertUserRoleRelation(userId, roleId);
+        return userRepository.insertUserRoleRelation(userId, roleId);
     }
 }

@@ -1,40 +1,36 @@
-package com.politics.chn.domain.user.Entity;
+package com.politics.chn.domain.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.politics.chn.domain.common.Entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 import java.util.Objects;
 
 /**
- * @since 2021-04-03
+ * @since 2021-03-31
  * @author xu
  */
-public class PermissionDO {
+
+public class Role implements Entity {
+
     private Long id;
-    private Long pid;
+
     private String name;
+
     private String description;
-    /**
-     * 资源类型 前端页面/后端接口
-     */
-    private Integer type;
-    /**
-     * 资源路径
-     */
-    private String uri;
-    /**
-     * 资源访问方法(后端接口)
-     */
-    private String method;
+
+    private Long count;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private Date createTime;
+
     private Integer sort;
 
     private Boolean enabled;
     private Boolean deleted;
+
 
     public Long getId() {
         return id;
@@ -42,14 +38,6 @@ public class PermissionDO {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getPid() {
-        return pid;
-    }
-
-    public void setPid(Long pid) {
-        this.pid = pid;
     }
 
     public String getName() {
@@ -68,30 +56,13 @@ public class PermissionDO {
         this.description = description;
     }
 
-    public Integer getType() {
-        return type;
+    public Long getCount() {
+        return count;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setCount(Long count) {
+        this.count = count;
     }
-
-    public String getUri() {
-        return uri;
-    }
-
-    public void setUri(String uri) {
-        this.uri = uri;
-    }
-
-    public String getMethod() {
-        return method;
-    }
-
-    public void setMethod(String method) {
-        this.method = method;
-    }
-
 
     public Date getCreateTime() {
         return createTime;
@@ -133,25 +104,22 @@ public class PermissionDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        PermissionDO that = (PermissionDO) o;
-        return Objects.equals(id, that.id) && Objects.equals(pid, that.pid) && Objects.equals(name, that.name) && Objects.equals(description, that.description) && Objects.equals(type, that.type) && Objects.equals(uri, that.uri) && Objects.equals(method, that.method) && Objects.equals(createTime, that.createTime) && Objects.equals(sort, that.sort) && Objects.equals(enabled, that.enabled) && Objects.equals(deleted, that.deleted);
+        Role role = (Role) o;
+        return Objects.equals(id, role.id) && Objects.equals(name, role.name) && Objects.equals(description, role.description) && Objects.equals(count, role.count) && Objects.equals(createTime, role.createTime) && Objects.equals(sort, role.sort) && Objects.equals(enabled, role.enabled) && Objects.equals(deleted, role.deleted);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, pid, name, description, type, uri, method, createTime, sort, enabled, deleted);
+        return Objects.hash(id, name, description, count, createTime, sort, enabled, deleted);
     }
 
     @Override
     public String toString() {
-        return "PermissionPO{" +
+        return "RolePO{" +
                 "id=" + id +
-                ", pid=" + pid +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", type=" + type +
-                ", uri='" + uri + '\'' +
-                ", method='" + method + '\'' +
+                ", count=" + count +
                 ", createTime=" + createTime +
                 ", sort=" + sort +
                 ", enabled=" + enabled +
@@ -160,6 +128,6 @@ public class PermissionDO {
     }
 
     public boolean isNotNull() {
-        return name != null && type != null && uri != null;
+        return name != null;
     }
 }

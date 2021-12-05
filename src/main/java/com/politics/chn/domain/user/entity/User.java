@@ -1,16 +1,16 @@
-package com.politics.chn.repo.user.po;
+package com.politics.chn.domain.user.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.politics.chn.domain.common.Entity;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
-import java.util.Objects;
+import java.util.*;
 
 /**
  * @since 2021-03-31
  * @author xu
  */
-public class BaseUserPO {
+public class User implements Entity {
 
     private Long id;
 
@@ -158,7 +158,7 @@ public class BaseUserPO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BaseUserPO that = (BaseUserPO) o;
+        User that = (User) o;
         return Objects.equals(id, that.id) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(icon, that.icon) && Objects.equals(description, that.description) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone) && Objects.equals(createTime, that.createTime) && Objects.equals(loginTime, that.loginTime) && Objects.equals(accountNonExpired, that.accountNonExpired) && Objects.equals(accountNonLocked, that.accountNonLocked) && Objects.equals(credentialsNonExpired, that.credentialsNonExpired) && Objects.equals(enabled, that.enabled) && Objects.equals(deleted, that.deleted);
     }
 
@@ -169,7 +169,7 @@ public class BaseUserPO {
 
     @Override
     public String toString() {
-        return "BaseUserPO{" +
+        return "UserPO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

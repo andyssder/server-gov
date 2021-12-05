@@ -1,10 +1,12 @@
 package com.politics.chn.application;
 
+import com.politics.chn.application.dto.UserAuthDTO;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.JwtTokenUtil;
-import com.politics.chn.domain.user.Entity.BaseUserDO;
-import com.politics.chn.domain.user.UserDO;
+import com.politics.chn.domain.user.entity.Permission;
+import com.politics.chn.domain.user.entity.User;
+import com.politics.chn.domain.user.query.UserQuery;
 import com.politics.chn.service.user.PermissionService;
 import com.politics.chn.service.user.RoleService;
 import com.politics.chn.service.user.UserService;
@@ -53,17 +55,28 @@ public class UseBiz {
         this.permissionService = permissionService;
     }
 
-    public UserDO getUserByUserName(String userName) {
-        return userService.getUserByField("username", userName);
+    public UserAuthDTO getUserByUserName(String userName) {
+        UserQuery userQuery = new UserQuery();
+        userQuery.setUsername(userName);
+        User user = userService.getUserByField(userQuery);
+
+        Assert.isNull(user, () -> {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST.getCode(), "用户不存在");
+        });
+
+        long id = user.getId();
+        List<Permission> permissions = permissionService.getPermissionListByRole(id);
+
+        return new UserAuthDTO(user, permissions);
     }
 
-    public UserDO getUserByEmail(String email) {
-        return userService.getUserByField("email", email);
-    }
-
-    public UserDO getUserByPhone(String phone) {
-        return userService.getUserByField("phone", phone);
-    }
+//    public UserAuthDTO getUserByEmail(String email) {
+//        return userService.getUserByField("email", email);
+//    }
+//
+//    public UserAuthDTO getUserByPhone(String phone) {
+//        return userService.getUserByField("phone", phone);
+//    }
 
     public String login(Map<String, String> loginParam) {
         Assert.isTrue(loginParam.containsKey("username") && loginParam.containsKey("password"), () -> {
@@ -75,12 +88,12 @@ public class UseBiz {
         Assert.isTrue(username != null && password != null, () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
-        UserDO user = getUserByUserName(username);
+        UserAuthDTO user = getUserByUserName(username);
         Assert.notNull(user, () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND.getCode(), "用户不存在!");
         });
 
-        BaseUserDO baseUser = user.getBaseUser();
+        User baseUser = user.getUser();
         boolean passwordCheckResult = passwordEncoder.matches(password, baseUser.getPassword());
         Assert.isTrue(passwordCheckResult, () -> {
             throw new BadCredentialsException("密码不正确!");
@@ -94,7 +107,7 @@ public class UseBiz {
         return token;
     }
 
-    public void register(BaseUserDO baseUser) {
+    public void register(User baseUser) {
         Assert.isTrue(baseUser.isNotNull(), () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
@@ -114,7 +127,7 @@ public class UseBiz {
 
     }
 
-    public List<BaseUserDO> getUserList() {
+    public List<User> getUserList() {
         return userService.getAll();
     }
 

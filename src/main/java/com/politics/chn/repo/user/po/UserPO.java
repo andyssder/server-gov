@@ -1,15 +1,16 @@
-package com.politics.chn.domain.user.Entity;
+package com.politics.chn.repo.user.po;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.*;
+import java.util.Date;
+import java.util.Objects;
 
 /**
  * @since 2021-03-31
  * @author xu
  */
-public class BaseUserDO {
+public class UserPO {
 
     private Long id;
 
@@ -157,7 +158,7 @@ public class BaseUserDO {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        BaseUserDO that = (BaseUserDO) o;
+        UserPO that = (UserPO) o;
         return Objects.equals(id, that.id) && Objects.equals(username, that.username) && Objects.equals(password, that.password) && Objects.equals(icon, that.icon) && Objects.equals(description, that.description) && Objects.equals(email, that.email) && Objects.equals(phone, that.phone) && Objects.equals(createTime, that.createTime) && Objects.equals(loginTime, that.loginTime) && Objects.equals(accountNonExpired, that.accountNonExpired) && Objects.equals(accountNonLocked, that.accountNonLocked) && Objects.equals(credentialsNonExpired, that.credentialsNonExpired) && Objects.equals(enabled, that.enabled) && Objects.equals(deleted, that.deleted);
     }
 
@@ -168,7 +169,7 @@ public class BaseUserDO {
 
     @Override
     public String toString() {
-        return "BaseUserPO{" +
+        return "UserPO{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

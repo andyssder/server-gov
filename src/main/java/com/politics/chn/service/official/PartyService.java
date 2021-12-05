@@ -1,6 +1,7 @@
 package com.politics.chn.service.official;
 
 import com.politics.chn.domain.official.entity.Party;
+import com.politics.chn.domain.official.query.PartyQuery;
 import com.politics.chn.domain.official.repository.PartyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,6 @@ public class PartyService {
     }
 
     public List<Party> getPartyList() {
-        return partyRepository.query(null);
+        return partyRepository.query(new PartyQuery());
     }
 }

@@ -1,6 +1,6 @@
 package com.politics.chn.common.secuity;
 
-import com.politics.chn.domain.user.Entity.PermissionDO;
+import com.politics.chn.domain.user.entity.Permission;
 import com.politics.chn.service.user.PermissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
@@ -22,8 +22,8 @@ public class DynamicSecurityService {
 
     public Map<String, ConfigAttribute> loadDataSource() {
         Map<String, ConfigAttribute> map = new ConcurrentHashMap<>();
-        List<PermissionDO> permissions = permissionService.getPermissionList();
-        for (PermissionDO permission : permissions) {
+        List<Permission> permissions = permissionService.getPermissionList();
+        for (Permission permission : permissions) {
             // TODO: 过滤掉不是后端接口的permission
             if (permission.getType() == 1) {
                 continue;

@@ -1,12 +1,6 @@
 package com.politics.chn.repo.user.dao;
 
-import com.politics.chn.domain.user.Entity.RoleDO;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.util.List;
 
 //@SpringBootTest
 class RoleDaoTest {
@@ -19,7 +13,7 @@ class RoleDaoTest {
 
 //    @Test
 //    void getRolesByUserId() {
-//        List<RoleDO> roleList = roleDao.getRolesByUserId(6);
+//        List<Role> roleList = roleDao.getRolesByUserId(6);
 //        System.out.println(roleList);
 //        Assertions.assertEquals(1, roleList.size());
 //    }

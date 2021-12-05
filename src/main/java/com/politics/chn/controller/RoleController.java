@@ -1,7 +1,7 @@
 package com.politics.chn.controller;
 
 import com.politics.chn.application.UseBiz;
-import com.politics.chn.domain.user.Entity.RoleDO;
+import com.politics.chn.domain.user.entity.Role;
 import com.politics.chn.service.user.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,22 +23,22 @@ public class RoleController {
     private RoleService roleService;
 
     @PostMapping
-    public Long addRole(@RequestBody RoleDO role) {
+    public Long addRole(@RequestBody Role role) {
         return roleService.addRole(role);
     }
 
     @PutMapping
-    public void updateRole(@RequestBody RoleDO role) {
+    public void updateRole(@RequestBody Role role) {
         roleService.updateRole(role);
     }
 
     @PutMapping(value = "/patch")
-    public void patchUpdatePermission(@RequestBody List<RoleDO> roles) {
+    public void patchUpdatePermission(@RequestBody List<Role> roles) {
         roleService.patchUpdateRole(roles);
     }
 
     @GetMapping
-    public List<RoleDO> getRoleList(@RequestParam(value = "user", required = false) Long userId) {
+    public List<Role> getRoleList(@RequestParam(value = "user", required = false) Long userId) {
         if (userId == null) {
             return roleService.getRoleList();
         } else {

@@ -1,12 +1,13 @@
 package com.politics.chn.domain.official.query;
 
 import com.politics.chn.domain.common.Query;
+import com.politics.chn.domain.official.entity.Pit;
 
 /**
  * @author xu
  * @since 2021-12-02
  */
-public class PitQuery implements Query {
+public class PitQuery implements Query<Pit> {
     Long pid;
     Integer level;
     Integer districtLevel;

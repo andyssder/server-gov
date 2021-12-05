@@ -1,5 +1,7 @@
 package com.politics.chn.domain.official.entity;
 
+import com.politics.chn.domain.common.Entity;
+
 import java.util.Date;
 import java.util.Objects;
 
@@ -7,7 +9,7 @@ import java.util.Objects;
  * @since 2021-02-19
  * @author andyssder
  */
-public class Person {
+public class Person implements Entity {
     // TODO 验证参数
     Long id;
     String name;

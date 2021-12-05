@@ -1,6 +1,7 @@
 package com.politics.chn.service.official;
 
 import com.politics.chn.domain.official.entity.Ethnicity;
+import com.politics.chn.domain.official.query.EthnicityQuery;
 import com.politics.chn.domain.official.repository.EthnicityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class EthnicityService {
     }
 
     public List<Ethnicity> getEthnicityList() {
-        return ethnicityRepository.query(null);
+        return ethnicityRepository.query(new EthnicityQuery());
     }
 
 }

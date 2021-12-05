@@ -1,9 +1,9 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.application.dto.UserAuthDTO;
 import com.politics.chn.common.annotation.GlobalResultDisabled;
 import com.politics.chn.common.result.ReturnResult;
-import com.politics.chn.domain.user.Entity.BaseUserDO;
-import com.politics.chn.domain.user.UserDO;
+import com.politics.chn.domain.user.entity.User;
 import com.politics.chn.application.UseBiz;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -40,19 +40,18 @@ public class UserController {
     }
 
     @PostMapping(value = "/register")
-    public void register(@RequestBody BaseUserDO registerUser) {
+    public void register(@RequestBody User registerUser) {
         useBiz.register(registerUser);
     }
 
     @GetMapping(value = "/users/details")
-    public UserDO getUserInfo(Principal principal) {
+    public UserAuthDTO getUserInfo(Principal principal) {
         String username = principal.getName();
-        UserDO user = useBiz.getUserByUserName(username);
-        return user;
+        return useBiz.getUserByUserName(username);
     }
 
     @GetMapping(value = "/users")
-    public List<BaseUserDO> getUserList() {
+    public List<User> getUserList() {
         return useBiz.getUserList();
     }
 

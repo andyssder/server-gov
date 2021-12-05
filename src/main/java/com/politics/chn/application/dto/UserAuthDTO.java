@@ -1,8 +1,7 @@
-package com.politics.chn.domain.user;
+package com.politics.chn.application.dto;
 
-import com.politics.chn.domain.user.Entity.BaseUserDO;
-import com.politics.chn.domain.user.Entity.PermissionDO;
-import com.politics.chn.domain.user.Entity.RoleDO;
+import com.politics.chn.domain.user.entity.Permission;
+import com.politics.chn.domain.user.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -16,17 +15,15 @@ import java.util.stream.Collectors;
  * @since 2021-03-31
  * @author xu
  */
-public class UserDO implements UserDetails {
-    private BaseUserDO baseUser;
-    private List<RoleDO> roles;
-    private List<PermissionDO> permissions;
+public class UserAuthDTO implements UserDetails {
+    private User user;
+    private List<Permission> permissions;
 
-    public UserDO() {
+    public UserAuthDTO() {
     }
 
-    public UserDO(BaseUserDO baseUser, List<RoleDO> roles, List<PermissionDO> permissions) {
-        this.baseUser = baseUser;
-        this.roles = roles;
+    public UserAuthDTO(User user, List<Permission> permissions) {
+        this.user = user;
         this.permissions = permissions;
     }
 
@@ -41,56 +38,48 @@ public class UserDO implements UserDetails {
 
     @Override
     public String getPassword() {
-        return baseUser.getPassword();
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return baseUser.getUsername();
+        return user.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return baseUser.getAccountNonExpired();
+        return user.getAccountNonExpired();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return baseUser.getAccountNonLocked();
+        return user.getAccountNonLocked();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return baseUser.getCredentialsNonExpired();
+        return user.getCredentialsNonExpired();
     }
 
     @Override
     public boolean isEnabled() {
-        return baseUser.getEnabled();
+        return user.getEnabled();
     }
 
 
-    public BaseUserDO getBaseUser() {
-        return baseUser;
+    public User getUser() {
+        return user;
     }
 
-    public void setBaseUser(BaseUserDO baseUser) {
-        this.baseUser = baseUser;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<RoleDO> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(List<RoleDO> roles) {
-        this.roles = roles;
-    }
-
-    public List<PermissionDO> getPermissions() {
+    public List<Permission> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(List<PermissionDO> permissions) {
+    public void setPermissions(List<Permission> permissions) {
         this.permissions = permissions;
     }
 
