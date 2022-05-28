@@ -60,7 +60,7 @@ public class UseBiz {
         userQuery.setUsername(userName);
         User user = userService.getUserByField(userQuery);
 
-        Assert.isNull(user, () -> {
+        Assert.notNull(user, () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST.getCode(), "用户不存在");
         });
 
@@ -119,7 +119,7 @@ public class UseBiz {
         userQuery.setUsername(baseUser.getUsername());
         User user = userService.getUserByField(userQuery);
 
-        Assert.notNull(user, () -> {
+        Assert.isNull(user, () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST.getCode(), "用户名已经存在!");
         });
 
