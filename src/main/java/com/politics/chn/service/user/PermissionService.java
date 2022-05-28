@@ -42,7 +42,7 @@ public class PermissionService {
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void patchUpdatePermission(List<Permission> permissions) {
+    public void patchUpdatePermissions(List<Permission> permissions) {
         permissions.forEach(permissionDO -> {
             Assert.isTrue(permissionRepository.save(permissionDO), () -> {
                 throw new CommonException(ResultStatusEnum.NOT_FOUND);
