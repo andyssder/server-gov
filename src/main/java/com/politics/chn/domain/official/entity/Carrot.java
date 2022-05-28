@@ -87,7 +87,7 @@ public class Carrot implements Entity {
 
     @Override
     public String toString() {
-        return "CarrotPO{" +
+        return "Carrot{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +

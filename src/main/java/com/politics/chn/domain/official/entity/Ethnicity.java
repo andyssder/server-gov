@@ -54,7 +54,7 @@ public class Ethnicity implements Entity {
 
     @Override
     public String toString() {
-        return "EthnicityPO{" +
+        return "Ethnicity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

@@ -142,7 +142,7 @@ public class Pit implements Entity {
 
     @Override
     public String toString() {
-        return "PitPO{" +
+        return "Pit{" +
                 "id=" + id +
                 ", pid=" + pid +
                 ", name='" + name + '\'' +

@@ -97,7 +97,7 @@ public class District implements Entity {
 
     @Override
     public String toString() {
-        return "DistrictPO{" +
+        return "District{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", code=" + code +

@@ -80,7 +80,7 @@ public class UseBiz {
 
     public String login(Map<String, String> loginParam) {
         Assert.isTrue(loginParam.containsKey("username") && loginParam.containsKey("password"), () -> {
-            throw new CommonException(ResultStatusEnum.NOT_FOUND);
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
 
         String username = loginParam.get("username").trim();
@@ -115,7 +115,11 @@ public class UseBiz {
         baseUser.setUsername(baseUser.getUsername().trim());
         baseUser.setCreateTime(new Date());
 
-        Assert.isNull(getUserByUserName(baseUser.getUsername()), () -> {
+        UserQuery userQuery = new UserQuery();
+        userQuery.setUsername(baseUser.getUsername());
+        User user = userService.getUserByField(userQuery);
+
+        Assert.notNull(user, () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST.getCode(), "用户名已经存在!");
         });
 

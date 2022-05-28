@@ -65,7 +65,7 @@ public class Party implements Entity {
 
     @Override
     public String toString() {
-        return "PartyPO{" +
+        return "Party{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", shortName='" + shortName + '\'' +

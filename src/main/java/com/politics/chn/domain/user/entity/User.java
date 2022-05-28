@@ -169,7 +169,7 @@ public class User implements Entity {
 
     @Override
     public String toString() {
-        return "UserPO{" +
+        return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +

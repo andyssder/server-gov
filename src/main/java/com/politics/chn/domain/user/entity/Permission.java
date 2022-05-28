@@ -145,7 +145,7 @@ public class Permission implements Entity {
 
     @Override
     public String toString() {
-        return "PermissionPO{" +
+        return "Permission{" +
                 "id=" + id +
                 ", pid=" + pid +
                 ", name='" + name + '\'' +

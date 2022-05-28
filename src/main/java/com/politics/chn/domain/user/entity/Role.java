@@ -115,7 +115,7 @@ public class Role implements Entity {
 
     @Override
     public String toString() {
-        return "RolePO{" +
+        return "Role{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
