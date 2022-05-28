@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Mapper
 public interface CarrotMapper {
-    @Select("SELECT * FROM carrot WHERE is_deleted = false")
+    @Select("SELECT * FROM carrot WHERE is_deleted = false order by district_level")
     @Results(id="carrot", value={
             @Result(property="enabled",column="is_enabled"),
             @Result(property="deleted",column="is_deleted")

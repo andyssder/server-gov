@@ -1,5 +1,6 @@
 package com.politics.chn.service.official;
 
+import com.politics.chn.common.utils.StringUtils;
 import com.politics.chn.domain.official.entity.Carrot;
 import com.politics.chn.domain.official.query.CarrotQuery;
 import com.politics.chn.common.enums.ResultStatusEnum;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @since 2021-02-18
@@ -46,5 +48,16 @@ public class CarrotService {
         Assert.isTrue(carrotRepository.remove(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
         });
+    }
+
+    public String getCarrotShowNameById(Long id) {
+        Assert.notNull(id, () -> {
+            throw new CommonException(ResultStatusEnum.NOT_FOUND);
+        });
+        Carrot carrot = carrotRepository.find(id);
+        if (Objects.isNull(carrot)) {
+            return "";
+        }
+        return StringUtils.emptyToDefault(carrot.getShortName(), carrot.getName());
     }
 }

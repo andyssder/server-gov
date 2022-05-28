@@ -14,7 +14,7 @@ public class Profile {
     Date startTime;
     Date endTime;
     Long personId;
-    District district;
+    Integer district;
     Long pit;
     Long carrot;
     String remark;
@@ -56,11 +56,11 @@ public class Profile {
         this.personId = personId;
     }
 
-    public District getDistrict() {
+    public Integer getDistrict() {
         return district;
     }
 
-    public void setDistrict(District district) {
+    public void setDistrict(Integer district) {
         this.district = district;
     }
 

@@ -1,10 +1,13 @@
 package com.politics.chn.service.official;
 
+import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.official.entity.District;
 import com.politics.chn.domain.official.query.DistrictQuery;
 import com.politics.chn.domain.official.repository.DistrictRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -33,6 +36,14 @@ public class DistrictService {
         DistrictQuery query = new DistrictQuery();
         query.setPid(parentId);
         return districtRepository.query(query);
+    }
+
+    public List<District> getFullPath(Integer id) {
+        Assert.notNull(id, () -> {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+        });
+        List<District> list = districtRepository.queryFullPath(id);
+        return list;
     }
 
 }

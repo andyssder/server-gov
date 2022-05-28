@@ -11,7 +11,10 @@ import com.politics.chn.repo.official.po.DistrictPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 /**
  * @since 2021-02-06 16:45
@@ -35,7 +38,16 @@ public class DistrictRepositoryImpl implements DistrictRepository {
 
     @Override
     public List<District> query(DistrictQuery query) {
-        return null;
+        List<DistrictPO> districtPOS;
+        if (Objects.nonNull(query.getPid())) {
+            District district = find(query.getPid().longValue());
+            districtPOS = Objects.isNull(district) ? new ArrayList<>() : districtDao.getChildren(district.getLft(), district.getRgt(), district.getLevel());
+        } else if (Objects.nonNull(query.getLevel())) {
+            districtPOS = districtDao.getByLevel(query.getLevel());
+        }  else {
+            districtPOS = new ArrayList<>();
+        }
+        return districtPOS.stream().map((item) -> BeanUtil.toBean(item, District.class)).collect(Collectors.toList());
     }
 
     @Override
@@ -46,5 +58,19 @@ public class DistrictRepositoryImpl implements DistrictRepository {
     @Override
     public boolean save(District aggregate) {
         throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+    }
+
+    @Override
+    public List<District> queryFullPath(Integer id) {
+        District district = find(id.longValue());
+        if (Objects.isNull(district)) {
+            return new ArrayList<>();
+        }
+        List<DistrictPO> parents = districtDao.getParent(district.getLft(), district.getRgt());
+
+        List<District> list = parents.stream().map((item) -> BeanUtil.toBean(item, District.class)).collect(Collectors.toList());
+
+        list.add(district);
+        return list;
     }
 }

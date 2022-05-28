@@ -9,6 +9,7 @@ import com.politics.chn.repo.official.po.PitPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -92,5 +93,19 @@ public class PitRepositoryImpl implements PitRepository {
     private Boolean updateOne(Pit pit) {
         PitPO pitPO = BeanUtil.toBean(pit, PitPO.class);
         return pitDao.updateOne(pitPO);
+    }
+
+    @Override
+    public List<Pit> queryFullPath(Long id) {
+        Pit pit = find(id);
+        if (Objects.isNull(pit)) {
+            return new ArrayList<>();
+        }
+        List<PitPO> parents = pitDao.getParent(pit.getLft(), pit.getRgt());
+
+        List<Pit> list = parents.stream().map((item) -> BeanUtil.toBean(item, Pit.class)).collect(Collectors.toList());
+
+        list.add(pit);
+        return list;
     }
 }

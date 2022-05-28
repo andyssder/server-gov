@@ -55,4 +55,8 @@ public class PitDao {
     public boolean deleteOne(long id, boolean realDelete) {
         return realDelete ? pitMapper.realDeleteOne(id) > 0 : pitMapper.deleteOne(id) > 0;
     }
+
+    public List<PitPO> getParent(int lft, int rgt) {
+        return pitMapper.getUpper(lft, rgt);
+    }
 }

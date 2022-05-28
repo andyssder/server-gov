@@ -11,9 +11,11 @@ public class DistrictQuery implements Query<District> {
 
     Integer level;
 
-
     Integer pid;
 
+    Integer lft;
+
+    Integer rgt;
 
     public Integer getLevel() {
         return level;

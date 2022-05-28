@@ -30,6 +30,10 @@ public interface PitMapper {
     @ResultMap("pit")
     List<PitPO> getLower(int lft, int rgt, int level);
 
+    @Select("SELECT * FROM pit WHERE is_deleted = false AND lft < #{lft} AND rgt > #{rgt} and level != 0 ORDER BY lft ASC")
+    @ResultMap("pit")
+    List<PitPO> getUpper(int lft, int rgt);
+
     @Select("SELECT * FROM pit WHERE id = #{id} and is_deleted = false LIMIT 1")
     @ResultMap("pit")
     PitPO getOneById(long id);

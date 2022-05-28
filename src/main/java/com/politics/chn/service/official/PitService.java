@@ -106,4 +106,11 @@ public class PitService {
         }
         return pitRepository.query(query);
     }
+
+    public List<Pit> getFullPath(Long id) {
+        Assert.notNull(id, () -> {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+        });
+        return pitRepository.queryFullPath(id);
+    }
 }

@@ -25,6 +25,7 @@ public class UserController {
 
     @GetMapping(value = "/users/details")
     public UserAuthDTO getUserInfo(Principal principal) {
+        // TODO 优化返回值
         String username = principal.getName();
         return useBiz.getUserByUserName(username);
     }

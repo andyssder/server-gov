@@ -1,7 +1,6 @@
 package com.politics.chn.common.secuity;
 
 
-import cn.hutool.core.lang.Assert;
 import cn.hutool.json.JSONUtil;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.result.ReturnResult;
@@ -23,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.intercept.FilterSecurityInterceptor;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.util.Assert;
 
 /**
  * @since 2021-04-01

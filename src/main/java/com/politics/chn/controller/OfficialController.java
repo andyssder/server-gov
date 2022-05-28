@@ -1,5 +1,6 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.application.dto.OfficialDTO;
 import com.politics.chn.domain.official.entity.Official;
 import com.politics.chn.application.OfficialBiz;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,12 +33,12 @@ public class OfficialController {
     }
 
     @GetMapping
-    public List<Official> getAllOfficials() {
+    public List<OfficialDTO> getAllOfficials() {
         return officialBiz.getOfficialList();
     }
 
     @GetMapping(value = "/{id}")
-    public Official getOfficial(@PathVariable long id) {
+    public OfficialDTO getOfficial(@PathVariable long id) {
         return officialBiz.getOneOfficial(id);
     }
 

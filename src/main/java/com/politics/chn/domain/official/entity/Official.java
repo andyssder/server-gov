@@ -68,8 +68,6 @@ public class Official implements Entity {
     }
 
     public Boolean isNotNull() {
-        return person.isNotNull() && profiles != null && !ListUtil.filter(profiles, profile -> {
-            return profile.isNotNull() ? profile : null;
-        }).isEmpty();
+        return person.isNotNull() && profiles != null && !ListUtil.filter(profiles, profile -> profile.isNotNull() ? profile : null).isEmpty();
     }
 }
