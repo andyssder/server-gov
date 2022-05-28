@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 /**
  * @since 2021-03-31
- * @author xu
+ * @author andyssder
  */
 public class UserAuthDTO implements UserDetails {
     private User user;

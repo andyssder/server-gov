@@ -4,7 +4,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-12-02
  */
 public interface Repository<T extends Entity, Q extends Query<T>> {

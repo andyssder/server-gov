@@ -6,7 +6,7 @@ import com.politics.chn.domain.official.query.CarrotQuery;
 import com.politics.chn.domain.common.Repository;
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-12-02
  */
 public interface CarrotRepository extends Repository<Carrot, CarrotQuery> {

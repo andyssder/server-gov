@@ -5,7 +5,7 @@ import com.politics.chn.domain.official.entity.District;
 import com.politics.chn.domain.official.query.DistrictQuery;
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-12-02
  */
 public interface DistrictRepository extends Repository<District, DistrictQuery> {

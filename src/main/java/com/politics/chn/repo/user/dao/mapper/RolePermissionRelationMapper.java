@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-11-28
  */
 @Mapper

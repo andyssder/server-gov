@@ -5,7 +5,7 @@ import com.politics.chn.domain.user.entity.Role;
 import com.politics.chn.domain.user.query.RoleQuery;
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-12-05
  */
 public interface RoleRepository extends Repository<Role, RoleQuery> {

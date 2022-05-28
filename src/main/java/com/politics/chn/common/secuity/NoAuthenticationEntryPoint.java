@@ -13,7 +13,7 @@ import java.io.IOException;
 
 /**
  * @since 2021-04-03
- * @author xu
+ * @author andyssder
  */
 @Component
 public class NoAuthenticationEntryPoint implements AuthenticationEntryPoint {

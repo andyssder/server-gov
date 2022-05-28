@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-12-05
  */
 public interface UserRepository extends Repository<User, UserQuery> {

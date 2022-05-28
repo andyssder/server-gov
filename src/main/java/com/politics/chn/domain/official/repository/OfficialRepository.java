@@ -8,7 +8,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-12-05
  */
 public interface OfficialRepository extends Repository<Official, OfficialQuery> {

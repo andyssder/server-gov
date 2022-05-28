@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.Objects;
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-04-27
  */
 public class PersonPO {

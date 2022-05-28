@@ -4,7 +4,7 @@ import com.politics.chn.domain.common.Query;
 import com.politics.chn.domain.user.entity.User;
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-12-05
  */
 public class UserQuery implements Query<User> {

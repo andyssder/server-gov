@@ -9,7 +9,7 @@ import java.util.Objects;
 
 /**
  * @since 2021-04-03
- * @author xu
+ * @author andyssder
  */
 public class Permission implements Entity {
     private Long id;

@@ -6,7 +6,7 @@ import com.politics.chn.domain.official.entity.Party;
 import com.politics.chn.domain.official.query.PartyQuery;
 
 /**
- * @author xu
+ * @author andyssder
  * @since 2021-12-02
  */
 public interface PartyRepository extends Repository<Party, PartyQuery> {

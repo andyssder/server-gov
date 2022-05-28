@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  * @since 2021-03-31
- * @author xu
+ * @author andyssder
  */
 public class User implements Entity {
 
