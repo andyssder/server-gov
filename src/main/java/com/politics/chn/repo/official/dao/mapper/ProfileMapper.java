@@ -72,12 +72,12 @@ public interface ProfileMapper {
     int updateOne(ProfilePO profile);
 
     @Insert("<script> INSERT INTO profile " +
-            "(id, start_time, end_time, person_id, district_id, pit_id, carrot_id, remark, summary, priority, is_deleted, is_enabled) " +
+            "(id, start_time, end_time, person_id, district_id, pit_id, carrot_id, remark, summary, priority, is_enabled) " +
             "VALUES " +
             "<foreach collection='list' item='item' separator=',' > " +
             "(#{item.id}, #{item.startTime}, #{item.endTime}, #{item.personId}, " +
             "#{item.district}, #{item.pit}, #{item.carrot}, " +
-            "#{item.remark}, #{item.summary}, #{item.priority}, #{item.deleted}, #{item.enabled}) " +
+            "#{item.remark}, #{item.summary}, #{item.priority}, #{item.enabled}) " +
             "</foreach>" +
             "ON DUPLICATE KEY UPDATE " +
             "id = VALUES(id)," +
@@ -90,7 +90,6 @@ public interface ProfileMapper {
             "remark = VALUES(remark)," +
             "summary = VALUES(summary)," +
             "priority = VALUES(priority)," +
-            "is_deleted = VALUES(is_deleted)," +
             "is_enabled = VALUES(is_enabled)" +
             "</script>")
     @Options(useGeneratedKeys=true, keyProperty="id")

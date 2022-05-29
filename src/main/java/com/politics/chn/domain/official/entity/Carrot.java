@@ -17,6 +17,9 @@ public class Carrot implements Entity {
 
     Boolean enabled;
 
+    public Carrot() {
+    }
+
     public Carrot(Long id, String name, String shortName, Integer districtLevel, Boolean enabled) {
         assert StringUtils.isNotBlank(name);
         assert districtLevel >= 0;

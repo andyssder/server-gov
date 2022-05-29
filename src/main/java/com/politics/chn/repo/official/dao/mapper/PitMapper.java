@@ -49,7 +49,7 @@ public interface PitMapper {
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='shortName != null'> short_name=#{shortName}, </if>" +
             "<if test='level != null'> level=#{level}, </if>" +
-            "<if test='ranking != null'> level=#{ranking}, </if>" +
+            "<if test='ranking != null'> ranking=#{ranking}, </if>" +
             "<if test='districtLevel != null'> district_level=#{districtLevel}, </if>" +
             "<if test='lft != null'> lft=#{lft}, </if>" +
             "<if test='rgt != null'> rgt=#{rgt}, </if>" +
