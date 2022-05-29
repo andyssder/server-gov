@@ -29,6 +29,10 @@ public class PermissionDao {
         return permissionMapper.getListByRoleId(roleId);
     }
 
+    public List<PermissionPO> getPermissionsByRoleIds(List<Long> roleIds) {
+        return permissionMapper.getListByRoleIds(roleIds);
+    }
+
     public List<PermissionPO> getAll() {
         return permissionMapper.getAll();
     }

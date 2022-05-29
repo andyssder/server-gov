@@ -4,7 +4,9 @@ import com.politics.chn.application.dto.UserAuthDTO;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.JwtTokenUtil;
+import com.politics.chn.common.utils.StringUtils;
 import com.politics.chn.domain.user.entity.Permission;
+import com.politics.chn.domain.user.entity.Role;
 import com.politics.chn.domain.user.entity.User;
 import com.politics.chn.domain.user.query.UserQuery;
 import com.politics.chn.service.user.PermissionService;
@@ -21,6 +23,7 @@ import org.springframework.util.Assert;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author andyssder
@@ -65,7 +68,9 @@ public class UseBiz {
         });
 
         long id = user.getId();
-        List<Permission> permissions = permissionService.getPermissionListByRole(id);
+        List<Role> roles = roleService.getRoleListByUser(id);
+        List<Long> roleIds = roles.stream().map(Role::getId).collect(Collectors.toList());
+        List<Permission> permissions = permissionService.getPermissionListByRoles(roleIds);
 
         return new UserAuthDTO(user, permissions);
     }
@@ -82,10 +87,10 @@ public class UseBiz {
         Assert.isTrue(loginParam.containsKey("username") && loginParam.containsKey("password"), () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
-
         String username = loginParam.get("username").trim();
         String password = loginParam.get("password");
-        Assert.isTrue(username != null && password != null, () -> {
+
+        Assert.isTrue(StringUtils.isNotEmpty(username) && StringUtils.isNotEmpty(password), () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
         UserAuthDTO user = getUserByUserName(username);

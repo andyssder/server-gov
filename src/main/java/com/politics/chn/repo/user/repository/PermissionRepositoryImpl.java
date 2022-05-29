@@ -8,6 +8,7 @@ import com.politics.chn.domain.user.query.PermissionQuery;
 import com.politics.chn.domain.user.repository.PermissionRepository;
 import com.politics.chn.repo.user.dao.PermissionDao;
 import com.politics.chn.repo.user.po.PermissionPO;
+import io.jsonwebtoken.lang.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -39,12 +40,19 @@ public class PermissionRepositoryImpl implements PermissionRepository {
     public List<Permission> query(PermissionQuery query) {
         if (Objects.nonNull(query.getRoleId())) {
             return getPermissionsByRoleId(query.getRoleId());
+        } else if (!Collections.isEmpty(query.getRoleIds())) {
+            return getPermissionsByRoleIds(query.getRoleIds());
         }
         return getAll();
     }
 
     private List<Permission> getPermissionsByRoleId(long roleId) {
         List<PermissionPO> list = permissionDao.getPermissionsByRoleId(roleId);
+        return list.stream().map(permissionPO -> BeanUtil.toBean(permissionPO, Permission.class)).collect(Collectors.toList());
+    }
+
+    private List<Permission> getPermissionsByRoleIds(List<Long> roleIds) {
+        List<PermissionPO> list = permissionDao.getPermissionsByRoleIds(roleIds);
         return list.stream().map(permissionPO -> BeanUtil.toBean(permissionPO, Permission.class)).collect(Collectors.toList());
     }
 

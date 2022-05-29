@@ -42,6 +42,18 @@ public interface PermissionMapper {
     @ResultMap("permission")
     List<PermissionPO> getListByRoleId(long roleId);
 
+    @Select("<script> " +
+            "SELECT distinct p.* " +
+            "FROM sys_permission p, sys_role_permission rp " +
+            "WHERE rp.role_id in" +
+            "<foreach collection='list' item='item' index='index' separator=',' open='(' close=')'>" +
+            " #{item}" +
+            "</foreach>" +
+            "AND rp.permission_id=p.id" +
+            "</script>")
+    @ResultMap("permission")
+    List<PermissionPO> getListByRoleIds(List<Long> roleId);
+
     @Insert("INSERT INTO sys_permission(pid, name, description, type, uri, method, sort, create_time) " +
             "VALUES(#{pid}, #{name}, #{description}, #{type}, #{uri},  #{method}, #{sort}, #{createTime})")
     @Options(useGeneratedKeys=true, keyProperty="id")

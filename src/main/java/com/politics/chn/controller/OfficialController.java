@@ -23,13 +23,13 @@ public class OfficialController {
     }
 
     @PostMapping
-    public void addOfficial(@RequestBody Official official) {
-        officialBiz.addOfficial(official);
+    public void addOfficial(@RequestBody OfficialDTO officialDTO) {
+        officialBiz.addOfficial(officialDTO);
     }
 
     @PutMapping
-    public void updateOfficial(@RequestBody Official official) {
-        officialBiz.updateOfficial(official);
+    public void updateOfficial(@RequestBody OfficialDTO officialDTO) {
+        officialBiz.updateOfficial(officialDTO);
     }
 
     @GetMapping

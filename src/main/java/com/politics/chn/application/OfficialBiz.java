@@ -6,9 +6,7 @@ import com.politics.chn.application.dto.ProfileDTO;
 import com.politics.chn.common.enums.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.StringUtils;
-import com.politics.chn.domain.official.entity.District;
-import com.politics.chn.domain.official.entity.Official;
-import com.politics.chn.domain.official.entity.Pit;
+import com.politics.chn.domain.official.entity.*;
 import com.politics.chn.service.official.*;
 import io.jsonwebtoken.lang.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +57,12 @@ public class OfficialBiz {
         return transfer(official);
     }
 
-    public void addOfficial(Official official) {
+    public void addOfficial(OfficialDTO officialDTO) {
+        Person person = BeanUtil.toBean(officialDTO, Person.class);
+        List<Profile> profiles = officialDTO.getProfiles().stream().map(item -> BeanUtil.toBean(item, Profile.class)).collect(Collectors.toList());
+
+        Official official = new Official(person, profiles);
+
         Assert.isTrue(official.isNotNull(), () -> {
             throw new CommonException(ResultStatusEnum.BAD_REQUEST);
         });
@@ -68,7 +71,11 @@ public class OfficialBiz {
         });
     }
 
-    public void updateOfficial(Official official) {
+    public void updateOfficial(OfficialDTO officialDTO) {
+        Person person = BeanUtil.toBean(officialDTO, Person.class);
+        List<Profile> profiles = officialDTO.getProfiles().stream().map(item -> BeanUtil.toBean(item, Profile.class)).collect(Collectors.toList());
+
+        Official official = new Official(person, profiles);
         Assert.isTrue(officialService.updateOfficial(official), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });

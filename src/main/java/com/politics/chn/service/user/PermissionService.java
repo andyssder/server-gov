@@ -60,6 +60,12 @@ public class PermissionService {
         return permissionRepository.query(permissionQuery);
     }
 
+    public List<Permission> getPermissionListByRoles(List<Long> roleIds) {
+        PermissionQuery permissionQuery = new PermissionQuery();
+        permissionQuery.setRoleIds(roleIds);
+        return permissionRepository.query(permissionQuery);
+    }
+
     public void deletePermission(long id) {
         Assert.isTrue(permissionRepository.remove(id), () -> {
             throw new CommonException(ResultStatusEnum.NOT_FOUND);
