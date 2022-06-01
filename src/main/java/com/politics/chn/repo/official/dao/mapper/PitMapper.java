@@ -18,27 +18,20 @@ public interface PitMapper {
     })
     List<PitPO> getAll();
 
-    @Select("SELECT * FROM pit WHERE is_deleted = false AND district_level = #{districtLevel}")
+    @Select("SELECT * FROM pit WHERE is_deleted = false AND district_id = #{districtId}")
     @ResultMap("pit")
-    List<PitPO> getByDistrictLevel(int districtLevel);
+    List<PitPO> getByDistrictId(int districtId);
 
-    @Select("SELECT * FROM pit WHERE is_deleted = false AND level = #{level}")
+    @Select("SELECT * FROM pit WHERE is_deleted = false AND pid = #{pid} ORDER BY sort")
     @ResultMap("pit")
-    List<PitPO> getByLevel(int level);
-
-    @Select("SELECT * FROM pit WHERE is_deleted = false AND lft > #{lft} AND rgt < #{rgt} AND level=#{level} + 1 ORDER BY lft ASC")
-    @ResultMap("pit")
-    List<PitPO> getLower(int lft, int rgt, int level);
-
-    @Select("SELECT * FROM pit WHERE is_deleted = false AND lft < #{lft} AND rgt > #{rgt} and level != 0 ORDER BY lft ASC")
-    @ResultMap("pit")
-    List<PitPO> getUpper(int lft, int rgt);
+    List<PitPO> getChildren(long pid);
 
     @Select("SELECT * FROM pit WHERE id = #{id} and is_deleted = false LIMIT 1")
     @ResultMap("pit")
     PitPO getOneById(long id);
 
-    @Insert("INSERT INTO pit(name, short_name, level, district_level, lft, rgt, pid, is_enabled, ranking) VALUES(#{name}, #{shortName}, #{level}, #{districtLevel}, #{lft}, #{rgt}, #{pid}, #{enabled}, #{ranking})")
+    @Insert("INSERT INTO pit(name, short_name, pid, level, type, ranking, district_level, district_id, order, is_enabled) " +
+            "VALUES(#{name}, #{shortName}, #{pid}, #{level}, #{type}, #{ranking}, #{districtId}, #{districtLevel}, #{order}, #{enabled} )")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PitPO pit);
 
@@ -48,12 +41,13 @@ public interface PitMapper {
             "<trim prefix='set' suffixOverrides=',' suffix=' WHERE id = #{id}'>" +
             "<if test='name != null'> name=#{name}, </if>" +
             "<if test='shortName != null'> short_name=#{shortName}, </if>" +
+            "<if test='pid != null'> pid=#{pid}, </if>" +
             "<if test='level != null'> level=#{level}, </if>" +
+            "<if test='type != null'> type=#{type}, </if>" +
             "<if test='ranking != null'> ranking=#{ranking}, </if>" +
             "<if test='districtLevel != null'> district_level=#{districtLevel}, </if>" +
-            "<if test='lft != null'> lft=#{lft}, </if>" +
-            "<if test='rgt != null'> rgt=#{rgt}, </if>" +
-            "<if test='pid != null'> pid=#{pid}, </if>" +
+            "<if test='districtId != null'> district_id=#{districtId}, </if>" +
+            "<if test='order != null'> order=#{order}, </if>" +
             "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +

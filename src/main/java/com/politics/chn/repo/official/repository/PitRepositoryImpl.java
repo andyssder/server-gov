@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -38,32 +39,25 @@ public class PitRepositoryImpl implements PitRepository {
     public List<Pit> query(PitQuery query) {
         if (Objects.nonNull(query.getPid())) {
             return getChildren(query.getPid());
-        } else if (Objects.nonNull(query.getDistrictLevel())) {
-            return getByDistrictLevel(query.getDistrictLevel());
-        } else if (Objects.nonNull(query.getLevel())) {
-            return getPitListByLevel(query.getLevel());
+        } else if (Objects.nonNull(query.getDistrictId())) {
+            return getByDistrictId(query.getDistrictId());
         } else {
             return getAll();
         }
     }
+
     private List<Pit> getAll() {
         List<PitPO> list = pitDao.getAll();
         return list.stream().map(item -> BeanUtil.toBean(item, Pit.class)).collect(Collectors.toList());
     }
 
-    private List<Pit> getByDistrictLevel(int districtLevel) {
-        List<PitPO> list = pitDao.getByDistrictLevel(districtLevel);
+    private List<Pit> getByDistrictId(int districtId) {
+        List<PitPO> list = pitDao.getByDistrictId(districtId);
         return list.stream().map(item -> BeanUtil.toBean(item, Pit.class)).collect(Collectors.toList());
     }
 
-    private List<Pit> getPitListByLevel(int level) {
-        List<PitPO> list =  pitDao.getByLevel(level);
-        return list.stream().map(item -> BeanUtil.toBean(item, Pit.class)).collect(Collectors.toList());
-    }
-
-    private List<Pit> getChildren(long id) {
-        Pit pit = find(id);
-        List<PitPO> list =  pitDao.getChildren(pit.getLft(), pit.getRgt(), pit.getLevel());
+    private List<Pit> getChildren(long pid) {
+        List<PitPO> list =  pitDao.getChildren(pid);
         return list.stream().map(item -> BeanUtil.toBean(item, Pit.class)).collect(Collectors.toList());
     }
 
@@ -101,11 +95,15 @@ public class PitRepositoryImpl implements PitRepository {
         if (Objects.isNull(pit)) {
             return new ArrayList<>();
         }
-        List<PitPO> parents = pitDao.getParent(pit.getLft(), pit.getRgt());
-
-        List<Pit> list = parents.stream().map((item) -> BeanUtil.toBean(item, Pit.class)).collect(Collectors.toList());
-
+        long pid = pit.getPid();
+        List<Pit> list = new ArrayList<>();
         list.add(pit);
+        while (pid != 0) {
+            Pit parent = find(pid);
+            list.add(parent);
+            pid = parent.getPid();
+        }
+        Collections.reverse(list);
         return list;
     }
 }

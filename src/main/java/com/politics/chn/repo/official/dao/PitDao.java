@@ -24,16 +24,12 @@ public class PitDao {
         return pitMapper.getAll();
     }
 
-    public List<PitPO> getByDistrictLevel(int districtLevel) {
-        return pitMapper.getByDistrictLevel(districtLevel);
+    public List<PitPO> getByDistrictId(int districtId) {
+        return pitMapper.getByDistrictId(districtId);
     }
 
-    public List<PitPO> getByLevel(int level) {
-        return pitMapper.getByLevel(level);
-    }
-
-    public List<PitPO> getChildren(int lft, int rgt, int level) {
-        return pitMapper.getLower(lft, rgt, level);
+    public List<PitPO> getChildren(long pid) {
+        return pitMapper.getChildren(pid);
     }
 
     public PitPO getOneById(long id) {
@@ -56,7 +52,4 @@ public class PitDao {
         return realDelete ? pitMapper.realDeleteOne(id) > 0 : pitMapper.deleteOne(id) > 0;
     }
 
-    public List<PitPO> getParent(int lft, int rgt) {
-        return pitMapper.getUpper(lft, rgt);
-    }
 }
