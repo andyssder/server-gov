@@ -33,9 +33,9 @@ public class CarrotController {
     }
 
     @GetMapping
-    public List<Carrot> getCarrotList(@RequestParam(value = "districtLevel", required = false) Integer districtLevel) {
+    public List<Carrot> getCarrotList(@RequestParam(value = "pitId", required = false) Long pitId) {
         CarrotQuery carrotQuery = new CarrotQuery();
-        carrotQuery.setDistrictLevel(districtLevel);
+        carrotQuery.setPitId(pitId);
         return carrotService.queryCarrot(carrotQuery);
     }
 

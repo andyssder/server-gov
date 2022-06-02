@@ -24,8 +24,8 @@ public class CarrotDao {
         return carrotMapper.getAll();
     }
 
-    public List<CarrotPO> getByDistrictLevel(int districtLevel) {
-        return carrotMapper.getByDistrictLevel(districtLevel);
+    public List<CarrotPO> getByPitId(long pitId) {
+        return carrotMapper.getByPitId(pitId);
     }
 
     public CarrotPO getOneById(long id) {

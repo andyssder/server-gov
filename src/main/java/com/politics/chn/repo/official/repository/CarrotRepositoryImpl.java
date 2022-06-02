@@ -35,14 +35,14 @@ public class CarrotRepositoryImpl implements CarrotRepository {
 
     @Override
     public List<Carrot> query(CarrotQuery query) {
-        if (Objects.nonNull(query.getDistrictLevel())) {
-            return getByDistrictLevel(query.getDistrictLevel());
+        if (Objects.nonNull(query.getPitId())) {
+            return getByPitId(query.getPitId());
         }
         return getAll();
     }
 
-    private List<Carrot> getByDistrictLevel(int districtLevel) {
-        List<CarrotPO> list = carrotDao.getByDistrictLevel(districtLevel);
+    private List<Carrot> getByPitId(long districtLevel) {
+        List<CarrotPO> list = carrotDao.getByPitId(districtLevel);
 
         return list.stream().map(item -> BeanUtil.toBean(item, Carrot.class)).collect(Collectors.toList());
     }
