@@ -73,4 +73,7 @@ public class PitService {
         return pitRepository.queryFullPath(id);
     }
 
+    public List<PitTypeEnum> getPitTypeList() {
+        return PitTypeEnum.getAll();
+    }
 }

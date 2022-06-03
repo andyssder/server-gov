@@ -1,5 +1,6 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.common.enums.biz.PitTypeEnum;
 import com.politics.chn.domain.official.entity.Pit;
 import com.politics.chn.service.official.PitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +44,8 @@ public class PitController {
         return pitService.getPitList(type, value);
     }
 
+    @GetMapping(value = "/type")
+    public List<PitTypeEnum> getPitTypeList() {
+        return pitService.getPitTypeList();
+    }
 }
