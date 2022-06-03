@@ -2,7 +2,7 @@ package com.politics.chn.repo.official.repository;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.official.entity.Official;
 import com.politics.chn.domain.official.entity.Person;

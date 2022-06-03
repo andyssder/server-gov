@@ -1,7 +1,7 @@
 package com.politics.chn.application;
 
 import com.politics.chn.application.dto.UserAuthDTO;
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.JwtTokenUtil;
 import com.politics.chn.common.utils.StringUtils;

@@ -1,7 +1,7 @@
 package com.politics.chn.repo.official.repository;
 
 import cn.hutool.core.bean.BeanUtil;
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.official.entity.Ethnicity;
 import com.politics.chn.domain.official.query.EthnicityQuery;

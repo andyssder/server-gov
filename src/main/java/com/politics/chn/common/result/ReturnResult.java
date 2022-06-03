@@ -1,6 +1,6 @@
 package com.politics.chn.common.result;
 
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 
 import java.util.Objects;
 

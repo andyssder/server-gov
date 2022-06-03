@@ -1,6 +1,6 @@
 package com.politics.chn.service.user;
 
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.user.entity.Permission;
 import com.politics.chn.domain.user.query.PermissionQuery;

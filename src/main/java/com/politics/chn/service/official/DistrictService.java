@@ -1,6 +1,6 @@
 package com.politics.chn.service.official;
 
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.official.entity.District;
 import com.politics.chn.domain.official.query.DistrictQuery;

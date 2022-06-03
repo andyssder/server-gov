@@ -1,6 +1,6 @@
 package com.politics.chn.common.exception;
 
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 
 /**
  * @since 2021-02-07

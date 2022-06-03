@@ -1,6 +1,6 @@
 package com.politics.chn.common.exception;
 
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.result.ReturnResult;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.BadCredentialsException;

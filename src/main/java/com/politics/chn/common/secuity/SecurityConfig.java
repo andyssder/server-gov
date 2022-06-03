@@ -2,7 +2,7 @@ package com.politics.chn.common.secuity;
 
 
 import cn.hutool.json.JSONUtil;
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.result.ReturnResult;
 import com.politics.chn.application.dto.UserAuthDTO;
 import com.politics.chn.application.UseBiz;

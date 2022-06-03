@@ -1,7 +1,7 @@
 package com.politics.chn.common.secuity;
 
 import cn.hutool.json.JSONUtil;
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.result.ReturnResult;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;

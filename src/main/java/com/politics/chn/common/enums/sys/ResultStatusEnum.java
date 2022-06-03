@@ -1,4 +1,4 @@
-package com.politics.chn.common.enums;
+package com.politics.chn.common.enums.sys;
 
 /**
  * @since 2021-02-07

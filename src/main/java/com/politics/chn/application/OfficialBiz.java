@@ -3,7 +3,7 @@ package com.politics.chn.application;
 import cn.hutool.core.bean.BeanUtil;
 import com.politics.chn.application.dto.OfficialDTO;
 import com.politics.chn.application.dto.ProfileDTO;
-import com.politics.chn.common.enums.ResultStatusEnum;
+import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.StringUtils;
 import com.politics.chn.domain.official.entity.*;
