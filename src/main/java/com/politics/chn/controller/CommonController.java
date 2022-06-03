@@ -1,5 +1,8 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.application.CommonBiz;
+import com.politics.chn.application.dto.CommonEnumDTO;
+import com.politics.chn.common.enums.biz.RankingEnum;
 import com.politics.chn.domain.official.entity.Ethnicity;
 import com.politics.chn.domain.official.entity.Party;
 import com.politics.chn.service.official.EthnicityService;
@@ -16,19 +19,22 @@ import java.util.List;
 @RestController
 @RequestMapping
 public class CommonController {
-    @Autowired
-    private PartyService partyService;
 
     @Autowired
-    private EthnicityService ethnicityService;
+    CommonBiz commonBiz;
 
     @GetMapping(value = "/ethnicity")
     public List<Ethnicity> getEthnicityList() {
-        return ethnicityService.getEthnicityList();
+        return commonBiz.getEthnicityList();
     }
 
     @GetMapping(value = "/party")
     public List<Party> getPartyList() {
-        return partyService.getPartyList();
+        return commonBiz.getPartyList();
+    }
+
+    @GetMapping(value = "/ranking")
+    public List<CommonEnumDTO> getRankingList() {
+        return commonBiz.getRankingList();
     }
 }

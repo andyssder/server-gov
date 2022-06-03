@@ -1,9 +1,7 @@
 package com.politics.chn.service.official;
 
-import com.politics.chn.common.enums.biz.PitTypeEnum;
 import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
-import com.politics.chn.common.utils.StringUtils;
 import com.politics.chn.domain.official.entity.Pit;
 import com.politics.chn.domain.official.query.PitQuery;
 import com.politics.chn.domain.official.repository.PitRepository;
@@ -50,19 +48,8 @@ public class PitService {
         });
     }
 
-    public List<Pit> getPitList(String type, Long value) {
-        Assert.isTrue(type == null || value != null, () -> {
-            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
-        });
-        PitQuery query = new PitQuery();
-        if ("pid".equals(type)) {
-            query.setPid(value);
-        } else if ("district".equals(type)) {
-            // TODO: 校验
-            query.setDistrictId(value.intValue());
-        } else if(StringUtils.isNotBlank(type)){
-            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
-        }
+    public List<Pit> getPitList(PitQuery query) {
+        
         return pitRepository.query(query);
     }
 
@@ -73,7 +60,10 @@ public class PitService {
         return pitRepository.queryFullPath(id);
     }
 
-    public List<PitTypeEnum> getPitTypeList() {
-        return PitTypeEnum.getAll();
+    public Long countChildren(Long id) {
+        Assert.notNull(id, () -> {
+            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+        });
+        return pitRepository.countChildren(id);
     }
 }

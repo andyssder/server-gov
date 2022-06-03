@@ -1,5 +1,7 @@
 package com.politics.chn.service.official;
 
+import com.politics.chn.application.dto.CommonEnumDTO;
+import com.politics.chn.common.enums.biz.DistrictTypeEnum;
 import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.official.entity.District;
@@ -44,6 +46,10 @@ public class DistrictService {
         });
         List<District> list = districtRepository.queryFullPath(id);
         return list;
+    }
+
+    public List<CommonEnumDTO> getDistrictTypes() {
+        return DistrictTypeEnum.getAll();
     }
 
 }

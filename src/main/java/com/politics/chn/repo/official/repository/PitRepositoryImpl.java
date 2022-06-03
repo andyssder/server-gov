@@ -81,7 +81,7 @@ public class PitRepositoryImpl implements PitRepository {
             return false;
         }
         pit.setId(pitPO.getId());
-        return pitDao.insertOne(pitPO);
+        return true;
     }
 
     private Boolean updateOne(Pit pit) {
@@ -105,5 +105,10 @@ public class PitRepositoryImpl implements PitRepository {
         }
         Collections.reverse(list);
         return list;
+    }
+
+    @Override
+    public Long countChildren(Long pid) {
+        return pitDao.countChildren(pid);
     }
 }

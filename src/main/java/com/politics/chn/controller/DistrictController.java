@@ -1,5 +1,7 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.application.dto.CommonEnumDTO;
+import com.politics.chn.common.enums.biz.DistrictTypeEnum;
 import com.politics.chn.domain.official.entity.District;
 import com.politics.chn.service.official.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +31,10 @@ public class DistrictController {
     @GetMapping(value = "/cities")
     public List<District> getCities(@RequestParam (value = "id") Integer id) {
         return districtService.getCities(id);
+    }
+
+    @GetMapping(value = "/type")
+    public List<CommonEnumDTO> getDistrictTypes() {
+        return districtService.getDistrictTypes();
     }
 }

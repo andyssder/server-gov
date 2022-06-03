@@ -32,6 +32,10 @@ public class PitDao {
         return pitMapper.getChildren(pid);
     }
 
+    public Long countChildren(long pid) {
+        return pitMapper.countChildren(pid);
+    }
+
     public PitPO getOneById(long id) {
         return pitMapper.getOneById(id);
     }

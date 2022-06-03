@@ -1,5 +1,11 @@
 package com.politics.chn.common.enums.biz;
 
+import com.politics.chn.application.dto.CommonEnumDTO;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
 /**
  * @author andyssder
  * @since 2022-06-03
@@ -55,4 +61,20 @@ public enum DistrictTypeEnum {
         this.desc = desc;
     }
 
+    public CommonEnumDTO format() {
+        return new CommonEnumDTO(this.type, this.desc);
+    }
+
+    public static List<CommonEnumDTO> getAll() {
+        return Arrays.stream(DistrictTypeEnum.values()).map(DistrictTypeEnum::format).collect(Collectors.toList());
+    }
+
+    public static String getDescByType(Integer type) {
+        for (DistrictTypeEnum districtTypeEnum: DistrictTypeEnum.values()) {
+            if (districtTypeEnum.type.equals(type)) {
+                return districtTypeEnum.desc;
+            }
+        }
+        return "";
+    }
 }

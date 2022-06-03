@@ -14,4 +14,6 @@ import java.util.List;
 public interface PitRepository extends Repository<Pit, PitQuery> {
 
     List<Pit> queryFullPath(Long id);
+
+    Long countChildren(Long id);
 }

@@ -1,5 +1,7 @@
 package com.politics.chn.controller;
 
+import com.politics.chn.application.CarrotBiz;
+import com.politics.chn.application.dto.CarrotDTO;
 import com.politics.chn.domain.official.entity.Carrot;
 import com.politics.chn.domain.official.query.CarrotQuery;
 import com.politics.chn.service.official.CarrotService;
@@ -15,33 +17,28 @@ import java.util.List;
 @RestController
 @RequestMapping("/carrots")
 public class CarrotController {
-    private CarrotService carrotService;
 
     @Autowired
-    private void setCarrotService(CarrotService carrotService) {
-        this.carrotService = carrotService;
-    }
+    private CarrotBiz carrotBiz;
 
     @PostMapping
     public Long addCarrot(@RequestBody Carrot carrot) {
-        return carrotService.addCarrot(carrot);
+        return carrotBiz.addCarrot(carrot);
     }
 
     @PutMapping
     public void updateCarrot(@RequestBody Carrot carrot) {
-        carrotService.updateCarrot(carrot);
+        carrotBiz.updateCarrot(carrot);
     }
 
     @GetMapping
-    public List<Carrot> getCarrotList(@RequestParam(value = "pitId", required = false) Long pitId) {
-        CarrotQuery carrotQuery = new CarrotQuery();
-        carrotQuery.setPitId(pitId);
-        return carrotService.queryCarrot(carrotQuery);
+    public List<CarrotDTO> getCarrotList(@ModelAttribute CarrotQuery carrotQuery) {
+        return carrotBiz.queryCarrot(carrotQuery);
     }
 
     @DeleteMapping(value = "/{id}")
     public void deleteCarrot(@PathVariable long id) {
-        carrotService.deleteCarrot(id);
+        carrotBiz.deleteCarrot(id);
     }
 
 }

@@ -1,7 +1,10 @@
 package com.politics.chn.common.enums.biz;
 
+import com.politics.chn.application.dto.CommonEnumDTO;
+
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * 萝卜坑类型枚举
@@ -15,27 +18,29 @@ public enum PitTypeEnum {
 
     NPC(20, "人大"),
 
-    GOV(30, "政府"),
+    PRESIDENT(30, "国家主席"),
 
-    CPPCC(40, "政协"),
+    GOV(40, "政府"),
 
-    CMC(50, "军队"),
+    CPPCC(50, "政协"),
 
-    NSC(60, "监委"),
+    CMC(60, "军队"),
 
-    SPC(70, "法院"),
+    NSC(70, "监委"),
 
-    SPP(80, "检察院"),
+    SPC(80, "法院"),
 
-    OTHER_PARTY(90, "民主党派"),
+    SPP(90, "检察院"),
 
-    SOCIAL_COMMISSION(100, "社会团体"),
+    OTHER_PARTY(100, "民主党派"),
 
-    PROVINCE(110, "国企"),
+    SOCIAL_COMMISSION(110, "社会团体"),
 
-    MUNICIPALITY(120, "高校"),
+    PROVINCE(120, "国企"),
 
-    BINGTUAN(130, "兵团"),
+    MUNICIPALITY(130, "高校"),
+
+    BINGTUAN(140, "兵团"),
 
     ;
     private final Integer type;
@@ -47,8 +52,20 @@ public enum PitTypeEnum {
         this.desc = desc;
     }
 
-    public static List<PitTypeEnum> getAll() {
-        return Arrays.asList(PitTypeEnum.values());
+    public CommonEnumDTO format() {
+        return new CommonEnumDTO(this.type, this.desc);
     }
 
+    public static List<CommonEnumDTO> getAll() {
+        return Arrays.stream(PitTypeEnum.values()).map(PitTypeEnum::format).collect(Collectors.toList());
+    }
+
+    public static String getDescByType(Integer type) {
+        for (PitTypeEnum pitTypeEnum: PitTypeEnum.values()) {
+            if (pitTypeEnum.type.equals(type)) {
+                return pitTypeEnum.desc;
+            }
+        }
+        return "";
+    }
 }

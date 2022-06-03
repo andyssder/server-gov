@@ -26,12 +26,15 @@ public interface PitMapper {
     @ResultMap("pit")
     List<PitPO> getChildren(long pid);
 
+    @Select("SELECT count(1) FROM pit WHERE is_deleted = false AND pid = #{pid}")
+    Long countChildren(long pid);
+
     @Select("SELECT * FROM pit WHERE id = #{id} and is_deleted = false LIMIT 1")
     @ResultMap("pit")
     PitPO getOneById(long id);
 
-    @Insert("INSERT INTO pit(name, short_name, pid, level, type, ranking, district_level, district_id, order, is_enabled) " +
-            "VALUES(#{name}, #{shortName}, #{pid}, #{level}, #{type}, #{ranking}, #{districtId}, #{districtLevel}, #{order}, #{enabled} )")
+    @Insert("INSERT INTO pit(name, short_name, pid, level, type, ranking, district_level, district_id, sort, is_enabled) " +
+            "VALUES(#{name}, #{shortName}, #{pid}, #{level}, #{type}, #{ranking}, #{districtId}, #{districtLevel}, #{sort}, #{enabled} )")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PitPO pit);
 
@@ -47,7 +50,7 @@ public interface PitMapper {
             "<if test='ranking != null'> ranking=#{ranking}, </if>" +
             "<if test='districtLevel != null'> district_level=#{districtLevel}, </if>" +
             "<if test='districtId != null'> district_id=#{districtId}, </if>" +
-            "<if test='order != null'> order=#{order}, </if>" +
+            "<if test='sort != null'> sort=#{sort}, </if>" +
             "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
