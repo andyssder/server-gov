@@ -1,6 +1,7 @@
 package com.politics.chn.repo.user.repository;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.domain.user.entity.Permission;
@@ -8,7 +9,6 @@ import com.politics.chn.domain.user.query.PermissionQuery;
 import com.politics.chn.domain.user.repository.PermissionRepository;
 import com.politics.chn.repo.user.dao.PermissionDao;
 import com.politics.chn.repo.user.po.PermissionPO;
-import io.jsonwebtoken.lang.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -40,7 +40,7 @@ public class PermissionRepositoryImpl implements PermissionRepository {
     public List<Permission> query(PermissionQuery query) {
         if (Objects.nonNull(query.getRoleId())) {
             return getPermissionsByRoleId(query.getRoleId());
-        } else if (!Collections.isEmpty(query.getRoleIds())) {
+        } else if (CollectionUtil.isNotEmpty(query.getRoleIds())) {
             return getPermissionsByRoleIds(query.getRoleIds());
         }
         return getAll();

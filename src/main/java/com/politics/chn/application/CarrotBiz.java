@@ -1,22 +1,17 @@
 package com.politics.chn.application;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import com.politics.chn.application.dto.CarrotDTO;
-import com.politics.chn.application.dto.PitDTO;
-import com.politics.chn.common.enums.biz.PitTypeEnum;
 import com.politics.chn.common.enums.biz.RankingEnum;
-import com.politics.chn.common.enums.sys.ResultStatusEnum;
-import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.StringUtils;
 import com.politics.chn.domain.official.entity.Carrot;
-import com.politics.chn.domain.official.entity.District;
 import com.politics.chn.domain.official.entity.Pit;
 import com.politics.chn.domain.official.query.CarrotQuery;
 import com.politics.chn.service.official.CarrotService;
 import com.politics.chn.service.official.PitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.Assert;
 
 import java.util.List;
 import java.util.Objects;
@@ -60,7 +55,10 @@ public class CarrotBiz {
 
         List<Pit> pits = pitService.getFullPath(carrotDTO.getPitId());
         carrotDTO.setPitPath(pits.stream().map(Pit::getId).collect(Collectors.toList()));
-
+        if (CollectionUtil.isNotEmpty(pits)) {
+            Pit pit = pits.get(pits.size() - 1);
+            carrotDTO.setPitName(StringUtils.emptyToDefault(pit.getShortName(), pit.getName()));
+        }
         return carrotDTO;
     }
 }

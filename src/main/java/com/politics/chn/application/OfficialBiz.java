@@ -1,6 +1,7 @@
 package com.politics.chn.application;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.collection.CollectionUtil;
 import com.politics.chn.application.dto.OfficialDTO;
 import com.politics.chn.application.dto.ProfileDTO;
 import com.politics.chn.common.enums.sys.ResultStatusEnum;
@@ -8,7 +9,6 @@ import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.StringUtils;
 import com.politics.chn.domain.official.entity.*;
 import com.politics.chn.service.official.*;
-import io.jsonwebtoken.lang.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
@@ -106,7 +106,7 @@ public class OfficialBiz {
         officialDTO.setWorkPlaceName(districts.stream().map(District::getName).collect(Collectors.joining()));
         officialDTO.setWorkPlacePath(districts.stream().map(District::getId).collect(Collectors.toList()));
 
-        if (!Collections.isEmpty(official.getProfiles())) {
+        if (CollectionUtil.isNotEmpty(official.getProfiles())) {
             List<ProfileDTO> profileDTOS = new ArrayList<>();
             official.getProfiles().forEach(item -> {
                 ProfileDTO profileDTO = BeanUtil.toBean(item, ProfileDTO.class);

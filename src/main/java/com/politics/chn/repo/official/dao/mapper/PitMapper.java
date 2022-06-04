@@ -34,7 +34,7 @@ public interface PitMapper {
     PitPO getOneById(long id);
 
     @Insert("INSERT INTO pit(name, short_name, pid, level, type, ranking, district_level, district_id, sort, is_enabled) " +
-            "VALUES(#{name}, #{shortName}, #{pid}, #{level}, #{type}, #{ranking}, #{districtId}, #{districtLevel}, #{sort}, #{enabled} )")
+            "VALUES(#{name}, #{shortName}, #{pid}, #{level}, #{type}, #{ranking}, #{districtLevel}, #{districtId}, #{sort}, #{enabled} )")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PitPO pit);
 

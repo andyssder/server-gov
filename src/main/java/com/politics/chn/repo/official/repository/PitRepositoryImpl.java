@@ -98,7 +98,7 @@ public class PitRepositoryImpl implements PitRepository {
         long pid = pit.getPid();
         List<Pit> list = new ArrayList<>();
         list.add(pit);
-        while (pid != 0) {
+        while (pid > 1) {
             Pit parent = find(pid);
             list.add(parent);
             pid = parent.getPid();

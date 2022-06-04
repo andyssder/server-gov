@@ -16,6 +16,7 @@ public class CarrotDTO {
 
     Long pitId;
     List<Long> pitPath;
+    String pitName;
 
     Integer ranking;
     String rankingDesc;
