@@ -1,6 +1,7 @@
 package com.politics.chn.common.enums.biz;
 
 import com.politics.chn.application.dto.CommonEnumDTO;
+import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.stream.Collectors;
  * @author andyssder
  * @since 2022-06-03
  */
+@Getter
 public enum DistrictTypeEnum {
 
     DEFAULT(0, "默认"),

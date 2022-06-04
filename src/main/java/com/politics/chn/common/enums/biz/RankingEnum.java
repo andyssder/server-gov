@@ -1,6 +1,7 @@
 package com.politics.chn.common.enums.biz;
 
 import com.politics.chn.application.dto.CommonEnumDTO;
+import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -11,7 +12,10 @@ import java.util.stream.Collectors;
  * @author andyssder
  * @since 2022-06-03
  */
+@Getter
 public enum RankingEnum {
+
+    DEFAULT(0, "默认"),
 
     BIG_BROTHER(1, "正国级"),
     SUB_NATIONAL_LEADER(2, "副国级"),

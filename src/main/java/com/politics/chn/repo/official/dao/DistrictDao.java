@@ -40,4 +40,5 @@ public class DistrictDao {
     public List<DistrictPO> getParent(int lft, int rgt) {
         return districtMapper.getUpper(lft, rgt);
     }
+
 }

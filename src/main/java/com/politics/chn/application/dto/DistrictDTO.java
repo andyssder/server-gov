@@ -1,21 +1,23 @@
-package com.politics.chn.repo.official.po;
+package com.politics.chn.application.dto;
 
 import lombok.Data;
 
 /**
- * @since 2021-02-19
  * @author andyssder
+ * @since 2022-06-04
  */
 @Data
-public class DistrictPO {
+public class DistrictDTO {
+
     Integer id;
     String name;
     Integer code;
     Integer level;
-    Integer lft;
-    Integer rgt;
     Integer pid;
     Integer type;
+    String typeDesc;
     Integer ranking;
+    String rankingDesc;
 
+    Boolean hasChildren;
 }
