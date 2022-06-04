@@ -28,16 +28,16 @@ public interface PersonMapper {
 
     @Insert("INSERT INTO person(" +
             "name, portrait, gender, party_id, ethnicity_id, " +
-            "birth_date, death_date, work_date, party_date, retire_date, " +
+            "birth_date, death_date, work_date, retire_date, party_date, " +
             "ancestral_home, birth_place, work_place, " +
             "university, major, education, degree, " +
-            "ranking, create_time, update_time, is_enabled) " +
+            "ranking, profile_id, is_enabled, create_time, update_time) " +
             "VALUES(" +
             "#{name}, #{portrait}, #{gender}, #{partyId}, #{ethnicityId}, " +
-            "#{birthDate}, #{deathDate}, #{workDate}, #{partyDate}, #{retireDate}, " +
+            "#{birthDate}, #{deathDate}, #{workDate}, #{retireDate}, #{partyDate}, " +
             "#{ancestralHomeId}, #{birthPlaceId}, #{workPlaceId}," +
             "#{university}, #{major}, #{education}, #{degree}," +
-            "#{ranking}, #{createTime}, #{updateTime}, #{enabled})")
+            "#{ranking}, #{profileId}, #{enabled}, #{createTime}, #{updateTime})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(PersonPO person);
 
@@ -64,6 +64,7 @@ public interface PersonMapper {
             "<if test='major != null'> major=#{major}, </if>" +
             "<if test='degree != null'> degree=#{degree}, </if>" +
             "<if test='ranking != null'> ranking=#{ranking}, </if>" +
+            "<if test='profileId != null'> profile_id=#{profileId}, </if>" +
             "<if test='createTime != null'> create_time=#{createTime}, </if>" +
             "<if test='updateTime != null'> update_time=#{updateTime}, </if>" +
             "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +

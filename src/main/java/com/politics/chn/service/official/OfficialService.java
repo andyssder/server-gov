@@ -1,12 +1,14 @@
 package com.politics.chn.service.official;
 
 import com.politics.chn.domain.official.entity.Official;
+import com.politics.chn.domain.official.entity.Profile;
 import com.politics.chn.domain.official.repository.OfficialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @since 2021-02-20
@@ -42,4 +44,8 @@ public class OfficialService {
         return officialRepository.find(id);
     }
 
+    public String getProfileSummaryById(Long id) {
+        Profile profile = officialRepository.queryProfileById(id);
+        return Objects.isNull(profile) ? "" : profile.getSummary();
+    }
 }

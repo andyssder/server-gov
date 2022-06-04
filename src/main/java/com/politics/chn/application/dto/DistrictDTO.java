@@ -15,9 +15,9 @@ public class DistrictDTO {
     Integer level;
     Integer pid;
     Integer type;
-    String typeDesc;
+    String typeName;
     Integer ranking;
-    String rankingDesc;
+    String rankingName;
 
     Boolean hasChildren;
 }

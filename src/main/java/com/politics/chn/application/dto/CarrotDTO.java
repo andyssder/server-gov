@@ -19,7 +19,7 @@ public class CarrotDTO {
     String pitName;
 
     Integer ranking;
-    String rankingDesc;
+    String rankingName;
 
     Long sort;
 

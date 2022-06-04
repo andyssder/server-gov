@@ -4,6 +4,8 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import com.politics.chn.application.dto.OfficialDTO;
 import com.politics.chn.application.dto.ProfileDTO;
+import com.politics.chn.common.enums.biz.ProfileTypeEnum;
+import com.politics.chn.common.enums.biz.RankingEnum;
 import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
 import com.politics.chn.common.utils.StringUtils;
@@ -13,9 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -63,9 +63,9 @@ public class OfficialBiz {
 
         Official official = new Official(person, profiles);
 
-        Assert.isTrue(official.isNotNull(), () -> {
-            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
-        });
+//        Assert.isTrue(official.isNotNull(), () -> {
+//            throw new CommonException(ResultStatusEnum.BAD_REQUEST);
+//        });
         Assert.isTrue(officialService.addOfficial(official), () -> {
             throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
         });
@@ -106,20 +106,40 @@ public class OfficialBiz {
         officialDTO.setWorkPlaceName(districts.stream().map(District::getName).collect(Collectors.joining()));
         officialDTO.setWorkPlacePath(districts.stream().map(District::getId).collect(Collectors.toList()));
 
+        officialDTO.setRankingName(RankingEnum.getDescByRanking(officialDTO.getRanking()));
+        officialDTO.setProfileName(officialService.getProfileSummaryById(officialDTO.getProfileId()));
+
         if (CollectionUtil.isNotEmpty(official.getProfiles())) {
             List<ProfileDTO> profileDTOS = new ArrayList<>();
+            Map<Long, ProfileDTO> map = new HashMap<>();
             official.getProfiles().forEach(item -> {
                 ProfileDTO profileDTO = BeanUtil.toBean(item, ProfileDTO.class);
-                List<District> profileDistricts = districtService.getFullPath(item.getDistrict());
+                List<District> profileDistricts = districtService.getFullPath(item.getDistrictId());
                 profileDTO.setDistrictName(profileDistricts.stream().map(District::getName).collect(Collectors.joining()));
                 profileDTO.setDistrictPath(profileDistricts.stream().map(District::getId).collect(Collectors.toList()));
 
-                List<Pit> pits = pitService.getFullPath(item.getPit());
+                List<Pit> pits = pitService.getFullPath(item.getPitId());
                 profileDTO.setPitName(pits.stream().map(pit -> StringUtils.emptyToDefault(pit.getShortName(), pit.getName())).collect(Collectors.joining()));
                 profileDTO.setPitPath(pits.stream().map(Pit::getId).collect(Collectors.toList()));
 
-                profileDTO.setCarrotName(carrotService.getCarrotShowNameById(item.getCarrot()));
-                profileDTOS.add(profileDTO);
+                profileDTO.setCarrotName(carrotService.getCarrotShowNameById(item.getCarrotId()));
+                if (ProfileTypeEnum.NORMAL.getType().equals(item.getType())) {
+                    profileDTOS.add(profileDTO);
+                } else if (ProfileTypeEnum.AGGREGATE_ROOT.getType().equals(item.getType())){
+                    profileDTO.setHasChildren(true);
+                    profileDTOS.add(profileDTO);
+                    map.put(profileDTO.getId(), profileDTO);
+                } else {
+                    if (!map.containsKey(item.getPid())) {
+                        throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
+                    }
+                    ProfileDTO parent = map.get(item.getId());
+                    if (Objects.isNull(parent.getSubProfiles())) {
+                        parent.setSubProfiles(new ArrayList<>());
+                    }
+                    List<ProfileDTO> subProfileDTOs = parent.getSubProfiles();
+                    subProfileDTOs.add(profileDTO);
+                }
             });
             officialDTO.setProfiles(profileDTOS);
         }

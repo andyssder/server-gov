@@ -56,8 +56,8 @@ public class PitBiz {
             return null;
         }
         PitDTO pitDTO = BeanUtil.toBean(pit, PitDTO.class);
-        pitDTO.setTypeDesc(PitTypeEnum.getDescByType(pitDTO.getType()));
-        pitDTO.setRankingDesc(RankingEnum.getDescByRanking(pitDTO.getRanking()));
+        pitDTO.setTypeName(PitTypeEnum.getDescByType(pitDTO.getType()));
+        pitDTO.setRankingName(RankingEnum.getDescByRanking(pitDTO.getRanking()));
 
         List<District> districts = districtService.getFullPath(pitDTO.getDistrictId());
         pitDTO.setDistrictName(districts.stream().map(District::getName).collect(Collectors.joining()));

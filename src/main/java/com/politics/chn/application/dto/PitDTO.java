@@ -18,10 +18,10 @@ public class PitDTO {
     Integer level;
 
     Integer type;
-    String typeDesc;
+    String typeName;
 
     Integer ranking;
-    String rankingDesc;
+    String rankingName;
 
     Integer districtLevel;
     Integer districtId;

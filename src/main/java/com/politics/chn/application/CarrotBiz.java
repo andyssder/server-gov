@@ -51,7 +51,7 @@ public class CarrotBiz {
             return null;
         }
         CarrotDTO carrotDTO = BeanUtil.toBean(carrot, CarrotDTO.class);
-        carrotDTO.setRankingDesc(RankingEnum.getDescByRanking(carrotDTO.getRanking()));
+        carrotDTO.setRankingName(RankingEnum.getDescByRanking(carrotDTO.getRanking()));
 
         List<Pit> pits = pitService.getFullPath(carrotDTO.getPitId());
         carrotDTO.setPitPath(pits.stream().map(Pit::getId).collect(Collectors.toList()));

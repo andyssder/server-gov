@@ -1,17 +1,11 @@
 package com.politics.chn.application;
 
 import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.collection.CollectionUtil;
-import com.politics.chn.application.dto.CarrotDTO;
 import com.politics.chn.application.dto.CommonEnumDTO;
 import com.politics.chn.application.dto.DistrictDTO;
 import com.politics.chn.common.enums.biz.DistrictTypeEnum;
 import com.politics.chn.common.enums.biz.RankingEnum;
-import com.politics.chn.common.utils.StringUtils;
-import com.politics.chn.domain.official.entity.Carrot;
 import com.politics.chn.domain.official.entity.District;
-import com.politics.chn.domain.official.entity.Pit;
-import com.politics.chn.domain.official.query.DistrictQuery;
 import com.politics.chn.service.official.DistrictService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,8 +48,8 @@ public class DistrictBiz {
         DistrictDTO districtDTO = BeanUtil.toBean(district, DistrictDTO.class);
         districtDTO.setHasChildren(district.getRgt() - district.getLft() > 1);
 
-        districtDTO.setRankingDesc(RankingEnum.getDescByRanking(districtDTO.getRanking()));
-        districtDTO.setTypeDesc(DistrictTypeEnum.getDescByType(districtDTO.getType()));
+        districtDTO.setRankingName(RankingEnum.getDescByRanking(districtDTO.getRanking()));
+        districtDTO.setTypeName(DistrictTypeEnum.getDescByType(districtDTO.getType()));
         return districtDTO;
     }
 }

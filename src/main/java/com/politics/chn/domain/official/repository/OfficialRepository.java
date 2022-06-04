@@ -2,6 +2,7 @@ package com.politics.chn.domain.official.repository;
 
 import com.politics.chn.domain.common.Repository;
 import com.politics.chn.domain.official.entity.Official;
+import com.politics.chn.domain.official.entity.Profile;
 import com.politics.chn.domain.official.query.OfficialQuery;
 
 import javax.validation.constraints.NotNull;
@@ -13,5 +14,7 @@ import java.util.List;
  */
 public interface OfficialRepository extends Repository<Official, OfficialQuery> {
     List<Official> queryPerson(@NotNull OfficialQuery query);
+
+    Profile queryProfileById(Long id);
 
 }

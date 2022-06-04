@@ -123,4 +123,10 @@ public class OfficialRepositoryImpl implements OfficialRepository {
         personList.forEach(person -> officialList.add(new Official(BeanUtil.toBean(person, Person.class))));
         return officialList;
     }
+
+    @Override
+    public Profile queryProfileById(Long id) {
+        ProfilePO profilePO = profileDao.getOneById(id);
+        return Objects.isNull(profilePO) ? null : BeanUtil.toBean(profilePO, Profile.class);
+    }
 }
