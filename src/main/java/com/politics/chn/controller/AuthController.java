@@ -3,11 +3,8 @@ package com.politics.chn.controller;
 import com.politics.chn.application.UseBiz;
 import com.politics.chn.common.annotation.GlobalResultDisabled;
 import com.politics.chn.common.result.ReturnResult;
-import com.politics.chn.common.secuity.DynamicSecurityMetadataSource;
 import com.politics.chn.domain.user.entity.Permission;
 import com.politics.chn.domain.user.entity.Role;
-import com.politics.chn.service.user.PermissionService;
-import com.politics.chn.service.user.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
@@ -30,15 +27,6 @@ public class AuthController {
     @Autowired
     private UseBiz useBiz;
 
-    @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private PermissionService permissionService;
-
-    @Autowired
-    private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
-
     @GlobalResultDisabled
     @PostMapping(value = "/login")
     public ReturnResult login(HttpServletResponse response, @RequestBody Map<String, String> loginParam) {
@@ -57,31 +45,27 @@ public class AuthController {
 
     @PostMapping(value = "/roles")
     public Long addRole(@RequestBody Role role) {
-        return roleService.addRole(role);
+        return useBiz.addRole(role);
     }
 
     @PutMapping(value = "/roles")
     public void updateRole(@RequestBody Role role) {
-        roleService.updateRole(role);
+        useBiz.updateRole(role);
     }
 
     @PutMapping(value = "/roles/patch")
     public void patchUpdateRoles(@RequestBody List<Role> roles) {
-        roleService.patchUpdateRole(roles);
+        useBiz.patchUpdateRoles(roles);
     }
 
     @GetMapping(value = "/roles")
     public List<Role> getRoleList(@RequestParam(value = "user", required = false) Long userId) {
-        if (userId == null) {
-            return roleService.getRoleList();
-        } else {
-            return roleService.getRoleListByUser(userId);
-        }
+        return useBiz.getRoleList(userId);
     }
 
     @DeleteMapping(value = "/roles/{id}")
     public void deleteRole(@PathVariable long id) {
-        roleService.deleteRole(id);
+        useBiz.deleteRole(id);
     }
 
     @PostMapping("/roles/alloc/{id}")
@@ -91,34 +75,27 @@ public class AuthController {
 
     @PostMapping(value = "/permissions")
     public Long addPermission(@RequestBody Permission permission) {
-        long id = permissionService.addPermission(permission);
-        dynamicSecurityMetadataSource.clearDataSource();
-        return id;
+        return useBiz.addPermission(permission);
     }
 
     @PutMapping(value = "/permissions")
     public void updatePermission(@RequestBody Permission permission) {
-        permissionService.updatePermission(permission);
+        useBiz.updatePermission(permission);
     }
 
     @PutMapping(value = "/permissions/patch")
     public void patchUpdatePermissions(@RequestBody List<Permission> permissions) {
-        permissionService.patchUpdatePermissions(permissions);
+        useBiz.patchUpdatePermissions(permissions);
     }
 
     @GetMapping(value = "/permissions")
     public List<Permission> getPermissionList(@RequestParam(value = "role", required = false) Long roleId ) {
-        if (roleId == null) {
-            return permissionService.getPermissionList();
-        } else {
-            return permissionService.getPermissionListByRole(roleId);
-        }
+        return useBiz.getPermissionList(roleId);
     }
 
     @DeleteMapping(value = "/permissions/{id}")
     public void deletePermission(@PathVariable long id) {
-        permissionService.deletePermission(id);
-        dynamicSecurityMetadataSource.clearDataSource();
+        useBiz.deletePermission(id);
     }
 
 }

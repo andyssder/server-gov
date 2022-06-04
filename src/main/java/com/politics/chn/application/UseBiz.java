@@ -3,6 +3,7 @@ package com.politics.chn.application;
 import com.politics.chn.application.dto.UserAuthDTO;
 import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
+import com.politics.chn.common.secuity.DynamicSecurityMetadataSource;
 import com.politics.chn.common.utils.JwtTokenUtil;
 import com.politics.chn.common.utils.StringUtils;
 import com.politics.chn.domain.user.entity.Permission;
@@ -19,6 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -38,6 +40,8 @@ public class UseBiz {
 
     private PermissionService permissionService;
 
+    @Autowired
+    private DynamicSecurityMetadataSource dynamicSecurityMetadataSource;
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
@@ -167,5 +171,57 @@ public class UseBiz {
         permissionIds.forEach(permissionId -> {
             roleService.addRolePermission(roleId, permissionId);
         });
+    }
+
+    public Long addRole(Role role) {
+        return roleService.addRole(role);
+    }
+
+    public void updateRole(Role role) {
+        roleService.updateRole(role);
+    }
+
+    public void patchUpdateRoles(List<Role> roles) {
+        roleService.patchUpdateRole(roles);
+    }
+
+    public List<Role> getRoleList(Long userId) {
+        if (userId == null) {
+            return roleService.getRoleList();
+        } else {
+            return roleService.getRoleListByUser(userId);
+        }
+    }
+
+    public void deleteRole(Long id) {
+        roleService.deleteRole(id);
+    }
+
+
+    public Long addPermission(Permission permission) {
+        long id = permissionService.addPermission(permission);
+        dynamicSecurityMetadataSource.clearDataSource();
+        return id;
+    }
+
+    public void updatePermission(Permission permission) {
+        permissionService.updatePermission(permission);
+    }
+
+    public void patchUpdatePermissions(List<Permission> permissions) {
+        permissionService.patchUpdatePermissions(permissions);
+    }
+
+    public List<Permission> getPermissionList(Long roleId ) {
+        if (roleId == null) {
+            return permissionService.getPermissionList();
+        } else {
+            return permissionService.getPermissionListByRole(roleId);
+        }
+    }
+
+    public void deletePermission( long id) {
+        permissionService.deletePermission(id);
+        dynamicSecurityMetadataSource.clearDataSource();
     }
 }
