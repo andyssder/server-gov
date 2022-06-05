@@ -4,7 +4,6 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.collection.CollectionUtil;
 import com.politics.chn.application.dto.OfficialDTO;
 import com.politics.chn.application.dto.ProfileDTO;
-import com.politics.chn.common.enums.biz.ProfileTypeEnum;
 import com.politics.chn.common.enums.biz.RankingEnum;
 import com.politics.chn.common.enums.sys.ResultStatusEnum;
 import com.politics.chn.common.exception.CommonException;
@@ -111,7 +110,7 @@ public class OfficialBiz {
 
         if (CollectionUtil.isNotEmpty(official.getProfiles())) {
             List<ProfileDTO> profileDTOS = new ArrayList<>();
-            Map<Long, ProfileDTO> map = new HashMap<>();
+//            Map<Long, ProfileDTO> map = new HashMap<>();
             official.getProfiles().forEach(item -> {
                 ProfileDTO profileDTO = BeanUtil.toBean(item, ProfileDTO.class);
                 List<District> profileDistricts = districtService.getFullPath(item.getDistrictId());
@@ -123,23 +122,24 @@ public class OfficialBiz {
                 profileDTO.setPitPath(pits.stream().map(Pit::getId).collect(Collectors.toList()));
 
                 profileDTO.setCarrotName(carrotService.getCarrotShowNameById(item.getCarrotId()));
-                if (ProfileTypeEnum.NORMAL.getType().equals(item.getType())) {
-                    profileDTOS.add(profileDTO);
-                } else if (ProfileTypeEnum.AGGREGATE_ROOT.getType().equals(item.getType())){
-                    profileDTO.setHasChildren(true);
-                    profileDTOS.add(profileDTO);
-                    map.put(profileDTO.getId(), profileDTO);
-                } else {
-                    if (!map.containsKey(item.getPid())) {
-                        throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
-                    }
-                    ProfileDTO parent = map.get(item.getId());
-                    if (Objects.isNull(parent.getSubProfiles())) {
-                        parent.setSubProfiles(new ArrayList<>());
-                    }
-                    List<ProfileDTO> subProfileDTOs = parent.getSubProfiles();
-                    subProfileDTOs.add(profileDTO);
-                }
+                profileDTOS.add(profileDTO);
+//                if (ProfileTypeEnum.NORMAL.getType().equals(item.getType())) {
+//                    profileDTOS.add(profileDTO);
+//                } else if (ProfileTypeEnum.AGGREGATE_ROOT.getType().equals(item.getType())){
+//                    if (Objects.isNull(profileDTO.getSubProfiles())) {
+//                        profileDTO.setSubProfiles(new ArrayList<>());
+//                    }
+//                    profileDTO.setHasChildren(true);
+//                    profileDTOS.add(profileDTO);
+//                    map.put(profileDTO.getId(), profileDTO);
+//                } else {
+//                    if (!map.containsKey(item.getPid())) {
+//                        throw new CommonException(ResultStatusEnum.INTERNAL_SERVER_ERROR);
+//                    }
+//                    ProfileDTO parent = map.get(item.getPid());
+//                    List<ProfileDTO> subProfileDTOs = parent.getSubProfiles();
+//                    subProfileDTOs.add(profileDTO);
+//                }
             });
             officialDTO.setProfiles(profileDTOS);
         }

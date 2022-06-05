@@ -52,9 +52,6 @@ public class OfficialDTO {
     Long profileId;
     String profileName;
 
-    Date createTime;
-    Date updateTime;
-
     Boolean enabled;
 
     List<ProfileDTO> profiles;

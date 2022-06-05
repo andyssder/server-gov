@@ -31,6 +31,9 @@ public class PitDao {
     public List<PitPO> getChildren(long pid) {
         return pitMapper.getChildren(pid);
     }
+    public List<PitPO> getChildrenByDistrictId(long pid, int districtId) {
+        return pitMapper.getChildrenByDistrictId(pid, districtId);
+    }
 
     public Long countChildren(long pid) {
         return pitMapper.countChildren(pid);

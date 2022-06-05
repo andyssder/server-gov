@@ -37,7 +37,9 @@ public class PitRepositoryImpl implements PitRepository {
 
     @Override
     public List<Pit> query(PitQuery query) {
-        if (Objects.nonNull(query.getPid())) {
+        if (Objects.nonNull(query.getPid()) && Objects.nonNull(query.getDistrictId())) {
+            return getChildrenByDistrictId(query.getPid(), query.getDistrictId());
+        } else if (Objects.nonNull(query.getPid())) {
             return getChildren(query.getPid());
         } else if (Objects.nonNull(query.getDistrictId())) {
             return getByDistrictId(query.getDistrictId());
@@ -57,7 +59,12 @@ public class PitRepositoryImpl implements PitRepository {
     }
 
     private List<Pit> getChildren(long pid) {
-        List<PitPO> list =  pitDao.getChildren(pid);
+        List<PitPO> list = pitDao.getChildren(pid);
+        return list.stream().map(item -> BeanUtil.toBean(item, Pit.class)).collect(Collectors.toList());
+    }
+
+    private List<Pit> getChildrenByDistrictId(long pid, int districtId) {
+        List<PitPO> list = pitDao.getChildrenByDistrictId(pid, districtId);
         return list.stream().map(item -> BeanUtil.toBean(item, Pit.class)).collect(Collectors.toList());
     }
 

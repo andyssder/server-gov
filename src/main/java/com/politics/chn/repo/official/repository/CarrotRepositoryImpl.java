@@ -41,8 +41,8 @@ public class CarrotRepositoryImpl implements CarrotRepository {
         return getAll();
     }
 
-    private List<Carrot> getByPitId(long districtLevel) {
-        List<CarrotPO> list = carrotDao.getByPitId(districtLevel);
+    private List<Carrot> getByPitId(long pitId) {
+        List<CarrotPO> list = carrotDao.getByPitId(pitId);
 
         return list.stream().map(item -> BeanUtil.toBean(item, Carrot.class)).collect(Collectors.toList());
     }

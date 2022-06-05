@@ -26,6 +26,10 @@ public interface PitMapper {
     @ResultMap("pit")
     List<PitPO> getChildren(long pid);
 
+    @Select("SELECT * FROM pit WHERE is_deleted = false AND pid = #{pid} AND district_id = #{districtId} ORDER BY sort")
+    @ResultMap("pit")
+    List<PitPO> getChildrenByDistrictId(long pid, int districtId);
+
     @Select("SELECT count(1) FROM pit WHERE is_deleted = false AND pid = #{pid}")
     Long countChildren(long pid);
 
