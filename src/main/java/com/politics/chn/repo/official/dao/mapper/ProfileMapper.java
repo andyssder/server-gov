@@ -29,23 +29,23 @@ public interface ProfileMapper {
     @Insert("INSERT INTO profile(" +
             "start_time, end_time, person_id, district_id, " +
             "pit_id, carrot_id, remark, summary, " +
-            "priority, pid, type, ranking, is_enabled) " +
+            "priority, pid, type, ranking, sort, is_enabled) " +
             "VALUES(" +
             "#{startTime}, #{endTime}, #{personId}, #{districtId}, " +
             "#{pitId}, #{carrotId}, #{remark}, {summary}, " +
-            "##{priority}, #{pid}, #{type}, #{ranking}, #{enabled})")
+            "##{priority}, #{pid}, #{type}, #{ranking}, #{sort}, #{enabled})")
     @Options(useGeneratedKeys=true, keyProperty="id")
     int insertOne(ProfilePO profile);
 
     @Insert("<script> INSERT INTO profile " +
             "(start_time, end_time, person_id, district_id, " +
             "pit_id, carrot_id, remark, summary, " +
-            "priority, pid, type, ranking, is_enabled) " +
+            "priority, pid, type, ranking, sort, is_enabled) " +
             "VALUES " +
             "<foreach collection='list' item='item' separator=',' > " +
             "(#{item.startTime}, #{item.endTime}, #{item.personId}, #{item.districtId}, " +
             "#{item.pitId}, #{item.carrotId}, #{item.remark}, #{item.summary}, " +
-            "#{item.priority}, #{item.pid}, #{item.type}, #{item.ranking}, #{item.enabled})" +
+            "#{item.priority}, #{item.pid}, #{item.type}, #{item.ranking}, #{item.sort}, #{item.enabled})" +
             "</foreach>" +
             "</script>")
     @Options(useGeneratedKeys=true, keyProperty="id")
@@ -67,6 +67,7 @@ public interface ProfileMapper {
             "<if test='pid != null'> pid=#{pid}, </if>" +
             "<if test='type != null'> type=#{type}, </if>" +
             "<if test='ranking != null'> ranking=#{ranking}, </if>" +
+            "<if test='sort != null'> sort=#{sort}, </if>" +
             "<if test='enabled != null'> is_enabled=#{enabled}, </if>" +
             "<if test='deleted != null'> is_deleted=#{deleted}, </if>" +
             "</trim>" +
@@ -75,13 +76,13 @@ public interface ProfileMapper {
 
     @Insert("<script> INSERT INTO profile " +
             "(id, start_time, end_time, person_id, district_id, " +
-            "pit_id, carrot_id, remark, summary, " +
-            "priority, pid, type, ranking, is_enabled) " +
+            "pit_id, carrot_id, remark, summary, priority, " +
+            "pid, type, ranking, sort, is_enabled) " +
             "VALUES " +
             "<foreach collection='list' item='item' separator=',' > " +
             "(#{item.id}, #{item.startTime}, #{item.endTime}, #{item.personId}, #{item.districtId}, " +
-            "#{item.pitId}, #{item.carrotId}, #{item.remark}, #{item.summary}, " +
-            "#{item.priority}, #{item.pid}, #{item.type}, #{item.ranking}, #{item.enabled}) " +
+            "#{item.pitId}, #{item.carrotId}, #{item.remark}, #{item.summary}, #{item.priority}, " +
+            "#{item.pid}, #{item.type}, #{item.ranking}, #{item.sort}, #{item.enabled}) " +
             "</foreach>" +
             "ON DUPLICATE KEY UPDATE " +
             "id = VALUES(id)," +
@@ -97,6 +98,7 @@ public interface ProfileMapper {
             "pid = VALUES(pid)," +
             "type = VALUES(type)," +
             "ranking = VALUES(ranking)," +
+            "sort = VALUES(sort)," +
             "is_enabled = VALUES(is_enabled)" +
             "</script>")
     @Options(useGeneratedKeys=true, keyProperty="id")

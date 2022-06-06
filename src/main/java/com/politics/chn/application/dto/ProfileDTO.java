@@ -35,6 +35,7 @@ public class ProfileDTO {
     Integer type;
     Integer ranking;
 
+    Integer sort;
     List<ProfileDTO> subProfiles;
     Boolean hasChildren = false;
 

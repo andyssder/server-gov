@@ -26,6 +26,7 @@ public class Profile implements Entity {
     Long pid;
     Integer type;
     Integer ranking;
+    Integer sort;
 
 
     Boolean enabled;

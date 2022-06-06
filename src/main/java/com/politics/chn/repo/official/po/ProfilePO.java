@@ -24,6 +24,7 @@ public class ProfilePO {
     Long pid;
     Integer type;
     Integer ranking;
+    Integer sort;
 
     Boolean enabled;
     Boolean deleted;
